@@ -115,3 +115,15 @@ Pour lancer l'application sur le port `3000` :
 ```shell
 python manage.py runserver 3000
 ```
+
+## Endpoints
+
+```
+http://localhost:3000/api (HTML)
+
+http://localhost:3000/api/places (HTML)
+http://localhost:3000/api/places.json (JSON)
+
+http://localhost:3000/api/places/<id> (HTML)
+http://localhost:3000/api/places/<id>.json (JSON)
+```
