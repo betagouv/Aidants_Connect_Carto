@@ -39,29 +39,29 @@ class Place(models.Model):
 
     ## location
     address_raw = models.CharField(max_length=300, help_text="L'adresse brute, complète")
-    address_housenumber = models.CharField(max_length=5, help_text="Le numéro avec indice de répétition éventuel (bis, ter, A, B)")
-    address_street = models.CharField(max_length=150, help_text="Le nom de la rue")
-    address_postcode = models.CharField(max_length=5, help_text="Le code postal")
-    address_citycode = models.CharField(max_length=5, help_text="Le code INSEE de la commune")
-    address_city = models.CharField(max_length=150, help_text="Le nom de la commune")
+    address_housenumber = models.CharField(max_length=5, blank=True, help_text="Le numéro avec indice de répétition éventuel (bis, ter, A, B)")
+    address_street = models.CharField(max_length=150, blank=True, help_text="Le nom de la rue")
+    address_postcode = models.CharField(max_length=5, blank=True, help_text="Le code postal")
+    address_citycode = models.CharField(max_length=5, blank=True, help_text="Le code INSEE de la commune")
+    address_city = models.CharField(max_length=150, blank=True, help_text="Le nom de la commune")
     # address_context = models.CharField(max_length=150, help_text="n° de département, nom de département et de région")
-    latitude = models.FloatField(help_text="La latitude (coordonnée géographique)")
-    longitude = models.FloatField(help_text="La latitude (coordonnée géographique)")
+    latitude = models.FloatField(blank=True, null=True, help_text="La latitude (coordonnée géographique)")
+    longitude = models.FloatField(blank=True, null=True, help_text="La latitude (coordonnée géographique)")
     itinerant = models.BooleanField(default=False, help_text="Le lieu est-il itinérant ?")
     
     ## contact
-    contact_email = models.EmailField(max_length=150, help_text="Le courriel")
+    contact_email = models.EmailField(max_length=150, blank=True, help_text="Le courriel")
     phone_regex = RegexValidator(regex=r"^[0-9]$", message="le numéro de téléphone doit être au format 0123456789")
-    contact_phone = models.CharField(max_length=10, validators=[phone_regex], help_text="Le numéro de téléphone")
+    contact_phone = models.CharField(max_length=10, blank=True, validators=[phone_regex], help_text="Le numéro de téléphone")
     # contact_phone_international = models.CharField(help_text="") # regex="^[0-9]+$"
-    contact_website = models.EmailField(max_length=150, help_text="L'adresse du site internet")
+    contact_website = models.EmailField(max_length=150, blank=True, help_text="L'adresse du site internet")
     
     ## opening hours
-    opening_hours_raw = models.CharField(max_length=150, help_text="Les horaires d'ouverture")
+    opening_hours_raw = models.CharField(max_length=150, blank=True, help_text="Les horaires d'ouverture")
     # opening_hours = django-openinghours package ? JsonField ? custom Field ?
     
     ## payment
-    payment_methods = models.CharField(max_length=150, help_text="Les moyens de paiement") # PAYMENT_CHOICES
+    payment_methods = models.CharField(max_length=150, blank=True, help_text="Les moyens de paiement") # PAYMENT_CHOICES
     
     ## accessibility
     # accessibility = ArrayField(
@@ -82,7 +82,7 @@ class Place(models.Model):
     #     blank=True,
     #     help_text="Langues parlées"
     # )
-    languages = models.CharField(max_length=150, help_text="Langues parlées")
+    languages = models.CharField(max_length=150, blank=True, help_text="Langues parlées")
 
     ## equipements
     # equipements = ArrayField() # EQUIPEMENT_CHOICES
@@ -90,10 +90,10 @@ class Place(models.Model):
     equipement_computer = models.BooleanField(default=False, help_text="Ordinateur")
     equipement_scanner = models.BooleanField(default=False, help_text="Scanner")
     equipement_printer = models.BooleanField(default=False, help_text="Imprimante")
-    equipement_other = models.CharField(max_length=300, help_text="Autres équipements disponibles")
+    equipement_other = models.CharField(max_length=300, blank=True, help_text="Autres équipements disponibles")
 
     ## links to other databases
-    osm_node_id = models.IntegerField(help_text="OpenStreetMap node id")
+    osm_node_id = models.IntegerField(blank=True, null=True, help_text="OpenStreetMap node id")
     
     ## timestamps
     created_at = models.DateTimeField(auto_now_add=True)
