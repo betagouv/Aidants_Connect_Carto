@@ -116,7 +116,7 @@ class Service(models.Model):
 
     ## basics
     description = models.TextField(default="No description provided")
-    lieu = models.ForeignKey(
+    place = models.ForeignKey(
         Place, null=False, on_delete=models.CASCADE, related_name="services"
     )
     siret = models.CharField(max_length=14, help_text="Coordonnées juridiques") # regex="^[0-9]$"

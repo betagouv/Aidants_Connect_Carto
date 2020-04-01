@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('label_other', models.CharField(help_text='Autres labels', max_length=300)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('lieu', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='services', to='aidants_connect_carto_api.Place')),
+                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='services', to='aidants_connect_carto_api.Place')),
             ],
         ),
     ]
