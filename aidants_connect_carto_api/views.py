@@ -1,5 +1,5 @@
-from django.http import Http404
-from rest_framework import generics, status
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -27,6 +27,7 @@ class PlaceList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        print(request.data)
         serializer = PlaceSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -34,23 +35,17 @@ class PlaceList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):
+class PlaceDetail(APIView):
     """
     Retrieve, update or delete a place instance.
     """
-    def get_object(self, pk):
-        try:
-            return Place.objects.get(pk=pk)
-        except Place.DoesNotExist:
-            raise Http404
-
     def get(self, request, pk, format=None):
-        place = self.get_object(pk)
+        place = self.get_object_or_404(pk)
         serializer = PlaceSerializer(place)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        place = self.get_object(pk)
+        place = self.get_object_or_404(pk)
         serializer = PlaceSerializer(place, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -58,6 +53,6 @@ class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        place = self.get_object(pk)
+        place = self.get_object_or_404(pk)
         place.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
