@@ -1,0 +1,13 @@
+venv/*
+.idea/*
+**/__pycache__/**
+db.sqlite3
+geckodriver.log
+
+.env
+staticfiles
+.DS_Store
+
+local_db.json
+local_data
+local_scripts
