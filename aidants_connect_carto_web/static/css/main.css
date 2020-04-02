@@ -1,0 +1,5 @@
+/* Override template.min.css */
+
+.form__group + .form__group {
+  margin-top: var(--space-s);
+}

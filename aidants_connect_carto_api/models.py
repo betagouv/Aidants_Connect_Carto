@@ -34,11 +34,17 @@ class Place(models.Model):
         # "AFPE"
     ]
 
+    FORM_READONLY_FIELDS = (
+        "address_housenumber", "address_street", "address_postcode", "address_citycode", "address_city",
+        "latitude", "longitude",
+        "osm_node_id",
+    )
+
     ## basics
     name = models.CharField(max_length=300, help_text="Le nom du lieu")
 
     ## location
-    address_raw = models.CharField(max_length=300, help_text="L'adresse brute, complète")
+    address_raw = models.CharField(max_length=300, help_text="L'adresse complète")
     address_housenumber = models.CharField(max_length=5, blank=True, help_text="Le numéro avec indice de répétition éventuel (bis, ter, A, B)")
     address_street = models.CharField(max_length=150, blank=True, help_text="Le nom de la rue")
     address_postcode = models.CharField(max_length=5, blank=True, help_text="Le code postal")
@@ -60,9 +66,14 @@ class Place(models.Model):
     opening_hours_raw = models.CharField(max_length=150, blank=True, help_text="Les horaires d'ouverture")
     # opening_hours = django-openinghours package ? JsonField ? custom Field ?
     
-    ## payment
-    payment_methods = models.CharField(max_length=150, blank=True, help_text="Les moyens de paiement") # PAYMENT_CHOICES
-    
+    ## equipements
+    # equipements = ArrayField() # EQUIPEMENT_CHOICES
+    equipement_wifi = models.BooleanField(default=False, help_text="WiFi")
+    equipement_computer = models.BooleanField(default=False, help_text="Ordinateur")
+    equipement_scanner = models.BooleanField(default=False, help_text="Scanner")
+    equipement_printer = models.BooleanField(default=False, help_text="Imprimante")
+    equipement_other = models.CharField(max_length=300, blank=True, help_text="Autres équipements disponibles")
+
     ## accessibility
     # accessibility = ArrayField(
     #     models.CharField(max_length=32, blank=True, choices=HANDICAP_CHOICES),
@@ -84,13 +95,8 @@ class Place(models.Model):
     # )
     languages = models.CharField(max_length=150, blank=True, help_text="Langues parlées")
 
-    ## equipements
-    # equipements = ArrayField() # EQUIPEMENT_CHOICES
-    equipement_wifi = models.BooleanField(default=False, help_text="WiFi")
-    equipement_computer = models.BooleanField(default=False, help_text="Ordinateur")
-    equipement_scanner = models.BooleanField(default=False, help_text="Scanner")
-    equipement_printer = models.BooleanField(default=False, help_text="Imprimante")
-    equipement_other = models.CharField(max_length=300, blank=True, help_text="Autres équipements disponibles")
+    ## payment
+    payment_methods = models.CharField(max_length=150, blank=True, help_text="Les moyens de paiement") # PAYMENT_CHOICES
 
     ## links to other databases
     osm_node_id = models.IntegerField(blank=True, null=True, help_text="OpenStreetMap node id")
