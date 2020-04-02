@@ -7,31 +7,35 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% block title %}Aidants Connect{% endblock %}</title>
-
+  <title>Aidants Connect Carto</title>
 
   <link href="{% static 'css/template.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
 
   <!-- Extra styles -->
   {% block extracss %}
-  {% endblock %}
+  {% endblock extracss %}
 
 </head>
 
 <body>
   {% block nav %}
+    {% include 'layouts/nav.html' %}
   {% endblock nav %}
+
+  {% block hero %}
+  {% endblock hero %}
 
   <main>
     {% block content %}
-    {% endblock %}
+    {% endblock content %}
   </main>
 
   {% block footer %}
   {% endblock footer %}
 
   {% block extrajs %}
-  {% endblock %}
+  {% endblock extrajs %}
 </body>
 
 </html>

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "aidants_connect_carto_api",
+    "aidants_connect_carto_web",
 ]
 
 MIDDLEWARE = [

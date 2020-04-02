@@ -1,15 +1,15 @@
 from rest_framework import serializers
+# from drf_braces.forms.serializer_form import SerializerForm
 
 from aidants_connect_carto_api.models import Place, Service
 
 
 class PlaceSerializer(serializers.ModelSerializer):
-    nom = serializers.CharField(source="name", label="Nom du lieu")
 
     class Meta:
         model = Place
         fields = [
-            "id", "nom",
+            "id", "name",
             "address_raw", "address_housenumber", "address_street", "address_postcode", "address_citycode", "address_city",
             "latitude", "longitude", "itinerant",
             "contact_email", "contact_phone", "contact_website",

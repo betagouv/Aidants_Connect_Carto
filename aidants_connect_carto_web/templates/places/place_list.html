@@ -1,0 +1,23 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    {% if messages %}
+      <div class="notification success" role="alert">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <h1 class="brand">Tous les lieux</h1>
+    <h3>Actions rapides</h3>
+    <h3>Filtres poussés</h3>
+  </div>
+</section>
+<section class="section section-grey">
+  <div class="container">
+    <h2>Résultats</h2>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,130 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<section class="section section-white">
+  <div class="container">
+    <h1>Formulaire pour rajouter un lieu</h1>
+  </div>
+</section>
+<section class="section section-grey">
+  <div class="container">
+    <form action="{% url 'place_create' %}" method="POST">
+      {% csrf_token %}
+
+      <h3>Les infos de base</h3>
+
+      <div class="form__group">
+        <label class="{% if form.name.field.required %}required{% endif %}" for="{{ form.name.id_for_label }}">{{ form.name.label | safe }}&nbsp;:</label>
+        {{ form.name }}
+      </div>
+      <div class="form__group">
+        <label class="{% if form.address_raw.field.required %}required{% endif %}" for="{{ form.address_raw.id_for_label }}">{{ form.address_raw.label | safe }}&nbsp;:</label>
+        {{ form.address_raw }}
+
+        <label>(Champs remplis automatiquement)</label>
+        <div class="input__group">
+          {{ form.address_housenumber }}
+          {{ form.address_street }}
+        </div>
+        <div class="input__group">
+          {{ form.address_postcode }}
+          {{ form.address_citycode }}
+        </div>
+        <div class="input__group">
+          {{ form.address_city }}
+        </div>
+      </div>
+      <div class="form__group">
+        <label>Le lieu est-il itinérant ?</label>
+        <div class="input__group">
+          {{ form.itinerant }}
+          <label class="label-inline" for="{{ form.itinerant.id_for_label }}">Itinérant</label>
+        </div>
+      </div>
+
+      <h3>Contact</h3>
+
+      <div class="form__group">
+        <label for="{{ form.contact_email.id_for_label }}">{{ form.contact_email.label | safe }}&nbsp;:</label>
+        {{ form.contact_email }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.contact_phone.id_for_label }}">{{ form.contact_phone.label | safe }}&nbsp;:</label>
+        {{ form.contact_phone }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.contact_website.id_for_label }}">{{ form.contact_website.label | safe }}&nbsp;:</label>
+        {{ form.contact_website }}
+      </div>
+
+      <h3>Service(s) disponible(s)</h3>
+
+      <p>Voir plus loin</p>
+
+      <h3>Equipement(s) disponible(s)</h3>
+
+      <div class="form__group">
+        <label>Le lieu a-t-il les équipements suivants ?</label>
+        <div class="input__group">
+          {{ form.equipement_wifi }}
+          <label class="label-inline" for="{{ form.equipement_wifi.id_for_label }}">{{ form.equipement_wifi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.equipement_computer }}
+          <label class="label-inline" for="{{ form.equipement_computer.id_for_label }}">{{ form.equipement_computer.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.equipement_scanner }}
+          <label class="label-inline" for="{{ form.equipement_scanner.id_for_label }}">{{ form.equipement_scanner.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.equipement_printer }}
+          <label class="label-inline" for="{{ form.equipement_printer.id_for_label }}">{{ form.equipement_printer.label | safe }}</label>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="{{ form.equipement_other.id_for_label }}">{{ form.equipement_other.label | safe }}&nbsp;:</label>
+        {{ form.equipement_other }}
+      </div>
+
+      <h3>L'accès</h3>
+
+      <div class="form__group">
+        <label for="{{ form.opening_hours_raw.id_for_label }}">{{ form.opening_hours_raw.label | safe }}&nbsp;:</label>
+        {{ form.opening_hours_raw }}
+      </div>
+      <div class="form__group">
+        <label>Conditions d'accueil de l'handicap&nbsp;:</label>
+        <div class="input__group">
+          {{ form.accessibility_hi }}
+          <label class="label-inline" for="{{ form.accessibility_hi.id_for_label }}">{{ form.accessibility_hi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.accessibility_mi }}
+          <label class="label-inline" for="{{ form.accessibility_mi.id_for_label }}">{{ form.accessibility_mi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.accessibility_pi }}
+          <label class="label-inline" for="{{ form.accessibility_pi.id_for_label }}">{{ form.accessibility_pi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.accessibility_vi }}
+          <label class="label-inline" for="{{ form.accessibility_vi.id_for_label }}">{{ form.accessibility_vi.label | safe }}</label>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="{{ form.languages.id_for_label }}">{{ form.languages.label | safe }}&nbsp;:</label>
+        {{ form.languages }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.payment_methods.id_for_label }}">{{ form.payment_methods.label | safe }}&nbsp;:</label>
+        {{ form.payment_methods }}
+      </div>
+
+      <div class="form__group">
+        <input type="submit" value="Sauvegarder">
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock content %}
