@@ -105,6 +105,13 @@ class Place(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.name}"
+    
+    @property
+    def service_count(self):
+        return Service.objects.filter(place=self.id).count()
+
 
 class Service(models.Model):
     PUBLIC_CHOICES = [
@@ -159,3 +166,6 @@ class Service(models.Model):
     ## timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name}"

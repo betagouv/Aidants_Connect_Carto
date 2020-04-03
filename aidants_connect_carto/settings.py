@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "django_extensions",
     "aidants_connect_carto_api",
     "aidants_connect_carto_web",
 ]
