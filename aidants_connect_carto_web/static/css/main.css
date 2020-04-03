@@ -3,3 +3,38 @@
 .form__group + .form__group {
   margin-top: var(--space-s);
 }
+
+/* .section__subtitle + .row {
+  margin-top: var(--space-m);
+} */
+
+label.label-inline {
+  color: var(--theme-dark-text);
+}
+
+.color-primary {
+  color: var(--theme-primary);
+}
+
+
+/* Custom css */
+
+a.tile {
+  color: inherit;
+  text-decoration: inherit;
+}
+a.tile:hover {
+  background-color: var(--theme-background-white);
+}
+
+.inline-children > * {
+  display: inline;
+}
+
+.col-33 {
+  width: 33%;
+}
+
+.no-margin {
+  margin: 0;
+}

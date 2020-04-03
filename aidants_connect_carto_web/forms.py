@@ -1,7 +1,7 @@
 from django import forms
 
 from aidants_connect_carto_api.models import Place, Service
-from aidants_connect_carto_api.serializers import PlaceSerializer
+# from aidants_connect_carto_api.serializers import PlaceSerializer, ServiceSerialier
 
 
 class PlaceCreateForm(forms.ModelForm):
@@ -22,3 +22,21 @@ class PlaceCreateForm(forms.ModelForm):
         model = Place
         exclude = []
         # fields = ["address_raw", "address_housenumber"]
+
+
+class ServiceCreateForm(forms.ModelForm):
+    """
+    """
+    def __init__(self, *args, **kwargs):
+        super(ServiceCreateForm, self).__init__(*args, **kwargs)
+        # set help_text as label
+        for fieldname in self.fields:
+            self.fields[fieldname].label = self.fields[fieldname].help_text
+            self.fields[fieldname].help_text = None
+        # set readonly fields
+        for fieldname in Service.FORM_READONLY_FIELDS:
+            self.fields[fieldname].widget.attrs['readonly'] = True
+
+    class Meta:
+        model = Service
+        exclude = []

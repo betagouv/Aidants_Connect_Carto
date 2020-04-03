@@ -1,21 +1,73 @@
 {% extends 'layouts/main.html' %}
 
+{% load static %}
+
 {% block content %}
 <section class="section">
   <div class="container">
     {% if messages %}
       <div class="notification success" role="alert">
         {% for message in messages %}
-          {{ message }}
+          {{ message | safe }}
         {% endfor %}
       </div>
     {% endif %}
-    <h1 class="brand">{{ place.name }}</h1>
+
+    <div class="section__title inline-children">
+      <h1>{{ place.name }}</h1>
+      <span class="label">Ouvert</span>
+    </div>
+
+    <p class="section__subtitle">Une description du lieu en quelques mots</p>
+    
+    <div class="row">
+      <div class="col-33">
+        <h4>Informations</h4>
+        <p>Les equipements disponibles sont les suivants: WiFi, Ordinateur, Accueil.</p>
+        <p>Ce lieu contient X services. <a>Voir tous les services.</a></p>
+        <p>Ce lieu est en mesure d'accueillir des personnes à mobilités réduites.</p>
+      </div>
+      <div class="col-33">
+        <h4>Prendre contact</h4>
+        <p title="Téléphone">📞: {{ place.contact_phone }}</p>
+        <p title="Courriel">📧: {{ place.contact_email }}</p>
+        <p title="Site internet">🌐: {{ place.contact_website }}</p>
+      </div>
+      <div class="col-33">
+        <h4>S'y rendre</h4>
+        <p>{{ place.address_raw }}</p>
+        <img src="{% static 'images/osm-screenshot_square.png' %}" style="max-width: 200px;" />
+      </div>
+    </div>
+
+    <div class="row">
+      <p>
+        🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de 10h à 19h.
+        <a>Voir toute la semaine.</a>
+      </p>
+    </div>
   </div>
 </section>
 <section class="section section-grey">
   <div class="container">
-    <h2>Services</h2>
+    <h2 class="section__title">Services proposés</h2>
+    <div class="grid">
+      {% for service in place_services %}
+        <div class="tile">
+          <p>{{ service.name }}</p>
+        </div>
+      {% endfor %}
+      <a class="tile" href="{% url 'service_create' place_id=place.id %}">
+        <h3>➕</h3>
+        <p class="no-margin color-primary">Ajouter un service</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white">
+  <div class="container">
+    <h2 class="section__title">Agenda</h2>
   </div>
 </section>
 {% endblock content %}
