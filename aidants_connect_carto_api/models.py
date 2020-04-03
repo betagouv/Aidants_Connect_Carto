@@ -53,14 +53,14 @@ class Place(models.Model):
     # address_context = models.CharField(max_length=150, help_text="n° de département, nom de département et de région")
     latitude = models.FloatField(blank=True, null=True, help_text="La latitude (coordonnée géographique)")
     longitude = models.FloatField(blank=True, null=True, help_text="La latitude (coordonnée géographique)")
-    itinerant = models.BooleanField(default=False, help_text="Le lieu est-il itinérant ?")
+    is_itinerant = models.BooleanField(default=False, help_text="Le lieu est-il itinérant ?")
     
     ## contact
-    contact_email = models.EmailField(max_length=150, blank=True, help_text="Le courriel")
     phone_regex = RegexValidator(regex=r"^[0-9]$", message="le numéro de téléphone doit être au format 0123456789")
     contact_phone = models.CharField(max_length=10, blank=True, validators=[phone_regex], help_text="Le numéro de téléphone")
     # contact_phone_international = models.CharField(help_text="") # regex="^[0-9]+$"
-    contact_website = models.EmailField(max_length=150, blank=True, help_text="L'adresse du site internet")
+    contact_email = models.EmailField(max_length=150, blank=True, help_text="Le courriel")
+    contact_website = models.URLField(max_length=150, blank=True, help_text="L'adresse du site internet")
     
     ## opening hours
     opening_hours_raw = models.CharField(max_length=150, blank=True, help_text="Les horaires d'ouverture")
@@ -68,10 +68,10 @@ class Place(models.Model):
     
     ## equipements
     # equipements = ArrayField() # EQUIPEMENT_CHOICES
-    equipement_wifi = models.BooleanField(default=False, help_text="WiFi")
-    equipement_computer = models.BooleanField(default=False, help_text="Ordinateur")
-    equipement_scanner = models.BooleanField(default=False, help_text="Scanner")
-    equipement_printer = models.BooleanField(default=False, help_text="Imprimante")
+    has_equipement_wifi = models.BooleanField(default=False, help_text="WiFi")
+    has_equipement_computer = models.BooleanField(default=False, help_text="Ordinateur")
+    has_equipement_scanner = models.BooleanField(default=False, help_text="Scanner")
+    has_equipement_printer = models.BooleanField(default=False, help_text="Imprimante")
     equipement_other = models.CharField(max_length=300, blank=True, help_text="Autres équipements disponibles")
 
     ## accessibility
@@ -81,10 +81,10 @@ class Place(models.Model):
     #     blank=True,
     #     help_text="Accessible aux formes de handicap suivantes"
     # )
-    accessibility_hi = models.BooleanField(default=False, help_text="Handicap auditif")
-    accessibility_mi = models.BooleanField(default=False, help_text="Handicap moteur")
-    accessibility_pi = models.BooleanField(default=False, help_text="Handicap intellectuel ou psychique")
-    accessibility_vi = models.BooleanField(default=False, help_text="Handicap visuel")
+    has_accessibility_hi = models.BooleanField(default=False, help_text="Handicap auditif")
+    has_accessibility_mi = models.BooleanField(default=False, help_text="Handicap moteur")
+    has_accessibility_pi = models.BooleanField(default=False, help_text="Handicap intellectuel ou psychique")
+    has_accessibility_vi = models.BooleanField(default=False, help_text="Handicap visuel")
 
     ## languages
     # languages = ArrayField(
@@ -120,36 +120,41 @@ class Service(models.Model):
         ("collectif", "Collectif"),
     ]
 
+    FORM_READONLY_FIELDS = (
+
+    )
+
     ## basics
-    description = models.TextField(default="No description provided")
+    name = models.CharField(max_length=300, help_text="Le nom du service")
+    description = models.TextField(help_text="Une description du service")
     place = models.ForeignKey(
         Place, null=False, on_delete=models.CASCADE, related_name="services"
     )
-    siret = models.CharField(max_length=14, help_text="Coordonnées juridiques") # regex="^[0-9]$"
+    siret = models.CharField(max_length=14, blank=True, help_text="Coordonnées juridiques (SIRET)") # regex="^[0-9]$"
     
     ## support
     public_target = ArrayField(
         models.CharField(max_length=32, blank=True, choices=PUBLIC_CHOICES),
         default=list,
         blank=True,
-        help_text=""
+        help_text="Public cible"
     )
     support_mode = models.CharField(max_length=32, choices=SUPPORT_CHOICES, help_text="Modalités d'accompagnement")
 
     ## schedule
-    schedule_hours_raw = models.CharField(max_length=150, help_text="Les horaires du service")
+    schedule_hours_raw = models.CharField(max_length=150, blank=True, help_text="Les horaires du service")
     # schedule_hours = django-openinghours package ? JsonField ? custom Field ?
     
     ## payment
-    price_free = models.BooleanField(default=True, help_text="Le service est-il gratuit ?")
-    price_detail = models.CharField(max_length=150, help_text="Le details des prix")
-    payment_methods = models.CharField(max_length=150, help_text="Les moyens de paiements spécifiques à ce service") # PAYMENT_CHOICES
+    is_free = models.BooleanField(default=True, help_text="Le service est-il gratuit ?")
+    price_detail = models.CharField(max_length=150, blank=True, help_text="Le details des prix")
+    payment_methods = models.CharField(max_length=150, blank=True, help_text="Les moyens de paiements spécifiques à ce service") # PAYMENT_CHOICES
     
     ## labels
     # label_aptic = # ManyToManyField ?
-    label_aidants_connect = models.BooleanField(default=False, help_text="Labelisé Aidants Connect")
-    label_mfs = models.BooleanField(default=False, help_text="Labelisé France Service")
-    label_other = models.CharField(max_length=300, help_text="Autres labels")
+    has_label_aidants_connect = models.BooleanField(default=False, help_text="Labelisé Aidants Connect")
+    has_label_mfs = models.BooleanField(default=False, help_text="Labelisé France Service")
+    label_other = models.CharField(max_length=300, blank=True, help_text="Autres labels")
     
     ## timestamps
     created_at = models.DateTimeField(auto_now_add=True)

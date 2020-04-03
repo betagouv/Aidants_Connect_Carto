@@ -1,0 +1,98 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section section-white">
+  <div class="container">
+    <h1 class="section__title">Formulaire pour rajouter un service</h1>
+    <p class="section__subtitle"><a href="{% url 'place_details' place_id=place.id %}">{{ place.name }}</a></p>
+  </div>
+</section>
+<section class="section section-grey">
+  <div class="container">
+    <form action="{% url 'service_create' place_id=place.id %}" method="POST">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <div class="notification error" role="alert">{{ form.errors }}</div>
+      {% endif %}
+
+      <h3>Les infos de base</h3>
+
+      <input type="hidden" name="place" value="{{ place.id }}" id="place" />
+      <div class="form__group">
+        <label class="{% if form.name.field.required %}required{% endif %}" for="{{ form.name.id_for_label }}">{{ form.name.label | safe }}&nbsp;:</label>
+        {{ form.name }}
+      </div>
+      <div class="form__group">
+        <label class="{% if form.description.field.required %}required{% endif %}" for="{{ form.description.id_for_label }}">{{ form.description.label | safe }}&nbsp;:</label>
+        {{ form.description }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.siret.id_for_label }}">{{ form.siret.label | safe }}&nbsp;:</label>
+        {{ form.siret }}
+      </div>
+
+      <h3>L'accompagnement</h3>
+
+      <div class="form__group">
+        <label for="{{ form.public_target.id_for_label }}">{{ form.public_target.label | safe }}&nbsp;:</label>
+        {{ form.public_target }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.support_mode.id_for_label }}">{{ form.support_mode.label | safe }}&nbsp;:</label>
+        {{ form.support_mode }}
+      </div>
+
+      <h3>L'accès</h3>
+
+      <div class="form__group">
+        <label class="{% if form.schedule_hours_raw.field.required %}required{% endif %}" for="{{ form.schedule_hours_raw.id_for_label }}">{{ form.schedule_hours_raw.label | safe }}&nbsp;:</label>
+        {{ form.schedule_hours_raw }}
+      </div>
+      <div class="form__group">
+        <label>{{ form.is_free.label | safe }}</label>
+        <div class="input__group">
+          {{ form.is_free }}
+          <label class="label-inline" for="{{ form.price_free.id_for_label }}">Gratuit</label>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="{{ form.price_detail.id_for_label }}">{{ form.price_detail.label | safe }}&nbsp;:</label>
+        {{ form.price_detail }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.payment_methods.id_for_label }}">{{ form.payment_methods.label | safe }}&nbsp;:</label>
+        {{ form.payment_methods }}
+      </div>
+
+      <h3>Labels</h3>
+
+      <!-- <div class="input__group">
+        {{ form.label_aptic }}
+        <label class="label-inline" for="{{ form.label_aptic.id_for_label }}">{{ form.label_aptic.label | safe }}</label>
+      </div> -->
+      <div class="form__group">
+        <div class="input__group">
+          {{ form.has_label_aidants_connect }}
+          <label class="label-inline" for="{{ form.has_label_aidants_connect.id_for_label }}">{{ form.has_label_aidants_connect.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.has_label_mfs }}
+          <label class="label-inline" for="{{ form.has_label_mfs.id_for_label }}">{{ form.has_label_mfs.label | safe }}</label>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="{{ form.label_other.id_for_label }}">{{ form.label_other.label | safe }}&nbsp;:</label>
+        {{ form.label_other }}
+      </div>
+
+      <div class="form__group">
+        <input type="submit" value="Sauvegarder">
+      </div>
+    </form>
+
+  </div>
+</section>
+{% endblock content %}
