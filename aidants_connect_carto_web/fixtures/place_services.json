@@ -1,0 +1,120 @@
+[
+    {
+        "model": "aidants_connect_carto_api.place",
+        "pk": 1,
+        "fields": {
+            "name": "BetaGouv",
+            "address_raw": "20 Avenue de S\u00e9gur 75015 Paris",
+            "address_housenumber": "",
+            "address_street": "",
+            "address_postcode": "",
+            "address_citycode": "",
+            "address_city": "",
+            "latitude": null,
+            "longitude": null,
+            "is_itinerant": false,
+            "contact_phone": "",
+            "contact_email": "beta@email.com",
+            "contact_website": "https://beta.gouv.fr",
+            "opening_hours_raw": "Lundi-Vendredi 8h-20h",
+            "has_equipement_wifi": true,
+            "has_equipement_computer": true,
+            "has_equipement_scanner": false,
+            "has_equipement_printer": false,
+            "equipement_other": "",
+            "has_accessibility_hi": true,
+            "has_accessibility_mi": true,
+            "has_accessibility_pi": false,
+            "has_accessibility_vi": false,
+            "languages": "Fran\u00e7ais",
+            "payment_methods": "",
+            "osm_node_id": null,
+            "created_at": "2020-04-03T13:39:11.790Z",
+            "updated_at": "2020-04-03T13:39:11.790Z"
+        }
+    },
+    {
+        "model": "aidants_connect_carto_api.service",
+        "pk": 1,
+        "fields": {
+            "name": "Accueil du public",
+            "description": "description",
+            "place": 1,
+            "siret": "",
+            "public_target": "[]",
+            "support_mode": "libre",
+            "schedule_hours_raw": "",
+            "is_free": true,
+            "price_detail": "",
+            "payment_methods": "",
+            "has_label_aidants_connect": false,
+            "has_label_mfs": false,
+            "label_other": "",
+            "created_at": "2020-04-03T14:05:02.991Z",
+            "updated_at": "2020-04-03T14:05:02.991Z"
+        }
+    },
+    {
+        "model": "aidants_connect_carto_api.service",
+        "pk": 2,
+        "fields": {
+            "name": "Formation \u00e0 l'usage d'un ordinateur",
+            "description": "ordi",
+            "place": 1,
+            "siret": "",
+            "public_target": "[]",
+            "support_mode": "individuel",
+            "schedule_hours_raw": "",
+            "is_free": true,
+            "price_detail": "",
+            "payment_methods": "",
+            "has_label_aidants_connect": false,
+            "has_label_mfs": false,
+            "label_other": "",
+            "created_at": "2020-04-03T14:05:25.224Z",
+            "updated_at": "2020-04-03T14:05:25.224Z"
+        }
+    },
+    {
+        "model": "aidants_connect_carto_api.service",
+        "pk": 3,
+        "fields": {
+            "name": "Accompagnement aux d\u00e9marches en ligne",
+            "description": "demarches",
+            "place": 1,
+            "siret": "",
+            "public_target": "[]",
+            "support_mode": "collectif",
+            "schedule_hours_raw": "",
+            "is_free": true,
+            "price_detail": "",
+            "payment_methods": "",
+            "has_label_aidants_connect": false,
+            "has_label_mfs": false,
+            "label_other": "",
+            "created_at": "2020-04-03T14:06:47.121Z",
+            "updated_at": "2020-04-03T14:06:47.121Z"
+        }
+    },
+    {
+        "model": "aidants_connect_carto_api.service",
+        "pk": 4,
+        "fields": {
+            "name": "Autre service",
+            "description": "je ne sais pas encore",
+            "place": 1,
+            "siret": "",
+            "public_target": "[\"-25 ans\"]",
+            "support_mode": "libre",
+            "schedule_hours_raw": "",
+            "is_free": true,
+            "price_detail": "",
+            "payment_methods": "",
+            "has_label_aidants_connect": false,
+            "has_label_mfs": false,
+            "label_other": "",
+            "created_at": "2020-04-03T14:07:29.982Z",
+            "updated_at": "2020-04-03T14:07:29.982Z"
+        }
+    }
+]
