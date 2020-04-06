@@ -134,3 +134,7 @@ USE_TZ = True
 
 STATIC_ROOT = "staticfiles"
 STATIC_URL = "/static/"
+
+
+# API URLS
+BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"
