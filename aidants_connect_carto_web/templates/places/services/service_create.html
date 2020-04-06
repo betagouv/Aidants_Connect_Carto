@@ -40,8 +40,11 @@
         <label for="{{ form.public_target.id_for_label }}">{{ form.public_target.label | safe }}&nbsp;:</label>
         {{ form.public_target }}
       </div>
+
+      <!-- {{ form.public_target }} -->
+
       <div class="form__group">
-        <label for="{{ form.support_mode.id_for_label }}">{{ form.support_mode.label | safe }}&nbsp;:</label>
+        <label class="{% if form.support_mode.field.required %}required{% endif %}"  for="{{ form.support_mode.id_for_label }}">{{ form.support_mode.label | safe }}&nbsp;:</label>
         {{ form.support_mode }}
       </div>
 
