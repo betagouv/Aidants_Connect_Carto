@@ -33,11 +33,40 @@ a.tile:hover {
 
 .col-33 {
   width: 33%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .col-50 {
   width: 50%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .no-margin {
   margin: 0;
+}
+
+
+/* Address widget */
+
+/* Address Map */
+
+#mapid {
+  height: 275px;
+}
+
+/* Calendar widget */
+
+#yh1_yo-hours-range-nav, #yh1_yo-hours-range-edit {
+  display: none;
+}
+.yo-hours-calendar {
+  background-color: white;
+  font-size: small;
+}
+.fc-time-grid-event .fc-time {
+  white-space: normal !important;
+}
+.fc-axis {
+  width: 50px !important;
 }
