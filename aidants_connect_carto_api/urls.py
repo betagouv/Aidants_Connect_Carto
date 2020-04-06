@@ -8,6 +8,7 @@ urlpatterns = [
     path("", views.api_root),
     path("places/", views.PlaceList.as_view(), name="place-list"),
     path("places/<int:pk>/", views.PlaceDetail.as_view(), name="place-detail"),
+    path("address/search", views.address_search, name="address-search"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=["json", "html"])

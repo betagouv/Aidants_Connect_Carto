@@ -2,6 +2,11 @@
 
 {% load static %}
 
+{% block extracss %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+{% endblock extracss %}
+
 {% block content %}
 <section class="section section-white">
   <div class="container">
@@ -25,19 +30,48 @@
       </div>
       <div class="form__group">
         <label class="{% if form.address_raw.field.required %}required{% endif %}" for="{{ form.address_raw.id_for_label }}">{{ form.address_raw.label | safe }}&nbsp;:</label>
-        {{ form.address_raw }}
+        <!-- {{ form.address_raw }} -->
+        <div class="typeahead__container">
+          <div class="typeahead__field">
+            <div class="typeahead__query">
+              <input type="text" id="id_address_raw" class="js-typeahead" name="address_raw" maxlength="300" autocomplete="off">
+            </div>
+            <div class="typeahead__button" title="Réinitialiser">
+              <button>
+                <!-- <span class="typeahead__cancel-icon"></span> -->
+                <span>X</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <label>(Champs remplis automatiquement)</label>
-        <div class="input__group">
-          {{ form.address_housenumber }}
-          {{ form.address_street }}
-        </div>
-        <div class="input__group">
-          {{ form.address_postcode }}
-          {{ form.address_citycode }}
-        </div>
-        <div class="input__group">
-          {{ form.address_city }}
+        <label><i>Champs remplis automatiquement grâce à <a href="https://adresse.data.gouv.fr/" target="_blank">https://adresse.data.gouv.fr/</a></i></label>
+        <div class="row">
+          <div class="col-50">
+            <div class="input__group">
+              {{ form.address_housenumber }}
+            </div>
+            <div class="input__group">
+              {{ form.address_street }}
+            </div>
+            <div class="input__group">
+              {{ form.address_postcode }}
+              {{ form.address_citycode }}
+            </div>
+            <div class="input__group">
+              {{ form.address_city }}
+            </div>
+            <br />
+            <div class="input__group">
+              {{ form.latitude }}
+            </div>
+            <div class="input__group">
+              {{ form.longitude }}
+            </div>
+          </div>
+          <div class="col-50">
+            <div id="mapid" style="height: 300px"></div>
+          </div>
         </div>
       </div>
       <div class="form__group">
@@ -134,3 +168,91 @@
   </div>
 </section>
 {% endblock content %}
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<script>
+  // leaflet map
+  var map = L.map('mapid').setView([46.7, 2.1], 5);
+  var marker;
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // jquery typeahead
+  $.typeahead({
+    input: "#id_address_raw",
+    minLength: 5,
+    maxItem: 10,
+    order: "asc",
+    dynamic: true,
+    delay: 500,
+    filter: false,
+    backdrop: {
+      "background-color": "#fff"
+    },
+    emptyTemplate: "Aucune adresse trouvée",
+    display: "properties.label",
+    source: {
+      address: {
+        ajax: function (query) {
+          console.log(query);
+          return {
+            type: "GET",
+            url: "http://localhost:3000/api/address/search?",
+            data: {
+              q: query
+            },
+            path: "features",
+            callback: {
+              done: function (data) {
+                console.log(data);
+                return data;
+              }
+            }
+          }
+        }
+      }
+    },
+    callback: {
+      onInit: function (node) {
+        console.log(node);
+      },
+      onClick: function (node, a, item, event) {
+        populateAddress(item);
+      },
+    }
+  });
+
+  $(".typeahead__button").click(function(event) {
+    event.stopPropagation();
+    clearAddress();
+  });
+
+  function populateAddress(item) {
+    $("#id_address_housenumber").val(item.properties.housenumber);
+    $("#id_address_street").val(item.properties.street);
+    $("#id_address_postcode").val(item.properties.postcode);
+    $("#id_address_citycode").val(item.properties.citycode);
+    $("#id_address_city").val(item.properties.city);
+    $("#id_latitude").val(item.geometry.coordinates[1]);
+    $("#id_longitude").val(item.geometry.coordinates[0]);
+    marker = L.marker(item.geometry.coordinates.reverse()).addTo(map);
+  }
+
+  function clearAddress() {
+    $("#id_address_raw").val("");
+    $("#id_address_housenumber").val("");
+    $("#id_address_street").val("");
+    $("#id_address_postcode").val("");
+    $("#id_address_citycode").val("");
+    $("#id_address_city").val("");
+    $("#id_latitude").val("");
+    $("#id_longitude").val("");
+    map.removeLayer(marker);
+  }
+</script>
+{% endblock extrajs %}

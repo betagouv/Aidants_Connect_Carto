@@ -1,3 +1,6 @@
+import requests as python_request
+
+from django.conf import settings
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -56,3 +59,11 @@ class PlaceDetail(APIView):
         place = self.get_object_or_404(pk)
         place.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def address_search(request):
+    results = python_request.get(
+        f"{settings.BAN_ADDRESS_SEARCH_API}?q={request.GET.get('q')}"
+    )
+    return Response(results.json())
