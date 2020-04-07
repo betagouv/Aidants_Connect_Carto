@@ -70,4 +70,13 @@
     <h2 class="section__title">Agenda</h2>
   </div>
 </section>
+
+<section class="section section-grey">
+  <div class="container">
+    <h2 class="section__title">Actions</h2>
+    <div>
+      <a href="{% url 'place_update' place_id=place.id %}">Modifier le lieu</a>
+    </div>
+  </div>
+</section>
 {% endblock content %}

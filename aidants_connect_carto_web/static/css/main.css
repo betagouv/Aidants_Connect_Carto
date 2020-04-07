@@ -64,6 +64,9 @@ a.tile:hover {
   background-color: white;
   font-size: small;
 }
+.fc-scroller {
+  overflow: scroll !important;
+}
 .fc-time-grid-event .fc-time {
   white-space: normal !important;
 }

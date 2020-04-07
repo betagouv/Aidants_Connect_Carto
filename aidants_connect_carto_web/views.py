@@ -16,14 +16,11 @@ def place_list(request):
 def place_details(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
     place_services = place.services.all().order_by('id')
-    print(place.id)
-    print(place.services)
     return render(request, "places/place_details.html", { "place": place, "place_services": place_services })
 
 def place_create(request):
     if request.method == "GET":
         form = PlaceCreateForm()
-        return render(request, "places/place_create.html", { "form": form })
     
     else:
         form = PlaceCreateForm(request.POST)
@@ -32,15 +29,29 @@ def place_create(request):
             place = form.save()
             messages.success(request, f"Le lieu <strong>{place.name}</strong> a été créé avec succès !")
             return redirect("place_details", place_id=place.id)
-        else:
-            return render(request, "places/place_create.html", { "form": form })
+
+    return render(request, "places/place_create.html", { "form": form, "action": "create" })
+
+def place_update(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
+    if request.method == "GET":
+        form = PlaceCreateForm(instance=place)
+
+    else:
+        form = PlaceCreateForm(request.POST, instance=place)
+
+        if form.is_valid():
+            place = form.save()
+            messages.success(request, f"Le lieu <strong>{place.name}</strong> a été modifié avec succès !")
+            return redirect("place_details", place_id=place.id)
+
+    return render(request, "places/place_create.html", { "form": form, "action": "update", "place_id": place_id })
 
 
 def service_create(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
     if request.method == "GET":
         form = ServiceCreateForm()
-        return render(request, "places/services/service_create.html", { "place": place, "form": form })
     
     else:
         form = ServiceCreateForm(request.POST)
@@ -49,5 +60,5 @@ def service_create(request, place_id):
             service = form.save()
             messages.success(request, f"Le service <strong>{service.name}</strong> a été créé avec succès !")
             return redirect("place_details", place_id=service.place_id)
-        else:
-            return render(request, "places/services/service_create.html", { "place": place, "form": form })
+
+    return render(request, "places/services/service_create.html", { "place": place, "form": form })

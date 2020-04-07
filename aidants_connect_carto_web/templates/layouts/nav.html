@@ -9,10 +9,15 @@
     <nav role="navigation">
       <ul class="nav__links">
         <li class="nav__item">
+          <a href="{% url 'place_list' %}"  {% if '/lieux' in request.path %}class="active"{% endif %}>
+            Tous les lieux
+          </a>
+        </li>
+        <li class="nav__item">
           <a href="{% url 'place_create' %}"  {% if '/nouveau-lieu' in request.path %}class="active"{% endif %}>
             Ajouter un lieu
           </a>
-      </li>
+        </li>
       </ul>
     </nav>
   </div>
