@@ -10,12 +10,12 @@ def home_page(request):
 
 
 def place_list(request):
-    places = Place.objects.all()
+    places = Place.objects.all().order_by("name")
     return render(request, "places/place_list.html", { "places": places })
 
 def place_details(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
-    place_services = place.services.all().order_by('id')
+    place_services = place.services.all().order_by("id")
     return render(request, "places/place_details.html", { "place": place, "place_services": place_services })
 
 def place_create(request):

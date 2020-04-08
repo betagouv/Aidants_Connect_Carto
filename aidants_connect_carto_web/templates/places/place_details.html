@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block extracss %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+{% endblock extracss %}
+
 {% block content %}
 <section class="section">
   <div class="container">
@@ -15,10 +19,14 @@
 
     <div class="section__title inline-children">
       <h1>{{ place.name }}</h1>
-      <span class="label">Ouvert</span>
+      {% if place.is_open %}
+        <span class="label primary">Ouvert</span>
+      {% else %}
+        <span class="label">Fermé</span>
+      {% endif %}
     </div>
 
-    <p class="section__subtitle">Une description du lieu en quelques mots</p>
+    <!-- <p class="section__subtitle">Une description du lieu en quelques mots</p> -->
     
     <div class="row">
       <div class="col-33">
@@ -36,16 +44,31 @@
       <div class="col-33">
         <h4>S'y rendre</h4>
         <p>{{ place.address_raw }}</p>
-        <img src="{% static 'images/osm-screenshot_square.png' %}" style="max-width: 200px;" />
+        <!-- <img src="{% static 'images/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
+        {% if place.latitude and place.longitude %}
+          <div id="map-details"></div>
+        {% endif %}
       </div>
     </div>
 
-    <div class="row">
+    {% if place.opening_hours_raw %}
       <p>
-        🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de 10h à 19h.
-        <a>Voir toute la semaine.</a>
+        🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de
+        {% for timespan in place.opening_hours_today %}<span> {{ timespan.beginning | date:"H:i" }} à {{ timespan.end | date:"H:i" }}</span>{% endfor %}.
+        <a id="opening_hours_week_toggle">Voir toute la semaine.</a>
       </p>
-    </div>
+      <ul id="opening_hours_week" style="display:none">
+        {% for opening_hours_day in place.opening_hours_week_description %}
+          <li>{{ opening_hours_day }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>
+        🕒 Les <strong>horaires d'ouvertures</strong> sont inconnues.
+        <a>Rajouter les horaires.</a>
+      </p>
+    {% endif %}
+
   </div>
 </section>
 <section class="section section-grey">
@@ -80,3 +103,26 @@
   </div>
 </section>
 {% endblock content %}
+
+{% block extrajs %}
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+<script>
+  // leaflet map
+  if (document.getElementById("map-details")) {
+    place_coordinates = [parseFloat("{{ place.latitude | safe}}"), parseFloat("{{ place.longitude | safe}}")];
+    var map = L.map('map-details').setView(place_coordinates, 13);
+    L.marker(place_coordinates).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+  }
+</script>
+
+<script>
+document.getElementById("opening_hours_week_toggle").addEventListener("click", function() {
+  console.log(document.getElementById("opening_hours_week").style.display);
+  document.getElementById("opening_hours_week").style.display = (document.getElementById("opening_hours_week").style.display === "block") ? "none" : "block";
+}, false);
+</script>
+{% endblock extrajs %}

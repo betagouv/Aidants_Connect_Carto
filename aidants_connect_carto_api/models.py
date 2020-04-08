@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import RegexValidator
 
+import humanized_opening_hours as hoh
+
 
 class Place(models.Model):
     LANGUAGE_CHOICES = [
@@ -105,12 +107,62 @@ class Place(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self):
         return f"{self.name}"
     
     @property
-    def service_count(self):
-        return Service.objects.filter(place=self.id).count()
+    def service_count(self) -> int:
+        return self.services.count()
+
+    @property
+    def opening_hours_description(self) -> list:
+        """
+        Transform opening_hours_raw into a readable description
+        'Mo-Fr 8:00-20:00' --> ['Du lundi au vendredi : 08:00 – 20:00.']
+
+        TODO: Store as model field ?
+        """
+        if not self.opening_hours_raw:
+            return []
+        oh = hoh.OHParser(self.opening_hours_raw, locale="fr")
+        return oh.description()
+    
+    @property
+    def opening_hours_week_description(self) -> list:
+        """
+        Transform opening_hours_raw into a list of readable descriptions per day
+        'Mo-Fr 8:00-20:00' --> ['Lundi : 08:00 – 20:00', 'Mardi : 08:00 – 20:00', (...), 'Dimanche : fermé']
+
+        TODO: Store as model field ?
+        """
+        if not self.opening_hours_raw:
+            return []
+        oh = hoh.OHParser(self.opening_hours_raw, locale="fr")
+        return oh.plaintext_week_description().split("\n")
+
+    @property
+    def opening_hours_today(self) -> list:
+        """
+        Get the opening times of the current day
+        'Mo-Fr 8:00-20:00' --> [{'beginning': datetime.datetime(2020, 4, 8, 8, 0), 'end': datetime.datetime(2020, 4, 8, 20, 0), 'status': True, 'timespan': <TimeSpan from ('normal', datetime.time(8, 0)) to ('normal', datetime.time(20, 0))>}]
+        """
+        if not self.opening_hours_raw:
+            return []
+        oh = hoh.OHParser(self.opening_hours_raw, locale="fr")
+        return oh.get_day().timespans
+
+    @property
+    def is_open(self) -> bool:
+        """
+        Parses the opening_hours_raw field and returns True if it is currently open. False if not
+        """
+        if not self.opening_hours_raw:
+            return False
+        oh = hoh.OHParser(self.opening_hours_raw, locale="fr")
+        return hoh.OHParser(self.opening_hours_raw, locale="fr").is_open()
 
 
 class Service(models.Model):
@@ -166,6 +218,9 @@ class Service(models.Model):
     ## timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["id"]
 
     def __str__(self):
         return f"{self.name}"
