@@ -2,16 +2,29 @@
 
 {% load static %}
 
+{% block extracss %}
+<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.css">
+<link rel="stylesheet" href="{% static 'css/yohours.css' %}">
+{% endblock extracss %}
+
 {% block content %}
 <section class="section section-white">
   <div class="container">
-    <h1 class="section__title">Formulaire pour rajouter un service</h1>
+    <h1 class="section__title">
+      Formulaire pour {% if action == 'create' %}rajouter{% else %}modifier{% endif %} un service
+    </h1>
     <p class="section__subtitle"><a href="{% url 'place_details' place_id=place.id %}">{{ place.name }}</a></p>
   </div>
 </section>
 <section class="section section-grey">
   <div class="container">
+    {% if action == 'create' %}
     <form action="{% url 'service_create' place_id=place.id %}" method="POST">
+    {% else %}
+    <form action="{% url 'service_update' place_id=place.id service_id=service_id %}" method="POST">
+    {% endif %}
       {% csrf_token %}
 
       {% if form.errors %}
@@ -52,7 +65,14 @@
 
       <div class="form__group">
         <label class="{% if form.schedule_hours_raw.field.required %}required{% endif %}" for="{{ form.schedule_hours_raw.id_for_label }}">{{ form.schedule_hours_raw.label | safe }}&nbsp;:</label>
-        {{ form.schedule_hours_raw }}
+        <div class="input__group">
+          <input type="checkbox" name="is_same_opening_hours" id="id_is_same_opening_hours" {% if not form.schedule_hours_raw.value %}checked{% endif %}>
+          <label class="label-inline" for="{{ form.price_free.id_for_label }}">Même horaires que le lieu ({{ place.opening_hours_raw }})</label>
+        </div>
+        <div id="schedule_hours_raw_form_group" class="input__group" style="display: {{ form.schedule_hours_raw.value | yesno:'block,none' }}">
+          <!-- {{ form.schedule_hours_raw }} -->
+          <input type="text" name="schedule_hours_raw" maxlength="150" id="id_schedule_hours_raw" class="myOpeningHours">
+        </div>
       </div>
       <div class="form__group">
         <label>{{ form.is_free.label | safe }}</label>
@@ -61,11 +81,11 @@
           <label class="label-inline" for="{{ form.price_free.id_for_label }}">Gratuit</label>
         </div>
       </div>
-      <div class="form__group">
+      <div id="price_detail_form_group" class="form__group" style="display: {{ form.is_free | yesno:'none,block' }}">
         <label for="{{ form.price_detail.id_for_label }}">{{ form.price_detail.label | safe }}&nbsp;:</label>
         {{ form.price_detail }}
       </div>
-      <div class="form__group">
+      <div id="payment_methods_form_group" class="form__group" style="display:{{ form.is_free | yesno:'none,block' }}">
         <label for="{{ form.payment_methods.id_for_label }}">{{ form.payment_methods.label | safe }}&nbsp;:</label>
         {{ form.payment_methods }}
       </div>
@@ -99,3 +119,43 @@
   </div>
 </section>
 {% endblock content %}
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
+<script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+<script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
+<script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/caret/1.0.0/jquery.caret.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/jsmart/dist/jsmart.min.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/jed.min.js' %}"></script>
+<script src="{% static 'js/yohours.i18n.en.min.js' %}"></script>
+<script src="{% static 'js/yohours.js' %}"></script>
+<script>
+  document.querySelector("input[id=id_is_free]").addEventListener('change', function() {
+    document.getElementById("price_detail_form_group").style.display = this.checked ? "none" : "block";
+    document.getElementById("payment_methods_form_group").style.display = this.checked ? "none" : "block";
+  });
+
+  document.querySelector("input[id=id_is_same_opening_hours]").addEventListener('change', function() {
+    document.getElementById("schedule_hours_raw_form_group").style.display = this.checked ? "none" : "block";
+  });
+
+  $('.myOpeningHours').yoHours({
+		bootstrapVersion: 'bootstrap4', // or bootstrap4
+		delay: 700, // in ms, delay before plugin starts parsing input string
+		height: 500, // in pixels, max height of calendar
+    locale: 'en', // must be loaded before yohours like in example above
+    minimal: true,
+    slotDuration: '00:15:00'
+	}, {
+  });
+  $('#yh1_yo-hours-toggle').click(function() {
+    $('#yh1_yo-hours-calendar').slideToggle();
+  });
+</script>
+{% endblock extrajs %}

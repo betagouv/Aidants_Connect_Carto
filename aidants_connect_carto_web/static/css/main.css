@@ -16,6 +16,10 @@ label.label-inline {
   color: var(--theme-primary);
 }
 
+.card__content h4 {
+  margin: 0;
+}
+
 
 /* Custom css */
 
@@ -27,8 +31,17 @@ a.tile:hover {
   background-color: var(--theme-background-white);
 }
 
+a.no-decoration {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .inline-children > * {
   display: inline;
+}
+
+.font-size-small {
+  font-size: small;
 }
 
 .col-33 {
@@ -46,9 +59,8 @@ a.tile:hover {
   margin: 0;
 }
 
-.label.primary {
-  background-color: var(--theme-primary);
-  color: var(--white);
+.label-small {
+  padding: 0.2em 0.4em;
 }
 
 
@@ -57,7 +69,7 @@ a.tile:hover {
 /* Address Map */
 
 #map-details {
-  height: 200px;
+  height: 175px;
 }
 #map-form {
   height: 275px;
@@ -80,4 +92,11 @@ a.tile:hover {
 }
 .fc-axis {
   width: 50px !important;
+}
+
+
+@media all and (max-width: 768px) {
+  .col-33, .col-50 {
+    width: 100%;
+  }
 }

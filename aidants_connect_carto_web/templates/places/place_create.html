@@ -16,19 +16,15 @@
 {% block content %}
 <section class="section section-white">
   <div class="container">
-    {% if action == 'create' %}
-    <h1>Formulaire pour rajouter un lieu</h1>
-    {% else %}
-    <h1>Formulaire pour modifier un lieu</h1>
-    {% endif %}
+    <h1>Formulaire pour {% if action == 'create' %}rajouter{% else %}modifier{% endif %} un lieu</h1>
   </div>
 </section>
 <section class="section section-grey">
   <div class="container">
     {% if action == 'create' %}
-    <form action="{% url 'place_create' %}" method="POST">
+      <form action="{% url 'place_create' %}" method="POST">
     {% else %}
-    <form action="{% url 'place_update' place_id=place_id %}" method="POST">
+      <form action="{% url 'place_update' place_id=place_id %}" method="POST">
     {% endif %}
 
       {% csrf_token %}
@@ -121,25 +117,25 @@
       <div class="form__group">
         <label>Le lieu a-t-il les équipements suivants ?</label>
         <div class="input__group">
-          {{ form.has_equipement_wifi }}
-          <label class="label-inline" for="{{ form.has_equipement_wifi.id_for_label }}">{{ form.has_equipement_wifi.label | safe }}</label>
+          {{ form.has_equipment_wifi }}
+          <label class="label-inline" for="{{ form.has_equipment_wifi.id_for_label }}">{{ form.has_equipment_wifi.label | safe }}</label>
         </div>
         <div class="input__group">
-          {{ form.has_equipement_computer }}
-          <label class="label-inline" for="{{ form.has_equipement_computer.id_for_label }}">{{ form.has_equipement_computer.label | safe }}</label>
+          {{ form.has_equipment_computer }}
+          <label class="label-inline" for="{{ form.has_equipment_computer.id_for_label }}">{{ form.has_equipment_computer.label | safe }}</label>
         </div>
         <div class="input__group">
-          {{ form.has_equipement_scanner }}
-          <label class="label-inline" for="{{ form.has_equipement_scanner.id_for_label }}">{{ form.has_equipement_scanner.label | safe }}</label>
+          {{ form.has_equipment_scanner }}
+          <label class="label-inline" for="{{ form.has_equipment_scanner.id_for_label }}">{{ form.has_equipment_scanner.label | safe }}</label>
         </div>
         <div class="input__group">
-          {{ form.has_equipement_printer }}
-          <label class="label-inline" for="{{ form.has_equipement_printer.id_for_label }}">{{ form.has_equipement_printer.label | safe }}</label>
+          {{ form.has_equipment_printer }}
+          <label class="label-inline" for="{{ form.has_equipment_printer.id_for_label }}">{{ form.has_equipment_printer.label | safe }}</label>
         </div>
       </div>
       <div class="form__group">
-        <label for="{{ form.equipement_other.id_for_label }}">{{ form.equipement_other.label | safe }}&nbsp;:</label>
-        {{ form.equipement_other }}
+        <label for="{{ form.equipment_other.id_for_label }}">{{ form.equipment_other.label | safe }}&nbsp;:</label>
+        {{ form.equipment_other }}
       </div>
 
       <h3>L'accès</h3>

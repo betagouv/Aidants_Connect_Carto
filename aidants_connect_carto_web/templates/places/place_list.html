@@ -20,11 +20,29 @@
 <section class="section section-grey">
   <div class="container">
     <h2>Résultats</h2>
-    {% for place in places %}
-      <div>
-        <a href="{% url 'place_details' place_id=place.id %}">{{ place.name }}</a>
-      </div>
-    {% endfor %}
+    <div class="row">
+      {% for place in places %}
+        <div class="card">
+          <div class="card__content">
+            <h4><a href="{% url 'place_details' place_id=place.id %}">{{ place.name }}</a></h4>
+            <div class="card__meta">
+              <span>{{ place.address_raw }}</span>
+            </div>
+            <p>
+              {{ place.service_count }} service{% if place.service_count > 1 %}s{% endif %}
+            </p>
+            <!-- <p>{{ place.service_list }}</p> -->
+          </div>
+          <div class="card__extra">
+            {% if place.is_open %}
+              <span class="label primary">Ouvert</span>
+            {% else %}
+              <span class="label">Fermé</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endblock content %}

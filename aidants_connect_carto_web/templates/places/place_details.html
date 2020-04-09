@@ -20,20 +20,36 @@
     <div class="section__title inline-children">
       <h1>{{ place.name }}</h1>
       {% if place.is_open %}
-        <span class="label primary">Ouvert</span>
+        <span class="label label--active">Ouvert</span>
       {% else %}
         <span class="label">Fermé</span>
       {% endif %}
     </div>
 
-    <!-- <p class="section__subtitle">Une description du lieu en quelques mots</p> -->
+    <p class="section__subtitle">
+      Ce lieu propose {{ place.service_count }} service{% if place.service_count > 1 %}s{% endif %}.
+      <!-- <small><a>Voir tous les services.</a></small> -->
+    </p>
     
     <div class="row">
       <div class="col-33">
         <h4>Informations</h4>
-        <p>Les equipements disponibles sont les suivants: WiFi, Ordinateur, Accueil.</p>
-        <p>Ce lieu contient X services. <a>Voir tous les services.</a></p>
-        <p>Ce lieu est en mesure d'accueillir des personnes à mobilités réduites.</p>
+        <p title="Equipements">
+          Equipements disponibles<br />
+          {% if place.has_equipment_wifi %}
+          <span class="label label-small label--inactive">WiFi</span>
+          {% endif %}
+          {% if place.has_equipment_computer %}
+          <span class="label label-small label--inactive">Ordinateur</span>
+          {% endif %}
+        </p>
+        <p title="Accessibilité">
+          Accessibilité<br />
+          <span><img src="{% static 'images/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
+          <span><img src="{% static 'images/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
+          <span><img src="{% static 'images/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
+          <span><img src="{% static 'images/handicaps/accessibility_vi_icon.jpg' %}" height="30" /></span>
+        </p>
       </div>
       <div class="col-33">
         <h4>Prendre contact</h4>
@@ -50,12 +66,12 @@
         {% endif %}
       </div>
     </div>
-
+    
     {% if place.opening_hours_raw %}
       <p>
         🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de
         {% for timespan in place.opening_hours_today %}<span> {{ timespan.beginning | date:"H:i" }} à {{ timespan.end | date:"H:i" }}</span>{% endfor %}.
-        <a id="opening_hours_week_toggle">Voir toute la semaine.</a>
+        <small><a id="opening_hours_week_toggle">Voir toute la semaine.</a></small>
       </p>
       <ul id="opening_hours_week" style="display:none">
         {% for opening_hours_day in place.opening_hours_week_description %}
@@ -65,7 +81,7 @@
     {% else %}
       <p>
         🕒 Les <strong>horaires d'ouvertures</strong> sont inconnues.
-        <a>Rajouter les horaires.</a>
+        <small><a>Rajouter les horaires.</a></small>
       </p>
     {% endif %}
 
@@ -78,6 +94,24 @@
       {% for service in place_services %}
         <div class="tile">
           <p>{{ service.name }}</p>
+          <div class="font-size-small">
+            {% if service.schedule_hours_raw %}
+            <p title="Horaires">
+              🕒 {{ service.schedule_hours_raw }}
+            </p>
+            {% endif %}
+            <p title="Tags">
+              {% for target in service.public_target %}
+              <span class="label label--inactive">{{ target }}</span>
+              {% endfor %}
+              {% if service.support_mode %}
+              <span class="label label">{{ service.support_mode }}</span>
+              {% endif %}
+              {% if service.has_label_aidants_connect %}
+              <span class="label label--active">Aidants Connect</span>
+              {% endif %}
+            </p>
+          </div>
         </div>
       {% endfor %}
       <a class="tile" href="{% url 'service_create' place_id=place.id %}">
@@ -120,9 +154,9 @@
 </script>
 
 <script>
-document.getElementById("opening_hours_week_toggle").addEventListener("click", function() {
-  console.log(document.getElementById("opening_hours_week").style.display);
-  document.getElementById("opening_hours_week").style.display = (document.getElementById("opening_hours_week").style.display === "block") ? "none" : "block";
-}, false);
+  document.getElementById("opening_hours_week_toggle").addEventListener("click", function() {
+    console.log(document.getElementById("opening_hours_week").style.display);
+    document.getElementById("opening_hours_week").style.display = (document.getElementById("opening_hours_week").style.display === "block") ? "none" : "block";
+  }, false);
 </script>
 {% endblock extrajs %}

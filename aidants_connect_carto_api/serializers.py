@@ -14,7 +14,7 @@ class PlaceSerializer(serializers.ModelSerializer):
             "latitude", "longitude", "is_itinerant",
             "contact_email", "contact_phone", "contact_website",
             "opening_hours_raw",
-            "has_equipement_wifi", "has_equipement_computer", "has_equipement_scanner", "has_equipement_printer", "equipement_other",
+            "has_equipment_wifi", "has_equipment_computer", "has_equipment_scanner", "has_equipment_printer", "equipment_other",
             "has_accessibility_hi", "has_accessibility_mi", "has_accessibility_pi", "has_accessibility_vi",
             "languages",
             "payment_methods",

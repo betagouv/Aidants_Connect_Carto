@@ -9,9 +9,9 @@ class Place(models.Model):
     LANGUAGE_CHOICES = [
         ("fr", "Français"),
         ("en", "Anglais"),
-        ("sl", "Language des signes"),
+        ("fsl", "Language des signes"),
     ]
-    EQUIPEMENT_CHOICES = [
+    EQUIPMENT_CHOICES = [
         ("wifi", "WiFi"),
         ("ordinateur", "Ordinateur"),
         ("scanner", "Scanner"),
@@ -58,7 +58,7 @@ class Place(models.Model):
     is_itinerant = models.BooleanField(default=False, help_text="Le lieu est-il itinérant ?")
     
     ## contact
-    phone_regex = RegexValidator(regex=r"^[0-9]$", message="le numéro de téléphone doit être au format 0123456789")
+    phone_regex = RegexValidator(regex=r"^[0-9]{10}$", message="le numéro de téléphone doit être au format 0123456789")
     contact_phone = models.CharField(max_length=10, blank=True, validators=[phone_regex], help_text="Le numéro de téléphone")
     # contact_phone_international = models.CharField(help_text="") # regex="^[0-9]+$"
     contact_email = models.EmailField(max_length=150, blank=True, help_text="Le courriel")
@@ -68,13 +68,13 @@ class Place(models.Model):
     opening_hours_raw = models.CharField(max_length=150, blank=True, help_text="Les horaires d'ouverture")
     # opening_hours = django-openinghours package ? JsonField ? custom Field ?
     
-    ## equipements
-    # equipements = ArrayField() # EQUIPEMENT_CHOICES
-    has_equipement_wifi = models.BooleanField(default=False, help_text="WiFi")
-    has_equipement_computer = models.BooleanField(default=False, help_text="Ordinateur")
-    has_equipement_scanner = models.BooleanField(default=False, help_text="Scanner")
-    has_equipement_printer = models.BooleanField(default=False, help_text="Imprimante")
-    equipement_other = models.CharField(max_length=300, blank=True, help_text="Autres équipements disponibles")
+    ## equipments
+    # equipments = ArrayField() # EQUIPMENT_CHOICES
+    has_equipment_wifi = models.BooleanField(default=False, help_text="WiFi")
+    has_equipment_computer = models.BooleanField(default=False, help_text="Ordinateur")
+    has_equipment_scanner = models.BooleanField(default=False, help_text="Scanner")
+    has_equipment_printer = models.BooleanField(default=False, help_text="Imprimante")
+    equipment_other = models.CharField(max_length=300, blank=True, help_text="Autres équipements disponibles")
 
     ## accessibility
     # accessibility = ArrayField(
@@ -84,6 +84,7 @@ class Place(models.Model):
     #     help_text="Accessible aux formes de handicap suivantes"
     # )
     has_accessibility_hi = models.BooleanField(default=False, help_text="Handicap auditif")
+    # has_accessibility_mei = models.BooleanField(default=False, help_text="Handicap mental")
     has_accessibility_mi = models.BooleanField(default=False, help_text="Handicap moteur")
     has_accessibility_pi = models.BooleanField(default=False, help_text="Handicap intellectuel ou psychique")
     has_accessibility_vi = models.BooleanField(default=False, help_text="Handicap visuel")
@@ -116,6 +117,10 @@ class Place(models.Model):
     @property
     def service_count(self) -> int:
         return self.services.count()
+    
+    @property
+    def service_list(self) -> list():
+        return self.services.values_list("name", flat=True)
 
     @property
     def opening_hours_description(self) -> list:
@@ -224,3 +229,10 @@ class Service(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+
+class Test(models.Model):
+    test = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["id"]

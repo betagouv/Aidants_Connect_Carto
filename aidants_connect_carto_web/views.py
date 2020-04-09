@@ -61,4 +61,20 @@ def service_create(request, place_id):
             messages.success(request, f"Le service <strong>{service.name}</strong> a été créé avec succès !")
             return redirect("place_details", place_id=service.place_id)
 
-    return render(request, "places/services/service_create.html", { "place": place, "form": form })
+    return render(request, "places/services/service_create.html", { "form": form, "action": "create", "place": place })
+
+def service_update(request, place_id, service_id):
+    place = get_object_or_404(Place, pk=place_id)
+    service = get_object_or_404(place.services.all(), pk=service_id)
+    if request.method == "GET":
+        form = ServiceCreateForm(instance=service)
+    
+    else:
+        form = ServiceCreateForm(request.POST, instance=service)
+
+        if form.is_valid():
+            service = form.save()
+            messages.success(request, f"Le service <strong>{service.name}</strong> a été modifié avec succès !")
+            return redirect("place_details", place_id=service.place_id)
+
+    return render(request, "places/services/service_create.html", { "form": form, "action": "update", "place": place, "service_id": service_id })

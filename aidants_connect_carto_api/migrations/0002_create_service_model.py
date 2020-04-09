@@ -33,5 +33,8 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='services', to='aidants_connect_carto_api.Place')),
             ],
+            options={
+                'ordering': ['id'],
+            },
         ),
     ]
