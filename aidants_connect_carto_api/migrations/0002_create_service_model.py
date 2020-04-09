@@ -8,33 +8,124 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ("aidants_connect_carto_api", "0001_initial_create_place_model")
-    ]
+    dependencies = [("aidants_connect_carto_api", "0001_initial_create_place_model")]
 
     operations = [
         migrations.CreateModel(
-            name='Service',
+            name="Service",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='Le nom du service', max_length=300)),
-                ('description', models.TextField(help_text='Une description du service')),
-                ('siret', models.CharField(blank=True, help_text='Coordonnées juridiques (SIRET)', max_length=14)),
-                ('public_target', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(blank=True, choices=[('tout public', 'Tout public'), ('-25 ans', '-25 ans'), ('senior', 'Sénior'), ('demandeur emploi', "Demandeur d'emploi"), ('famille', 'Famille')], max_length=32), blank=True, default=list, help_text='Public cible', size=None)),
-                ('support_mode', models.CharField(choices=[('libre', 'Libre'), ('individuel', 'Individuel'), ('collectif', 'Collectif')], help_text="Modalités d'accompagnement", max_length=32)),
-                ('schedule_hours_raw', models.CharField(blank=True, help_text='Les horaires du service', max_length=150)),
-                ('is_free', models.BooleanField(default=True, help_text='Le service est-il gratuit ?')),
-                ('price_detail', models.CharField(blank=True, help_text='Le details des prix', max_length=150)),
-                ('payment_methods', models.CharField(blank=True, help_text='Les moyens de paiements spécifiques à ce service', max_length=150)),
-                ('has_label_aidants_connect', models.BooleanField(default=False, help_text='Labelisé Aidants Connect')),
-                ('has_label_mfs', models.BooleanField(default=False, help_text='Labelisé France Service')),
-                ('label_other', models.CharField(blank=True, help_text='Autres labels', max_length=300)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='services', to='aidants_connect_carto_api.Place')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(help_text="Le nom du service", max_length=300),
+                ),
+                (
+                    "description",
+                    models.TextField(help_text="Une description du service"),
+                ),
+                (
+                    "siret",
+                    models.CharField(
+                        blank=True,
+                        help_text="Coordonnées juridiques (SIRET)",
+                        max_length=14,
+                    ),
+                ),
+                (
+                    "public_target",
+                    django.contrib.postgres.fields.ArrayField(
+                        base_field=models.CharField(
+                            blank=True,
+                            choices=[
+                                ("tout public", "Tout public"),
+                                ("-25 ans", "-25 ans"),
+                                ("senior", "Sénior"),
+                                ("demandeur emploi", "Demandeur d'emploi"),
+                                ("famille", "Famille"),
+                            ],
+                            max_length=32,
+                        ),
+                        blank=True,
+                        default=list,
+                        help_text="Public cible",
+                        size=None,
+                    ),
+                ),
+                (
+                    "support_mode",
+                    models.CharField(
+                        choices=[
+                            ("libre", "Libre"),
+                            ("individuel", "Individuel"),
+                            ("collectif", "Collectif"),
+                        ],
+                        help_text="Modalités d'accompagnement",
+                        max_length=32,
+                    ),
+                ),
+                (
+                    "schedule_hours_raw",
+                    models.CharField(
+                        blank=True, help_text="Les horaires du service", max_length=150
+                    ),
+                ),
+                (
+                    "is_free",
+                    models.BooleanField(
+                        default=True, help_text="Le service est-il gratuit ?"
+                    ),
+                ),
+                (
+                    "price_detail",
+                    models.CharField(
+                        blank=True, help_text="Le details des prix", max_length=150
+                    ),
+                ),
+                (
+                    "payment_methods",
+                    models.CharField(
+                        blank=True,
+                        help_text="Les moyens de paiements spécifiques à ce service",
+                        max_length=150,
+                    ),
+                ),
+                (
+                    "has_label_aidants_connect",
+                    models.BooleanField(
+                        default=False, help_text="Labelisé Aidants Connect"
+                    ),
+                ),
+                (
+                    "has_label_mfs",
+                    models.BooleanField(
+                        default=False, help_text="Labelisé France Service"
+                    ),
+                ),
+                (
+                    "label_other",
+                    models.CharField(
+                        blank=True, help_text="Autres labels", max_length=300
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "place",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="services",
+                        to="aidants_connect_carto_api.Place",
+                    ),
+                ),
             ],
-            options={
-                'ordering': ['id'],
-            },
+            options={"ordering": ["id"],},
         ),
     ]

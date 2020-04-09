@@ -9,6 +9,14 @@ urlpatterns = [
     path("lieux/nouveau", views.place_create, name="place_create"),
     path("lieux/<int:place_id>", views.place_details, name="place_details"),
     path("lieux/<int:place_id>/modifier", views.place_update, name="place_update"),
-    path("lieux/<int:place_id>/services/nouveau", views.service_create, name="service_create"),
-    path("lieux/<int:place_id>/services/<int:service_id>/modifier", views.service_update, name="service_update"),
+    path(
+        "lieux/<int:place_id>/services/nouveau",
+        views.service_create,
+        name="service_create",
+    ),
+    path(
+        "lieux/<int:place_id>/services/<int:service_id>/modifier",
+        views.service_update,
+        name="service_update",
+    ),
 ]
