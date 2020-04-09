@@ -128,8 +128,12 @@ STATIC_ROOT = "staticfiles"
 STATIC_URL = "/static/"
 
 
-# API URLS
-BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"
+# Security headers
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+REFERRER_POLICY = "strict-origin"
 
 
 # Content security policy
@@ -139,3 +143,8 @@ CSP_DEFAULT_SRC = _CSP_SELF
 CSP_IMG_SRC = _CSP_SELF
 CSP_SCRIPT_SRC = _CSP_SELF
 CSP_STYLE_SRC = _CSP_SELF
+
+
+# API URLS
+
+BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"
