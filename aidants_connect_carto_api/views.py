@@ -10,22 +10,25 @@ from rest_framework.reverse import reverse
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
-from aidants_connect_carto_api.models import Place, Service
-from aidants_connect_carto_api.serializers import PlaceSerializer, ServiceSerializer
+from aidants_connect_carto_api.models import Place
+from aidants_connect_carto_api.serializers import PlaceSerializer
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def api_root(request):
-    return Response({
-        'places': reverse('place-list', request=request),
-        # 'services': reverse('service-list', request=request, format=format)
-    })
+    return Response(
+        {
+            "places": reverse("place-list", request=request),
+            # 'services': reverse('service-list', request=request, format=format)
+        }
+    )
 
 
 class PlaceList(APIView):
     """
     List all places, or create a new place.
     """
+
     def get(self, request, format=None):
         places = Place.objects.all()
         serializer = PlaceSerializer(places, many=True)
@@ -44,6 +47,7 @@ class PlaceDetail(APIView):
     """
     Retrieve, update or delete a place instance.
     """
+
     def get(self, request, pk, format=None):
         place = get_object_or_404(Place, pk=pk)
         serializer = PlaceSerializer(place)
@@ -64,9 +68,13 @@ class PlaceDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-q_param = openapi.Parameter('q', openapi.IN_QUERY, description="search query", type=openapi.TYPE_STRING)
-@swagger_auto_schema(method='get', manual_parameters=[q_param])
-@api_view(['GET'])
+q_param = openapi.Parameter(
+    "q", openapi.IN_QUERY, description="search query", type=openapi.TYPE_STRING
+)
+
+
+@swagger_auto_schema(method="get", manual_parameters=[q_param])
+@api_view(["GET"])
 def address_search(request):
     """
     https://adresse.data.gouv.fr/

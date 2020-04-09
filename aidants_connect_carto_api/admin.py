@@ -4,11 +4,23 @@ from aidants_connect_carto_api.models import Place, Service
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "address_raw", "service_count", "created_at",)
+    list_display = (
+        "id",
+        "name",
+        "address_raw",
+        "service_count",
+        "created_at",
+    )
     # list_filter = ("",)
 
+
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "place", "created_at",)
+    list_display = (
+        "id",
+        "name",
+        "place",
+        "created_at",
+    )
     list_filter = ("place__name",)
 
 

@@ -10,45 +10,179 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Place',
+            name="Place",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='Le nom du lieu', max_length=300)),
-                ('address_raw', models.CharField(help_text="L'adresse complète", max_length=300)),
-                ('address_housenumber', models.CharField(blank=True, help_text='Le numéro avec indice de répétition éventuel (bis, ter, A, B)', max_length=5)),
-                ('address_street', models.CharField(blank=True, help_text='Le nom de la rue', max_length=150)),
-                ('address_postcode', models.CharField(blank=True, help_text='Le code postal', max_length=5)),
-                ('address_citycode', models.CharField(blank=True, help_text='Le code INSEE de la commune', max_length=5)),
-                ('address_city', models.CharField(blank=True, help_text='Le nom de la commune', max_length=150)),
-                ('latitude', models.FloatField(blank=True, help_text='La latitude (coordonnée géographique)', null=True)),
-                ('longitude', models.FloatField(blank=True, help_text='La latitude (coordonnée géographique)', null=True)),
-                ('is_itinerant', models.BooleanField(default=False, help_text='Le lieu est-il itinérant ?')),
-                ('contact_phone', models.CharField(blank=True, help_text='Le numéro de téléphone', max_length=10, validators=[django.core.validators.RegexValidator(message='le numéro de téléphone doit être au format 0123456789', regex='^[0-9]{10}$')])),
-                ('contact_email', models.EmailField(blank=True, help_text='Le courriel', max_length=150)),
-                ('contact_website', models.URLField(blank=True, help_text="L'adresse du site internet", max_length=150)),
-                ('opening_hours_raw', models.CharField(blank=True, help_text="Les horaires d'ouverture", max_length=150)),
-                ('has_equipment_wifi', models.BooleanField(default=False, help_text='WiFi')),
-                ('has_equipment_computer', models.BooleanField(default=False, help_text='Ordinateur')),
-                ('has_equipment_scanner', models.BooleanField(default=False, help_text='Scanner')),
-                ('has_equipment_printer', models.BooleanField(default=False, help_text='Imprimante')),
-                ('equipment_other', models.CharField(blank=True, help_text='Autres équipements disponibles', max_length=300)),
-                ('has_accessibility_hi', models.BooleanField(default=False, help_text='Handicap auditif')),
-                ('has_accessibility_mi', models.BooleanField(default=False, help_text='Handicap moteur')),
-                ('has_accessibility_pi', models.BooleanField(default=False, help_text='Handicap intellectuel ou psychique')),
-                ('has_accessibility_vi', models.BooleanField(default=False, help_text='Handicap visuel')),
-                ('languages', models.CharField(blank=True, help_text='Langues parlées', max_length=150)),
-                ('payment_methods', models.CharField(blank=True, help_text='Les moyens de paiement', max_length=150)),
-                ('osm_node_id', models.IntegerField(blank=True, help_text='OpenStreetMap node id', null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(help_text="Le nom du lieu", max_length=300)),
+                (
+                    "address_raw",
+                    models.CharField(help_text="L'adresse complète", max_length=300),
+                ),
+                (
+                    "address_housenumber",
+                    models.CharField(
+                        blank=True,
+                        help_text="Le numéro avec indice de répétition éventuel (bis, ter, A, B)",
+                        max_length=5,
+                    ),
+                ),
+                (
+                    "address_street",
+                    models.CharField(
+                        blank=True, help_text="Le nom de la rue", max_length=150
+                    ),
+                ),
+                (
+                    "address_postcode",
+                    models.CharField(
+                        blank=True, help_text="Le code postal", max_length=5
+                    ),
+                ),
+                (
+                    "address_citycode",
+                    models.CharField(
+                        blank=True,
+                        help_text="Le code INSEE de la commune",
+                        max_length=5,
+                    ),
+                ),
+                (
+                    "address_city",
+                    models.CharField(
+                        blank=True, help_text="Le nom de la commune", max_length=150
+                    ),
+                ),
+                (
+                    "latitude",
+                    models.FloatField(
+                        blank=True,
+                        help_text="La latitude (coordonnée géographique)",
+                        null=True,
+                    ),
+                ),
+                (
+                    "longitude",
+                    models.FloatField(
+                        blank=True,
+                        help_text="La latitude (coordonnée géographique)",
+                        null=True,
+                    ),
+                ),
+                (
+                    "is_itinerant",
+                    models.BooleanField(
+                        default=False, help_text="Le lieu est-il itinérant ?"
+                    ),
+                ),
+                (
+                    "contact_phone",
+                    models.CharField(
+                        blank=True,
+                        help_text="Le numéro de téléphone",
+                        max_length=10,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                message="le numéro de téléphone doit être au format 0123456789",
+                                regex="^[0-9]{10}$",
+                            )
+                        ],
+                    ),
+                ),
+                (
+                    "contact_email",
+                    models.EmailField(
+                        blank=True, help_text="Le courriel", max_length=150
+                    ),
+                ),
+                (
+                    "contact_website",
+                    models.URLField(
+                        blank=True,
+                        help_text="L'adresse du site internet",
+                        max_length=150,
+                    ),
+                ),
+                (
+                    "opening_hours_raw",
+                    models.CharField(
+                        blank=True, help_text="Les horaires d'ouverture", max_length=150
+                    ),
+                ),
+                (
+                    "has_equipment_wifi",
+                    models.BooleanField(default=False, help_text="WiFi"),
+                ),
+                (
+                    "has_equipment_computer",
+                    models.BooleanField(default=False, help_text="Ordinateur"),
+                ),
+                (
+                    "has_equipment_scanner",
+                    models.BooleanField(default=False, help_text="Scanner"),
+                ),
+                (
+                    "has_equipment_printer",
+                    models.BooleanField(default=False, help_text="Imprimante"),
+                ),
+                (
+                    "equipment_other",
+                    models.CharField(
+                        blank=True,
+                        help_text="Autres équipements disponibles",
+                        max_length=300,
+                    ),
+                ),
+                (
+                    "has_accessibility_hi",
+                    models.BooleanField(default=False, help_text="Handicap auditif"),
+                ),
+                (
+                    "has_accessibility_mi",
+                    models.BooleanField(default=False, help_text="Handicap moteur"),
+                ),
+                (
+                    "has_accessibility_pi",
+                    models.BooleanField(
+                        default=False, help_text="Handicap intellectuel ou psychique"
+                    ),
+                ),
+                (
+                    "has_accessibility_vi",
+                    models.BooleanField(default=False, help_text="Handicap visuel"),
+                ),
+                (
+                    "languages",
+                    models.CharField(
+                        blank=True, help_text="Langues parlées", max_length=150
+                    ),
+                ),
+                (
+                    "payment_methods",
+                    models.CharField(
+                        blank=True, help_text="Les moyens de paiement", max_length=150
+                    ),
+                ),
+                (
+                    "osm_node_id",
+                    models.IntegerField(
+                        blank=True, help_text="OpenStreetMap node id", null=True
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
-            options={
-                'ordering': ['id'],
-            },
+            options={"ordering": ["id"],},
         ),
     ]
