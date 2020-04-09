@@ -62,6 +62,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "csp.middleware.CSPMiddleware",
 ]
 
 ROOT_URLCONF = "aidants_connect_carto.urls"
@@ -100,15 +101,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
 
@@ -135,3 +130,12 @@ STATIC_URL = "/static/"
 
 # API URLS
 BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"
+
+
+# Content security policy
+
+_CSP_SELF = ("'self'",)
+CSP_DEFAULT_SRC = _CSP_SELF
+CSP_IMG_SRC = _CSP_SELF
+CSP_SCRIPT_SRC = _CSP_SELF
+CSP_STYLE_SRC = _CSP_SELF
