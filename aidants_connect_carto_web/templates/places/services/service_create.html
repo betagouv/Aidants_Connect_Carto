@@ -57,6 +57,10 @@
       <!-- {{ form.public_target }} -->
 
       <div class="form__group">
+        <label class="{% if form.support_access.field.required %}required{% endif %}"  for="{{ form.support_access.id_for_label }}">{{ form.support_access.label | safe }}&nbsp;:</label>
+        {{ form.support_access }}
+      </div>
+      <div class="form__group">
         <label class="{% if form.support_mode.field.required %}required{% endif %}"  for="{{ form.support_mode.id_for_label }}">{{ form.support_mode.label | safe }}&nbsp;:</label>
         {{ form.support_mode }}
       </div>
@@ -67,7 +71,7 @@
         <label class="{% if form.schedule_hours_raw.field.required %}required{% endif %}" for="{{ form.schedule_hours_raw.id_for_label }}">{{ form.schedule_hours_raw.label | safe }}&nbsp;:</label>
         <div class="input__group">
           <input type="checkbox" name="is_same_opening_hours" id="id_is_same_opening_hours" {% if not form.schedule_hours_raw.value %}checked{% endif %}>
-          <label class="label-inline" for="{{ form.price_free.id_for_label }}">Même horaires que le lieu ({{ place.opening_hours_raw }})</label>
+          <label class="label-inline" for="{{ form.price_free.id_for_label }}">Même horaires que le lieu ({{ place.opening_hours_osm_format }})</label>
         </div>
         <div id="schedule_hours_raw_form_group" class="input__group" style="display: {{ form.schedule_hours_raw.value | yesno:'block,none' }}">
           <!-- {{ form.schedule_hours_raw }} -->

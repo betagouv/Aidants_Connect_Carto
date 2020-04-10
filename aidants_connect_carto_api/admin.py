@@ -19,6 +19,8 @@ class ServiceAdmin(admin.ModelAdmin):
         "id",
         "name",
         "place",
+        "support_access",
+        "is_free",
         "created_at",
     )
     list_filter = ("place__name",)

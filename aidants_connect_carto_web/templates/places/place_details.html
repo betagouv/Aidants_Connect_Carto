@@ -67,7 +67,7 @@
       </div>
     </div>
     
-    {% if place.opening_hours_raw %}
+    {% if place.opening_hours_osm_format %}
       <p>
         🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de
         {% for timespan in place.opening_hours_today %}<span> {{ timespan.beginning | date:"H:i" }} à {{ timespan.end | date:"H:i" }}</span>{% endfor %}.
@@ -104,6 +104,9 @@
               {% for target in service.public_target %}
               <span class="label label--inactive">{{ target }}</span>
               {% endfor %}
+              {% if service.support_access %}
+              <span class="label label">{{ service.support_access }}</span>
+              {% endif %}
               {% if service.support_mode %}
               <span class="label label">{{ service.support_mode }}</span>
               {% endif %}
