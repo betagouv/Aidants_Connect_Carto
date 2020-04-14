@@ -71,7 +71,6 @@ psql -c "ALTER USER $database_user CREATEDB"
 
 echo "Database: migrations"
 
-python manage.py makemigrations
 python manage.py migrate
 
 if $database_do_backup ; then

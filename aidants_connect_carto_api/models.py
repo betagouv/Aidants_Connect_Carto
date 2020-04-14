@@ -76,147 +76,216 @@ class Place(models.Model):
     )
 
     # --- basics
-    name = models.CharField(max_length=300, help_text="Le nom du lieu")
-    description = models.TextField(blank=True, help_text="Une description du lieu")
+    name = models.CharField(
+        verbose_name="Le nom du lieu", max_length=300, help_text="BetaGouv"
+    )
+    description = models.TextField(
+        verbose_name="Une description du lieu",
+        blank=True,
+        help_text="L'incubateur de Services Numériques de l'État",
+    )
     type = models.CharField(
+        verbose_name="La typologie du lieu",
         max_length=32,
         choices=TYPE_CHOICES,
         default=CHOICE_OTHER,
-        help_text="La typologie du lieu",
+        help_text="Administration",
     )
     status = models.CharField(
+        verbose_name="Le statut du lieu",
         max_length=32,
         choices=STATUS_CHOICES,
         default=CHOICE_OTHER,
-        help_text="Le statut du lieu",
+        help_text="Public",
     )
 
     # --- location
-    address_raw = models.CharField(max_length=300, help_text="L'adresse complète")
+    address_raw = models.CharField(
+        verbose_name="L'adresse complète",
+        max_length=300,
+        help_text="20 Avenue de Ségur 75007 Paris",
+    )
     address_housenumber = models.CharField(
+        verbose_name="Le numéro avec indice de répétition éventuel (bis, ter, A, B)",
         max_length=5,
         blank=True,
-        help_text="Le numéro avec indice de répétition éventuel (bis, ter, A, B)",
+        help_text="20",
     )
     address_street = models.CharField(
-        max_length=150, blank=True, help_text="Le nom de la rue"
+        verbose_name="Le nom de la rue",
+        max_length=150,
+        blank=True,
+        help_text="Avenue de Ségur",
     )
     address_postcode = models.CharField(
-        max_length=5, blank=True, help_text="Le code postal"
+        verbose_name="Le code postal", max_length=5, blank=True, help_text="75007"
     )
     address_citycode = models.CharField(
-        max_length=5, blank=True, help_text="Le code INSEE de la commune"
+        verbose_name="Le code INSEE de la commune",
+        max_length=5,
+        blank=True,
+        help_text="75107",
     )
     address_city = models.CharField(
-        max_length=150, blank=True, help_text="Le nom de la commune"
+        verbose_name="Le nom de la commune",
+        max_length=150,
+        blank=True,
+        help_text="Paris",
     )
     # address_context = models.CharField(
-    #     max_length=150, help_text="n° de département, nom de département et de région"
+    #     verbose_name="n° de département, nom de département et de région",
+    #     max_length=150,
+    #     help_text=""
     # )
     latitude = models.FloatField(
-        blank=True, null=True, help_text="La latitude (coordonnée géographique)"
+        verbose_name="La latitude (coordonnée géographique)",
+        blank=True,
+        null=True,
+        help_text="48.850699",
     )
     longitude = models.FloatField(
-        blank=True, null=True, help_text="La longitude (coordonnée géographique)"
+        verbose_name="La longitude (coordonnée géographique)",
+        blank=True,
+        null=True,
+        help_text="2.308628",
     )
     is_itinerant = models.BooleanField(
-        default=False, help_text="Le lieu est-il itinérant ?"
+        verbose_name="Le lieu est-il itinérant ?", default=False
     )
 
     # --- contact
     contact_phone_raw = models.CharField(
-        max_length=300, help_text="Le numéro de téléphone brut"
+        verbose_name="Le numéro de téléphone brut", max_length=300
     )
     phone_regex = RegexValidator(
         regex=r"^[0-9]{10}$",
         message="le numéro de téléphone doit être au format 0123456789",
     )
     contact_phone = models.CharField(
+        verbose_name="Le numéro de téléphone",
         max_length=10,
         blank=True,
         null=True,
         validators=[phone_regex],
-        help_text="Le numéro de téléphone",
+        help_text="0123456789",
     )
     # contact_phone_international = models.CharField(help_text="") # regex="^[0-9]+$"
     contact_email = models.EmailField(
-        max_length=150, blank=True, help_text="Le courriel"
+        verbose_name="Le courriel",
+        max_length=150,
+        blank=True,
+        help_text="exemple@email.fr",
     )
     contact_website = models.URLField(
-        max_length=300, blank=True, help_text="L'adresse du site internet"
+        verbose_name="L'adresse du site internet",
+        max_length=300,
+        blank=True,
+        help_text="https://beta.gouv.fr/",
     )
 
     # --- opening hours
     # opening_hours = django-openinghours package ? JsonField ? custom Field ?
     opening_hours_raw = models.TextField(
-        blank=True, help_text="Les horaires d'ouverture"
+        verbose_name="Les horaires d'ouverture",
+        blank=True,
+        help_text="Du lundi au vendredi de 8h à 20h",
     )
     opening_hours_osm_format = models.CharField(
+        verbose_name="Les horaires d'ouverture au format OpenStreetMap",
         max_length=150,
         blank=True,
-        help_text="Les horaires d'ouverture au format OpenStreetMap",
+        help_text="Mo-Fr 8:00-20:00",
     )
 
     # --- equipments
     # equipments = ArrayField() # EQUIPMENT_CHOICES
-    has_equipment_wifi = models.BooleanField(default=False, help_text="WiFi")
-    has_equipment_computer = models.BooleanField(default=False, help_text="Ordinateur")
-    has_equipment_scanner = models.BooleanField(default=False, help_text="Scanner")
-    has_equipment_printer = models.BooleanField(default=False, help_text="Imprimante")
+    has_equipment_wifi = models.BooleanField(verbose_name="WiFi", default=False)
+    has_equipment_computer = models.BooleanField(
+        verbose_name="Ordinateur", default=False
+    )
+    has_equipment_scanner = models.BooleanField(verbose_name="Scanner", default=False)
+    has_equipment_printer = models.BooleanField(
+        verbose_name="Imprimante", default=False
+    )
     equipment_other = models.CharField(
-        max_length=300, blank=True, help_text="Autres équipements disponibles"
+        verbose_name="Autres équipements disponibles", max_length=300, blank=True
     )
 
     # --- accessibility
     # accessibility = ArrayField(
-    #     models.CharField(max_length=32, blank=True, choices=HANDICAP_CHOICES),
+    #     verbose_name="Accessible aux formes de handicap suivantes",
+    #     base_field=models.CharField(
+    #         max_length=32,
+    #         blank=True,
+    #         choices=HANDICAP_CHOICES
+    #     ),
     #     default=list,
-    #     blank=True,
-    #     help_text="Accessible aux formes de handicap suivantes"
+    #     blank=True
     # )
     has_accessibility_hi = models.BooleanField(
-        default=False, help_text="Handicap auditif"
+        verbose_name="Handicap auditif", default=False
     )
     # has_accessibility_mei = models.BooleanField(
-    #     default=False, help_text="Handicap mental"
+    #     verbose_name="Handicap mental", default=False
     # )
     has_accessibility_mi = models.BooleanField(
-        default=False, help_text="Handicap moteur"
+        verbose_name="Handicap moteur", default=False
     )
     has_accessibility_pi = models.BooleanField(
-        default=False, help_text="Handicap intellectuel ou psychique"
+        verbose_name="Handicap intellectuel ou psychique", default=False
     )
     has_accessibility_vi = models.BooleanField(
-        default=False, help_text="Handicap visuel"
+        verbose_name="Handicap visuel", default=False
     )
 
     # --- languages
     # languages = ArrayField(
-    #     models.CharField(max_length=32, blank=True, choices=LANGUAGE_CHOICES),
+    #     verbose_name="Langues parlées",
+    #     base_field=models.CharField(
+    #         max_length=32,
+    #         blank=True,
+    #         choices=LANGUAGE_CHOICES
+    #     ),
     #     default=list,
-    #     blank=True,
-    #     help_text="Langues parlées"
+    #     blank=True
     # )
     languages = models.CharField(
-        max_length=150, blank=True, help_text="Langues parlées"
+        verbose_name="Langues parlées",
+        max_length=150,
+        blank=True,
+        help_text="Français, Anglais, ...",
     )
 
     # --- payment
     payment_methods = models.CharField(
-        max_length=150, blank=True, help_text="Les moyens de paiement"
+        verbose_name="Les moyens de paiement",
+        max_length=150,
+        blank=True,
+        help_text="Espèces, Carte Bancaire, ...",
     )  # PAYMENT_CHOICES
 
     # --- other
-    additional_information = JSONField(blank=True, null=True)
+    additional_information = JSONField(
+        verbose_name="Informations additionnelles stockées au format JSON",
+        blank=True,
+        null=True,
+    )
 
     # --- links to other databases
     osm_node_id = models.IntegerField(
-        blank=True, null=True, help_text="OpenStreetMap node id"
+        verbose_name="OpenStreetMap node id",
+        blank=True,
+        null=True,
+        help_text="5266052428",
     )
 
     # --- timestamps
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(
+        verbose_name="La date de création", auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name="La date de dernière modification", auto_now=True
+    )
 
     class Meta:
         ordering = ["id"]
@@ -325,75 +394,89 @@ class Service(models.Model):
     # FORM_READONLY_FIELDS = ("place_id")
 
     # --- basics
-    name = models.CharField(max_length=300, help_text="Le nom du service")
-    description = models.TextField(blank=True, help_text="Une description du service")
+    name = models.CharField(verbose_name="Le nom du service", max_length=300)
+    description = models.TextField(
+        verbose_name="Une description du service", blank=True
+    )
     place = models.ForeignKey(
         Place, null=False, on_delete=models.CASCADE, related_name="services"
     )
     siret = models.CharField(
-        max_length=14, blank=True, help_text="Coordonnées juridiques (SIRET)"
+        verbose_name="Coordonnées juridiques (SIRET)", max_length=14, blank=True
     )  # regex="^[0-9]$"
 
     # --- support
     public_target = ArrayField(
-        models.CharField(max_length=32, blank=True, choices=PUBLIC_CHOICES),
+        verbose_name="Public cible",
+        base_field=models.CharField(max_length=32, blank=True, choices=PUBLIC_CHOICES),
         default=list,
         blank=True,
-        help_text="Public cible",
     )
     support_access = models.CharField(
+        verbose_name="Modalités d'accès",
         max_length=32,
         blank=True,
         choices=SUPPORT_ACCESS_CHOICES,
-        help_text="Modalités d'accès",
     )  # multiple choices
     support_mode = models.CharField(
+        verbose_name="Modalités d'accompagnement",
         max_length=32,
         blank=True,
         choices=SUPPORT_MODE_CHOICES,
-        help_text="Modalités d'accompagnement",
     )  # multiple choices
 
     # --- schedule
     # schedule_hours = django-openinghours package ? JsonField ? custom Field ?
     schedule_hours_raw = models.TextField(
+        verbose_name="Les horaires du service "
+        "(s'ils sont différents des horaires du lieu)",
         blank=True,
-        help_text="Les horaires du service (s'ils sont différents "
-        "des horaires du lieu)",
+        help_text="Le mardi de 14h à 18h",
     )
     schedule_hours_osm_format = models.CharField(
+        verbose_name="Les horaires du service au format OpenStreetMap",
         max_length=150,
         blank=True,
-        help_text="Les horaires du service au format OpenStreetMap",
+        help_text="Tu 14:00-18:00",
     )
 
     # --- payment
-    is_free = models.BooleanField(default=True, help_text="Le service est-il gratuit ?")
-    price_detail = models.TextField(blank=True, help_text="Le details des prix")
+    is_free = models.BooleanField(
+        verbose_name="Le service est-il gratuit ?", default=True
+    )
+    price_detail = models.TextField(verbose_name="Le details des prix", blank=True)
     payment_methods = models.CharField(
+        verbose_name="Les moyens de paiements spécifiques à ce service",
         max_length=150,
         blank=True,
-        help_text="Les moyens de paiements spécifiques à ce service",
     )  # PAYMENT_CHOICES
 
     # --- labels
     # label_aptic = # ManyToManyField ?
     has_label_aidants_connect = models.BooleanField(
-        default=False, help_text="Labelisé Aidants Connect"
+        verbose_name="Labelisé Aidants Connect", default=False
     )
     has_label_mfs = models.BooleanField(
-        default=False, help_text="Labelisé France Service"
+        verbose_name="Labelisé France Service", default=False
     )
     label_other = models.CharField(
-        max_length=300, blank=True, help_text="Autres labels"
+        verbose_name="Autres labels", max_length=300, blank=True
     )
 
     # --- other
-    additional_information = JSONField(blank=True, null=True)
+    additional_information = JSONField(
+        verbose_name="Informations additionnelles stockées au format JSON",
+        blank=True,
+        null=True,
+    )
 
     # --- timestamps
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(
+        verbose_name="La date de création", auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name="La date de dernière modification", auto_now=True
+    )
 
     class Meta:
         ordering = ["id"]

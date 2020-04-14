@@ -25,7 +25,17 @@ urlpatterns = [
         name="schema-swagger-ui",
     ),
     path("places/", views.PlaceList.as_view(), name="place-list"),
-    path("places/<int:pk>/", views.PlaceDetail.as_view(), name="place-detail"),
+    path("places/<int:place_id>/", views.PlaceDetail.as_view(), name="place-detail"),
+    path(
+        "places/<int:place_id>/services/",
+        views.PlaceServiceList.as_view(),
+        name="place-service-list",
+    ),
+    path(
+        "places/<int:place_id>/services/<int:service_id>/",
+        views.PlaceServiceDetail.as_view(),
+        name="place-service-detail",
+    ),
     path("address/search", views.address_search, name="address-search"),
 ]
 
