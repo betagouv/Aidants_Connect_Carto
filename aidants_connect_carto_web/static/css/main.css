@@ -19,9 +19,16 @@ label.label-inline {
 .card__content h4 {
   margin: 0;
 }
+.card__extra {
+  padding: var(--space-xs);
+}
 
 
 /* Custom css */
+
+h6 {
+  margin-bottom: 0.8em;
+}
 
 a.tile {
   color: inherit;
@@ -61,6 +68,20 @@ a.no-decoration {
 
 .label-small {
   padding: 0.2em 0.4em;
+}
+
+.text-align-left {
+  text-align: left;
+}
+.text-align-center {
+  text-align: center;
+}
+.justify-content-center {
+  justify-content: center;
+}
+
+form.full-width {
+  max-width: 100%;
 }
 
 

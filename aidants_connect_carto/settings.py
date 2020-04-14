@@ -136,7 +136,17 @@ REFERRER_POLICY = "strict-origin"
 
 # Content security policy
 
-_CSP_SELF = ("'self'",)
+_CSP_SELF = (
+    "'self'",
+    "'unsafe-inline'",
+    "https://unpkg.com/leaflet@1.6.0/dist/",
+    "https://a.tile.openstreetmap.org/",
+    "https://b.tile.openstreetmap.org/",
+    "https://c.tile.openstreetmap.org/",
+    "https://code.jquery.com/jquery-3.4.1.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/",
+    "https://unpkg.com/@fullcalendar/core@4.4.0/",
+)
 CSP_DEFAULT_SRC = _CSP_SELF
 CSP_IMG_SRC = _CSP_SELF
 CSP_SCRIPT_SRC = _CSP_SELF

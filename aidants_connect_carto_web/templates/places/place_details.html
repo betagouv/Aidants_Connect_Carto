@@ -35,7 +35,7 @@
       <div class="col-33">
         <h4>Informations</h4>
         <p title="Equipements">
-          Equipements disponibles<br />
+          Equipements disponibles :<br />
           {% if place.has_equipment_wifi %}
           <span class="label label-small label--inactive">WiFi</span>
           {% endif %}
@@ -44,7 +44,7 @@
           {% endif %}
         </p>
         <p title="Accessibilité">
-          Accessibilité<br />
+          Accessibilité :<br />
           <span><img src="{% static 'images/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
           <span><img src="{% static 'images/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
           <span><img src="{% static 'images/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
@@ -53,9 +53,9 @@
       </div>
       <div class="col-33">
         <h4>Prendre contact</h4>
-        <p title="Téléphone">📞: {{ place.contact_phone }}</p>
-        <p title="Courriel">📧: {{ place.contact_email }}</p>
-        <p title="Site internet">🌐: {{ place.contact_website }}</p>
+        <p title="Téléphone">📞&nbsp;{{ place.contact_phone | default:'' }}</p>
+        <p title="Courriel">📧&nbsp;{{ place.contact_email }}</p>
+        <p title="Site internet">🌐&nbsp;<a href="{{ place.contact_website }}" target="_blank">{{ place.contact_website }}</a></p>
       </div>
       <div class="col-33">
         <h4>S'y rendre</h4>
@@ -92,8 +92,8 @@
     <h2 class="section__title">Services proposés</h2>
     <div class="grid">
       {% for service in place_services %}
-        <div class="tile">
-          <p>{{ service.name }}</p>
+        <!-- <div class="tile">
+          <p class="text-align-center">{{ service.name }}</p>
           <div class="font-size-small">
             {% if service.schedule_hours_raw %}
             <p title="Horaires">
@@ -114,6 +114,37 @@
               <span class="label label--active">Aidants Connect</span>
               {% endif %}
             </p>
+          </div>
+        </div> -->
+        <div class="card">
+          <div class="card__content">
+            <h6>{{ service.name }}</h6>
+            {% if service.schedule_hours_raw %}
+              <div class="font-size-small" title="Horaires">
+                🕒 {{ service.schedule_hours_raw }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="card__extra">
+            <span title="Tags">
+              {% if service.is_free %}
+              <span class="label label-small label--active">Gratuit</span>
+              {% else %}
+              <!-- <span class="label label-small label--active" title="{{ service.price_detail }}">Payant</span> -->
+              {% endif %}
+              {% for target in service.public_target %}
+              <span class="label label-small label--inactive">{{ target }}</span>
+              {% endfor %}
+              {% if service.support_access %}
+              <span class="label label-small label">{{ service.support_access }}</span>
+              {% endif %}
+              {% if service.support_mode %}
+              <span class="label label-small label">{{ service.support_mode }}</span>
+              {% endif %}
+              {% if service.has_label_aidants_connect %}
+              <span class="label label-small label--active">Aidants Connect</span>
+              {% endif %}
+            </span>
           </div>
         </div>
       {% endfor %}

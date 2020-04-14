@@ -27,7 +27,7 @@ class Command(BaseCommand):
             # print(reader.fieldnames)
 
             for index, row in enumerate(reader):
-                if index < 2000:
+                if index < 2000:  # all
                     print("in place")
 
                     place = Place()
@@ -132,9 +132,7 @@ class Command(BaseCommand):
 
                         service_mednum = Service()
                         service_mednum.place_id = place.id
-                        service_equipement.name = (
-                            "Acquisition de compétences numériques"
-                        )
+                        service_mednum.name = "Acquisition de compétences numériques"
                         service_mednum.description = row["Compétences médnum"]
                         service_mednum.support_access = utilities.process_support_access(
                             row["Conditions accès médnum"]

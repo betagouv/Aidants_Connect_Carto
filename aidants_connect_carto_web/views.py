@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 from aidants_connect_carto_api.models import Place
 from aidants_connect_carto_web.forms import PlaceCreateForm, ServiceCreateForm
@@ -11,7 +12,27 @@ def home_page(request):
 
 def place_list(request):
     places = Place.objects.all().order_by("name")
-    return render(request, "places/place_list.html", {"places": places})
+
+    services = list(
+        places.order_by().values_list("services__name", flat="True").distinct()
+    )
+    services = list(filter(None, services))
+    services.sort()
+
+    paginator = Paginator(places, 24)  # Show 24 places per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        "places/place_list.html",
+        {
+            "places_page": page_obj,
+            "places_total": paginator.count,
+            "place_types": Place.TYPE_CHOICES,
+            "services": services,
+        },
+    )
 
 
 def place_details(request, place_id):

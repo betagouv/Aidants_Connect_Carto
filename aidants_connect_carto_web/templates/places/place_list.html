@@ -12,37 +12,155 @@
         {% endfor %}
       </div>
     {% endif %}
-    <h1 class="brand">Tous les lieux</h1>
+    <h1 class="section__title">Tous les lieux</h1>
     <h3>Actions rapides</h3>
-    <h3>Filtres poussés</h3>
+    <form class="full-width">
+      <div class="form__group">
+        <input type="text" placeholder="Chercher un lieu...">
+      </div>
+      <div class="form__group">
+        <span>
+          <a>Accès à un équipement informatique</a>
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        <span>
+          <a>Acquisition de compétences numériques</a>
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        <span>
+          <a>Accompagnement aux démarches en ligne</a>
+        </span>
+      </div>
+      <div class="form__group">
+        <span>
+          <a>Structures labellisées #APTIC</a>
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        <span>
+          <a>Structures labellisées Aidants Connect</a>
+        </span>
+      </div>
+    </form>
+    <h3 id="place_list_filters_toggle">
+      <a>Filtres avancés</a>
+      <!-- <small><a id="place_list_filters_toggle">Afficher</a></small> -->
+    </h3>
+    <form id="place_list_filters_form" class="full-width" style="display:none">
+      <div class="form__group">
+        <fieldset>
+          <legend><strong>Type de lieu :</strong></legend>
+          <input type="checkbox" name="checkbox" id="type_all" value="type_all" checked><label for="type_all" class="label-inline">Tous</label>
+          {% for type_label, type_name in place_types %}
+            <input type="checkbox" name="checkbox" id="{{ type_label }}" value="{{ type_label }}"><label for="{{ type_label }}" class="label-inline">{{ type_name }}</label>
+          {% endfor %}
+          <!-- {{ place_types }} -->
+        </fieldset>
+      </div>
+      <div class="form__group">
+        <fieldset>
+          <legend><strong>Services proposés :</strong></legend>
+          <input type="checkbox" name="checkbox" id="service_all" value="service_all" checked><label for="service_all" class="label-inline">Tous</label>
+          {% for service in services %}
+            <input type="checkbox" name="checkbox" id="{{ service }}" value="{{ service }}"><label for="{{ service }}" class="label-inline">{{ service }}</label>
+          {% endfor %}
+        </fieldset>
+      </div>
+      <div class="form__group">
+        <fieldset>
+          <legend><strong>Horaires d'ouverture :</strong></legend>
+          <input type="radio" name="radio" id="opening_hours_all" value="opening_hours_all" checked><label for="opening_hours_all" class="label-inline">Tous</label>
+          <input type="radio" name="radio" id="opening_hours_now" value="opening_hours_now"><label for="opening_hours_now" class="label-inline">Ouvert en ce moment</label>
+          <!-- <input type="radio" name="radio" id="opening_hours_date" value="opening_hours_date" checked><label for="opening_hours_date" class="label-inline">Ouvert le 'datetime'</label> -->
+        </fieldset>
+      </div>
+      <div class="form__group">
+        <fieldset>
+          <legend><strong>Par département :</strong></legend>
+          <!-- <input type="radio" name="radio" id="opening_hours_all" value="opening_hours_all" checked><label for="opening_hours_all" class="label-inline">Tous</label> -->
+          <!-- <input type="radio" name="radio" id="opening_hours_now" value="opening_hours_now"><label for="opening_hours_now" class="label-inline">Ouvert en ce moment</label> -->
+          <!-- <input type="radio" name="radio" id="opening_hours_date" value="opening_hours_date" checked><label for="opening_hours_date" class="label-inline">Ouvert le 'datetime'</label> -->
+        </fieldset>
+      </div>
+    </form>
   </div>
 </section>
 <section class="section section-grey">
   <div class="container">
-    <h2>Résultats</h2>
     <div class="row">
-      {% for place in places %}
+      <div class="section__title inline-children text-align-left">
+        <h2>Résultats</h2>
+        <small class="label label--active">{{ places_total }}</small>
+      </div>
+      <div>
+        <form>
+          <div class="form__group">
+            <fieldset>
+              <legend>Ordonner par :</legend>
+              <input type="radio" name="radio" id="radio-pup" value="1" checked><label for="radio-pup" class="label-inline">A-Z</label>
+              <input type="radio" name="radio" id="radio-kitten" value="0"><label for="radio-kitten" class="label-inline">Distance</label>
+            </fieldset>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="grid">
+      {% for place in places_page %}
         <div class="card">
           <div class="card__content">
             <h4><a href="{% url 'place_details' place_id=place.id %}">{{ place.name }}</a></h4>
             <div class="card__meta">
-              <span>{{ place.address_raw }}</span>
+              <span>📍&nbsp;{{ place.address_raw }}</span>
             </div>
-            <p>
-              {{ place.service_count }} service{% if place.service_count > 1 %}s{% endif %}
-            </p>
+            <p class="text-quote">{{ place.type }}</p>
+            <!-- <p>{{ place.service_count }} service{% if place.service_count > 1 %}s{% endif %}</p> -->
+            <ul>
+              {% for service in place.services.all %}
+              <li>{{ service.name }}</li>
+              {% endfor %}
+            </ul>
             <!-- <p>{{ place.service_list }}</p> -->
           </div>
           <div class="card__extra">
-            {% if place.is_open %}
-              <span class="label primary">Ouvert</span>
-            {% else %}
-              <span class="label">Fermé</span>
-            {% endif %}
+            <span title="{{ place.opening_hours_raw }}">
+              {% if place.is_open %}
+                <span class="label label--active">Ouvert</span>
+              {% else %}
+                <span class="label">Fermé</span>
+              {% endif %}
+            </span>
           </div>
         </div>
       {% endfor %}
     </div>
+    <nav class="pagination justify-content-center">
+      <span class="step-links">
+        {% if places_page.has_previous %}
+          <!-- <a href="?page=1">&laquo; début</a> -->
+          <a href="?page={{ places_page.previous_page_number }}">précédent</a>
+        {% endif %}
+        &nbsp;&nbsp;
+        <span class="current">
+          Page <strong>{{ places_page.number }}</strong> sur <strong>{{ places_page.paginator.num_pages }}</strong>.
+        </span>
+        &nbsp;&nbsp;
+        {% if places_page.has_next %}
+          <a href="?page={{ places_page.next_page_number }}">suivant</a>
+          <!-- <a href="?page={{ places_page.paginator.num_pages }}">fin &raquo;</a> -->
+        {% endif %}
+      </span>
+    </nav>
   </div>
 </section>
+<section>
+  
+</section>
 {% endblock content %}
+
+{% block extrajs %}
+<script>
+  document.getElementById("place_list_filters_toggle").addEventListener("click", function() {
+    console.log(document.getElementById("place_list_filters_form").style.display);
+    document.getElementById("place_list_filters_form").style.display = (document.getElementById("place_list_filters_form").style.display === "block") ? "none" : "block";
+  }, false);
+</script>
+{% endblock extrajs %}
