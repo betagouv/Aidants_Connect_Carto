@@ -34,7 +34,6 @@ class Migration(migrations.Migration):
                 (
                     "type",
                     models.CharField(
-                        blank=True,
                         choices=[
                             ("centre social", "Centre social"),
                             (
@@ -60,8 +59,9 @@ class Migration(migrations.Migration):
                             ),
                             ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
                             ("prefecture", "Préfecture, Sous-Préfecture"),
-                            ("autre", "Autre"),
+                            ("autre", "Autre, Inconnu"),
                         ],
+                        default="autre",
                         help_text="La typologie du lieu",
                         max_length=32,
                     ),
@@ -69,13 +69,13 @@ class Migration(migrations.Migration):
                 (
                     "status",
                     models.CharField(
-                        blank=True,
                         choices=[
                             ("public", "Public"),
                             ("prive", "Privé"),
                             ("public-prive", "Public / Privé"),
-                            ("", "Autre, Inconnu"),
+                            ("autre", "Autre, Inconnu"),
                         ],
+                        default="autre",
                         help_text="Le statut du lieu",
                         max_length=32,
                     ),

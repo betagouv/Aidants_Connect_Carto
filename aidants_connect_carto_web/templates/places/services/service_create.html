@@ -15,15 +15,15 @@
     <h1 class="section__title">
       Formulaire pour {% if action == 'create' %}ajouter{% else %}modifier{% endif %} un service
     </h1>
-    <p class="section__subtitle"><a href="{% url 'place_details' place_id=place.id %}">{{ place.name }}</a></p>
+    <p class="section__subtitle"><a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a></p>
   </div>
 </section>
 <section class="section section-grey">
   <div class="container">
     {% if action == 'create' %}
-    <form action="{% url 'service_create' place_id=place.id %}" method="POST">
+    <form action="{% url 'service-create' place_id=place.id %}" method="POST">
     {% else %}
-    <form action="{% url 'service_update' place_id=place.id service_id=service_id %}" method="POST">
+    <form action="{% url 'service-update' place_id=place.id service_id=service_id %}" method="POST">
     {% endif %}
       {% csrf_token %}
 

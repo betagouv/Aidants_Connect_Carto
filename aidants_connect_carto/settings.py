@@ -152,5 +152,4 @@ CSP_STYLE_SRC = _CSP_SELF
 
 # API URLS
 
-HOST_API = os.getenv("HOST_API")
 BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"

@@ -149,7 +149,7 @@
           </div>
         </div>
       {% endfor %}
-      <a class="tile" href="{% url 'service_create' place_id=place.id %}">
+      <a class="tile" href="{% url 'service-create' place_id=place.id %}">
         <h3>➕</h3>
         <p class="no-margin color-primary">Ajouter un service</p>
       </a>
@@ -167,7 +167,7 @@
   <div class="container">
     <h2 class="section__title">Actions</h2>
     <div>
-      <a href="{% url 'place_update' place_id=place.id %}">Modifier le lieu</a>
+      <a href="{% url 'place-update' place_id=place.id %}">Modifier le lieu</a>
     </div>
   </div>
 </section>

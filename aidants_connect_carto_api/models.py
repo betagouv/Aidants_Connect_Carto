@@ -6,6 +6,7 @@ import humanized_opening_hours as hoh
 
 
 class Place(models.Model):
+    CHOICE_OTHER = "autre"
     TYPE_CHOICES = (
         ("centre social", "Centre social"),
         (
@@ -25,13 +26,13 @@ class Place(models.Model):
         ("administration", "Administration - Collectivité territoriale"),
         ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
         ("prefecture", "Préfecture, Sous-Préfecture"),
-        ("autre", "Autre"),
+        (CHOICE_OTHER, "Autre, Inconnu"),
     )
     STATUS_CHOICES = (
         ("public", "Public"),
         ("prive", "Privé"),
         ("public-prive", "Public / Privé"),
-        ("", "Autre, Inconnu"),
+        (CHOICE_OTHER, "Autre, Inconnu"),
     )
     LANGUAGE_CHOICES = (
         ("fr", "Français"),
@@ -79,12 +80,15 @@ class Place(models.Model):
     description = models.TextField(blank=True, help_text="Une description du lieu")
     type = models.CharField(
         max_length=32,
-        blank=True,
         choices=TYPE_CHOICES,
+        default=CHOICE_OTHER,
         help_text="La typologie du lieu",
     )
     status = models.CharField(
-        max_length=32, blank=True, choices=STATUS_CHOICES, help_text="Le statut du lieu"
+        max_length=32,
+        choices=STATUS_CHOICES,
+        default=CHOICE_OTHER,
+        help_text="Le statut du lieu",
     )
 
     # --- location
@@ -354,7 +358,7 @@ class Service(models.Model):
     # schedule_hours = django-openinghours package ? JsonField ? custom Field ?
     schedule_hours_raw = models.TextField(
         blank=True,
-        help_text="Les horaires du service (s'ils sont différents"
+        help_text="Les horaires du service (s'ils sont différents "
         "des horaires du lieu)",
     )
     schedule_hours_osm_format = models.CharField(

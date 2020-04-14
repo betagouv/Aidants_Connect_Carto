@@ -22,9 +22,9 @@
 <section class="section section-grey">
   <div class="container">
     {% if action == 'create' %}
-      <form action="{% url 'place_create' %}" method="POST">
+      <form action="{% url 'place-create' %}" method="POST">
     {% else %}
-      <form action="{% url 'place_update' place_id=place_id %}" method="POST">
+      <form action="{% url 'place-update' place_id=place_id %}" method="POST">
     {% endif %}
 
       {% csrf_token %}
@@ -229,7 +229,7 @@
           console.log(query);
           return {
             type: "GET",
-            url: "http://localhost:3000/api/address/search?",
+            url: "{% url 'address-search' %}",
             data: {
               q: query
             },

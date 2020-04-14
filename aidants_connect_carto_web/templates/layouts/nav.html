@@ -1,7 +1,7 @@
 {% load static %}
 <header class="navbar">
   <div class="navbar__container">
-    <a class="navbar__home" href="{% url 'home_page' %}">
+    <a class="navbar__home" href="{% url 'home-page' %}">
       <img class="navbar__logo" src="{% static 'images/logo-marianne.svg' %}" alt="Logo République Française Marianne" />
       <img src="{% static 'images/aidants-connect_logo.png' %}" class="navbar__gouvfr" alt="Logo Aidants Connect" />
       <h2>&nbsp;Carto</h2>
@@ -9,12 +9,12 @@
     <nav role="navigation">
       <ul class="nav__links">
         <li class="nav__item">
-          <a href="{% url 'place_list' %}"  {% if request.path == '/lieux' %}class="active"{% endif %}>
+          <a href="{% url 'place-list' %}"  {% if request.path == '/lieux' %}class="active"{% endif %}>
             Tous les lieux
           </a>
         </li>
         <li class="nav__item">
-          <a href="{% url 'place_create' %}"  {% if '/nouveau-lieu' in request.path %}class="active"{% endif %}>
+          <a href="{% url 'place-create' %}"  {% if '/nouveau-lieu' in request.path %}class="active"{% endif %}>
             Ajouter un lieu
           </a>
         </li>
