@@ -3,17 +3,17 @@
 {% load static %}
 
 {% block extracss %}
-<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css">
-<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.css">
-<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.css">
-<link rel="stylesheet" href="{% static 'css/yohours.css' %}">
+<link rel="stylesheet" href="{% static 'css/libraries/fullcalendar.core@4.4.0.main.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/libraries/fullcalendar.daygrid@4.4.0.main.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/libraries/fullcalendar.timegrid@4.4.0.main.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/libraries/yohours.css' %}">
 {% endblock extracss %}
 
 {% block content %}
 <section class="section section-white">
   <div class="container">
     <h1 class="section__title">
-      Formulaire pour {% if action == 'create' %}rajouter{% else %}modifier{% endif %} un service
+      Formulaire pour {% if action == 'create' %}ajouter{% else %}modifier{% endif %} un service
     </h1>
     <p class="section__subtitle"><a href="{% url 'place_details' place_id=place.id %}">{{ place.name }}</a></p>
   </div>
@@ -127,18 +127,18 @@
 {% block extrajs %}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-<script src="https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js"></script>
-<script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
-<script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
-<script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/caret/1.0.0/jquery.caret.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="{% static 'js/libraries/fullcalendar.core@4.4.0.main.min.js' %}"></script>
+<script src="{% static 'js/libraries/fullcalendar.daygrid@4.4.0.main.min.js' %}"></script>
+<script src="{% static 'js/libraries/fullcalendar.timegrid@4.4.0.main.min.js' %}"></script>
+<script src="{% static 'js/libraries/fullcalendar.interaction@4.4.0.main.min.js' %}"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/caret/1.0.0/jquery.caret.min.js" crossorigin="anonymous"></script> -->
+<script src="{% static 'js/libraries/moment-with-locales.2.22.1.min.js' %}"></script>
+<script src="{% static 'js/libraries/popper.1.14.3.min.js' %}"></script>
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/jsmart/dist/jsmart.min.js" crossorigin="anonymous"></script>
-<script src="{% static 'js/jed.min.js' %}"></script>
-<script src="{% static 'js/yohours.i18n.en.min.js' %}"></script>
-<script src="{% static 'js/yohours.js' %}"></script>
+<script src="{% static 'js/libraries/jsmart.3.0.3.min.js' %}"></script>
+<script src="{% static 'js/libraries/jed.min.js' %}"></script>
+<script src="{% static 'js/libraries/yohours.i18n.en.min.js' %}"></script>
+<script src="{% static 'js/libraries/yohours.js' %}"></script>
 <script>
   document.querySelector("input[id=id_is_free]").addEventListener('change', function() {
     document.getElementById("price_detail_form_group").style.display = this.checked ? "none" : "block";

@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
                             ("public-prive", "Public / Privé"),
                             ("", "Autre, Inconnu"),
                         ],
-                        help_text="La statut du lieu",
+                        help_text="Le statut du lieu",
                         max_length=32,
                     ),
                 ),
@@ -130,7 +130,7 @@ class Migration(migrations.Migration):
                     "longitude",
                     models.FloatField(
                         blank=True,
-                        help_text="La latitude (coordonnée géographique)",
+                        help_text="La longitude (coordonnée géographique)",
                         null=True,
                     ),
                 ),

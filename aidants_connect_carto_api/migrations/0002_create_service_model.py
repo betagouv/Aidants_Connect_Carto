@@ -92,7 +92,7 @@ class Migration(migrations.Migration):
                     "schedule_hours_raw",
                     models.TextField(
                         blank=True,
-                        help_text="Les horaires du service (si elles sont différentes des horaires du lieu)",
+                        help_text="Les horaires du service (s'ils sont différents des horaires du lieu)",
                     ),
                 ),
                 (

@@ -2,8 +2,6 @@
 
 import csv
 
-# import pandas as pd
-
 from django.core.management import BaseCommand
 
 from aidants_connect_carto_api.models import Place, Service
@@ -18,9 +16,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
-
-        # df = pd.read_csv(path, delimiter=",", encoding="utf-8")
-        # print(df["typé vente matériel"].unique().tolist())
 
         with open(path, "rt") as f:
             reader = csv.DictReader(f, delimiter=",")

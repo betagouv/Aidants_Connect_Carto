@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block extracss %}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+<link rel="stylesheet" href="{% static 'css/libraries/leaflet@1.6.0.css' %}">
 {% endblock extracss %}
 
 {% block content %}
@@ -33,7 +33,8 @@
     
     <div class="row">
       <div class="col-33">
-        <h4>Informations</h4>
+        <h5>Informations</h5>
+        <p class="text-quote">{{ place.type }}</p>
         <p title="Equipements">
           Equipements disponibles :<br />
           {% if place.has_equipment_wifi %}
@@ -52,13 +53,13 @@
         </p>
       </div>
       <div class="col-33">
-        <h4>Prendre contact</h4>
+        <h5>Prendre contact</h5>
         <p title="Téléphone">📞&nbsp;{{ place.contact_phone | default:'' }}</p>
         <p title="Courriel">📧&nbsp;{{ place.contact_email }}</p>
         <p title="Site internet">🌐&nbsp;<a href="{{ place.contact_website }}" target="_blank">{{ place.contact_website }}</a></p>
       </div>
       <div class="col-33">
-        <h4>S'y rendre</h4>
+        <h5>S'y rendre</h5>
         <p>{{ place.address_raw }}</p>
         <!-- <img src="{% static 'images/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
         {% if place.latitude and place.longitude %}
@@ -80,7 +81,7 @@
       </ul>
     {% else %}
       <p>
-        🕒 Les <strong>horaires d'ouvertures</strong> sont inconnues.
+        🕒 Les <strong>horaires d'ouvertures</strong> sont inconnus.
         <small><a>Rajouter les horaires.</a></small>
       </p>
     {% endif %}
@@ -173,7 +174,7 @@
 {% endblock content %}
 
 {% block extrajs %}
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<script src="{% static 'js/libraries/leaflet@1.6.0.js' %}"></script>
 
 <script>
   // leaflet map

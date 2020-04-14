@@ -84,7 +84,7 @@ class Place(models.Model):
         help_text="La typologie du lieu",
     )
     status = models.CharField(
-        max_length=32, blank=True, choices=STATUS_CHOICES, help_text="La statut du lieu"
+        max_length=32, blank=True, choices=STATUS_CHOICES, help_text="Le statut du lieu"
     )
 
     # --- location
@@ -113,7 +113,7 @@ class Place(models.Model):
         blank=True, null=True, help_text="La latitude (coordonnée géographique)"
     )
     longitude = models.FloatField(
-        blank=True, null=True, help_text="La latitude (coordonnée géographique)"
+        blank=True, null=True, help_text="La longitude (coordonnée géographique)"
     )
     is_itinerant = models.BooleanField(
         default=False, help_text="Le lieu est-il itinérant ?"
@@ -318,7 +318,7 @@ class Service(models.Model):
         ("collectif", "Collectif"),
     ]
 
-    FORM_READONLY_FIELDS = "place"
+    # FORM_READONLY_FIELDS = ("place_id")
 
     # --- basics
     name = models.CharField(max_length=300, help_text="Le nom du service")
@@ -354,7 +354,7 @@ class Service(models.Model):
     # schedule_hours = django-openinghours package ? JsonField ? custom Field ?
     schedule_hours_raw = models.TextField(
         blank=True,
-        help_text="Les horaires du service (si elles sont différentes"
+        help_text="Les horaires du service (s'ils sont différents"
         "des horaires du lieu)",
     )
     schedule_hours_osm_format = models.CharField(

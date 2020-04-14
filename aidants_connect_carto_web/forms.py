@@ -62,8 +62,8 @@ class ServiceCreateForm(forms.ModelForm):
             self.fields[fieldname].help_text = None
 
         # set readonly fields
-        for fieldname in Service.FORM_READONLY_FIELDS:
-            self.fields[fieldname].widget.attrs["readonly"] = True
+        # for fieldname in Service.FORM_READONLY_FIELDS:
+        #     self.fields[fieldname].widget.attrs["readonly"] = True
 
     class Meta:
         model = Service

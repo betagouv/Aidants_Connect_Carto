@@ -9,8 +9,8 @@ def find_verbose_choice(choices: tuple, value: str):
     for choice in choices:
         if choice[1] == value:
             return choice[0]
-    return ""
-    # raise Exception(f"error with {value}")
+    # raise Exception(f"error with choices for {value}")
+    return None
 
 
 # Float fields

@@ -33,11 +33,11 @@
       </div>
       <div class="form__group">
         <span>
-          <a>Structures labellisées #APTIC</a>
+          <a>Services labellisées #APTIC</a>
         </span>
         &nbsp;&nbsp;&nbsp;
         <span>
-          <a>Structures labellisées Aidants Connect</a>
+          <a>Services labellisées Aidants Connect</a>
         </span>
       </div>
     </form>
@@ -63,6 +63,12 @@
           {% for service in services %}
             <input type="checkbox" name="checkbox" id="{{ service }}" value="{{ service }}"><label for="{{ service }}" class="label-inline">{{ service }}</label>
           {% endfor %}
+        </fieldset>
+      </div>
+      <div class="form__group">
+        <fieldset>
+          <legend><strong>Labels :</strong></legend>
+          <input type="checkbox" name="checkbox" id="service_all" value="service_all" checked><label for="service_all" class="label-inline">Tous</label>
         </fieldset>
       </div>
       <div class="form__group">
