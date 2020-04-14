@@ -28,12 +28,18 @@ class Command(BaseCommand):
                     place = Place()
 
                     place.name = row["Nom SP"]
-                    place.type = utilities.find_verbose_choice(
+
+                    type_value = utilities.find_verbose_choice(
                         Place.TYPE_CHOICES, row["Nature"]
                     )
-                    place.status = utilities.find_verbose_choice(
+                    if type_value:
+                        place.type = type_value
+
+                    status_value = utilities.find_verbose_choice(
                         Place.STATUS_CHOICES, row["Statut"]
                     )
+                    if status_value:
+                        place.status = status_value
 
                     place.address_raw = " ".join(
                         [row["Adresse SP"], row["CP"], row["Commune"]]
