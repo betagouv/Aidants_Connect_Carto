@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Aidants Connect Carto</title>
+
+  <link href="{% static 'css/template.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+  <!-- Extra styles -->
+  {% block extracss %}
+  {% endblock extracss %}
+
+</head>
+
+<body>
+  {% block nav %}
+    {% include 'layouts/nav.html' %}
+  {% endblock nav %}
+
+  {% block hero %}
+  {% endblock hero %}
+
+  <main>
+    {% block content %}
+    {% endblock content %}
+  </main>
+
+  {% block footer %}
+  {% endblock footer %}
+
+  {% block extrajs %}
+  {% endblock extrajs %}
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+numéro;catégorie;sous-catégorie;service
+1;Découvrir les enjeux du numérique;S’informer;Composantes et facettes de l’identité numérique
+2;Découvrir les enjeux du numérique;S’informer;Les conduites à risques et les bons usages du numérique
+3;Découvrir les enjeux du numérique;S’informer;Etre parent à l’ère numérique : connaître les usages, jouer son rôle de parent
+4;Découvrir les enjeux du numérique;S’informer;Panorama des usages numériques des adolescents
+5;Découvrir les enjeux du numérique;S’informer;Découvrir les réseaux sociaux : définition, fonctionnement
+6;Découvrir les enjeux du numérique;S’informer;Utiliser les réseaux sociaux pour sa recherche d’emploi
+7;Découvrir les enjeux du numérique;S’informer;Panorama d’usages créatifs du numérique
+8;Découvrir les enjeux du numérique;S’informer;Panorama de la création artistique numérique
+9;Découvrir les enjeux du numérique;S’informer;Fablab : charte, valeurs et panorama des outils numériques
+10;Découvrir les enjeux du numérique;S’informer;Panorama des objets connectés (Domotique, Sécurité, Santé)
+11;Découvrir les enjeux du numérique;S’informer;Internet : fonctionnement et outils de navigation web
+12;Découvrir les enjeux du numérique;S’informer;Internet : fonctionnement des emails
+13;Découvrir les enjeux du numérique;S’informer;Internet : fonctionnement des clients webmail
+14;Découvrir les enjeux du numérique;S’informer;Découverte des outils de messagerie instantanée (tchat)
+15;Découvrir les enjeux du numérique;S’informer;Panorama des outils de webconférence
+16;Découvrir les enjeux du numérique;S’informer;Panorama des outils du cloud
+17;Découvrir les enjeux du numérique;S’informer;Panorama des outils de travail collaboratif
+18;Découvrir les enjeux du numérique;S’informer;Marchés publics : panorama des plateformes
+19;Découvrir les enjeux du numérique;S’informer;Panorama des plateformes d’économie collaborative
+20;Découvrir les enjeux du numérique;S’informer;Panorama des plateformes de recherche d’emploi
+21;Découvrir les enjeux du numérique;S’informer;Fonctionnement des plateformes de musique et de film en ligne
+22;Découvrir les enjeux du numérique;S’informer;Découvrir l’univers des jeux vidéos
+23;Découvrir les enjeux du numérique;S’informer;Les mécanismes excessifs ou addictifs liés au numérique
+24;Découvrir les enjeux du numérique;Comprendre;Principes et fonctionnement du cloud
+25;Découvrir les enjeux du numérique;Comprendre;Google Drive et solutions alternatives
+26;Découvrir les enjeux du numérique;Comprendre;Les outils de protection de l’enfance
+27;Découvrir les enjeux du numérique;Comprendre;Téléphonie : comprendre et comparer des offres mobiles
+28;Découvrir les enjeux du numérique;Comprendre;Les paiements en ligne
+29;Découvrir les enjeux du numérique;Comprendre;Les biens communs : principes et enjeux
+30;Découvrir les enjeux du numérique;Comprendre;Le logiciel libre : principes et enjeux
+31;Découvrir les enjeux du numérique;Comprendre;Les licences libres
+32;Découvrir les enjeux du numérique;Comprendre;Les monnaies virtuelles
+33;Découvrir les enjeux du numérique;Comprendre;Fonctionnement d’une box internet
+34;Découvrir les enjeux du numérique;Comprendre;Internet : comprendre une offre internet
+35;Découvrir les enjeux du numérique;Comprendre;Internet : comprendre les principes de fonctionnement
+36;Découvrir les enjeux du numérique;Comprendre;Internet : comprendre un réseau wifi
+37;Découvrir les enjeux du numérique;Comprendre;Big Data / Open Data : comprendre les données
+38;Découvrir les enjeux du numérique;Comprendre;Le smartphone : principes de fonctionnement
+39;Découvrir les enjeux du numérique;Comprendre;Techniques de vérification de l’information
+40;Découvrir les enjeux du numérique;Comprendre;Comprendre les cultures numériques : les jeux vidéos
+41;Découvrir les enjeux du numérique;Comprendre;Neutralité du net : de quoi parle-t-on ?
+42;Maîtriser le numérique;Utiliser;Créer et paramétrer un compte Google
+43;Maîtriser le numérique;Utiliser;Gérer ses favoris de navigation
+44;Maîtriser le numérique;Utiliser;Poste informatique Windows
+45;Maîtriser le numérique;Utiliser;Poste informatique Mac OS
+46;Maîtriser le numérique;Utiliser;Poste informatique Linux
+47;Maîtriser le numérique;Utiliser;Internet : paramétrer un réseau wifi
+48;Maîtriser le numérique;Utiliser;Internet : envoyer, recevoir, gérer ses emails
+49;Maîtriser le numérique;Utiliser;Transférer des fichiers volumineux
+50;Maîtriser le numérique;Utiliser;Organiser, explorer et partager des contenus numériques
+51;Maîtriser le numérique;Utiliser;Gérer ses données : Sauvegarde en ligne (dans le cloud)
+52;Maîtriser le numérique;Utiliser;Gérer ses données : Sauvegardes locales (disques durs externes, clé USB)
+53;Maîtriser le numérique;Utiliser;Photo numérique : usages courants (prise de vue, réglages)
+54;Maîtriser le numérique;Utiliser;Classer, gérer et partager ses photos
+55;Maîtriser le numérique;Utiliser;Images : gérer ses photos en ligne
+56;Maîtriser le numérique;Utiliser;Facebook : Découverte
+57;Maîtriser le numérique;Utiliser;Facebook : Approfondissement
+58;Maîtriser le numérique;Utiliser;Twitter : Découverte
+59;Maîtriser le numérique;Utiliser;Twitter : Approfondissement
+60;Maîtriser le numérique;Utiliser;Instagram : Découverte
+61;Maîtriser le numérique;Utiliser;Instagram : Approfondissement
+62;Maîtriser le numérique;Utiliser;Pinterest : Découverte
+63;Maîtriser le numérique;Utiliser;Pinterest : Approfondissement
+64;Maîtriser le numérique;Utiliser;Snapchat
+65;Maîtriser le numérique;Utiliser;Skype
+66;Maîtriser le numérique;Utiliser;Traitement de texte : Découverte
+67;Maîtriser le numérique;Utiliser;Traitement de texte : Utilisation de base
+68;Maîtriser le numérique;Utiliser;Traitement de texte : Utilisation avancée
+69;Maîtriser le numérique;Utiliser;Tableur : Découverte
+70;Maîtriser le numérique;Utiliser;Tableur : Utilisation de base
+71;Maîtriser le numérique;Utiliser;Tableur : Utilisation avancée
+72;Maîtriser le numérique;Utiliser;Signer numériquement des documents administratifs
+73;Maîtriser le numérique;Utiliser;Marchés publics : Signer numériquement ses réponses
+74;Maîtriser le numérique;Utiliser;Smartphones et Tablettes sous Androïd
+75;Maîtriser le numérique;Utiliser;Smartphone : Environnement IOS
+76;Maîtriser le numérique;Utiliser;Smartphone : Les applications clés
+77;Maîtriser le numérique;Utiliser;Smartphone : Les principaux gestes pour l’écran tactile
+78;Maîtriser le numérique;Utiliser;Smartphone : Les fonctionnalités de base
+79;Maîtriser le numérique;Utiliser;Smartphone : Télécharger une application sur les stores
+80;Maîtriser le numérique;Utiliser;Smartphone : Réglage et configuration de l’appareil
+81;Maîtriser le numérique;Utiliser;Outils numériques pour maîtriser sa consommation énergétique
+82;Maîtriser le numérique;Utiliser;Suivre la scolarité de son enfant
+83;Maîtriser le numérique;Utiliser;Découvrir des alternatives libres et gratuits aux logiciels
+84;Maîtriser le numérique;Faire ses démarches en ligne;Pôle Emploi : faire ses déclarations en ligne
+85;Maîtriser le numérique;Faire ses démarches en ligne;Déclarer ses revenus en ligne et découvertes des services proposés
+86;Maîtriser le numérique;Faire ses démarches en ligne;Accéder à ses droits sociaux et les gérer en ligne (RSA…)
+87;Maîtriser le numérique;Faire ses démarches en ligne;Ouvrir et gérer son dossier de retraite (CNAF/CARSAT) en ligne
+88;Maîtriser le numérique;Faire ses démarches en ligne;Gérer son abonnement et ses factures d’électricité/gaz en ligne
+89;Maîtriser le numérique;Faire ses démarches en ligne;Gérer ses droits d’assuré social en ligne/sur internet
+90;Maîtriser le numérique;Faire ses démarches en ligne;Gérer ses droits et allocations (CAF…) en ligne/sur internet
+91;Maîtriser le numérique;Faire ses démarches en ligne;Plateforme La Poste : envoyer et recevoir des courriers
+92;Maîtriser le numérique;Faire ses démarches en ligne;Plateforme La Poste : utiliser le coffre-fort en ligne
+93;Maîtriser le numérique;Faire ses démarches en ligne;Plateforme Ameli.fr : la sécurité sociale en ligne
+94;Maîtriser le numérique;Faire ses démarches en ligne;Découvrir les services en ligne de l’enfance de votre commune
+95;Maîtriser le numérique;Faire ses démarches en ligne;Plateforme France Connect
+96;Augmenter son pouvoir d'agir grâce au numérique;Identité numérique;Connaitre et gérer son identité numérique
+97;Augmenter son pouvoir d'agir grâce au numérique;Identité numérique;Nettoyer son identité numérique
+98;Augmenter son pouvoir d'agir grâce au numérique;Identité numérique;Effacer ses traces sur le web, protéger ses données personnelles
+99;Augmenter son pouvoir d'agir grâce au numérique;Contribuer;Utiliser et contribuer à Wikipedia
+100;Augmenter son pouvoir d'agir grâce au numérique;Contribuer;Découvrir et contribuer à OpenStreetMap
+101;Augmenter son pouvoir d'agir grâce au numérique;Contribuer;Utiliser des outils de cartographie
+102;Augmenter son pouvoir d'agir grâce au numérique;Contribuer;Organiser et partager sa veille
+103;Augmenter son pouvoir d'agir grâce au numérique;Contrôler ses données;Les solutions libres pour Les outils bureautiques
+104;Augmenter son pouvoir d'agir grâce au numérique;Contrôler ses données;Les outils libres pour la navigation Internet
+105;Augmenter son pouvoir d'agir grâce au numérique;Contrôler ses données;Les outils libres pour gérer ses emails
+106;Augmenter son pouvoir d'agir grâce au numérique;Contrôler ses données;Les alternatives à Google Drive
+107;Augmenter son pouvoir d'agir grâce au numérique;Contrôler ses données;Les alternatives à Facebook
+108;Augmenter son pouvoir d'agir grâce au numérique;Contrôler ses données;Les outils disponibles pour sécuriser ses usages numériques
+109;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Images : retoucher ses photos
+110;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Découverte et utilisation imprimante 3D
+111;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Vidéo : découvrir le montage vidéo
+112;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;PAO : faire des présentations, des diaporamas
+113;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;PAO : publier des présentations / diaporamas en ligne
+114;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Découverte et utilisation d’une découpeuse numérique
+115;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Savoir pitcher son projet en 5 minutes
+116;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Créer un site web avec WordPress
+117;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Créer, paramétrer et utiliser une liste de diffusion
+118;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Modélisation 3D
+119;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Internet : déposer une annonce sur Le Bon Coin ou autre site de petites annonces
+120;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Services et plateformes de démocratie participative
+121;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Découvrir et expérimenter la programmation informatique (code)
+122;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Utiliser des cartes, capteurs et outils interactifs
+123;Augmenter son pouvoir d'agir grâce au numérique;Explorer de nouvelles possibilités;Découvrir et participer à des MOOCs
+124;Augmenter son pouvoir d'agir grâce au numérique;S’insérer professionnellement;Réalisation CV
+125;Augmenter son pouvoir d'agir grâce au numérique;S’insérer professionnellement;Diffuser son CV en ligne
+126;Augmenter son pouvoir d'agir grâce au numérique;S’insérer professionnellement;Utilisation d’un emplacement de co-working
+127;Augmenter son pouvoir d'agir grâce au numérique;S’insérer professionnellement;Organiser sa recherche d’emploi
+128;Augmenter son pouvoir d'agir grâce au numérique;S’insérer professionnellement;Découverte et usage de l’emploi Store
+129;Augmenter son pouvoir d'agir grâce au numérique;S’insérer professionnellement;Découvrir les métiers du numérique

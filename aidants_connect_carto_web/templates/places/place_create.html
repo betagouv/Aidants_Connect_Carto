@@ -1,0 +1,298 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/libraries/jquery-typeahead.2.11.0.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/libraries/leaflet@1.6.0.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/libraries/fullcalendar.core@4.4.0.main.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/libraries/fullcalendar.daygrid@4.4.0.main.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/libraries/fullcalendar.timegrid@4.4.0.main.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/libraries/yohours.css' %}">
+{% endblock extracss %}
+
+{% block content %}
+<section class="section section-white">
+  <div class="container">
+    <h1>Formulaire pour {% if action == 'create' %}ajouter{% else %}modifier{% endif %} un lieu</h1>
+  </div>
+</section>
+<section class="section section-grey">
+  <div class="container">
+    {% if action == 'create' %}
+      <form action="{% url 'place-create' %}" method="POST">
+    {% else %}
+      <form action="{% url 'place-update' place_id=place_id %}" method="POST">
+    {% endif %}
+
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <div class="notification error" role="alert">{{ form.errors }}</div>
+      {% endif %}
+
+      <h3>Les infos de base</h3>
+
+      <div class="form__group">
+        <label class="{% if form.name.field.required %}required{% endif %}" for="{{ form.name.id_for_label }}">{{ form.name.label | safe }}&nbsp;:</label>
+        {{ form.name }}
+      </div>
+      <div class="form__group">
+        <label class="{% if form.address_raw.field.required %}required{% endif %}" for="{{ form.address_raw.id_for_label }}">{{ form.address_raw.label | safe }}&nbsp;:</label>
+        <!-- {{ form.address_raw }} -->
+        <div class="typeahead__container">
+          <div class="typeahead__field">
+            <div class="typeahead__query">
+              <input type="text" id="id_address_raw" class="js-typeahead" name="address_raw" maxlength="300" autocomplete="off">
+            </div>
+            <div class="typeahead__button" title="Réinitialiser">
+              <button>
+                <!-- <span class="typeahead__cancel-icon"></span> -->
+                <span>X</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <label><i>Champs remplis automatiquement grâce à <a href="https://adresse.data.gouv.fr/" target="_blank">https://adresse.data.gouv.fr/</a></i></label>
+        <div class="row">
+          <div class="col-50">
+            <div class="input__group">
+              {{ form.address_housenumber }}
+            </div>
+            <div class="input__group">
+              {{ form.address_street }}
+            </div>
+            <div class="input__group">
+              {{ form.address_postcode }}
+              {{ form.address_citycode }}
+            </div>
+            <div class="input__group">
+              {{ form.address_city }}
+            </div>
+            <br />
+            <div class="input__group">
+              {{ form.latitude }}
+            </div>
+            <div class="input__group">
+              {{ form.longitude }}
+            </div>
+          </div>
+          <div class="col-50 no-margin">
+            <div id="map-form"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form__group">
+        <label>{{ form.is_itinerant.label | safe }}</label>
+        <div class="input__group">
+          {{ form.is_itinerant }}
+          <label class="label-inline" for="{{ form.is_itinerant.id_for_label }}">Itinérant</label>
+        </div>
+      </div>
+
+      <h3>Contact</h3>
+
+      <div class="form__group">
+        <label for="{{ form.contact_email.id_for_label }}">{{ form.contact_email.label | safe }}&nbsp;:</label>
+        {{ form.contact_email }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.contact_phone.id_for_label }}">{{ form.contact_phone.label | safe }}&nbsp;:</label>
+        {{ form.contact_phone }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.contact_website.id_for_label }}">{{ form.contact_website.label | safe }}&nbsp;:</label>
+        {{ form.contact_website }}
+      </div>
+
+      <h3>Service(s) disponible(s)</h3>
+
+      <p>Voir plus loin</p>
+
+      <h3>Equipement(s) disponible(s)</h3>
+
+      <div class="form__group">
+        <label>Le lieu a-t-il les équipements suivants ?</label>
+        <div class="input__group">
+          {{ form.has_equipment_wifi }}
+          <label class="label-inline" for="{{ form.has_equipment_wifi.id_for_label }}">{{ form.has_equipment_wifi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.has_equipment_computer }}
+          <label class="label-inline" for="{{ form.has_equipment_computer.id_for_label }}">{{ form.has_equipment_computer.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.has_equipment_scanner }}
+          <label class="label-inline" for="{{ form.has_equipment_scanner.id_for_label }}">{{ form.has_equipment_scanner.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.has_equipment_printer }}
+          <label class="label-inline" for="{{ form.has_equipment_printer.id_for_label }}">{{ form.has_equipment_printer.label | safe }}</label>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="{{ form.equipment_other.id_for_label }}">{{ form.equipment_other.label | safe }}&nbsp;:</label>
+        {{ form.equipment_other }}
+      </div>
+
+      <h3>L'accès</h3>
+
+      <div class="form__group">
+        <label for="{{ form.opening_hours_osm_format.id_for_label }}">{{ form.opening_hours_osm_format.label | safe }}&nbsp;:</label>
+        <!-- {{ form.opening_hours_osm_format }} -->
+        <input type="text" name="opening_hours_osm_format" maxlength="150" id="id_opening_hours_osm_format" class="myOpeningHours">
+      </div>
+
+      <div class="form__group">
+        <label>Conditions d'accueil des personnes handicapées&nbsp;:</label>
+        <div class="input__group">
+          {{ form.has_accessibility_hi }}
+          <label class="label-inline" for="{{ form.has_accessibility_hi.id_for_label }}">{{ form.has_accessibility_hi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.has_accessibility_mi }}
+          <label class="label-inline" for="{{ form.has_accessibility_mi.id_for_label }}">{{ form.has_accessibility_mi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.has_accessibility_pi }}
+          <label class="label-inline" for="{{ form.has_accessibility_pi.id_for_label }}">{{ form.has_accessibility_pi.label | safe }}</label>
+        </div>
+        <div class="input__group">
+          {{ form.has_accessibility_vi }}
+          <label class="label-inline" for="{{ form.has_accessibility_vi.id_for_label }}">{{ form.has_accessibility_vi.label | safe }}</label>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="{{ form.languages.id_for_label }}">{{ form.languages.label | safe }}&nbsp;:</label>
+        {{ form.languages }}
+      </div>
+      <div class="form__group">
+        <label for="{{ form.payment_methods.id_for_label }}">{{ form.payment_methods.label | safe }}&nbsp;:</label>
+        {{ form.payment_methods }}
+      </div>
+
+      <div class="form__group">
+        <input type="submit" value="Sauvegarder">
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock content %}
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script> -->
+<script src="{% static 'js/libraries/jquery-typeahead.2.11.0.min.js' %}"></script>
+
+<script src="{% static 'js/libraries/leaflet@1.6.0.js' %}"></script>
+
+<script src="{% static 'js/libraries/fullcalendar.core@4.4.0.main.min.js' %}"></script>
+<script src="{% static 'js/libraries/fullcalendar.daygrid@4.4.0.main.min.js' %}"></script>
+<script src="{% static 'js/libraries/fullcalendar.timegrid@4.4.0.main.min.js' %}"></script>
+<script src="{% static 'js/libraries/fullcalendar.interaction@4.4.0.main.min.js' %}"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/caret/1.0.0/jquery.caret.min.js" crossorigin="anonymous"></script> -->
+<script src="{% static 'js/libraries/moment-with-locales.2.22.1.min.js' %}"></script>
+<script src="{% static 'js/libraries/popper.1.14.3.min.js' %}"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
+<script src="{% static 'js/libraries/jsmart.3.0.3.min.js' %}"></script>
+<script src="{% static 'js/libraries/jed.min.js' %}"></script>
+<script src="{% static 'js/libraries/yohours.i18n.en.min.js' %}"></script>
+<script src="{% static 'js/libraries/yohours.js' %}"></script>
+<script>
+  // leaflet map
+  var map = L.map('map-form').setView([46.7, 2.1], 5);
+  var marker;
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // jquery typeahead
+  $.typeahead({
+    input: "#id_address_raw",
+    minLength: 5,
+    maxItem: 10,
+    order: "asc",
+    dynamic: true,
+    delay: 500,
+    filter: false,
+    backdrop: {
+      "background-color": "#fff"
+    },
+    emptyTemplate: "Aucune adresse trouvée",
+    display: "properties.label",
+    source: {
+      address: {
+        ajax: function (query) {
+          console.log(query);
+          return {
+            type: "GET",
+            url: "{% url 'address-search' %}",
+            data: {
+              q: query
+            },
+            path: "features",
+            callback: {
+              done: function (data) {
+                console.log(data);
+                return data;
+              }
+            }
+          }
+        }
+      }
+    },
+    callback: {
+      onInit: function (node) {
+        console.log(node);
+      },
+      onClick: function (node, a, item, event) {
+        populateAddress(item);
+      },
+    }
+  });
+
+  $(".typeahead__button").click(function(event) {
+    event.stopPropagation();
+    clearAddress();
+  });
+
+  function populateAddress(item) {
+    $("#id_address_housenumber").val(item.properties.housenumber);
+    $("#id_address_street").val(item.properties.street);
+    $("#id_address_postcode").val(item.properties.postcode);
+    $("#id_address_citycode").val(item.properties.citycode);
+    $("#id_address_city").val(item.properties.city);
+    $("#id_latitude").val(item.geometry.coordinates[1]);
+    $("#id_longitude").val(item.geometry.coordinates[0]);
+    marker = L.marker(item.geometry.coordinates.reverse()).addTo(map);
+  }
+
+  function clearAddress() {
+    $("#id_address_raw").val("");
+    $("#id_address_housenumber").val("");
+    $("#id_address_street").val("");
+    $("#id_address_postcode").val("");
+    $("#id_address_citycode").val("");
+    $("#id_address_city").val("");
+    $("#id_latitude").val("");
+    $("#id_longitude").val("");
+    map.removeLayer(marker);
+  }
+
+  $('.myOpeningHours').yoHours({
+		bootstrapVersion: 'bootstrap4', // or bootstrap4
+		delay: 700, // in ms, delay before plugin starts parsing input string
+		height: 500, // in pixels, max height of calendar
+    locale: 'en', // must be loaded before yohours like in example above
+    minimal: true,
+    slotDuration: '00:15:00'
+	}, {
+  });
+  $('#yh1_yo-hours-toggle').click(function() {
+    $('#yh1_yo-hours-calendar').slideToggle();
+  });
+</script>
+{% endblock extrajs %}

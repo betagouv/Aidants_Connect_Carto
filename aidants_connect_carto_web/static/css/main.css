@@ -1,0 +1,124 @@
+/* Override template.min.css */
+
+.form__group + .form__group {
+  margin-top: var(--space-s);
+}
+
+/* .section__subtitle + .row {
+  margin-top: var(--space-m);
+} */
+
+label.label-inline {
+  color: var(--theme-dark-text);
+}
+
+.color-primary {
+  color: var(--theme-primary);
+}
+
+.card__content h4 {
+  margin: 0;
+}
+.card__extra {
+  padding: var(--space-xs);
+  min-height: 54px;
+}
+
+
+/* Custom css */
+
+h5, h6 {
+  margin-bottom: 0.8em;
+}
+
+a.tile {
+  color: inherit;
+  text-decoration: inherit;
+}
+a.tile:hover {
+  background-color: var(--theme-background-white);
+}
+
+a.no-decoration {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.inline-children > * {
+  display: inline;
+}
+
+.font-size-small {
+  font-size: small;
+}
+
+.col-33 {
+  width: 33%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.col-50 {
+  width: 50%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.label-small {
+  padding: 0.2em 0.4em;
+}
+
+.text-align-left {
+  text-align: left;
+}
+.text-align-center {
+  text-align: center;
+}
+.justify-content-center {
+  justify-content: center;
+}
+
+form.full-width {
+  max-width: 100%;
+}
+
+
+/* Address widget */
+
+/* Address Map */
+
+#map-details {
+  height: 175px;
+}
+#map-form {
+  height: 275px;
+}
+
+/* Calendar widget */
+
+#yh1_yo-hours-range-nav, #yh1_yo-hours-range-edit {
+  display: none;
+}
+.yo-hours-calendar {
+  background-color: white;
+  font-size: small;
+}
+.fc-scroller {
+  overflow: scroll !important;
+}
+.fc-time-grid-event .fc-time {
+  white-space: normal !important;
+}
+.fc-axis {
+  width: 50px !important;
+}
+
+
+@media all and (max-width: 768px) {
+  .col-33, .col-50 {
+    width: 100%;
+  }
+}
