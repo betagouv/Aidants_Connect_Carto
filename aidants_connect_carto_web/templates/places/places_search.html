@@ -1,0 +1,56 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <section class="section">
+    <div class="container">
+      <form class="full-width" method="GET">
+
+        {{ search_form }}
+
+        <input type="submit">
+
+      </form>
+    </div>
+  </section>
+
+  <section class="section section-grey">
+    <div class="container">
+      <div class="grid">
+
+        {% for place in search_results %}
+
+          <div class="card">
+            <div class="card__content">
+              <h4><a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a></h4>
+              <div class="card__meta">
+                <span>📍&nbsp;{{ place.address_raw }}</span>
+              </div>
+              <p class="text-quote">{{ place.type }}</p>
+              <ul>
+                {% for service in place.services.all %}
+                <li>{{ service.name }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="card__extra">
+              <span title="{{ place.opening_hours_raw }}">
+                {% if place.is_open %}
+                  <span class="label label--active">Ouvert</span>
+                {% else %}
+                  <span class="label">Fermé</span>
+                {% endif %}
+              </span>
+            </div>
+          </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+

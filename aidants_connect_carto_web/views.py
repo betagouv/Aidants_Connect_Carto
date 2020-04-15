@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 from aidants_connect_carto_api.models import Place
+from aidants_connect_carto_search.engine import PlaceSearchEngine
+from aidants_connect_carto_search.forms import PlaceSearchForm
 from aidants_connect_carto_web.forms import PlaceCreateForm, ServiceCreateForm
 
 
@@ -10,7 +12,7 @@ def home_page(request):
     return render(request, "home_page.html")
 
 
-def place_list(request):
+def places_list(request):
     places = Place.objects.all().order_by("name")
 
     services = list(
@@ -25,13 +27,26 @@ def place_list(request):
 
     return render(
         request,
-        "places/place_list.html",
+        "places/places_list.html",
         {
             "places_page": page_obj,
             "places_total": paginator.count,
             "place_types": Place.TYPE_CHOICES,
             "services": services,
         },
+    )
+
+
+def places_search(request):
+
+    form = PlaceSearchForm()
+    engine = PlaceSearchEngine()
+    results = engine.search(query=request.GET)
+
+    return render(
+        request,
+        "places/places_search.html",
+        {"search_form": form, "search_results": results},
     )
 
 

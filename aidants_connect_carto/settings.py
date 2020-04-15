@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "django_extensions",
     "aidants_connect_carto_api",
+    "aidants_connect_carto_search",
     "aidants_connect_carto_web",
 ]
 
@@ -153,3 +154,7 @@ CSP_STYLE_SRC = _CSP_SELF
 # API URLS
 
 BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"
+
+# Internal search engine settings
+
+SEARCH_RESULTS_PER_PAGE = 30
