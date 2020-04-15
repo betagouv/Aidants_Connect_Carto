@@ -72,6 +72,11 @@
             <div class="input__group">
               {{ form.address_city }}
             </div>
+            <div class="input__group">
+              {{ form.address_departement_code }}
+              {{ form.address_departement_name }}
+              {{ form.address_region_code }}
+            </div>
             <br />
             <div class="input__group">
               {{ form.latitude }}
@@ -91,6 +96,10 @@
           {{ form.is_itinerant }}
           <label class="label-inline" for="{{ form.is_itinerant.id_for_label }}">Itinérant</label>
         </div>
+      </div>
+      <div id="itinerant_details_form_group" class="form__group" style="display: {{ form.is_itinerant | yesno:'none,block' }}">
+        <label for="{{ form.itinerant_details.id_for_label }}">{{ form.itinerant_details.label | safe }}&nbsp;:</label>
+        {{ form.itinerant_details }}
       </div>
 
       <h3>Contact</h3>
@@ -265,6 +274,10 @@
     $("#id_address_postcode").val(item.properties.postcode);
     $("#id_address_citycode").val(item.properties.citycode);
     $("#id_address_city").val(item.properties.city);
+    item_context_split = item.properties.context.split(", ");
+    $("#id_address_departement_code").val(item_context_split.address_departement_code);
+    $("#id_address_departement_name").val(item_context_split.address_departement_name);
+    $("#id_address_region_name").val(item_context_split.address_region_name);
     $("#id_latitude").val(item.geometry.coordinates[1]);
     $("#id_longitude").val(item.geometry.coordinates[0]);
     marker = L.marker(item.geometry.coordinates.reverse()).addTo(map);
@@ -277,6 +290,9 @@
     $("#id_address_postcode").val("");
     $("#id_address_citycode").val("");
     $("#id_address_city").val("");
+    $("#id_address_departement_code").val("");
+    $("#id_address_departement_name").val("");
+    $("#id_address_region_name").val("");
     $("#id_latitude").val("");
     $("#id_longitude").val("");
     map.removeLayer(marker);
@@ -293,6 +309,10 @@
   });
   $('#yh1_yo-hours-toggle').click(function() {
     $('#yh1_yo-hours-calendar').slideToggle();
+  });
+
+  document.querySelector("input[id=id_is_itinerant]").addEventListener('change', function() {
+    document.getElementById("itinerant_details_form_group").style.display = this.checked ? "none" : "block";
   });
 </script>
 {% endblock extrajs %}

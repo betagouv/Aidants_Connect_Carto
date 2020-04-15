@@ -4,80 +4,33 @@ from django.core.validators import RegexValidator
 
 import humanized_opening_hours as hoh
 
+from aidants_connect_carto_api import constants
+
 
 class Place(models.Model):
-    CHOICE_OTHER = "autre"
-    TYPE_CHOICES = (
-        ("centre social", "Centre social"),
-        (
-            "securite sociale",
-            "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)",
-        ),
-        ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
-        ("association", "Association"),
-        ("maison quartier", "Maison de quartier"),
-        ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
-        ("msap", "Maison de Service au Public (MSAP)"),
-        ("bibliotheque", "Bibliothèque - Médiathèque"),
-        ("formation", "Organisme de formations"),
-        ("pole emploi", "Pôle Emploi"),
-        ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
-        ("intercommunalite", "Intercommunalité (EPCI)"),
-        ("administration", "Administration - Collectivité territoriale"),
-        ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
-        ("prefecture", "Préfecture, Sous-Préfecture"),
-        (CHOICE_OTHER, "Autre, Inconnu"),
-    )
-    STATUS_CHOICES = (
-        ("public", "Public"),
-        ("prive", "Privé"),
-        ("public-prive", "Public / Privé"),
-        (CHOICE_OTHER, "Autre, Inconnu"),
-    )
-    LANGUAGE_CHOICES = (
-        ("fr", "Français"),
-        ("en", "Anglais"),
-        ("fsl", "Language des signes"),
-    )
-    EQUIPMENT_CHOICES = (
-        ("wifi", "WiFi"),
-        ("ordinateur", "Ordinateur"),
-        ("scanner", "Scanner"),
-        ("imprimante", "Imprimante"),
-        # "Autre"
-    )
-    HANDICAP_CHOICES = (
-        ("handicap moteur", "Handicap moteur"),
-        ("handicap visuel", "Handicap visuel"),
-        ("handicap auditif", "Handicap auditif"),
-        ("handicap mental", "Handicap intellectuel ou psychique"),
-        # "Maladie invalidante",
-        # "Mobilité limitée"
-    )
-    PAYMENT_CHOICES = (
-        ("especes", "Espèces"),
-        ("carte bancaire", "Carte bancaire"),
-        ("cheque", "Chèque"),
-        ("aptic", "Chèque APTIC"),
-        ("cif", "Congé individuel de formation (CIF)"),
-        # "CRP",
-        # "AFPE"
-    )
-
-    FORM_READONLY_FIELDS = (
+    AUTO_POPULATED_FIELDS = [
         "address_housenumber",
         "address_street",
         "address_postcode",
         "address_citycode",
         "address_city",
+        "address_departement_code",
+        "address_departement_name",
+        "address_region_name",
         "latitude",
         "longitude",
         "osm_node_id",
-    )
+    ]
 
     # --- basics
     name = models.CharField(
         verbose_name="Le nom du lieu", max_length=300, help_text="BetaGouv"
+    )
+    supporting_structure_name = models.CharField(
+        verbose_name="Le nom de la structure porteuse du lieu",
+        blank=True,
+        max_length=300,
+        help_text="Services du Premier Ministre",
     )
     description = models.TextField(
         verbose_name="Une description du lieu",
@@ -87,16 +40,23 @@ class Place(models.Model):
     type = models.CharField(
         verbose_name="La typologie du lieu",
         max_length=32,
-        choices=TYPE_CHOICES,
-        default=CHOICE_OTHER,
+        choices=constants.PLACE_TYPE_CHOICES,
+        default=constants.CHOICE_OTHER,
         help_text="Administration",
-    )
+    )  # ArrayField (multiple choices) ?
     status = models.CharField(
         verbose_name="Le statut du lieu",
         max_length=32,
-        choices=STATUS_CHOICES,
-        default=CHOICE_OTHER,
+        choices=constants.PLACE_STATUS_CHOICES,
+        default=constants.CHOICE_OTHER,
         help_text="Public",
+    )
+    legal_entity_type = models.CharField(
+        verbose_name="La nature juridique du lieu",
+        max_length=32,
+        choices=constants.PLACE_LEGAL_ENTITY_TYPE_CHOICES,
+        default=constants.CHOICE_OTHER,
+        help_text="",
     )
 
     # --- location
@@ -132,11 +92,24 @@ class Place(models.Model):
         blank=True,
         help_text="Paris",
     )
-    # address_context = models.CharField(
-    #     verbose_name="n° de département, nom de département et de région",
-    #     max_length=150,
-    #     help_text=""
-    # )
+    address_departement_code = models.CharField(
+        verbose_name="Le numéro de département",
+        max_length=3,
+        blank=True,
+        help_text="75",
+    )
+    address_departement_name = models.CharField(
+        verbose_name="Le nom du département",
+        max_length=150,
+        blank=True,
+        help_text="Paris",
+    )
+    address_region_name = models.CharField(
+        verbose_name="Le nom de la région",
+        max_length=150,
+        blank=True,
+        help_text="Île-de-France",
+    )
     latitude = models.FloatField(
         verbose_name="La latitude (coordonnée géographique)",
         blank=True,
@@ -151,6 +124,12 @@ class Place(models.Model):
     )
     is_itinerant = models.BooleanField(
         verbose_name="Le lieu est-il itinérant ?", default=False
+    )
+    itinerant_details = models.TextField(
+        verbose_name="Le details des déplacements", blank=True
+    )
+    is_online = models.BooleanField(
+        verbose_name="Le lieu est-il uniquement en ligne ?", default=False
     )
 
     # --- contact
@@ -182,9 +161,20 @@ class Place(models.Model):
         blank=True,
         help_text="https://beta.gouv.fr/",
     )
+    contact_facebook = models.URLField(
+        verbose_name="L'adresse de la page Facebook", max_length=300, blank=True
+    )
+    contact_twitter = models.URLField(
+        verbose_name="L'adresse de la page Twitter",
+        max_length=300,
+        blank=True,
+        help_text="https://twitter.com/betagouv",
+    )
+    contact_youtube = models.URLField(
+        verbose_name="L'adresse de la page Youtube", max_length=300, blank=True
+    )
 
     # --- opening hours
-    # opening_hours = django-openinghours package ? JsonField ? custom Field ?
     opening_hours_raw = models.TextField(
         verbose_name="Les horaires d'ouverture",
         blank=True,
@@ -254,6 +244,19 @@ class Place(models.Model):
         max_length=150,
         blank=True,
         help_text="Français, Anglais, ...",
+    )
+
+    # --- support
+    target_audience_raw = models.CharField(
+        verbose_name="Le public cible", max_length=150, blank=True
+    )
+    target_audience = ArrayField(
+        verbose_name="Public cible",
+        base_field=models.CharField(
+            max_length=32, blank=True, choices=constants.TARGET_AUDIENCE_CHOICES
+        ),
+        default=list,
+        blank=True,
     )
 
     # --- payment
@@ -373,25 +376,7 @@ class Place(models.Model):
 
 
 class Service(models.Model):
-    PUBLIC_CHOICES = [
-        ("tout public", "Tout public"),
-        ("-25 ans", "-25 ans"),
-        ("senior", "Sénior"),
-        ("demandeur emploi", "Demandeur d'emploi"),
-        ("famille", "Famille"),
-    ]
-    SUPPORT_ACCESS_CHOICES = [
-        ("libre", "Accès libre"),
-        ("inscription", "Sur inscription"),
-        ("public cible", "Public cible uniquement"),
-        ("adherents", "Adhérents uniquement"),
-    ]
-    SUPPORT_MODE_CHOICES = [
-        ("individuel", "Individuel, Personnalisé"),
-        ("collectif", "Collectif"),
-    ]
-
-    # FORM_READONLY_FIELDS = ("place_id")
+    # AUTO_POPULATED_FIELDS = ("place_id")
 
     # --- basics
     name = models.CharField(verbose_name="Le nom du service", max_length=300)
@@ -406,9 +391,11 @@ class Service(models.Model):
     )  # regex="^[0-9]$"
 
     # --- support
-    public_target = ArrayField(
-        verbose_name="Public cible",
-        base_field=models.CharField(max_length=32, blank=True, choices=PUBLIC_CHOICES),
+    target_audience = ArrayField(
+        verbose_name="Public cible (s'il est différent du public cible du lieu)",
+        base_field=models.CharField(
+            max_length=32, blank=True, choices=constants.TARGET_AUDIENCE_CHOICES
+        ),
         default=list,
         blank=True,
     )
@@ -416,13 +403,13 @@ class Service(models.Model):
         verbose_name="Modalités d'accès",
         max_length=32,
         blank=True,
-        choices=SUPPORT_ACCESS_CHOICES,
+        choices=constants.SERVICE_SUPPORT_ACCESS_CHOICES,
     )  # multiple choices
     support_mode = models.CharField(
         verbose_name="Modalités d'accompagnement",
         max_length=32,
         blank=True,
-        choices=SUPPORT_MODE_CHOICES,
+        choices=constants.SERVICE_SUPPORT_MODE_CHOICES,
     )  # multiple choices
 
     # --- schedule
@@ -444,7 +431,7 @@ class Service(models.Model):
     is_free = models.BooleanField(
         verbose_name="Le service est-il gratuit ?", default=True
     )
-    price_detail = models.TextField(verbose_name="Le details des prix", blank=True)
+    price_details = models.TextField(verbose_name="Le details des prix", blank=True)
     payment_methods = models.CharField(
         verbose_name="Les moyens de paiements spécifiques à ce service",
         max_length=150,

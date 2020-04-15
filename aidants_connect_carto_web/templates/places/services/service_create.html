@@ -50,11 +50,11 @@
       <h3>L'accompagnement</h3>
 
       <div class="form__group">
-        <label for="{{ form.public_target.id_for_label }}">{{ form.public_target.label | safe }}&nbsp;:</label>
-        {{ form.public_target }}
+        <label for="{{ form.target_audience.id_for_label }}">{{ form.target_audience.label | safe }}&nbsp;:</label>
+        {{ form.target_audience }}
       </div>
 
-      <!-- {{ form.public_target }} -->
+      <!-- {{ form.target_audience }} -->
 
       <div class="form__group">
         <label class="{% if form.support_access.field.required %}required{% endif %}"  for="{{ form.support_access.id_for_label }}">{{ form.support_access.label | safe }}&nbsp;:</label>
@@ -85,9 +85,9 @@
           <label class="label-inline" for="{{ form.price_free.id_for_label }}">Gratuit</label>
         </div>
       </div>
-      <div id="price_detail_form_group" class="form__group" style="display: {{ form.is_free | yesno:'none,block' }}">
-        <label for="{{ form.price_detail.id_for_label }}">{{ form.price_detail.label | safe }}&nbsp;:</label>
-        {{ form.price_detail }}
+      <div id="price_details_form_group" class="form__group" style="display: {{ form.is_free | yesno:'none,block' }}">
+        <label for="{{ form.price_details.id_for_label }}">{{ form.price_details.label | safe }}&nbsp;:</label>
+        {{ form.price_details }}
       </div>
       <div id="payment_methods_form_group" class="form__group" style="display:{{ form.is_free | yesno:'none,block' }}">
         <label for="{{ form.payment_methods.id_for_label }}">{{ form.payment_methods.label | safe }}&nbsp;:</label>
@@ -141,7 +141,7 @@
 <script src="{% static 'js/libraries/yohours.js' %}"></script>
 <script>
   document.querySelector("input[id=id_is_free]").addEventListener('change', function() {
-    document.getElementById("price_detail_form_group").style.display = this.checked ? "none" : "block";
+    document.getElementById("price_details_form_group").style.display = this.checked ? "none" : "block";
     document.getElementById("payment_methods_form_group").style.display = this.checked ? "none" : "block";
   });
 

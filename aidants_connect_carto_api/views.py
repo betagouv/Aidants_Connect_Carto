@@ -1,6 +1,3 @@
-import requests as python_request
-
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 
 # from rest_framework import status
@@ -13,6 +10,7 @@ from drf_yasg import openapi
 
 from aidants_connect_carto_api.models import Place  # Service
 from aidants_connect_carto_api.serializers import PlaceSerializer, ServiceSerializer
+from aidants_connect_carto_api.utilities import call_ban_address_search_api
 
 
 @api_view(["GET"])
@@ -134,7 +132,5 @@ def address_search(request):
     """
     https://adresse.data.gouv.fr/
     """
-    results = python_request.get(
-        f"{settings.BAN_ADDRESS_SEARCH_API}?q={request.GET.get('q')}"
-    )
-    return Response(results.json())
+    results_json = call_ban_address_search_api(request.GET.get("q"))
+    return Response(results_json)

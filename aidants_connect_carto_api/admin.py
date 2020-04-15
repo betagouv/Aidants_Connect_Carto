@@ -1,9 +1,13 @@
 from django.contrib import admin
 
 from aidants_connect_carto_api.models import Place, Service
+from aidants_connect_carto_web.forms import PlaceCreateForm, ServiceCreateForm
 
 
 class PlaceAdmin(admin.ModelAdmin):
+    # to beautify the display of ArrayField fields
+    form = PlaceCreateForm
+
     list_display = (
         "id",
         "name",
@@ -11,10 +15,12 @@ class PlaceAdmin(admin.ModelAdmin):
         "service_count",
         "created_at",
     )
-    # list_filter = ("",)
+    list_filter = ("address_region_name",)
 
 
 class ServiceAdmin(admin.ModelAdmin):
+    form = ServiceCreateForm
+
     list_display = (
         "id",
         "name",
