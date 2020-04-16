@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
 import dj_database_url
+from dotenv import load_dotenv
 
 
 load_dotenv(verbose=True)
@@ -47,11 +47,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "rest_framework",
     "drf_yasg",
-    "django_extensions",
-    "aidants_connect_carto_api",
-    "aidants_connect_carto_web",
+    "aidants_connect_carto.apps.core",
+    "aidants_connect_carto.apps.web",
+    "aidants_connect_carto.apps.api",
 ]
 
 MIDDLEWARE = [
@@ -97,11 +98,11 @@ DATABASES = {"default": dj_database_url.config(conn_max_age=600)}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 

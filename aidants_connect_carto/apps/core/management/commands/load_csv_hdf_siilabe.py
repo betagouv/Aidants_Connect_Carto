@@ -5,8 +5,10 @@ import time
 
 from django.core.management import BaseCommand
 
-from aidants_connect_carto_api.models import Place, Service
-from aidants_connect_carto_api import constants, utilities
+from aidants_connect_carto import constants
+
+from aidants_connect_carto.apps.core import utilities
+from aidants_connect_carto.apps.core.models import Place, Service
 
 
 def create_place(row):

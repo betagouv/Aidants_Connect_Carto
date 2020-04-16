@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from aidants_connect_carto_api.models import Place, Service
-from aidants_connect_carto_web.forms import PlaceCreateForm, ServiceCreateForm
+from aidants_connect_carto.apps.core.models import Place, Service
+from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
 
 
 class PlaceAdmin(admin.ModelAdmin):
+
     # to beautify the display of ArrayField fields
     form = PlaceCreateForm
 

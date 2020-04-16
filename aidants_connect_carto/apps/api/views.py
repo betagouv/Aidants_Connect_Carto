@@ -1,16 +1,20 @@
 from django.shortcuts import get_object_or_404
 
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+
 # from rest_framework import status
 from rest_framework.decorators import api_view
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
+from rest_framework.views import APIView
 
-from aidants_connect_carto_api.models import Place  # Service
-from aidants_connect_carto_api.serializers import PlaceSerializer, ServiceSerializer
-from aidants_connect_carto_api.utilities import call_ban_address_search_api
+from aidants_connect_carto.apps.api.serializers import (
+    PlaceSerializer,
+    ServiceSerializer,
+)
+from aidants_connect_carto.apps.core.models import Place  # Service
+from aidants_connect_carto.apps.core.utilities import call_ban_address_search_api
 
 
 @api_view(["GET"])

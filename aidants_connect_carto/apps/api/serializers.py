@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 # from drf_braces.forms.serializer_form import SerializerForm
 
-from aidants_connect_carto_api.models import Place, Service
+from aidants_connect_carto.apps.core.models import Place, Service
 
 
 class PlaceSerializer(serializers.ModelSerializer):

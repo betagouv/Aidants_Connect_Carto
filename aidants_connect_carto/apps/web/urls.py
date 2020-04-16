@@ -1,6 +1,6 @@
 from django.urls import path
 
-from aidants_connect_carto_web import views
+from aidants_connect_carto.apps.web import views
 
 
 urlpatterns = [
