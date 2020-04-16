@@ -1,7 +1,8 @@
 from django import forms
 
-from aidants_connect_carto_api.models import Place, Service
-from aidants_connect_carto_api import constants
+from aidants_connect_carto import constants
+
+from aidants_connect_carto.apps.core.models import Place, Service
 
 
 class HorizontalRadioSelect(forms.RadioSelect):

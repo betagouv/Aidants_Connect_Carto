@@ -5,7 +5,7 @@ from drf_yasg.views import get_schema_view
 
 # from rest_framework.urlpatterns import format_suffix_patterns
 
-from aidants_connect_carto_api import views
+from aidants_connect_carto.apps.api import views
 
 
 schema_view = get_schema_view(

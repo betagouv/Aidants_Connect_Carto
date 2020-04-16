@@ -30,7 +30,7 @@
       Ce lieu propose {{ place.service_count }} service{% if place.service_count > 1 %}s{% endif %}.
       <!-- <small><a>Voir tous les services.</a></small> -->
     </p>
-    
+
     <div class="row">
       <div class="col-33">
         <h5>Informations</h5>
@@ -46,10 +46,10 @@
         </p>
         <p title="Accessibilité">
           Accessibilité :<br />
-          <span><img src="{% static 'images/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
-          <span><img src="{% static 'images/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
-          <span><img src="{% static 'images/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
-          <span><img src="{% static 'images/handicaps/accessibility_vi_icon.jpg' %}" height="30" /></span>
+          <span><img src="{% static 'img/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
+          <span><img src="{% static 'img/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
+          <span><img src="{% static 'img/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
+          <span><img src="{% static 'img/handicaps/accessibility_vi_icon.jpg' %}" height="30" /></span>
         </p>
       </div>
       <div class="col-33">
@@ -61,13 +61,13 @@
       <div class="col-33">
         <h5>S'y rendre</h5>
         <p>{{ place.address_raw }}</p>
-        <!-- <img src="{% static 'images/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
+        <!-- <img src="{% static 'img/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
         {% if place.latitude and place.longitude %}
           <div id="map-details"></div>
         {% endif %}
       </div>
     </div>
-    
+
     {% if place.opening_hours_osm_format %}
       <p>
         🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de

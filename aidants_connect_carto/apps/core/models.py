@@ -4,7 +4,7 @@ from django.core.validators import RegexValidator
 
 import humanized_opening_hours as hoh
 
-from aidants_connect_carto_api import constants
+from aidants_connect_carto import constants
 
 
 class Place(models.Model):

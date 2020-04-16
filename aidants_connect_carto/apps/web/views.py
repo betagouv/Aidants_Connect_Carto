@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.shortcuts import render, redirect, get_object_or_404
 
-from aidants_connect_carto_api.models import Place
-from aidants_connect_carto_web.forms import PlaceCreateForm, ServiceCreateForm
-from aidants_connect_carto_api import constants
+from aidants_connect_carto import constants
+
+from aidants_connect_carto.apps.core.models import Place
+from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
 
 
 def home_page(request):
