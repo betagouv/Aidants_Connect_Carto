@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 
 from aidants_connect_carto_api.models import Place
 from aidants_connect_carto_web.forms import PlaceCreateForm, ServiceCreateForm
+from aidants_connect_carto_api import constants
 
 
 def home_page(request):
@@ -29,7 +30,7 @@ def place_list(request):
         {
             "places_page": page_obj,
             "places_total": paginator.count,
-            "place_types": Place.TYPE_CHOICES,
+            "place_types": constants.PLACE_TYPE_CHOICES,
             "services": services,
         },
     )

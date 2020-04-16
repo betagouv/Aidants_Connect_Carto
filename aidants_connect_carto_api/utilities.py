@@ -1,11 +1,14 @@
 import re
 import humanized_opening_hours as hoh
+import requests as python_request
+
+from django.conf import settings
 
 
 # CHOICE fields
 
 
-def find_verbose_choice(choices: tuple, value: str):
+def find_verbose_choice(choices: list, value: str):
     for choice in choices:
         if choice[1] == value:
             return choice[0]
@@ -21,6 +24,54 @@ def process_float(value: str):
         value = value.replace(",", ".")
         return float(value)
     return None
+
+
+# Address
+
+
+def call_ban_address_search_api(search_q_param: str):
+    response = python_request.get(
+        f"{settings.BAN_ADDRESS_SEARCH_API}?q={search_q_param}"
+    )
+    return response.json()
+
+
+def process_ban_address_search_results(results_json):
+    """
+    https://geo.api.gouv.fr/adresse
+    type: 'housenumber', 'street', 'locality' or 'municipality'
+    example of type 'street': Place de la Gare 59460 Jeumont
+    """
+    SCORE_THRESHOLD = 0.9
+
+    if results_json["features"]:
+        results_first_address = results_json["features"][0]
+        if results_first_address["properties"]["score"] > SCORE_THRESHOLD:
+            # print(results_first_address)
+            address_housenumber = (
+                results_first_address["properties"]["housenumber"]
+                if (results_first_address["properties"]["type"] == "housenumber")
+                else ""
+            )
+            address_street = (
+                results_first_address["properties"]["street"]
+                if (results_first_address["properties"]["type"] == "housenumber")
+                else results_first_address["properties"]["name"]
+            )
+            address_context = results_first_address["properties"]["context"]
+            address_context_split = address_context.split(", ")
+            return {
+                "housenumber": address_housenumber,
+                "street": address_street,
+                "postcode": results_first_address["properties"]["postcode"],
+                "citycode": results_first_address["properties"]["citycode"],
+                "city": results_first_address["properties"]["city"],
+                "departement_code": address_context_split[0],
+                "departement_name": address_context_split[1],
+                "region_name": address_context_split[2],
+                "latitude": results_first_address["geometry"]["coordinates"][1],
+                "longitude": results_first_address["geometry"]["coordinates"][0],
+            }
 
 
 # Phone number
@@ -52,7 +103,7 @@ def process_opening_hours(opening_hours_string: str):
     'du lundi au samedi matin'
     """
     # hoh.sanitize(opening_hours_string) ? https://github.com/rezemika/humanized_opening_hours/issues/38 # noqa
-    opening_hours_string = opening_hours_string.replace(u"\xa0", u" ")
+    opening_hours_string = opening_hours_string.replace("\xa0", " ")
     opening_hours_string = re.sub(" h ", ":", opening_hours_string, flags=re.IGNORECASE)
     # opening_hours_string = re.sub("h ", ":00 ", opening_hours_string, flags=re.IGNORECASE) # sanitize can take care of it # noqa
     opening_hours_string = re.sub(
@@ -141,6 +192,36 @@ def sanitize_opening_hours_with_hoh(opening_hours: str):
 
 
 # Other fields
+
+
+def process_target_audience(value: str):
+    """
+    Tout public
+    Demandeurs d'emploi
+    Adhérents
+    Séniors
+    Assurés sociaux
+    jeunes
+    Jeunes entre 16 et 25 ans
+    Enseignants, formateurs jeunesses, membres associatifs
+    Allocataires CAF
+    Familles allocataires avec quotient familial (QF) inférieur à 800
+    """
+    target_audience_list = []
+    if any(elem in value.lower() for elem in ["public"]):
+        target_audience_list.append("tout public")
+    if any(elem in value.lower() for elem in ["jeune"]):
+        target_audience_list.append("-25 ans")
+    if any(
+        elem in value.lower()
+        for elem in ["senior", "sénior", "retraite", "retraité", "âgé"]
+    ):
+        target_audience_list.append("senior")
+    if any(elem in value.lower() for elem in ["demandeurs d'emploi"]):
+        target_audience_list.append("demandeur emploi")
+    if any(elem in value.lower() for elem in ["allocataire", "minima"]):
+        target_audience_list.append("allocataire")
+    return target_audience_list
 
 
 def process_support_access(value: str):

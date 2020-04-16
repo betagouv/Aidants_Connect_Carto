@@ -102,7 +102,7 @@
             </p>
             {% endif %}
             <p title="Tags">
-              {% for target in service.public_target %}
+              {% for target in service.target_audience %}
               <span class="label label--inactive">{{ target }}</span>
               {% endfor %}
               {% if service.support_access %}
@@ -131,9 +131,9 @@
               {% if service.is_free %}
               <span class="label label-small label--active">Gratuit</span>
               {% else %}
-              <!-- <span class="label label-small label--active" title="{{ service.price_detail }}">Payant</span> -->
+              <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
               {% endif %}
-              {% for target in service.public_target %}
+              {% for target in service.target_audience %}
               <span class="label label-small label--inactive">{{ target }}</span>
               {% endfor %}
               {% if service.support_access %}
