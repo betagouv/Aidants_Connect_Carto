@@ -1,6 +1,5 @@
 from django.contrib import messages
 
-# from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
 from aidants_connect_carto.apps.core.models import Place
@@ -21,9 +20,6 @@ def home_page(request):
 #     services = list(filter(None, services))
 #     services.sort()
 
-#     paginator = Paginator(places, 24)  # Show 24 places per page.
-#     page_number = request.GET.get("page")
-#     page_obj = paginator.get_page(page_number)
 
 #     return render(
 #         request,

@@ -1,6 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.forms import ModelForm
+from django.core.paginator import Paginator
 
 from aidants_connect_carto import constants
 
@@ -136,20 +137,19 @@ class PlaceSearchEngine:
         - opening_hours
         - pagination
         """
+        # order_by
         order_by_field = self.query.get("order_by", self.DEFAULT_ORDER_BY)
         self.queryset = self.queryset.order_by(order_by_field)
 
-        results = self.queryset
+        raw_results = self.queryset
 
+        # opening_hours (place.is_open) filter
         if self.query.get("opening_hours", "") != "":
-            results = [place for place in results if place.is_open]
+            raw_results = [place for place in raw_results if place.is_open]
 
-        # use from django.core.paginator import Paginator
+        # paginator <-- db query is executed here!
+        paginator = Paginator(raw_results, self.RESULTS_PER_PAGE)
         page_number = self.query.get("page", 1)
-        offset = self.RESULTS_PER_PAGE * (page_number - 1)
+        page_obj = paginator.get_page(page_number)
 
-        results_page = results[
-            offset : offset + self.RESULTS_PER_PAGE
-        ]  # <-- db query is executed here!
-
-        return results_page
+        return {"places_page": page_obj, "places_total": paginator.count}

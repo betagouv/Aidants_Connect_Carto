@@ -93,7 +93,7 @@
     <div class="row">
       <div class="section__title inline-children text-align-left">
         <h2>Résultats</h2>
-        <small class="label label--active">{{ search_results | length }}</small>
+        <small class="label label--active">{{ search_results.places_total }}</small>
       </div>
       <div>
         <form>
@@ -108,7 +108,7 @@
       </div>
     </div>
     <div class="grid">
-      {% for place in search_results %}
+      {% for place in search_results.places_page %}
         <div class="card">
           <div class="card__content">
             <h4><a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a></h4>
@@ -138,18 +138,18 @@
     </div>
     <nav class="pagination justify-content-center">
       <span class="step-links">
-        {% if places_page.has_previous %}
+        {% if search_results.places_page.has_previous %}
           <!-- <a href="?page=1">&laquo; début</a> -->
-          <a href="?page={{ places_page.previous_page_number }}">précédent</a>
+          <a href="?page={{ search_results.places_page.previous_page_number }}">précédent</a>
         {% endif %}
         &nbsp;&nbsp;
         <span class="current">
-          Page <strong>{{ places_page.number }}</strong> sur <strong>{{ places_page.paginator.num_pages }}</strong>.
+          Page <strong>{{ search_results.places_page.number }}</strong> sur <strong>{{ search_results.places_page.paginator.num_pages }}</strong>.
         </span>
         &nbsp;&nbsp;
-        {% if places_page.has_next %}
-          <a href="?page={{ places_page.next_page_number }}">suivant</a>
-          <!-- <a href="?page={{ places_page.paginator.num_pages }}">fin &raquo;</a> -->
+        {% if search_results.places_page.has_next %}
+          <a href="?page={{ search_results.places_page.next_page_number }}">suivant</a>
+          <!-- <a href="?page={{ search_results.places_page.paginator.num_pages }}">fin &raquo;</a> -->
         {% endif %}
       </span>
     </nav>
