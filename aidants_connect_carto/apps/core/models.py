@@ -102,12 +102,14 @@ class Place(models.Model):
         verbose_name="Le nom du département",
         max_length=150,
         blank=True,
+        choices=constants.FRANCE_DEPARTEMENT_CHOICES,
         help_text="Paris",
     )
     address_region_name = models.CharField(
         verbose_name="Le nom de la région",
         max_length=150,
         blank=True,
+        choices=zip(constants.FRANCE_REGION_LIST, constants.FRANCE_REGION_LIST),
         help_text="Île-de-France",
     )
     latitude = models.FloatField(
@@ -441,10 +443,10 @@ class Service(models.Model):
     # --- labels
     # label_aptic = # ManyToManyField ?
     has_label_aidants_connect = models.BooleanField(
-        verbose_name="Labelisé Aidants Connect", default=False
+        verbose_name="Labellisé Aidants Connect", default=False
     )
     has_label_mfs = models.BooleanField(
-        verbose_name="Labelisé France Service", default=False
+        verbose_name="Labellisé France Service", default=False
     )
     label_other = models.CharField(
         verbose_name="Autres labels", max_length=300, blank=True

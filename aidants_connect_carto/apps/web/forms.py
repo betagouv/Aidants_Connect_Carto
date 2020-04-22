@@ -3,14 +3,10 @@ from django import forms
 from aidants_connect_carto import constants
 
 from aidants_connect_carto.apps.core.models import Place, Service
-
-
-class HorizontalRadioSelect(forms.RadioSelect):
-    template_name = "partials/forms/widgets/multiple_input_horizontal.html"
-
-
-class HorizontalCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
-    template_name = "partials/forms/widgets/multiple_input_horizontal.html"
+from aidants_connect_carto.apps.core.forms import (
+    HorizontalRadioSelect,
+    HorizontalCheckboxSelectMultiple,
+)
 
 
 class PlaceCreateForm(forms.ModelForm):

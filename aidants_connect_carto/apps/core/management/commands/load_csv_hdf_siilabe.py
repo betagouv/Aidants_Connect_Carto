@@ -249,25 +249,25 @@ class Command(BaseCommand):
                     time.sleep(2)
                     place = create_place(row)
 
-                    # # Service 1: Accès à un équipement informatique
-                    # # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
-                    # if row["Accès équipement"] == "Oui":
-                    #     create_service_equipement(row, place)
+                    # Service 1: Accès à un équipement informatique
+                    # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
+                    if row["Accès équipement"] == "Oui":
+                        create_service_equipement(row, place)
 
-                    # # Service 2: Acquisition de compétences numériques
-                    # # Compétences numériques, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile médnum, Lieu mobilité médnum
-                    # if row["Médnum"] == "Oui":
-                    #     create_service_mednum(row, place)
+                    # Service 2: Acquisition de compétences numériques
+                    # Compétences numériques, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile médnum, Lieu mobilité médnum
+                    if row["Médnum"] == "Oui":
+                        create_service_mednum(row, place)
 
-                    # # Service 3: Accompagnement aux démarches administratives en ligne
-                    # # Types de démarche, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile démarches, Lieu mobilité démarches
-                    # if row["Démarches"] == "Oui":
-                    #     create_service_demarches(row, place)
+                    # Service 3: Accompagnement aux démarches administratives en ligne
+                    # Types de démarche, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile démarches, Lieu mobilité démarches
+                    if row["Démarches"] == "Oui":
+                        create_service_demarches(row, place)
 
-                    # # Service 4: Stockage numérique sécurisé
-                    # if row["Stockage"] == "Oui":
-                    #     create_service_stockage(row, place)
+                    # Service 4: Stockage numérique sécurisé
+                    if row["Stockage"] == "Oui":
+                        create_service_stockage(row, place)
 
-                    # # Service 5: Vente de matériel informatique
-                    # if row["vente matériel"] == "Oui":
-                    #     create_service_vente(row, place)
+                    # Service 5: Vente de matériel informatique
+                    if row["vente matériel"] == "Oui":
+                        create_service_vente(row, place)

@@ -1,19 +1,53 @@
+from django import forms
 from django.conf import settings
 from django.forms import ModelForm
 
-from aidants_connect_carto.apps.core.models import Place
+from aidants_connect_carto import constants
+
+from aidants_connect_carto.apps.core.models import Place, Service
+from aidants_connect_carto.apps.core.forms import HorizontalRadioSelect
 
 
 class PlaceSearchForm(ModelForm):
+    opening_hours = forms.ChoiceField(
+        choices=[("ouvert", "Ouvert en ce moment")],
+        widget=HorizontalRadioSelect(),
+        # help_text=Service._meta.get_field("opening_hours_raw").help_text,
+    )
+    service_name = forms.ChoiceField(
+        choices=zip(constants.SERVICE_NAME_LIST, constants.SERVICE_NAME_LIST),
+        widget=HorizontalRadioSelect(),
+        # help_text=Service._meta.get_field("name").help_text,
+    )
+    service_label_aidants_connect = forms.BooleanField(
+        label=Service._meta.get_field("has_label_aidants_connect").verbose_name,
+        initial=False,
+    )
+    service_label_mfs = forms.BooleanField(
+        label=Service._meta.get_field("has_label_mfs").verbose_name, initial=False
+    )
+
+    ADD_EMPTY_CHOICE_FIELDS = [
+        "type",
+        "opening_hours",
+        "service_name",
+    ]
+
     class Meta:
         model = Place
         fields = [
             "name",
             "type",
-            "has_equipment_wifi",
-            "has_equipment_computer",
-            "has_equipment_scanner",
-            "has_equipment_printer",
+            "opening_hours",
+            "address_departement_name",
+            "address_region_name",
+            # "has_equipment_wifi",
+            # "has_equipment_computer",
+            # "has_equipment_scanner",
+            # "has_equipment_printer",
+            "service_name",
+            "service_label_aidants_connect",
+            "service_label_mfs",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -23,20 +57,19 @@ class PlaceSearchForm(ModelForm):
         for field_name in self.fields:
             self.fields[field_name].required = False
 
-        # We must add an "empty" value for the `type` field
-        # so we can search without specifying one.
-        type_field = self.fields["type"]
-        type_field.choices = [("", "")] + type_field.choices
-        type_field.initial = ""
+        # We must add an "empty" value for the some fields
+        # so we can search without specifying a value.
+        for field_name in self.ADD_EMPTY_CHOICE_FIELDS:
+            field = self.fields[field_name]
+            field.choices = [("", "Tous")] + field.choices
+            field.initial = ""
 
 
 class PlaceSearchEngine:
-
-    TARGET_CLASS = Place  # The type of object this search engine works on
-
     def __init__(self, *args, **kwargs):
 
         # This is a good place to initialize a few settings...
+        self.DEFAULT_ORDER_BY = "name"
         self.RESULTS_PER_PAGE = kwargs.get(
             "RESULTS_PER_PAGE", settings.SEARCH_RESULTS_PER_PAGE
         )
@@ -59,30 +92,38 @@ class PlaceSearchEngine:
         query = self.query
 
         # We start with all the objects.
-        qs = self.TARGET_CLASS.objects.all()
+        qs = Place.objects.all()
 
         # And then, little by little, we narrow the search down.
-        if "name" in query:
+        if query.get("name", "") != "":
             qs = qs.filter(name__icontains=query.get("name"))
 
-        if "type" in query:
-            searched_type = query.get("type")
-            if searched_type != "":
-                qs = qs.filter(type=query.get("type"))
+        if query.get("type", "") != "":
+            qs = qs.filter(type=query.get("type"))
 
-        if "has_equipment_wifi" in query:
+        if query.get("address_departement_name", "") != "":
+            qs = qs.filter(
+                address_departement_name=query.get("address_departement_name")
+            )
+        if query.get("address_region_name", "") != "":
+            qs = qs.filter(address_region_name=query.get("address_region_name"))
+
+        if query.get("has_equipment_wifi", "") != "":
             qs = qs.filter(has_equipment_wifi=True)
-
-        if "has_equipment_computer" in query:
+        if query.get("has_equipment_computer", "") != "":
             qs = qs.filter(has_equipment_computer=True)
-
-        if "has_equipment_scanner" in query:
+        if query.get("has_equipment_scanner", "") != "":
             qs = qs.filter(has_equipment_scanner=True)
-
-        if "has_equipment_printer" in query:
+        if query.get("has_equipment_printer", "") != "":
             qs = qs.filter(has_equipment_printer=True)
 
-        # And so on... But some will be trickier to implement ;)
+        if query.get("service_name", "") != "":
+            qs = qs.filter(services__name=query.get("service_name"))
+
+        if query.get("service_label_aidants_connect", "") != "":
+            qs = qs.filter(services__has_label_aidants_connect=True)
+        if query.get("service_label_mfs", "") != "":
+            qs = qs.filter(services__has_label_mfs=True)
 
         return qs  # Note: at this point, the database query has not been executed yet.
 
@@ -91,15 +132,24 @@ class PlaceSearchEngine:
         to the calling code, typically as a more or less complex `dict`, which
         could also contain meta-information about the search, like the total
         number of results, ...
+        - order_by
+        - opening_hours
+        - pagination
         """
+        order_by_field = self.query.get("order_by", self.DEFAULT_ORDER_BY)
+        self.queryset = self.queryset.order_by(order_by_field)
+
+        results = self.queryset
+
+        if self.query.get("opening_hours", "") != "":
+            results = [place for place in results if place.is_open]
+
+        # use from django.core.paginator import Paginator
         page_number = self.query.get("page", 1)
         offset = self.RESULTS_PER_PAGE * (page_number - 1)
 
-        raw_results = self.queryset[
+        results_page = results[
             offset : offset + self.RESULTS_PER_PAGE
         ]  # <-- db query is executed here!
 
-        # We could now build a refined representation of our results,
-        # but right now this is merely a proof of concept, so we just...
-
-        return raw_results
+        return results_page
