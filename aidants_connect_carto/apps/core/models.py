@@ -67,7 +67,7 @@ class Place(models.Model):
     )
     address_housenumber = models.CharField(
         verbose_name="Le numéro avec indice de répétition éventuel (bis, ter, A, B)",
-        max_length=5,
+        max_length=15,
         blank=True,
         help_text="20",
     )
@@ -249,9 +249,7 @@ class Place(models.Model):
     )
 
     # --- support
-    target_audience_raw = models.CharField(
-        verbose_name="Le public cible", max_length=150, blank=True
-    )
+    target_audience_raw = models.TextField(verbose_name="Le public cible", blank=True)
     target_audience = ArrayField(
         verbose_name="Public cible",
         base_field=models.CharField(
@@ -434,10 +432,8 @@ class Service(models.Model):
         verbose_name="Le service est-il gratuit ?", default=True
     )
     price_details = models.TextField(verbose_name="Le details des prix", blank=True)
-    payment_methods = models.CharField(
-        verbose_name="Les moyens de paiements spécifiques à ce service",
-        max_length=150,
-        blank=True,
+    payment_methods = models.TextField(
+        verbose_name="Les moyens de paiements spécifiques à ce service", blank=True,
     )  # PAYMENT_CHOICES
 
     # --- labels

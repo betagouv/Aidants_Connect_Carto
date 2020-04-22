@@ -245,7 +245,7 @@ class Command(BaseCommand):
             # print(reader.fieldnames)
 
             for index, row in enumerate(reader):
-                if index < 10:  # all
+                if index < 2000:  # all
                     time.sleep(2)
                     place = create_place(row)
 

@@ -79,6 +79,7 @@ class PlaceSearchEngine:
         """Execute the specified `query` and return the results as a `dict`.
         The `query` itself is passed as a `dict`, or possibly directly
         the Django `QueryDict from an incoming HTTP request.`
+        Returns an object with 2 keys: 'places_page' and 'places_total'
         """
         self.query = query.copy()
         self.queryset = self._build_queryset()
@@ -109,14 +110,14 @@ class PlaceSearchEngine:
         if query.get("address_region_name", "") != "":
             qs = qs.filter(address_region_name=query.get("address_region_name"))
 
-        if query.get("has_equipment_wifi", "") != "":
-            qs = qs.filter(has_equipment_wifi=True)
-        if query.get("has_equipment_computer", "") != "":
-            qs = qs.filter(has_equipment_computer=True)
-        if query.get("has_equipment_scanner", "") != "":
-            qs = qs.filter(has_equipment_scanner=True)
-        if query.get("has_equipment_printer", "") != "":
-            qs = qs.filter(has_equipment_printer=True)
+        # if query.get("has_equipment_wifi", "") != "":
+        #     qs = qs.filter(has_equipment_wifi=True)
+        # if query.get("has_equipment_computer", "") != "":
+        #     qs = qs.filter(has_equipment_computer=True)
+        # if query.get("has_equipment_scanner", "") != "":
+        #     qs = qs.filter(has_equipment_scanner=True)
+        # if query.get("has_equipment_printer", "") != "":
+        #     qs = qs.filter(has_equipment_printer=True)
 
         if query.get("service_name", "") != "":
             qs = qs.filter(services__name=query.get("service_name"))

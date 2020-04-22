@@ -11,28 +11,6 @@ def home_page(request):
     return render(request, "home_page.html")
 
 
-# def places_list(request):
-#     places = Place.objects.all().order_by("name")
-
-#     services = list(
-#         places.order_by().values_list("services__name", flat="True").distinct()
-#     )
-#     services = list(filter(None, services))
-#     services.sort()
-
-
-#     return render(
-#         request,
-#         "places/places_list.html",
-#         {
-#             "places_page": page_obj,
-#             "places_total": paginator.count,
-#             "place_types": constants.PLACE_TYPE_CHOICES,
-#             "services": services,
-#         },
-#     )
-
-
 def places_list(request):
     form = PlaceSearchForm(request.GET)
     engine = PlaceSearchEngine()

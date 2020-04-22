@@ -149,28 +149,28 @@
           </div>
         </div>
       {% endfor %}
-      <a class="tile" href="{% url 'service-create' place_id=place.id %}">
+      <!-- <a class="tile" href="{% url 'service-create' place_id=place.id %}">
         <h3>➕</h3>
         <p class="no-margin color-primary">Ajouter un service</p>
-      </a>
+      </a> -->
     </div>
   </div>
 </section>
 
-<section class="section section-white">
+<!-- <section class="section section-white">
   <div class="container">
     <h2 class="section__title">Agenda</h2>
   </div>
-</section>
+</section> -->
 
-<section class="section section-grey">
+<!-- <section class="section section-grey">
   <div class="container">
     <h2 class="section__title">Actions</h2>
     <div>
       <a href="{% url 'place-update' place_id=place.id %}">Modifier le lieu</a>
     </div>
   </div>
-</section>
+</section> -->
 {% endblock content %}
 
 {% block extrajs %}

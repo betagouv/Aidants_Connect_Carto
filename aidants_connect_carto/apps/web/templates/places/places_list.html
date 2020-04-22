@@ -23,15 +23,15 @@
       <!-- <h3>ou</h3> -->
       <div class="form__group">
         <span>
-          <a href="{% url 'places-list' %}?services=Accès à un équipement informatique">Accès à un équipement informatique</a>
+          <a href="{% url 'places-list' %}?service_name=Accès à un équipement informatique">Accès à un équipement informatique</a>
         </span>
         &nbsp;&nbsp;&nbsp;
         <span>
-          <a href="{% url 'places-list' %}?services=Accompagnement aux démarches en ligne">Accompagnement aux démarches en ligne</a>
+          <a href="{% url 'places-list' %}?service_name=Accompagnement aux démarches en ligne">Accompagnement aux démarches en ligne</a>
         </span>
         &nbsp;&nbsp;&nbsp;
         <span>
-          <a href="{% url 'places-list' %}?services=Acquisition de compétences numériques">Acquisition de compétences numériques</a>
+          <a href="{% url 'places-list' %}?service_name=Acquisition de compétences numériques">Acquisition de compétences numériques</a>
         </span>
       </div>
       <div class="form__group">
@@ -101,7 +101,7 @@
             <fieldset>
               <legend>Ordonner par :</legend>
               <input type="radio" name="radio" id="radio-pup" value="1" checked><label for="radio-pup" class="label-inline">A-Z</label>
-              <input type="radio" name="radio" id="radio-kitten" value="0"><label for="radio-kitten" class="label-inline">Distance</label>
+              <input type="radio" name="radio" id="radio-kitten" value="0" disabled><label for="radio-kitten" class="label-inline">Distance</label>
             </fieldset>
           </div>
         </form>
