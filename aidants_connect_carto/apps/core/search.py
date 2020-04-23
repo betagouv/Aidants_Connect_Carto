@@ -58,7 +58,7 @@ class PlaceSearchForm(ModelForm):
         for field_name in self.fields:
             self.fields[field_name].required = False
 
-        # We must add an "empty" value for the some fields
+        # We must add an "empty" value for some fields
         # so we can search without specifying a value.
         for field_name in self.ADD_EMPTY_CHOICE_FIELDS:
             field = self.fields[field_name]

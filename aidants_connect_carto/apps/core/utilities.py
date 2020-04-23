@@ -97,7 +97,23 @@ def process_phone_number(value: str):
 # Opening Hours
 
 
-def process_opening_hours(opening_hours_string: str):
+def process_opening_hours_to_osm_format(opening_hours_string: str):
+    """
+    Input: opening_hours raw string
+    Output: opening_hours with osm format if correctly formated, Empty string instead
+    Exemples:
+    "Du lundi au vendredi de 8h30 à 12h et de 14h à 17h30" --> "Mo-Fr 08:30-12:00,14:00-17:30" # noqa
+    """
+    if opening_hours_string:
+        opening_hours_string_cleaned = _clean_opening_hours(opening_hours_string)
+        try:
+            return _sanitize_opening_hours_with_hoh(opening_hours_string_cleaned)
+        except:  # noqa
+            pass
+    return ""
+
+
+def _clean_opening_hours(opening_hours_string: str):
     """
     'Du lundi au vendredi : 09:00-12:00 et 14:00-16:30 / Samedi : 09:00-12:00'
     'Mo-Fr 09:00-12:00, 14:00-16:30 ; Sa 09:00-12:00'
@@ -120,7 +136,24 @@ def process_opening_hours(opening_hours_string: str):
     opening_hours_string = opening_hours_string.replace(" :", "")
     opening_hours_string = opening_hours_string.replace("/", ";")
     opening_hours_string = opening_hours_string.replace("–", "-")
+    opening_hours_string = opening_hours_string.replace(" - ", "-")
     opening_hours_string = re.sub("du", "", opening_hours_string, flags=re.IGNORECASE)
+
+    # fix sanitization errors (mo-fr 8h30-12h --> Mo-Fr 08:0030-12:00)
+    opening_hours_string = re.sub(
+        "h00", ":00", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "h15", ":15", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "h30", ":30", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "h45", ":45", opening_hours_string, flags=re.IGNORECASE
+    )
+
+    # day of weeks
     opening_hours_string = re.sub(
         "lundis", "Mo", opening_hours_string, flags=re.IGNORECASE
     )
@@ -168,6 +201,7 @@ def process_opening_hours(opening_hours_string: str):
 
 def process_service_schedule_hours(service_schedule_hours_string: str):
     """
+    TODO: not used ?
     """
     if any(
         elem in service_schedule_hours_string.lower() for elem in ["de la structure"]
@@ -176,7 +210,7 @@ def process_service_schedule_hours(service_schedule_hours_string: str):
     return service_schedule_hours_string
 
 
-def sanitize_opening_hours_with_hoh(opening_hours: str):
+def _sanitize_opening_hours_with_hoh(opening_hours: str):
     """
     https://github.com/rezemika/humanized_opening_hours#basic-methods
 

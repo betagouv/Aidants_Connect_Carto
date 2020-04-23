@@ -16,8 +16,7 @@
     <form class="full-width" method="GET">
       <h2>Recherche rapide</h2>
       <div class="form__group">
-        <!-- <input type="text" placeholder="Chercher un lieu..."> -->
-        <input type="text" name="name" maxlength="300" id="id_name" style="width:50%" placeholder="Chercher un lieu...">
+        <input type="text" name="name" maxlength="300" id="id_name" style="width:50%" placeholder="Chercher un lieu..." autofocus>
         <!-- {{ search_form.name }} -->
       </div>
       <!-- <h3>ou</h3> -->
@@ -27,7 +26,7 @@
         </span>
         &nbsp;&nbsp;&nbsp;
         <span>
-          <a href="{% url 'places-list' %}?service_name=Accompagnement aux démarches en ligne">Accompagnement aux démarches en ligne</a>
+          <a href="{% url 'places-list' %}?service_name=Accompagnement aux démarches administratives en ligne">Accompagnement aux démarches administratives en ligne</a>
         </span>
         &nbsp;&nbsp;&nbsp;
         <span>
@@ -51,33 +50,33 @@
       <section id="place_list_filters_form" class="full-width border-left-dashed" style="display:none">
         <div class="form__group">
           <fieldset>
-            <legend><strong>Type de lieu :</strong></legend>
+            <legend>Type de lieu :</legend>
             {{ search_form.type }}
           </fieldset>
         </div>
         <div class="form__group">
           <fieldset>
-            <legend><strong>Service proposé :</strong></legend>
+            <legend>Service proposé :</legend>
             {{ search_form.service_name }}
           </fieldset>
         </div>
         <div class="form__group">
           <fieldset>
-            <legend><strong>Labels :</strong></legend>
+            <legend>Labels :</legend>
             {{ search_form.service_label_aidants_connect }}<label class="label-inline" for="{{ search_form.service_label_aidants_connect.id_for_label }}">{{ search_form.service_label_aidants_connect.label | safe }}</label>
             {{ search_form.service_label_mfs }}<label class="label-inline" for="{{ search_form.service_label_mfs.id_for_label }}">{{ search_form.service_label_mfs.label | safe }}</label>
           </fieldset>
         </div>
         <div class="form__group">
           <fieldset>
-            <legend><strong>Horaires d'ouverture :</strong></legend>
+            <legend>Horaires d'ouverture :</legend>
             {{ search_form.opening_hours }}
             <!-- <input type="radio" name="radio" id="opening_hours_date" value="opening_hours_date" checked><label for="opening_hours_date" class="label-inline">Ouvert le 'datetime'</label> -->
           </fieldset>
         </div>
         <div class="form__group">
           <fieldset>
-            <legend><strong>Localisation :</strong></legend>
+            <legend>Localisation :</legend>
             Département : {{ search_form.address_departement_name }}<!-- <label for="id_address_departement_name" class="label-inline">{{ search_form.address_departement_name.label | safe }}</label> -->
             Région : {{ search_form.address_region_name }}<!-- <label for="id_address_region_name" class="label-inline">{{ search_form.address_region_name.label | safe }}</label> -->
           </fieldset>
@@ -162,10 +161,12 @@
 
 {% block extrajs %}
 <script>
-  document.getElementById("place_list_filters_toggle").addEventListener("click", function() {
-    // document.getElementById("place_list_filters_toggle").className = (document.getElementById("place_list_filters_toggle").className === "caret-down") ? "caret-up" : "caret-down";
-    document.getElementById("place_list_filters_toggle").text = (document.getElementById("place_list_filters_toggle").text === "Afficher") ? "Cacher" : "Afficher";
-    document.getElementById("place_list_filters_form").style.display = (document.getElementById("place_list_filters_form").style.display === "block") ? "none" : "block";
+  const element_place_list_filters_toggle = document.getElementById("place_list_filters_toggle");
+  const element_place_list_filters_form = document.getElementById("place_list_filters_form");
+  element_place_list_filters_toggle.addEventListener("click", function() {
+    // element_place_list_filters_toggle.className = (element_place_list_filters_toggle.className === "caret-down") ? "caret-up" : "caret-down";
+    element_place_list_filters_toggle.text = (element_place_list_filters_toggle.text === "Afficher") ? "Cacher" : "Afficher";
+    element_place_list_filters_form.style.display = (element_place_list_filters_form.style.display === "block") ? "none" : "block";
   }, false);
 </script>
 {% endblock extrajs %}
