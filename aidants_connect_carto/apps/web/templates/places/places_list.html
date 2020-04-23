@@ -114,8 +114,8 @@
             <div class="card__meta">
               <span>📍&nbsp;{{ place.address_raw }}</span>
             </div>
-            <p class="text-quote">{{ place.type }}</p>
-            <!-- <p>{{ place.service_count }} service{% if place.service_count > 1 %}s{% endif %}</p> -->
+            <p class="text-quote">{{ place.get_type_display }}</p>
+            <!-- <p>{{ place.service_count }} service{{ place.service_count | pluralize }}</p> -->
             <ul>
               {% for service in place.services.all %}
               <li>{{ service.name }}</li>
@@ -124,13 +124,21 @@
             <!-- <p>{{ place.service_list }}</p> -->
           </div>
           <div class="card__extra">
-            <span title="{{ place.opening_hours_raw }}">
+            <!-- Public cible -->
+            <span title="{{ place.target_audience_raw }}">
+              {% for target_audience in place.target_audience %}
+                <span class="label">{{ target_audience }}</span>
+              {% endfor %}
+            </span>
+            <!-- Ouvert ou Fermé -->
+            <span class="float-right" title="{{ place.opening_hours_raw }}">
               {% if place.is_open %}
                 <span class="label label--active">Ouvert</span>
               {% else %}
                 <span class="label">Fermé</span>
               {% endif %}
             </span>
+            
           </div>
         </div>
       {% endfor %}

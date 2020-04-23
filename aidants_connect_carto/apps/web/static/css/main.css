@@ -83,6 +83,9 @@ a.no-decoration {
 .justify-content-center {
   justify-content: center;
 }
+.float-right {
+  float: right;
+}
 
 
 /* Forms */
