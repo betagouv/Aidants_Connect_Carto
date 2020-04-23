@@ -150,6 +150,10 @@ class Place(models.Model):
         validators=[phone_regex],
         help_text="0123456789",
     )
+    contact_phone_details = models.TextField(
+        verbose_name="Le details du numéro de téléphone (horaires, prix, ...)",
+        blank=True,
+    )
     # contact_phone_international = models.CharField(help_text="") # regex="^[0-9]+$"
     contact_email = models.EmailField(
         verbose_name="Le courriel",

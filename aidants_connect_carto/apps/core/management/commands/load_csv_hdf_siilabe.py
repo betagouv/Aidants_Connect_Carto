@@ -30,10 +30,7 @@ def create_place(row):
         place.status = status_value
 
     place.address_raw = " ".join([row["Adresse SP"], row["CP"], row["Commune"]])
-    address_api_results = utilities.call_ban_address_search_api(place.address_raw)
-    address_api_results_processed = utilities.process_ban_address_search_results(
-        address_api_results
-    )
+    address_api_results_processed = utilities.process_address(place.address_raw)
     if address_api_results_processed:
         place.address_housenumber = address_api_results_processed["housenumber"]
         place.address_street = address_api_results_processed["street"]
@@ -219,29 +216,29 @@ class Command(BaseCommand):
             # print(reader.fieldnames)
 
             for index, row in enumerate(reader):
-                if index < 3:  # all
+                if index < 2000:  # all
                     time.sleep(2)
                     place = create_place(row)
 
-                    # # Service 1: Accès à un équipement informatique
-                    # # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
-                    # if row["Accès équipement"] == "Oui":
-                    #     create_service_equipement(row, place)
+                    # Service 1: Accès à un équipement informatique
+                    # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
+                    if row["Accès équipement"] == "Oui":
+                        create_service_equipement(row, place)
 
-                    # # Service 2: Acquisition de compétences numériques
-                    # # Compétences numériques, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile médnum, Lieu mobilité médnum
-                    # if row["Médnum"] == "Oui":
-                    #     create_service_mednum(row, place)
+                    # Service 2: Acquisition de compétences numériques
+                    # Compétences numériques, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile médnum, Lieu mobilité médnum
+                    if row["Médnum"] == "Oui":
+                        create_service_mednum(row, place)
 
-                    # # Service 3: Accompagnement aux démarches administratives en ligne
-                    # # Types de démarche, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile démarches, Lieu mobilité démarches
-                    # if row["Démarches"] == "Oui":
-                    #     create_service_demarches(row, place)
+                    # Service 3: Accompagnement aux démarches administratives en ligne
+                    # Types de démarche, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile démarches, Lieu mobilité démarches
+                    if row["Démarches"] == "Oui":
+                        create_service_demarches(row, place)
 
-                    # # Service 4: Stockage numérique sécurisé
-                    # if row["Stockage"] == "Oui":
-                    #     create_service_stockage(row, place)
+                    # Service 4: Stockage numérique sécurisé
+                    if row["Stockage"] == "Oui":
+                        create_service_stockage(row, place)
 
-                    # # Service 5: Vente de matériel informatique
-                    # if row["vente matériel"] == "Oui":
-                    #     create_service_vente(row, place)
+                    # Service 5: Vente de matériel informatique
+                    if row["vente matériel"] == "Oui":
+                        create_service_vente(row, place)

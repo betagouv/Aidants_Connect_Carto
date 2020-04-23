@@ -42,3 +42,44 @@ class UtilitiesTestCase(TestCase):
                 opening_hours_raw
             )
             self.assertEqual(opening_hours_raw_processed, opening_hours_osm_format)
+
+    def test_process_phone_number(self):
+        phone_number_list = [
+            ("01 23 45 67 89", "0123456789"),
+            ("01.23.45.67.89", "0123456789"),
+            ("01-23-45-67-89", "0123456789"),
+            ("3960 (Service 0,06 € / mn + prix appel)", ""),
+            (
+                "0810 25 59 80* (0,06 €/mn + prix appel)  Un conseiller vous répond du lundi au vendredi de 9h à 16h00",
+                "",
+            ),
+        ]
+        for phone_number in phone_number_list:
+            phone_number_raw = phone_number[0]
+            phone_number_formatted = phone_number[1]
+            phone_number_raw_processed = utilities.process_phone_number(
+                phone_number_raw
+            )
+            self.assertEqual(phone_number_raw_processed, phone_number_formatted)
+
+    def test_process_address(self):
+        address_list = [
+            (
+                "20 Avenue de Ségur 75007 Paris",
+                "20 Avenue de Ségur 75007 Paris",
+                "Paris",
+                "Île-de-France",
+            )
+        ]
+        for address in address_list:
+            address_raw = address[0]
+            address_formatted = address[1]
+            address_departement = address[2]
+            address_region = address[3]
+            address_raw_processed = utilities.process_address(address_raw)
+            address_raw_processed_cleaned = f"{address_raw_processed['housenumber']} {address_raw_processed['street']} {address_raw_processed['postcode']} {address_raw_processed['city']}"
+            self.assertEqual(address_raw_processed_cleaned, address_formatted)
+            self.assertEqual(
+                address_raw_processed["departement_name"], address_departement
+            )
+            self.assertEqual(address_raw_processed["region_name"], address_region)
