@@ -66,6 +66,9 @@ a.no-decoration {
 .no-margin {
   margin: 0;
 }
+.margin-bottom-O {
+  margin-bottom: 0;
+}
 
 .label-small {
   padding: 0.2em 0.4em;
@@ -80,9 +83,45 @@ a.no-decoration {
 .justify-content-center {
   justify-content: center;
 }
+.float-right {
+  float: right;
+}
+
+
+/* Forms */
 
 form.full-width {
   max-width: 100%;
+}
+
+form legend {
+  font-weight: bold;
+}
+
+.caret-up {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-bottom: 10px dashed;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+}
+.caret-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 10px dashed;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+}
+
+.border-left-dashed {
+  border-left: 5px solid var(--theme-primary);
+  padding-left: 20px;
 }
 
 

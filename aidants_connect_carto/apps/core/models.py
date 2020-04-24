@@ -67,7 +67,7 @@ class Place(models.Model):
     )
     address_housenumber = models.CharField(
         verbose_name="Le numéro avec indice de répétition éventuel (bis, ter, A, B)",
-        max_length=5,
+        max_length=15,
         blank=True,
         help_text="20",
     )
@@ -102,12 +102,14 @@ class Place(models.Model):
         verbose_name="Le nom du département",
         max_length=150,
         blank=True,
+        choices=constants.FRANCE_DEPARTEMENT_CHOICES,
         help_text="Paris",
     )
     address_region_name = models.CharField(
         verbose_name="Le nom de la région",
         max_length=150,
         blank=True,
+        choices=zip(constants.FRANCE_REGION_LIST, constants.FRANCE_REGION_LIST),
         help_text="Île-de-France",
     )
     latitude = models.FloatField(
@@ -147,6 +149,10 @@ class Place(models.Model):
         null=True,
         validators=[phone_regex],
         help_text="0123456789",
+    )
+    contact_phone_details = models.TextField(
+        verbose_name="Le details du numéro de téléphone (horaires, prix, ...)",
+        blank=True,
     )
     # contact_phone_international = models.CharField(help_text="") # regex="^[0-9]+$"
     contact_email = models.EmailField(
@@ -247,9 +253,7 @@ class Place(models.Model):
     )
 
     # --- support
-    target_audience_raw = models.CharField(
-        verbose_name="Le public cible", max_length=150, blank=True
-    )
+    target_audience_raw = models.TextField(verbose_name="Le public cible", blank=True)
     target_audience = ArrayField(
         verbose_name="Public cible",
         base_field=models.CharField(
@@ -432,19 +436,17 @@ class Service(models.Model):
         verbose_name="Le service est-il gratuit ?", default=True
     )
     price_details = models.TextField(verbose_name="Le details des prix", blank=True)
-    payment_methods = models.CharField(
-        verbose_name="Les moyens de paiements spécifiques à ce service",
-        max_length=150,
-        blank=True,
+    payment_methods = models.TextField(
+        verbose_name="Les moyens de paiements spécifiques à ce service", blank=True,
     )  # PAYMENT_CHOICES
 
     # --- labels
     # label_aptic = # ManyToManyField ?
     has_label_aidants_connect = models.BooleanField(
-        verbose_name="Labelisé Aidants Connect", default=False
+        verbose_name="Labellisé Aidants Connect", default=False
     )
     has_label_mfs = models.BooleanField(
-        verbose_name="Labelisé France Service", default=False
+        verbose_name="Labellisé France Service", default=False
     )
     label_other = models.CharField(
         verbose_name="Autres labels", max_length=300, blank=True

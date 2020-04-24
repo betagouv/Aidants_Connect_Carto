@@ -30,10 +30,7 @@ def create_place(row):
         place.status = status_value
 
     place.address_raw = " ".join([row["Adresse SP"], row["CP"], row["Commune"]])
-    address_api_results = utilities.call_ban_address_search_api(place.address_raw)
-    address_api_results_processed = utilities.process_ban_address_search_results(
-        address_api_results
-    )
+    address_api_results_processed = utilities.process_address(place.address_raw)
     if address_api_results_processed:
         place.address_housenumber = address_api_results_processed["housenumber"]
         place.address_street = address_api_results_processed["street"]
@@ -57,14 +54,9 @@ def create_place(row):
     place.contact_website = row["Site SP"]
 
     place.opening_hours_raw = row["Ouverture"]
-    if row["Ouverture"]:
-        opening_hours_raw_processed = utilities.process_opening_hours(row["Ouverture"])
-        try:
-            place.opening_hours_osm_format = utilities.sanitize_opening_hours_with_hoh(
-                opening_hours_raw_processed
-            )
-        except:  # noqa
-            pass
+    place.opening_hours_osm_format = utilities.process_opening_hours_to_osm_format(
+        place.opening_hours_raw
+    )
 
     place.target_audience_raw = row["Publics"]
     place.target_audience = utilities.process_target_audience(place.target_audience_raw)
@@ -85,9 +77,9 @@ def create_place(row):
         "lien_picto_access": row["LIEN PICTO ACCES"],
     }  # Territoire, Quel territoire, ...
 
-    place.save()
-    print(row["ID Exporter les données"], "-->", place.id)
-    return place
+    # place.save()
+    # print(row["ID Exporter les données"], "-->", place.id)
+    # return place
 
 
 def create_service_equipement(row, place: Place):
@@ -102,16 +94,9 @@ def create_service_equipement(row, place: Place):
     service_equipement.is_free = utilities.process_cost(row["Coût accès équipement"])
     service_equipement.price_details = row["Coût accès équipement"]
     service_equipement.schedule_hours_raw = row["Horaires équipement"]
-    if service_equipement.schedule_hours_raw:
-        schedule_hours_raw_processed = utilities.process_opening_hours(
-            service_equipement.schedule_hours_raw
-        )
-        try:
-            service_equipement.schedule_hours_osm_format = utilities.sanitize_opening_hours_with_hoh(
-                schedule_hours_raw_processed
-            )
-        except:  # noqa
-            pass
+    service_equipement.schedule_hours_osm_format = utilities.process_opening_hours_to_osm_format(
+        service_equipement.schedule_hours_raw
+    )
 
     service_equipement.additional_information = {
         "support_access_raw": row["Conditions accès équipement"],
@@ -139,16 +124,9 @@ def create_service_mednum(row, place: Place):
     service_mednum.is_free = utilities.process_cost(row["Coût accès démarches"])
     service_mednum.price_details = row["Coût accès démarches"]
     service_mednum.schedule_hours_raw = row["Horaires médnum"]
-    if service_mednum.schedule_hours_raw:
-        schedule_hours_raw_processed = utilities.process_opening_hours(
-            service_mednum.schedule_hours_raw
-        )
-        try:
-            service_mednum.schedule_hours_osm_format = utilities.sanitize_opening_hours_with_hoh(
-                schedule_hours_raw_processed
-            )
-        except:  # noqa
-            pass
+    service_mednum.schedule_hours_osm_format = utilities.process_opening_hours_to_osm_format(
+        service_mednum.schedule_hours_raw
+    )
 
     service_mednum.additional_information = {
         "support_access_raw": row["Conditions accès médnum"],
@@ -177,16 +155,9 @@ def create_service_demarches(row, place: Place):
     )
     service_demarches.is_free = utilities.process_cost(row["Coût accès démarches"])
     service_demarches.schedule_hours_raw = row["Horaires démarches"]
-    if service_demarches.schedule_hours_raw:
-        schedule_hours_raw_processed = utilities.process_opening_hours(
-            service_demarches.schedule_hours_raw
-        )
-        try:
-            service_demarches.schedule_hours_osm_format = utilities.sanitize_opening_hours_with_hoh(
-                schedule_hours_raw_processed
-            )
-        except:  # noqa
-            pass
+    service_demarches.schedule_hours_osm_format = utilities.process_opening_hours_to_osm_format(
+        service_demarches.schedule_hours_raw
+    )
 
     service_demarches.additional_information = {
         "demarches_specifiques": row["Démarches spécifiques"],
@@ -245,29 +216,29 @@ class Command(BaseCommand):
             # print(reader.fieldnames)
 
             for index, row in enumerate(reader):
-                if index < 10:  # all
+                if index < 2000:  # all
                     time.sleep(2)
                     place = create_place(row)
 
-                    # # Service 1: Accès à un équipement informatique
-                    # # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
-                    # if row["Accès équipement"] == "Oui":
-                    #     create_service_equipement(row, place)
+                    # Service 1: Accès à un équipement informatique
+                    # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
+                    if row["Accès équipement"] == "Oui":
+                        create_service_equipement(row, place)
 
-                    # # Service 2: Acquisition de compétences numériques
-                    # # Compétences numériques, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile médnum, Lieu mobilité médnum
-                    # if row["Médnum"] == "Oui":
-                    #     create_service_mednum(row, place)
+                    # Service 2: Acquisition de compétences numériques
+                    # Compétences numériques, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile médnum, Lieu mobilité médnum
+                    if row["Médnum"] == "Oui":
+                        create_service_mednum(row, place)
 
-                    # # Service 3: Accompagnement aux démarches administratives en ligne
-                    # # Types de démarche, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile démarches, Lieu mobilité démarches
-                    # if row["Démarches"] == "Oui":
-                    #     create_service_demarches(row, place)
+                    # Service 3: Accompagnement aux démarches administratives en ligne
+                    # Types de démarche, Condition, Accompagnement, Coût, Fréquence, Horaires // Fixe mobile démarches, Lieu mobilité démarches
+                    if row["Démarches"] == "Oui":
+                        create_service_demarches(row, place)
 
-                    # # Service 4: Stockage numérique sécurisé
-                    # if row["Stockage"] == "Oui":
-                    #     create_service_stockage(row, place)
+                    # Service 4: Stockage numérique sécurisé
+                    if row["Stockage"] == "Oui":
+                        create_service_stockage(row, place)
 
-                    # # Service 5: Vente de matériel informatique
-                    # if row["vente matériel"] == "Oui":
-                    #     create_service_vente(row, place)
+                    # Service 5: Vente de matériel informatique
+                    if row["vente matériel"] == "Oui":
+                        create_service_vente(row, place)

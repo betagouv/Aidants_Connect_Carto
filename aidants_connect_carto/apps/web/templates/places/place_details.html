@@ -27,21 +27,27 @@
     </div>
 
     <p class="section__subtitle">
-      Ce lieu propose {{ place.service_count }} service{% if place.service_count > 1 %}s{% endif %}.
+      Ce lieu propose {{ place.service_count }} service{{ place.service_count | pluralize }}.
       <!-- <small><a>Voir tous les services.</a></small> -->
     </p>
 
     <div class="row">
       <div class="col-33">
         <h5>Informations</h5>
-        <p class="text-quote">{{ place.type }}</p>
+        <p class="text-quote">{{ place.get_type_display }}</p>
+        <p class="Public cible">
+          Public cible :<br />
+          {% for target in place.target_audience %}
+            <span class="label label-small">{{ target }}</span>
+          {% endfor %}
+        </p>
         <p title="Equipements">
           Equipements disponibles :<br />
           {% if place.has_equipment_wifi %}
-          <span class="label label-small label--inactive">WiFi</span>
+            <span class="label label-small label--inactive">WiFi</span>
           {% endif %}
           {% if place.has_equipment_computer %}
-          <span class="label label-small label--inactive">Ordinateur</span>
+            <span class="label label-small label--inactive">Ordinateur</span>
           {% endif %}
         </p>
         <p title="Accessibilité">
@@ -129,48 +135,48 @@
           <div class="card__extra">
             <span title="Tags">
               {% if service.is_free %}
-              <span class="label label-small label--active">Gratuit</span>
+                <span class="label label-small label--active">Gratuit</span>
               {% else %}
               <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
               {% endif %}
               {% for target in service.target_audience %}
-              <span class="label label-small label--inactive">{{ target }}</span>
+                <span class="label label-small label--inactive">{{ target }}</span>
               {% endfor %}
               {% if service.support_access %}
-              <span class="label label-small label">{{ service.support_access }}</span>
+                <span class="label label-small label">{{ service.support_access }}</span>
               {% endif %}
               {% if service.support_mode %}
-              <span class="label label-small label">{{ service.support_mode }}</span>
+                <span class="label label-small label">{{ service.support_mode }}</span>
               {% endif %}
               {% if service.has_label_aidants_connect %}
-              <span class="label label-small label--active">Aidants Connect</span>
+                <span class="label label-small label--active">Aidants Connect</span>
               {% endif %}
             </span>
           </div>
         </div>
       {% endfor %}
-      <a class="tile" href="{% url 'service-create' place_id=place.id %}">
+      <!-- <a class="tile" href="{% url 'service-create' place_id=place.id %}">
         <h3>➕</h3>
         <p class="no-margin color-primary">Ajouter un service</p>
-      </a>
+      </a> -->
     </div>
   </div>
 </section>
 
-<section class="section section-white">
+<!-- <section class="section section-white">
   <div class="container">
     <h2 class="section__title">Agenda</h2>
   </div>
-</section>
+</section> -->
 
-<section class="section section-grey">
+<!-- <section class="section section-grey">
   <div class="container">
     <h2 class="section__title">Actions</h2>
     <div>
       <a href="{% url 'place-update' place_id=place.id %}">Modifier le lieu</a>
     </div>
   </div>
-</section>
+</section> -->
 {% endblock content %}
 
 {% block extrajs %}

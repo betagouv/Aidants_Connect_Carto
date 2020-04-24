@@ -30,6 +30,15 @@ def process_float(value: str):
 # Address
 
 
+def process_address(address_string: str):
+    """
+    Call the BAN Address API
+    Return the result depending on the score_threshold
+    """
+    address_api_results = call_ban_address_search_api(address_string)
+    return _process_ban_address_search_results(address_api_results)
+
+
 def call_ban_address_search_api(search_q_param: str):
     response = python_request.get(
         f"{settings.BAN_ADDRESS_SEARCH_API}?q={search_q_param}"
@@ -37,17 +46,15 @@ def call_ban_address_search_api(search_q_param: str):
     return response.json()
 
 
-def process_ban_address_search_results(results_json):
+def _process_ban_address_search_results(results_json, score_threshold: int = 0.9):
     """
     https://geo.api.gouv.fr/adresse
     type: 'housenumber', 'street', 'locality' or 'municipality'
     example of type 'street': Place de la Gare 59460 Jeumont
     """
-    SCORE_THRESHOLD = 0.9
-
     if results_json["features"]:
         results_first_address = results_json["features"][0]
-        if results_first_address["properties"]["score"] > SCORE_THRESHOLD:
+        if results_first_address["properties"]["score"] > score_threshold:
             # print(results_first_address)
             address_housenumber = (
                 results_first_address["properties"]["housenumber"]
@@ -78,26 +85,45 @@ def process_ban_address_search_results(results_json):
 # Phone number
 
 
-def process_phone_number(value: str):
+def process_phone_number(phone_number_string: str):
     """
+    Input: phone_number raw string
+    Output: phone_number in 10 characters, empty string instead
+    Examples:
     03 44 91 12 52
     03.23.52.24.05
     03-44-15-67-02
     3960 (Service 0,06 € / mn + prix appel)
     0810 25 59 80* (0,06 €/mn + prix appel)  Un conseiller vous répond du lundi au vendredi de 9h à 16h00. # noqa
     """
-    value = value.replace(" ", "").replace(".", "").replace("-", "")
-    # value = re.sub(r"\D", "", value)
-    if len(value) < 10:
-        return value
-    else:
-        return None
+    phone_number_string_cleaned = (
+        phone_number_string.replace(" ", "").replace(".", "").replace("-", "")
+    )
+    if len(phone_number_string_cleaned) <= 10:
+        return phone_number_string_cleaned
+    return ""
 
 
 # Opening Hours
 
 
-def process_opening_hours(opening_hours_string: str):
+def process_opening_hours_to_osm_format(opening_hours_string: str):
+    """
+    Input: opening_hours raw string
+    Output: opening_hours with osm format if correctly formated, empty string instead
+    Exemples:
+    "Du lundi au vendredi de 8h30 à 12h et de 14h à 17h30" --> "Mo-Fr 08:30-12:00,14:00-17:30" # noqa
+    """
+    if opening_hours_string:
+        opening_hours_string_cleaned = _clean_opening_hours(opening_hours_string)
+        try:
+            return _sanitize_opening_hours_with_hoh(opening_hours_string_cleaned)
+        except:  # noqa
+            pass
+    return ""
+
+
+def _clean_opening_hours(opening_hours_string: str):
     """
     'Du lundi au vendredi : 09:00-12:00 et 14:00-16:30 / Samedi : 09:00-12:00'
     'Mo-Fr 09:00-12:00, 14:00-16:30 ; Sa 09:00-12:00'
@@ -120,7 +146,24 @@ def process_opening_hours(opening_hours_string: str):
     opening_hours_string = opening_hours_string.replace(" :", "")
     opening_hours_string = opening_hours_string.replace("/", ";")
     opening_hours_string = opening_hours_string.replace("–", "-")
+    opening_hours_string = opening_hours_string.replace(" - ", "-")
     opening_hours_string = re.sub("du", "", opening_hours_string, flags=re.IGNORECASE)
+
+    # fix sanitization errors (mo-fr 8h30-12h --> Mo-Fr 08:0030-12:00)
+    opening_hours_string = re.sub(
+        "h00", ":00", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "h15", ":15", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "h30", ":30", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "h45", ":45", opening_hours_string, flags=re.IGNORECASE
+    )
+
+    # day of weeks
     opening_hours_string = re.sub(
         "lundis", "Mo", opening_hours_string, flags=re.IGNORECASE
     )
@@ -168,6 +211,7 @@ def process_opening_hours(opening_hours_string: str):
 
 def process_service_schedule_hours(service_schedule_hours_string: str):
     """
+    TODO: not used ?
     """
     if any(
         elem in service_schedule_hours_string.lower() for elem in ["de la structure"]
@@ -176,7 +220,7 @@ def process_service_schedule_hours(service_schedule_hours_string: str):
     return service_schedule_hours_string
 
 
-def sanitize_opening_hours_with_hoh(opening_hours: str):
+def _sanitize_opening_hours_with_hoh(opening_hours: str):
     """
     https://github.com/rezemika/humanized_opening_hours#basic-methods
 

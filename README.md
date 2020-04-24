@@ -119,12 +119,23 @@ python manage.py runserver 3000
 ## Endpoints
 
 ```
-Rest Framework UI (HTML)
-http://localhost:3000/api
-http://localhost:3000/api/places
-http://localhost:3000/api/places/<id>
-http://localhost:3000/api/address/search
+Interface utilisateur :
+/ (home page)
+/lieux (search)
+/lieux/<place_id>
+/lieux/nouveau
+/lieux/<place_id>/modifier
+/lieux/<place_id>/services/nouveau
+/lieux/<place_id>/services/<service_id>/modifier
 
-Swagger (HTML)
-http://localhost:3000/api/swagger/
+Rest Framework (HTML UI or JSON depending on the 'content-type') :
+/api
+/api/places
+/api/places/<place_id>
+/api/places/<place_id>/services
+/api/places/<place_id>/services/<service_id>
+/api/address/search
+
+Swagger (HTML) :
+/api/swagger/
 ```

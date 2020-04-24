@@ -35,6 +35,7 @@ class PlaceList(APIView):
     @swagger_auto_schema(responses={200: PlaceSerializer(many=True)})
     def get(self, request, format=None):
         places = Place.objects.all()
+
         serializer = PlaceSerializer(places, many=True)
         return Response(serializer.data)
 
@@ -55,6 +56,7 @@ class PlaceDetail(APIView):
     @swagger_auto_schema(responses={200: PlaceSerializer})
     def get(self, request, place_id, format=None):
         place = get_object_or_404(Place, pk=place_id)
+
         serializer = PlaceSerializer(place)
         return Response(serializer.data)
 
@@ -82,6 +84,7 @@ class PlaceServiceList(APIView):
     def get(self, request, place_id, format=None):
         place = get_object_or_404(Place, pk=place_id)
         services = place.services
+
         serializer = ServiceSerializer(services, many=True)
         return Response(serializer.data)
 
@@ -104,7 +107,7 @@ class PlaceServiceDetail(APIView):
     def get(self, request, place_id, service_id, format=None):
         place = get_object_or_404(Place, pk=place_id)
         service = get_object_or_404(place.services.all(), pk=service_id)
-        print(service.__dict__)
+
         serializer = ServiceSerializer(service)
         return Response(serializer.data)
 
