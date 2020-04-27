@@ -21,6 +21,24 @@ PLACE_TYPE_CHOICES = [
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
+PLACE_TYPE_MAPPING = [
+    ("centre social", "Centre social"),
+    ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)",),
+    ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
+    ("association", "Association"),
+    ("maison quartier", "Maison de quartier"),
+    ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
+    ("msap", "Maison de Service au Public (MSAP)"),
+    ("bibliotheque", "Bibliothèque - Médiathèque"),
+    ("formation", "Organisme de formations"),
+    ("pole emploi", "Pôle Emploi"),
+    ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
+    ("intercommunalite", "Intercommunalité (EPCI)"),
+    ("administration", "Administration - Collectivité territoriale"),
+    ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
+    ("prefecture", "Préfecture, Sous-Préfecture"),
+]
+
 PLACE_STATUS_CHOICES = [
     ("public", "Public"),
     ("prive", "Privé"),
@@ -33,11 +51,35 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     ("collectivite", "Collectivité locale ou territoriale"),
     ("cae", "Coopérative d'Activités et d'Entrepreneur·es (CAE)"),
     ("epci", "Établissement public de coopération intercommunale (EPCI)"),
+    (
+        "epscp",
+        "Établissement public à caractère scientifique, culturel et professionnel (EPSCP)",  # noqa
+    ),
+    ("sas", "Société par actions simplifiée (SAS)"),
+    ("sarl", "Société à responsabilité limitée (SARL)"),
     ("sasu", "Société par actions simplifiée unipersonnelle (SASU)"),
     ("scic", "société coopérative d’intérêt collectif (SCIC)"),
     ("scop", "Société coopérative et participative (SCOP)"),
     ("spl", "Société publique locale (SPL)"),
     (CHOICE_OTHER, "Autre, Inconnu"),
+]
+
+PLACE_LEGAL_ENTITY_TYPE_MAPPING = [
+    ("association", "association"),
+    ("collectivite", "collectivite"),
+    ("collectivite", "collectivite territoriale"),
+    ("cae", "cae"),
+    ("cae", "sas-cae"),
+    ("epci", "epci"),
+    ("epscp", "epscp"),
+    ("sas", "sas"),
+    ("sarl", "sarl"),
+    ("sasu", "sasu"),
+    ("scic", "scic"),
+    ("scic", "sarl-scic"),
+    ("scop", "scop"),
+    ("spl", "spl"),
+    ("spl", "societe publique locale"),
 ]
 
 TARGET_AUDIENCE_CHOICES = [

@@ -15,7 +15,7 @@
             "is_itinerant": false,
             "contact_phone": "",
             "contact_email": "beta@email.com",
-            "contact_website": "https://beta.gouv.fr",
+            "contact_website_url": "https://beta.gouv.fr",
             "opening_hours_raw": "Lundi-Vendredi 8h-20h",
             "has_equipment_wifi": true,
             "has_equipment_computer": true,

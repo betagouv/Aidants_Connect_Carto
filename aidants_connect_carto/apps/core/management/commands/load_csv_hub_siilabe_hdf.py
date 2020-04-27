@@ -6,9 +6,10 @@ import time
 from django.core.management import BaseCommand
 
 from aidants_connect_carto import constants
-
 from aidants_connect_carto.apps.core import utilities
 from aidants_connect_carto.apps.core.models import Place, Service
+
+DATA_SOURCE = "Hub Siilabe"
 
 
 def create_place(row):
@@ -51,7 +52,7 @@ def create_place(row):
     place.contact_phone_raw = row["Tél SP"]
     place.contact_phone = utilities.process_phone_number(row["Tél SP"])
     place.contact_email = row["Mail SP"]
-    place.contact_website = row["Site SP"]
+    place.contact_website_url = row["Site SP"]
 
     place.opening_hours_raw = row["Ouverture"]
     place.opening_hours_osm_format = utilities.process_opening_hours_to_osm_format(
@@ -77,9 +78,11 @@ def create_place(row):
         "lien_picto_access": row["LIEN PICTO ACCES"],
     }  # Territoire, Quel territoire, ...
 
-    # place.save()
-    # print(row["ID Exporter les données"], "-->", place.id)
-    # return place
+    place.data_source = DATA_SOURCE
+
+    place.save()
+    print(row["ID Exporter les données"], "-->", place.id)
+    return place
 
 
 def create_service_equipement(row, place: Place):
@@ -101,6 +104,8 @@ def create_service_equipement(row, place: Place):
     service_equipement.additional_information = {
         "support_access_raw": row["Conditions accès équipement"],
     }
+
+    service_equipement.data_source = DATA_SOURCE
 
     service_equipement.save()
     print(
@@ -134,6 +139,8 @@ def create_service_mednum(row, place: Place):
         "frequence_mednum": row["Fréquence médnum"],
     }
 
+    service_mednum.data_source = DATA_SOURCE
+
     service_mednum.save()
     print(
         row["ID Exporter les données"], "-->", place.id, service_mednum.id,
@@ -164,6 +171,8 @@ def create_service_demarches(row, place: Place):
         "frequence_demarches": row["Fréquence démarches"],
     }
 
+    service_demarches.data_source = DATA_SOURCE
+
     service_demarches.save()
     print(
         row["ID Exporter les données"], "-->", place.id, service_demarches.id,
@@ -177,6 +186,8 @@ def create_service_stockage(row, place: Place):
     service_stockage.place_id = place.id
     service_stockage.name = "Stockage numérique sécurisé"
     service_stockage.is_free = utilities.process_cost(row["Coût stockage"])
+
+    service_stockage.data_source = DATA_SOURCE
 
     service_stockage.save()
     print(
@@ -192,6 +203,8 @@ def create_service_vente(row, place: Place):
     service_vente.name = "Vente de matériel informatique"
     service_vente.description = row["typé vente matériel"]
 
+    service_vente.data_source = DATA_SOURCE
+
     service_vente.save()
     print(
         row["ID Exporter les données"], "-->", place.id, service_vente.id,
@@ -200,7 +213,7 @@ def create_service_vente(row, place: Place):
 
 class Command(BaseCommand):
     """
-    python manage.py load_csv_hdf_siilabe --path data/siilab-hdf_export.csv
+    python manage.py load_csv_hub_siilabe_hdf --path data/hub_siilab/siilab-hdf_export.csv
     """
 
     help = "Load a csv file into the database"
@@ -217,7 +230,7 @@ class Command(BaseCommand):
 
             for index, row in enumerate(reader):
                 if index < 2000:  # all
-                    time.sleep(2)
+                    time.sleep(1)
                     place = create_place(row)
 
                     # Service 1: Accès à un équipement informatique

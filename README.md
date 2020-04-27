@@ -116,6 +116,12 @@ Pour lancer l'application sur le port `3000` :
 python manage.py runserver 3000
 ```
 
+## Lancer les tests
+
+```shell
+python manage.py test aidants_connect_carto.apps.core
+```
+
 ## Endpoints
 
 ```

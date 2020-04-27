@@ -405,7 +405,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_website",
+                    "contact_website_url",
                     models.URLField(
                         blank=True,
                         help_text="https://beta.gouv.fr/",
@@ -414,7 +414,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_facebook",
+                    "contact_facebook_url",
                     models.URLField(
                         blank=True,
                         max_length=300,
@@ -422,7 +422,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_twitter",
+                    "contact_twitter_url",
                     models.URLField(
                         blank=True,
                         help_text="https://twitter.com/betagouv",
@@ -431,7 +431,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_youtube",
+                    "contact_youtube_url",
                     models.URLField(
                         blank=True,
                         max_length=300,

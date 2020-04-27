@@ -161,22 +161,22 @@ class Place(models.Model):
         blank=True,
         help_text="exemple@email.fr",
     )
-    contact_website = models.URLField(
+    contact_website_url = models.URLField(
         verbose_name="L'adresse du site internet",
         max_length=300,
         blank=True,
         help_text="https://beta.gouv.fr/",
     )
-    contact_facebook = models.URLField(
+    contact_facebook_url = models.URLField(
         verbose_name="L'adresse de la page Facebook", max_length=300, blank=True
     )
-    contact_twitter = models.URLField(
+    contact_twitter_url = models.URLField(
         verbose_name="L'adresse de la page Twitter",
         max_length=300,
         blank=True,
         help_text="https://twitter.com/betagouv",
     )
-    contact_youtube = models.URLField(
+    contact_youtube_url = models.URLField(
         verbose_name="L'adresse de la page Youtube", max_length=300, blank=True
     )
 
@@ -277,8 +277,17 @@ class Place(models.Model):
         blank=True,
         null=True,
     )
+    logo_url = models.URLField(
+        verbose_name="L'adresse du logo du lieu",
+        max_length=300,
+        blank=True,
+        help_text="https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
+    )
 
     # --- links to other databases
+    data_source = models.CharField(
+        verbose_name="La source de donnée", max_length=300, help_text="Hub 123"
+    )
     osm_node_id = models.IntegerField(
         verbose_name="OpenStreetMap node id",
         blank=True,
@@ -457,6 +466,11 @@ class Service(models.Model):
         verbose_name="Informations additionnelles stockées au format JSON",
         blank=True,
         null=True,
+    )
+
+    # --- links to other databases
+    data_source = models.CharField(
+        verbose_name="La source de donnée", max_length=300, help_text="Hub 123"
     )
 
     # --- timestamps

@@ -5,6 +5,8 @@ from django.conf import settings
 import humanized_opening_hours as hoh
 import requests as python_request
 
+from aidants_connect_carto import constants
+
 
 # CHOICE fields
 
@@ -27,7 +29,30 @@ def process_float(value: str):
     return None
 
 
+# Mappings
+
+
+def process_legal_entity_type(value: str):
+    # for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
+    #     if any(elem in value.lower() for elem in legal_entity_type_mapping_item[1]):
+    #         return legal_entity_type_mapping_item[0]
+    for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
+        if value.strip().lower() in legal_entity_type_mapping_item[1].lower():
+            return legal_entity_type_mapping_item[0]
+    return constants.CHOICE_OTHER
+
+
 # Address
+
+
+def clean_address_raw(address: str, postcode: str, city: str):
+    """
+    Clean a bit the address_raw
+    Why? To get better results from the BAN Address API
+    """
+    postcode = postcode if len(postcode.strip()) == 5 else f"0{postcode}"
+    address_raw = " ".join([address.strip(), postcode, city.strip().capitalize()])
+    return address_raw
 
 
 def process_address(address_string: str):
@@ -54,7 +79,9 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
     """
     if results_json["features"]:
         results_first_address = results_json["features"][0]
-        if results_first_address["properties"]["score"] > score_threshold:
+        if (len(results_json["features"]) == 1) or (
+            results_first_address["properties"]["score"] > score_threshold
+        ):
             # print(results_first_address)
             address_housenumber = (
                 results_first_address["properties"]["housenumber"]
@@ -131,6 +158,7 @@ def _clean_opening_hours(opening_hours_string: str):
     """
     # hoh.sanitize(opening_hours_string) ? https://github.com/rezemika/humanized_opening_hours/issues/38 # noqa
     opening_hours_string = opening_hours_string.replace("\xa0", " ")
+    opening_hours_string = opening_hours_string.replace("\n", " ")
     opening_hours_string = re.sub(" h ", ":", opening_hours_string, flags=re.IGNORECASE)
     # opening_hours_string = re.sub("h ", ":00 ", opening_hours_string, flags=re.IGNORECASE) # sanitize can take care of it # noqa
     opening_hours_string = re.sub(
@@ -144,7 +172,8 @@ def _clean_opening_hours(opening_hours_string: str):
     opening_hours_string = re.sub(" de", "", opening_hours_string, flags=re.IGNORECASE)
     opening_hours_string = re.sub("le ", "", opening_hours_string, flags=re.IGNORECASE)
     opening_hours_string = opening_hours_string.replace(" :", "")
-    opening_hours_string = opening_hours_string.replace("/", ";")
+    opening_hours_string = opening_hours_string.replace(" / ", ";")  # seperates days
+    opening_hours_string = opening_hours_string.replace("/", ",")  # seperates times
     opening_hours_string = opening_hours_string.replace("–", "-")
     opening_hours_string = opening_hours_string.replace(" - ", "-")
     opening_hours_string = re.sub("du", "", opening_hours_string, flags=re.IGNORECASE)
@@ -161,6 +190,10 @@ def _clean_opening_hours(opening_hours_string: str):
     )
     opening_hours_string = re.sub(
         "h45", ":45", opening_hours_string, flags=re.IGNORECASE
+    )
+    # fix other sanitization errors
+    opening_hours_string = re.sub(
+        "9-", "9h-", opening_hours_string, flags=re.IGNORECASE
     )
 
     # day of weeks
