@@ -1,0 +1,12 @@
+association
+collectivite
+collectivite territoriale
+epci
+epscp
+sarl
+sarl-scic
+sas
+sas-cae
+sasu
+scop
+societe publique locale

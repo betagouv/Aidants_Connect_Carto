@@ -90,7 +90,19 @@ WSGI_APPLICATION = "aidants_connect_carto.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {"default": dj_database_url.config(conn_max_age=600)}
+if dj_database_url.config(conn_max_age=600):
+    DATABASES = {"default": dj_database_url.config(conn_max_age=600)}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DATABASE_NAME"),
+            "USER": os.getenv("DATABASE_USER"),
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+            "HOST": os.getenv("DATABASE_HOST"),
+            "PORT": os.getenv("DATABASE_PORT"),
+        }
+    }
 
 
 # Password validation
@@ -149,6 +161,14 @@ CSP_DEFAULT_SRC = _CSP_SELF
 CSP_IMG_SRC = _CSP_SELF
 CSP_SCRIPT_SRC = _CSP_SELF
 CSP_STYLE_SRC = _CSP_SELF
+
+
+# Django Extensions: graph_models
+
+GRAPH_MODELS = {
+    "all_applications": True,
+    "group_models": True,
+}
 
 
 # API URLS

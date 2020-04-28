@@ -119,7 +119,7 @@ python manage.py runserver 3000
 ## Lancer les tests
 
 ```shell
-python manage.py test aidants_connect_carto.apps.core
+python manage.py test
 ```
 
 ## Endpoints
@@ -133,9 +133,11 @@ Interface utilisateur :
 /lieux/<place_id>/modifier
 /lieux/<place_id>/services/nouveau
 /lieux/<place_id>/services/<service_id>/modifier
+/datasets
 
 Rest Framework (HTML UI or JSON depending on the 'content-type') :
 /api
+/api/data-sources
 /api/places
 /api/places/<place_id>
 /api/places/<place_id>/services

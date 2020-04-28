@@ -24,6 +24,7 @@ urlpatterns = [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
+    path("data-sources/", views.DataSourceList.as_view(), name="data-source-list"),
     path("places/", views.PlaceList.as_view(), name="place-list"),
     path("places/<int:place_id>/", views.PlaceDetail.as_view(), name="place-detail"),
     path(

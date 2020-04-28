@@ -71,7 +71,7 @@
         <p title="Téléphone">📞&nbsp;{{ place.contact_phone | default:'' }}</p>
         <p title="Courriel">📧&nbsp;{{ place.contact_email }}</p>
         <p title="Site internet">🌐&nbsp;<a href="{{ place.contact_website_url }}" target="_blank">{{ place.contact_website_url }}</a></p>
-        <p title="Réseaux Sociaux">
+        <p title="Réseaux sociaux">
           {% if place.contact_facebook_url %}
             <span title="Page Facebook"><a href="{{ place.contact_facebook_url }}" target="_blank"><img src="{% static 'img/openmoji/facebook_color_E042.svg' %}" height="30" /></a></span>
           {% endif %}

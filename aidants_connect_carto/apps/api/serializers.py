@@ -2,7 +2,23 @@ from rest_framework import serializers
 
 # from drf_braces.forms.serializer_form import SerializerForm
 
-from aidants_connect_carto.apps.core.models import Place, Service
+from aidants_connect_carto.apps.core.models import DataSource, Place, Service
+
+
+class DataSourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DataSource
+        fields = [
+            "id",
+            "name",
+            "description",
+            "type",
+            "dataset_url",
+            "contact_website_url",
+            "logo_url",
+            "created_at",
+            "updated_at",
+        ]
 
 
 class PlaceSerializer(serializers.ModelSerializer):
@@ -10,12 +26,14 @@ class PlaceSerializer(serializers.ModelSerializer):
         model = Place
         fields = [
             "id",
+            "data_source_id",
             "name",
             "supporting_structure_name",
             "description",
             "type",
             "status",
             "legal_entity_type",
+            "siret",
             "address_raw",
             "address_housenumber",
             "address_street",
@@ -30,10 +48,10 @@ class PlaceSerializer(serializers.ModelSerializer):
             "is_itinerant",
             "itinerant_details",
             "is_online",
-            "contact_email",
             "contact_phone_raw",
             "contact_phone",
             "contact_phone_details",
+            "contact_email",
             "contact_website_url",
             "contact_facebook_url",
             "contact_twitter_url",
@@ -53,6 +71,8 @@ class PlaceSerializer(serializers.ModelSerializer):
             "target_audience_raw",
             "target_audience",
             "payment_methods",
+            "logo_url",
+            "additional_information",
             "osm_node_id",
             "created_at",
             "updated_at",
@@ -64,9 +84,9 @@ class ServiceSerializer(serializers.ModelSerializer):
         model = Service
         fields = [
             "id",
+            "place_id",
             "name",
             "description",
-            "place_id",
             "siret",
             "target_audience",
             "support_access",
@@ -79,6 +99,7 @@ class ServiceSerializer(serializers.ModelSerializer):
             "has_label_aidants_connect",
             "has_label_mfs",
             "label_other",
+            "additional_information",
             "created_at",
             "updated_at",
         ]

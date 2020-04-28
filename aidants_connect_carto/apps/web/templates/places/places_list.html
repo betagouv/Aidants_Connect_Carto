@@ -113,7 +113,7 @@
             <h4><a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a></h4>
             <div class="card__meta">
               <!-- <span>📍&nbsp;{{ place.address_raw }}</span> -->
-              <span>📍&nbsp;{{ place.address_housenumber }} {{place.address_street }}, {{ place.address_postcode }} {{ place.address_city }}</span>
+              <span>📍&nbsp;{{ place.display_address_full }}</span>
             </div>
             <p class="text-quote">{{ place.get_type_display }}</p>
             <!-- <p>{{ place.service_count }} service{{ place.service_count | pluralize }}</p> -->

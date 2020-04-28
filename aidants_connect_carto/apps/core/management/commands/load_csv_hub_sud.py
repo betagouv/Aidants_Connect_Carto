@@ -10,6 +10,36 @@ from aidants_connect_carto.apps.core import utilities
 from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 
 
+# (model.field, csv.field)
+PLACE_FIELDS_AUTO_MAPPING = [
+    ("name", "NOM DU LIEUX"),
+    ("supporting_structure_name", "STRUCTURE PORTEUSE"),
+    ("contact_website_url", "PLUS D'INFORMATION"),
+    ("contact_facebook_url", "URL FACEBOOK"),
+    ("contact_twitter_url", "URL TWITTER"),
+    ("contact_youtube_url", "URL YOUTUBE"),
+    ("opening_hours_raw", "HORAIRES"),
+    ("logo_url", "LOGO"),
+]
+
+PLACE_FIELDS_PROCESSED_MAPPING = [
+    # type
+    ("legal_entity_type", "NATURE JURIDIQUE"),
+    # address_raw
+    ("opening_hours_osm_format", "HORAIRES"),
+]
+
+PLACE_FIELDS_ADDITIONAL_INFORMATION_MAPPING = [
+    ("id", "ID"),
+    ("type", "TYPE DE LIEU"),
+    ("latitude", "LATITUDE"),
+    ("longitude", "LONGITUDE"),
+    ("activites_proposees", "ACTIVITES PROPOSEES"),
+    ("materiels_disponibles", "MATERIELS DISPONIBLES"),
+    ("autres_labels", "AUTRES LABELS"),
+]
+
+
 def create_place(row, source_id):
     print("in place")
     place = Place()
@@ -52,6 +82,8 @@ def create_place(row, source_id):
         row["HORAIRES"]
     )
 
+    place.logo_url = row["LOGO"]
+
     place.additional_information = {
         "id": row["ID"],
         "type": row["TYPE DE LIEU"],
@@ -61,8 +93,6 @@ def create_place(row, source_id):
         "materiels_disponibles": row["MATERIELS DISPONIBLES"],
         "autres_labels": row["AUTRES LABELS"],
     }
-
-    place.logo_url = row["LOGO"]
 
     place.data_source_id = source_id
 

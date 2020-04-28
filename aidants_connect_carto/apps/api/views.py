@@ -10,10 +10,11 @@ from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
 from aidants_connect_carto.apps.api.serializers import (
+    DataSourceSerializer,
     PlaceSerializer,
     ServiceSerializer,
 )
-from aidants_connect_carto.apps.core.models import Place  # Service
+from aidants_connect_carto.apps.core.models import DataSource, Place  # Service
 from aidants_connect_carto.apps.core.utilities import call_ban_address_search_api
 
 
@@ -21,10 +22,24 @@ from aidants_connect_carto.apps.core.utilities import call_ban_address_search_ap
 def api_root(request):
     return Response(
         {
+            "data-sources": reverse("data-source-list", request=request),
             "places": reverse("place-list", request=request),
             # 'services': reverse('service-list', request=request, format=format)
         }
     )
+
+
+class DataSourceList(APIView):
+    """
+    List all data sources.
+    """
+
+    @swagger_auto_schema(responses={200: DataSourceSerializer(many=True)})
+    def get(self, request, format=None):
+        data_sources = DataSource.objects.all()
+
+        serializer = DataSourceSerializer(data_sources, many=True)
+        return Response(serializer.data)
 
 
 class PlaceList(APIView):

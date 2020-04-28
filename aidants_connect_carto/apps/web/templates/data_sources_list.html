@@ -1,0 +1,41 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    {% if messages %}
+      <div class="notification success" role="alert">
+        {% for message in messages %}
+          {{ message | safe }}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <h1 class="section__title">Jeux de données importés</h1>
+  </div>
+</section>
+<section class="section section-grey">
+  <div class="container">
+    <div class="grid">
+      {% for data_source in data_sources %}
+        <div class="card">
+          <div class="card__content">
+            <h4>{{ data_source.name }}</h4>
+            <!-- <div class="card__meta"></div> -->
+            <p class="text-quote">{{ data_source.type }}</p>
+            <p>📍&nbsp;{{ data_source.places.count }} Lieux</p>
+            <p>🕒&nbsp;Ajouté le {{ data_source.created_at | date:"d F Y" }}</p>
+          </div>
+          <div class="card__extra">
+            <!-- <span>🔗&nbsp;{{ data_source.dataset_url }}</span> -->
+            {% if data_source.dataset_url %}
+              <span class="label label--inactive"><a href="{{ data_source.dataset_url }}" target="_blank">lien</a></span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

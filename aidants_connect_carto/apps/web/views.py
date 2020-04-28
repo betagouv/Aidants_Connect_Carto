@@ -2,7 +2,7 @@ from django.contrib import messages
 
 from django.shortcuts import render, redirect, get_object_or_404
 
-from aidants_connect_carto.apps.core.models import Place
+from aidants_connect_carto.apps.core.models import Place, DataSource
 from aidants_connect_carto.apps.core.search import PlaceSearchEngine, PlaceSearchForm
 from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
 
@@ -121,3 +121,9 @@ def service_update(request, place_id, service_id):
         "places/services/service_create.html",
         {"form": form, "action": "update", "place": place, "service_id": service_id},
     )
+
+
+def data_sources_list(request):
+    data_sources = DataSource.objects.all()  # .order_by("name")
+
+    return render(request, "data_sources_list.html", {"data_sources": data_sources},)

@@ -49,6 +49,13 @@ class DataSource(models.Model):
         verbose_name="La date de dernière modification", auto_now=True
     )
 
+    def __str__(self):
+        return f"{self.name}"
+
+    @property
+    def place_count(self) -> int:
+        return self.places.count()
+
 
 class Place(models.Model):
     AUTO_POPULATED_FIELDS = [
@@ -318,16 +325,16 @@ class Place(models.Model):
     )  # PAYMENT_CHOICES
 
     # --- other
-    additional_information = JSONField(
-        verbose_name="Informations additionnelles stockées au format JSON",
-        blank=True,
-        null=True,
-    )
     logo_url = models.URLField(
         verbose_name="L'adresse du logo du lieu",
         max_length=300,
         blank=True,
         help_text="https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
+    )
+    additional_information = JSONField(
+        verbose_name="Informations additionnelles stockées au format JSON",
+        blank=True,
+        null=True,
     )
 
     # --- links to other models & databases
@@ -366,6 +373,19 @@ class Place(models.Model):
     @property
     def service_list(self) -> list():
         return self.services.values_list("name", flat=True)
+
+    @property
+    def display_address_full(self) -> str:
+        """
+        20 Avenue de Ségur, 75007 Paris
+        """
+        return (
+            f"{self.address_housenumber}"
+            f"{' ' if self.address_housenumber else ''}"
+            f"{self.address_street}, "
+            f"{self.address_postcode} "
+            f"{self.address_city}"
+        )
 
     @property
     def opening_hours_description(self) -> list:
@@ -446,9 +466,6 @@ class Service(models.Model):
     description = models.TextField(
         verbose_name="Une description du service", blank=True
     )
-    place = models.ForeignKey(
-        Place, null=False, on_delete=models.CASCADE, related_name="services"
-    )
     siret = models.CharField(
         verbose_name="Coordonnées juridiques (SIRET)", max_length=14, blank=True
     )  # regex="^[0-9]$"
@@ -516,6 +533,11 @@ class Service(models.Model):
         verbose_name="Informations additionnelles stockées au format JSON",
         blank=True,
         null=True,
+    )
+
+    # --- links to other models & databases
+    place = models.ForeignKey(
+        Place, null=False, on_delete=models.CASCADE, related_name="services"
     )
 
     # --- timestamps

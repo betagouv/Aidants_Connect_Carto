@@ -33,9 +33,6 @@ def process_float(value: str):
 
 
 def process_legal_entity_type(value: str):
-    # for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
-    #     if any(elem in value.lower() for elem in legal_entity_type_mapping_item[1]):
-    #         return legal_entity_type_mapping_item[0]
     for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
         if value.strip().lower() in legal_entity_type_mapping_item[1].lower():
             return legal_entity_type_mapping_item[0]
@@ -50,7 +47,7 @@ def clean_address_raw(address: str, postcode: str, city: str):
     Clean a bit the address_raw
     Why? To get better results from the BAN Address API
     """
-    postcode = postcode if len(postcode.strip()) == 5 else f"0{postcode}"
+    postcode = postcode.strip().zfill(5)
     address_raw = " ".join(
         [address.strip(), postcode, city.strip()]
     )  # city.strip().capitalize()
@@ -158,14 +155,13 @@ def _clean_opening_hours(opening_hours_string: str):
     'du lundi au samedi matin'
     """
     # hoh.sanitize(opening_hours_string) ? https://github.com/rezemika/humanized_opening_hours/issues/38 # noqa
-    opening_hours_string = opening_hours_string.replace("\xa0", " ")
-    opening_hours_string = opening_hours_string.replace("\n", " ")
+    opening_hours_string = opening_hours_string.replace("\xa0", " ").replace("\n", " ")
     opening_hours_string = re.sub(" h ", ":", opening_hours_string, flags=re.IGNORECASE)
     # opening_hours_string = re.sub("h ", ":00 ", opening_hours_string, flags=re.IGNORECASE) # sanitize can take care of it # noqa
     opening_hours_string = re.sub(
         " au ", "-", opening_hours_string, flags=re.IGNORECASE
     )
-    opening_hours_string = opening_hours_string.replace(" à ", "-")
+    opening_hours_string = re.sub(" à ", "-", opening_hours_string, flags=re.IGNORECASE)
     opening_hours_string = re.sub(" et", ",", opening_hours_string, flags=re.IGNORECASE)
     opening_hours_string = re.sub(
         " puis de", ",", opening_hours_string, flags=re.IGNORECASE

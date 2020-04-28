@@ -10,6 +10,44 @@ from aidants_connect_carto.apps.core import utilities
 from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 
 
+PLACE_FIELDS_AUTO_MAPPING = [
+    # (model.field, csv.field)
+    ("name", "Nom SP"),
+    ("contact_phone_raw", "Tél SP"),
+    ("contact_email", "Mail SP"),
+    ("contact_website_url", "Site SP"),
+    ("opening_hours_raw", "Ouverture"),
+    ("target_audience_raw", "Publics"),
+]
+
+PLACE_FIELDS_PROCESSED_MAPPING = [
+    ("type", "Nature"),
+    ("status", "Statut"),
+    # address_raw
+    ("latitude", "Latitude"),
+    ("longitude", "Longitude"),
+    ("contact_phone", "Tél SP"),
+    ("opening_hours_osm_format", "Ouverture"),
+    ("target_audience", "Publics"),
+]
+
+PLACE_FIELDS_ADDITIONAL_INFORMATION_MAPPING = [
+    ("id", "ID Exporter les données"),
+    ("epn", "EPN"),
+    ("horodateur", "Horodateur"),
+    ("public_specifique", "Publics spécifiques"),
+    ("connaissance_aptic", "connaissance aptic"),
+    ("interessee_aptic", "intéréssée aptic"),
+    ("pmr", "PMR"),
+    ("transports_en_commun", "Transports en commun"),
+    ("collaboration", "Collaboration"),
+    ("autres_structures_partenaires", "Autres structures partenaires"),
+    ("autres_offres", "Autres offres"),
+    ("cheques_aptic", "chéques APTIC"),
+    ("lien_picto_access", "LIEN PICTO ACCES"),
+]
+
+
 def create_place(row, source_id):
     print("in place")
     place = Place()
@@ -28,7 +66,9 @@ def create_place(row, source_id):
     if status_value:
         place.status = status_value
 
-    place.address_raw = " ".join([row["Adresse SP"], row["CP"], row["Commune"]])
+    place.address_raw = utilities.clean_address_raw(
+        row["Adresse SP"], row["CP"], row["Commune"]
+    )
     address_api_results_processed = utilities.process_address(place.address_raw)
     if address_api_results_processed:
         place.address_housenumber = address_api_results_processed["housenumber"]
