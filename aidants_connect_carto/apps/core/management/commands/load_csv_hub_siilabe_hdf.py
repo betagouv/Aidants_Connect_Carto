@@ -103,8 +103,6 @@ def create_service_equipement(row, place: Place):
         "support_access_raw": row["Conditions accès équipement"],
     }
 
-    service_equipement.data_source = DATA_SOURCE
-
     service_equipement.save()
     print(
         row["ID Exporter les données"], "-->", place.id, service_equipement.id,
@@ -137,8 +135,6 @@ def create_service_mednum(row, place: Place):
         "frequence_mednum": row["Fréquence médnum"],
     }
 
-    service_mednum.data_source = DATA_SOURCE
-
     service_mednum.save()
     print(
         row["ID Exporter les données"], "-->", place.id, service_mednum.id,
@@ -169,8 +165,6 @@ def create_service_demarches(row, place: Place):
         "frequence_demarches": row["Fréquence démarches"],
     }
 
-    service_demarches.data_source = DATA_SOURCE
-
     service_demarches.save()
     print(
         row["ID Exporter les données"], "-->", place.id, service_demarches.id,
@@ -185,8 +179,6 @@ def create_service_stockage(row, place: Place):
     service_stockage.name = "Stockage numérique sécurisé"
     service_stockage.is_free = utilities.process_cost(row["Coût stockage"])
 
-    service_stockage.data_source = DATA_SOURCE
-
     service_stockage.save()
     print(
         row["ID Exporter les données"], "-->", place.id, service_stockage.id,
@@ -200,8 +192,6 @@ def create_service_vente(row, place: Place):
     service_vente.place_id = place.id
     service_vente.name = "Vente de matériel informatique"
     service_vente.description = row["typé vente matériel"]
-
-    service_vente.data_source = DATA_SOURCE
 
     service_vente.save()
     print(

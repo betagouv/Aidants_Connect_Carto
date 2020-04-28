@@ -52,10 +52,18 @@
         </p>
         <p title="Accessibilité">
           Accessibilité :<br />
-          <span><img src="{% static 'img/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
-          <span><img src="{% static 'img/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
-          <span><img src="{% static 'img/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
-          <span><img src="{% static 'img/handicaps/accessibility_vi_icon.jpg' %}" height="30" /></span>
+          {% if place.has_accessibility_hi %}
+            <span><img src="{% static 'img/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
+          {% endif %}
+          {% if place.has_accessibility_mi %}
+            <span><img src="{% static 'img/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
+          {% endif %}
+          {% if place.has_accessibility_pi %}
+            <span><img src="{% static 'img/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
+          {% endif %}
+          {% if place.has_accessibility_vi %}
+            <span><img src="{% static 'img/handicaps/accessibility_vi_icon.jpg' %}" height="30" /></span>
+          {% endif %}
         </p>
       </div>
       <div class="col-33">
@@ -63,10 +71,22 @@
         <p title="Téléphone">📞&nbsp;{{ place.contact_phone | default:'' }}</p>
         <p title="Courriel">📧&nbsp;{{ place.contact_email }}</p>
         <p title="Site internet">🌐&nbsp;<a href="{{ place.contact_website_url }}" target="_blank">{{ place.contact_website_url }}</a></p>
+        <p title="Réseaux Sociaux">
+          {% if place.contact_facebook_url %}
+            <span title="Page Facebook"><a href="{{ place.contact_facebook_url }}" target="_blank"><img src="{% static 'img/openmoji/facebook_color_E042.svg' %}" height="30" /></a></span>
+          {% endif %}
+          {% if place.contact_twitter_url %}
+            <span title="Page Twitter"><a href="{{ place.contact_twitter_url }}" target="_blank"><img src="{% static 'img/openmoji/twitter_color_E040.svg' %}" height="30" /></a></span>
+          {% endif %}
+          {% if place.contact_youtube_url %}
+            <span title="Page Youtube"><a href="{{ place.contact_youtube_url }}" target="_blank"><img src="{% static 'img/openmoji/youtube_color_E044.svg' %}" height="30" /></a></span>
+          {% endif %}
+        </p>
       </div>
       <div class="col-33">
         <h5>S'y rendre</h5>
-        <p>{{ place.address_raw }}</p>
+        <!-- <p>{{ place.address_raw }}</p> -->
+        <p>{{ place.address_housenumber }} {{place.address_street }}, {{ place.address_postcode }} {{ place.address_city }}</p>
         <!-- <img src="{% static 'img/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
         {% if place.latitude and place.longitude %}
           <div id="map-details"></div>
