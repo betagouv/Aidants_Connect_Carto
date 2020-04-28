@@ -7,6 +7,49 @@ import humanized_opening_hours as hoh
 from aidants_connect_carto import constants
 
 
+class DataSource(models.Model):
+    # --- basics
+    name = models.CharField(
+        verbose_name="Le nom de la source de donnée", max_length=300
+    )
+    description = models.TextField(
+        verbose_name="Une description",
+        blank=True,
+        help_text="Plus de détails sur la source de donnée",
+    )
+    type = models.CharField(
+        verbose_name="Le type de source",
+        max_length=32,
+        # choices=constants.DATA_SOURCE_TYPE_CHOICES,
+        # default=constants.CHOICE_OTHER,
+    )
+    dataset_url = models.URLField(
+        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
+        max_length=300,
+        blank=True,
+    )
+
+    # --- contact
+    contact_website_url = models.URLField(
+        verbose_name="L'adresse du site internet", max_length=300, blank=True,
+    )
+
+    # --- other
+    logo_url = models.URLField(
+        verbose_name="L'adresse du logo de la source de donnée",
+        max_length=300,
+        blank=True,
+    )
+
+    # --- timestamps
+    created_at = models.DateTimeField(
+        verbose_name="La date de création", auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name="La date de dernière modification", auto_now=True
+    )
+
+
 class Place(models.Model):
     AUTO_POPULATED_FIELDS = [
         "address_housenumber",
@@ -57,6 +100,9 @@ class Place(models.Model):
         choices=constants.PLACE_LEGAL_ENTITY_TYPE_CHOICES,
         default=constants.CHOICE_OTHER,
         help_text="",
+    )
+    siret = models.CharField(
+        verbose_name="Coordonnées juridiques (SIRET)", max_length=14, blank=True
     )
 
     # --- location
@@ -284,9 +330,13 @@ class Place(models.Model):
         help_text="https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
     )
 
-    # --- links to other databases
-    data_source = models.CharField(
-        verbose_name="La source de donnée", max_length=300, help_text="Hub 123"
+    # --- links to other models & databases
+    data_source = models.ForeignKey(
+        DataSource,
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="places",
     )
     osm_node_id = models.IntegerField(
         verbose_name="OpenStreetMap node id",
@@ -466,11 +516,6 @@ class Service(models.Model):
         verbose_name="Informations additionnelles stockées au format JSON",
         blank=True,
         null=True,
-    )
-
-    # --- links to other databases
-    data_source = models.CharField(
-        verbose_name="La source de donnée", max_length=300, help_text="Hub 123"
     )
 
     # --- timestamps

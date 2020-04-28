@@ -51,7 +51,9 @@ def clean_address_raw(address: str, postcode: str, city: str):
     Why? To get better results from the BAN Address API
     """
     postcode = postcode if len(postcode.strip()) == 5 else f"0{postcode}"
-    address_raw = " ".join([address.strip(), postcode, city.strip().capitalize()])
+    address_raw = " ".join(
+        [address.strip(), postcode, city.strip()]
+    )  # city.strip().capitalize()
     return address_raw
 
 
@@ -79,34 +81,33 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
     """
     if results_json["features"]:
         results_first_address = results_json["features"][0]
-        if (len(results_json["features"]) == 1) or (
-            results_first_address["properties"]["score"] > score_threshold
-        ):
-            # print(results_first_address)
-            address_housenumber = (
-                results_first_address["properties"]["housenumber"]
-                if (results_first_address["properties"]["type"] == "housenumber")
-                else ""
-            )
-            address_street = (
-                results_first_address["properties"]["street"]
-                if (results_first_address["properties"]["type"] == "housenumber")
-                else results_first_address["properties"]["name"]
-            )
-            address_context = results_first_address["properties"]["context"]
-            address_context_split = address_context.split(", ")
-            return {
-                "housenumber": address_housenumber,
-                "street": address_street,
-                "postcode": results_first_address["properties"]["postcode"],
-                "citycode": results_first_address["properties"]["citycode"],
-                "city": results_first_address["properties"]["city"],
-                "departement_code": address_context_split[0],
-                "departement_name": address_context_split[1],
-                "region_name": address_context_split[2],
-                "latitude": results_first_address["geometry"]["coordinates"][1],
-                "longitude": results_first_address["geometry"]["coordinates"][0],
-            }
+        # if (len(results_json["features"]) == 1) or (results_first_address["properties"]["score"] > score_threshold): # noqa
+        # print(results_first_address)
+        address_housenumber = (
+            results_first_address["properties"]["housenumber"]
+            if (results_first_address["properties"]["type"] == "housenumber")
+            else ""
+        )
+        address_street = (
+            results_first_address["properties"]["street"]
+            if (results_first_address["properties"]["type"] == "housenumber")
+            else results_first_address["properties"]["name"]
+        )
+        address_context = results_first_address["properties"]["context"]
+        address_context_split = address_context.split(", ")
+        return {
+            "housenumber": address_housenumber,
+            "street": address_street,
+            "postcode": results_first_address["properties"]["postcode"],
+            "citycode": results_first_address["properties"]["citycode"],
+            "city": results_first_address["properties"]["city"],
+            "departement_code": address_context_split[0],
+            "departement_name": address_context_split[1],
+            "region_name": address_context_split[2],
+            "latitude": results_first_address["geometry"]["coordinates"][1],
+            "longitude": results_first_address["geometry"]["coordinates"][0],
+            "score": results_first_address["properties"]["score"],
+        }
 
 
 # Phone number

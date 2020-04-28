@@ -1,10 +1,8 @@
-HUBS = []
-
 CHOICE_OTHER = "autre"
 
 PLACE_TYPE_CHOICES = [
     ("centre social", "Centre social"),
-    ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)",),
+    ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
     ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
     ("association", "Association"),
     ("maison quartier", "Maison de quartier"),
@@ -23,7 +21,7 @@ PLACE_TYPE_CHOICES = [
 
 PLACE_TYPE_MAPPING = [
     ("centre social", "Centre social"),
-    ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)",),
+    ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
     ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
     ("association", "Association"),
     ("maison quartier", "Maison de quartier"),

@@ -78,18 +78,18 @@ class UtilitiesTestCase(TestCase):
 
     def test_clean_address_raw(self):
         address_raw_list = [
-            ("11 place d’armes", "83000", "TOULON", "11 place d’armes 83000 Toulon"),
+            ("11 place d’armes", "83000", "TOULON", "11 place d’armes 83000 TOULON"),
             (
                 "24 avenue des Diables Bleus",
                 "6300",
                 "NICE",
-                "24 avenue des Diables Bleus 06300 Nice",
+                "24 avenue des Diables Bleus 06300 NICE",
             ),
             (
                 "Place de Verdun",
                 "4170",
                 "SAINT-ANDRE-LES-ALPES",
-                "Place de Verdun 04170 Saint-andre-les-alpes",
+                "Place de Verdun 04170 SAINT-ANDRE-LES-ALPES",
             ),
         ]
         for address_raw in address_raw_list:

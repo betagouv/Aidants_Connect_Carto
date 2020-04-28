@@ -9,9 +9,14 @@ from django.core.management import BaseCommand
 
 # from aidants_connect_carto import constants
 # from aidants_connect_carto.apps.core import utilities
-from aidants_connect_carto.apps.core.models import Place, Service
+from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 
-HUB_LIST = ["Hub Siilabe", "Hub du Sud"]
+
+def data_source_stats():
+    print("=== Data Sources ===")
+    sources = DataSource.objects.all()
+    for source in sources:
+        print(source.id, source.name, ">", "Places:", source.places.count())
 
 
 def place_stats():
@@ -21,10 +26,10 @@ def place_stats():
     place_df = place_df.replace("", np.nan)
     print(place_df.info())
 
-    for hub in HUB_LIST:
-        print(f"=== Places > {hub} ===")
+    for source in DataSource.objects.all():
+        print(f"=== Places > {source.name} ===")
         place_hub_df = pd.DataFrame.from_records(
-            Place.objects.filter(data_source=hub).values()
+            Place.objects.filter(data_source=source).values()
         )
         place_hub_df = place_hub_df.replace("", np.nan)
         print(place_hub_df.info())
@@ -46,5 +51,6 @@ class Command(BaseCommand):
     help = "Get database stats"
 
     def handle(self, *args, **kwargs):
+        data_source_stats()
         place_stats()
         service_stats()

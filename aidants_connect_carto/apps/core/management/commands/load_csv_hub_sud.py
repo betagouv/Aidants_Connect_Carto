@@ -7,12 +7,10 @@ from django.core.management import BaseCommand
 
 from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core import utilities
-from aidants_connect_carto.apps.core.models import Place, Service
-
-DATA_SOURCE = "Hub du Sud"
+from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 
 
-def create_place(row):
+def create_place(row, source_id):
     print("in place")
     place = Place()
 
@@ -66,9 +64,10 @@ def create_place(row):
 
     place.logo_url = row["LOGO"]
 
-    place.data_source = DATA_SOURCE
+    place.data_source_id = source_id
 
     place.save()
+    print(row["ID"], "-->", place.id)
     # return place
 
 
@@ -85,14 +84,16 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
 
+        source = DataSource.objects.create(name="Hub du Sud", type="hub")
+
         with open(path, "rt") as f:
             reader = csv.DictReader(f, delimiter=";")
             # print(reader.fieldnames)
 
             for index, row in enumerate(reader):
                 if index < 150:  # all
-                    time.sleep(2)
+                    time.sleep(1)
                     # print(index, row)
 
                     # place = create_place(row)
-                    create_place(row)
+                    create_place(row, source.id)

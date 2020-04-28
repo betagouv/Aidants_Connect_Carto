@@ -7,12 +7,10 @@ from django.core.management import BaseCommand
 
 from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core import utilities
-from aidants_connect_carto.apps.core.models import Place, Service
-
-DATA_SOURCE = "Hub Siilabe"
+from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 
 
-def create_place(row):
+def create_place(row, source_id):
     print("in place")
     place = Place()
 
@@ -78,7 +76,7 @@ def create_place(row):
         "lien_picto_access": row["LIEN PICTO ACCES"],
     }  # Territoire, Quel territoire, ...
 
-    place.data_source = DATA_SOURCE
+    place.data_source_id = source_id
 
     place.save()
     print(row["ID Exporter les données"], "-->", place.id)
@@ -224,6 +222,8 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
 
+        source = DataSource.objects.create(name="Hub Siilab", type="hub")
+
         with open(path, "rt") as f:
             reader = csv.DictReader(f, delimiter=",")
             # print(reader.fieldnames)
@@ -231,7 +231,7 @@ class Command(BaseCommand):
             for index, row in enumerate(reader):
                 if index < 2000:  # all
                     time.sleep(1)
-                    place = create_place(row)
+                    place = create_place(row, source.id)
 
                     # Service 1: Accès à un équipement informatique
                     # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
