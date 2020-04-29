@@ -19,4 +19,5 @@ urlpatterns = [
         views.service_update,
         name="service-update",
     ),
+    path("datasets", views.data_sources_list, name="data-sources-list"),
 ]

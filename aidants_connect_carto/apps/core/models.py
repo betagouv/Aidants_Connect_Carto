@@ -7,6 +7,56 @@ import humanized_opening_hours as hoh
 from aidants_connect_carto import constants
 
 
+class DataSource(models.Model):
+    # --- basics
+    name = models.CharField(
+        verbose_name="Le nom de la source de donnée", max_length=300
+    )
+    description = models.TextField(
+        verbose_name="Une description",
+        blank=True,
+        help_text="Plus de détails sur la source de donnée",
+    )
+    type = models.CharField(
+        verbose_name="Le type de source",
+        max_length=32,
+        # choices=constants.DATA_SOURCE_TYPE_CHOICES,
+        # default=constants.CHOICE_OTHER,
+    )
+    dataset_url = models.URLField(
+        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
+        max_length=300,
+        blank=True,
+    )
+
+    # --- contact
+    contact_website_url = models.URLField(
+        verbose_name="L'adresse du site internet", max_length=300, blank=True,
+    )
+
+    # --- other
+    logo_url = models.URLField(
+        verbose_name="L'adresse du logo de la source de donnée",
+        max_length=300,
+        blank=True,
+    )
+
+    # --- timestamps
+    created_at = models.DateTimeField(
+        verbose_name="La date de création", auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name="La date de dernière modification", auto_now=True
+    )
+
+    def __str__(self):
+        return f"{self.name}"
+
+    @property
+    def place_count(self) -> int:
+        return self.places.count()
+
+
 class Place(models.Model):
     AUTO_POPULATED_FIELDS = [
         "address_housenumber",
@@ -57,6 +107,9 @@ class Place(models.Model):
         choices=constants.PLACE_LEGAL_ENTITY_TYPE_CHOICES,
         default=constants.CHOICE_OTHER,
         help_text="",
+    )
+    siret = models.CharField(
+        verbose_name="Coordonnées juridiques (SIRET)", max_length=14, blank=True
     )
 
     # --- location
@@ -161,22 +214,22 @@ class Place(models.Model):
         blank=True,
         help_text="exemple@email.fr",
     )
-    contact_website = models.URLField(
+    contact_website_url = models.URLField(
         verbose_name="L'adresse du site internet",
         max_length=300,
         blank=True,
         help_text="https://beta.gouv.fr/",
     )
-    contact_facebook = models.URLField(
+    contact_facebook_url = models.URLField(
         verbose_name="L'adresse de la page Facebook", max_length=300, blank=True
     )
-    contact_twitter = models.URLField(
+    contact_twitter_url = models.URLField(
         verbose_name="L'adresse de la page Twitter",
         max_length=300,
         blank=True,
         help_text="https://twitter.com/betagouv",
     )
-    contact_youtube = models.URLField(
+    contact_youtube_url = models.URLField(
         verbose_name="L'adresse de la page Youtube", max_length=300, blank=True
     )
 
@@ -272,13 +325,26 @@ class Place(models.Model):
     )  # PAYMENT_CHOICES
 
     # --- other
+    logo_url = models.URLField(
+        verbose_name="L'adresse du logo du lieu",
+        max_length=300,
+        blank=True,
+        help_text="https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
+    )
     additional_information = JSONField(
         verbose_name="Informations additionnelles stockées au format JSON",
         blank=True,
         null=True,
     )
 
-    # --- links to other databases
+    # --- links to other models & databases
+    data_source = models.ForeignKey(
+        DataSource,
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="places",
+    )
     osm_node_id = models.IntegerField(
         verbose_name="OpenStreetMap node id",
         blank=True,
@@ -307,6 +373,19 @@ class Place(models.Model):
     @property
     def service_list(self) -> list():
         return self.services.values_list("name", flat=True)
+
+    @property
+    def display_address_full(self) -> str:
+        """
+        20 Avenue de Ségur, 75007 Paris
+        """
+        return (
+            f"{self.address_housenumber}"
+            f"{' ' if self.address_housenumber else ''}"
+            f"{self.address_street}, "
+            f"{self.address_postcode} "
+            f"{self.address_city}"
+        )
 
     @property
     def opening_hours_description(self) -> list:
@@ -387,9 +466,6 @@ class Service(models.Model):
     description = models.TextField(
         verbose_name="Une description du service", blank=True
     )
-    place = models.ForeignKey(
-        Place, null=False, on_delete=models.CASCADE, related_name="services"
-    )
     siret = models.CharField(
         verbose_name="Coordonnées juridiques (SIRET)", max_length=14, blank=True
     )  # regex="^[0-9]$"
@@ -457,6 +533,11 @@ class Service(models.Model):
         verbose_name="Informations additionnelles stockées au format JSON",
         blank=True,
         null=True,
+    )
+
+    # --- links to other models & databases
+    place = models.ForeignKey(
+        Place, null=False, on_delete=models.CASCADE, related_name="services"
     )
 
     # --- timestamps

@@ -11,3 +11,6 @@ staticfiles
 local_db.json
 local_data
 local_scripts
+
+.ipynb_checkpoints
+*.ipynb

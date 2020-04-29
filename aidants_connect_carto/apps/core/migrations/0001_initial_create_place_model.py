@@ -117,6 +117,12 @@ class Migration(migrations.Migration):
                                 "Établissement public de coopération intercommunale (EPCI)",
                             ),
                             (
+                                "epscp",
+                                "Établissement public à caractère scientifique, culturel et professionnel (EPSCP)",
+                            ),
+                            ("sas", "Société par actions simplifiée (SAS)"),
+                            ("sarl", "Société à responsabilité limitée (SARL)"),
+                            (
                                 "sasu",
                                 "Société par actions simplifiée unipersonnelle (SASU)",
                             ),
@@ -128,6 +134,14 @@ class Migration(migrations.Migration):
                         default="autre",
                         max_length=32,
                         verbose_name="La nature juridique du lieu",
+                    ),
+                ),
+                (
+                    "siret",
+                    models.CharField(
+                        blank=True,
+                        max_length=14,
+                        verbose_name="Coordonnées juridiques (SIRET)",
                     ),
                 ),
                 (
@@ -396,6 +410,13 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
+                    "contact_phone_details",
+                    models.TextField(
+                        blank=True,
+                        verbose_name="Le details du numéro de téléphone (horaires, prix, ...)",
+                    ),
+                ),
+                (
                     "contact_email",
                     models.EmailField(
                         blank=True,
@@ -405,7 +426,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_website",
+                    "contact_website_url",
                     models.URLField(
                         blank=True,
                         help_text="https://beta.gouv.fr/",
@@ -414,7 +435,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_facebook",
+                    "contact_facebook_url",
                     models.URLField(
                         blank=True,
                         max_length=300,
@@ -422,7 +443,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_twitter",
+                    "contact_twitter_url",
                     models.URLField(
                         blank=True,
                         help_text="https://twitter.com/betagouv",
@@ -431,7 +452,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "contact_youtube",
+                    "contact_youtube_url",
                     models.URLField(
                         blank=True,
                         max_length=300,
@@ -546,6 +567,15 @@ class Migration(migrations.Migration):
                         blank=True,
                         null=True,
                         verbose_name="Informations additionnelles stockées au format JSON",
+                    ),
+                ),
+                (
+                    "logo_url",
+                    models.URLField(
+                        blank=True,
+                        help_text="https://beta.gouv.fr/img/logo_twitter_image-2019.jpg",
+                        max_length=300,
+                        verbose_name="L'adresse du logo du lieu",
                     ),
                 ),
                 (

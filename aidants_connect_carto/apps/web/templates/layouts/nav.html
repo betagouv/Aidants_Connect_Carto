@@ -13,6 +13,11 @@
             Tous les lieux
           </a>
         </li>
+        <li class="nav__item">
+          <a href="{% url 'data-sources-list' %}"  {% if request.path == '/datasets' %}class="active"{% endif %}>
+            Jeux de données
+          </a>
+        </li>
         <!-- <li class="nav__item">
           <a href="{% url 'place-create' %}"  {% if '/nouveau-lieu' in request.path %}class="active"{% endif %}>
             Ajouter un lieu

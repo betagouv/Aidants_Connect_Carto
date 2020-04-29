@@ -6,12 +6,49 @@ import time
 from django.core.management import BaseCommand
 
 from aidants_connect_carto import constants
-
 from aidants_connect_carto.apps.core import utilities
-from aidants_connect_carto.apps.core.models import Place, Service
+from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 
 
-def create_place(row):
+PLACE_FIELDS_AUTO_MAPPING = [
+    # (model.field, csv.field)
+    ("name", "Nom SP"),
+    ("contact_phone_raw", "Tél SP"),
+    ("contact_email", "Mail SP"),
+    ("contact_website_url", "Site SP"),
+    ("opening_hours_raw", "Ouverture"),
+    ("target_audience_raw", "Publics"),
+]
+
+PLACE_FIELDS_PROCESSED_MAPPING = [
+    ("type", "Nature"),
+    ("status", "Statut"),
+    # address_raw
+    ("latitude", "Latitude"),
+    ("longitude", "Longitude"),
+    ("contact_phone", "Tél SP"),
+    ("opening_hours_osm_format", "Ouverture"),
+    ("target_audience", "Publics"),
+]
+
+PLACE_FIELDS_ADDITIONAL_INFORMATION_MAPPING = [
+    ("id", "ID Exporter les données"),
+    ("epn", "EPN"),
+    ("horodateur", "Horodateur"),
+    ("public_specifique", "Publics spécifiques"),
+    ("connaissance_aptic", "connaissance aptic"),
+    ("interessee_aptic", "intéréssée aptic"),
+    ("pmr", "PMR"),
+    ("transports_en_commun", "Transports en commun"),
+    ("collaboration", "Collaboration"),
+    ("autres_structures_partenaires", "Autres structures partenaires"),
+    ("autres_offres", "Autres offres"),
+    ("cheques_aptic", "chéques APTIC"),
+    ("lien_picto_access", "LIEN PICTO ACCES"),
+]
+
+
+def create_place(row, source_id):
     print("in place")
     place = Place()
 
@@ -29,7 +66,9 @@ def create_place(row):
     if status_value:
         place.status = status_value
 
-    place.address_raw = " ".join([row["Adresse SP"], row["CP"], row["Commune"]])
+    place.address_raw = utilities.clean_address_raw(
+        row["Adresse SP"], row["CP"], row["Commune"]
+    )
     address_api_results_processed = utilities.process_address(place.address_raw)
     if address_api_results_processed:
         place.address_housenumber = address_api_results_processed["housenumber"]
@@ -51,7 +90,7 @@ def create_place(row):
     place.contact_phone_raw = row["Tél SP"]
     place.contact_phone = utilities.process_phone_number(row["Tél SP"])
     place.contact_email = row["Mail SP"]
-    place.contact_website = row["Site SP"]
+    place.contact_website_url = row["Site SP"]
 
     place.opening_hours_raw = row["Ouverture"]
     place.opening_hours_osm_format = utilities.process_opening_hours_to_osm_format(
@@ -77,9 +116,11 @@ def create_place(row):
         "lien_picto_access": row["LIEN PICTO ACCES"],
     }  # Territoire, Quel territoire, ...
 
-    # place.save()
-    # print(row["ID Exporter les données"], "-->", place.id)
-    # return place
+    place.data_source_id = source_id
+
+    place.save()
+    print(row["ID Exporter les données"], "-->", place.id)
+    return place
 
 
 def create_service_equipement(row, place: Place):
@@ -200,7 +241,7 @@ def create_service_vente(row, place: Place):
 
 class Command(BaseCommand):
     """
-    python manage.py load_csv_hdf_siilabe --path data/siilab-hdf_export.csv
+    python manage.py load_csv_hub_siilabe_hdf --path data/hub_siilab/siilab-hdf_export.csv
     """
 
     help = "Load a csv file into the database"
@@ -211,14 +252,16 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
 
+        source = DataSource.objects.create(name="Hub Siilab", type="hub")
+
         with open(path, "rt") as f:
             reader = csv.DictReader(f, delimiter=",")
             # print(reader.fieldnames)
 
             for index, row in enumerate(reader):
                 if index < 2000:  # all
-                    time.sleep(2)
-                    place = create_place(row)
+                    time.sleep(1)
+                    place = create_place(row, source.id)
 
                     # Service 1: Accès à un équipement informatique
                     # Equipement à disposition, Condition, Coût, Horaires // Fixe mobile équipement, Lieu mobilité équipement
