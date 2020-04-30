@@ -49,10 +49,12 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     ("collectivite", "Collectivité locale ou territoriale"),
     ("cae", "Coopérative d'Activités et d'Entrepreneur·es (CAE)"),
     ("epci", "Établissement public de coopération intercommunale (EPCI)"),
+    ("epic", "Établissement public à caractère industriel et commercial (EPIC)"),
     (
         "epscp",
         "Établissement public à caractère scientifique, culturel et professionnel (EPSCP)",  # noqa
     ),
+    ("gip", "Groupement d'intérêt public (GIP)"),
     ("sas", "Société par actions simplifiée (SAS)"),
     ("sarl", "Société à responsabilité limitée (SARL)"),
     ("sasu", "Société par actions simplifiée unipersonnelle (SASU)"),
@@ -64,12 +66,17 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
 
 PLACE_LEGAL_ENTITY_TYPE_MAPPING = [
     ("association", "association"),
+    ("association", "association (délégation de service public)"),
     ("collectivite", "collectivite"),
+    ("collectivite", "collectivité"),
     ("collectivite", "collectivite territoriale"),
+    ("collectivite", "collectivité territoriale"),
     ("cae", "cae"),
     ("cae", "sas-cae"),
     ("epci", "epci"),
+    ("epic", "epic (etablissement public à caractère industriel et commercial)"),
     ("epscp", "epscp"),
+    ("gip", "gip (groupement d'intérêt public)"),
     ("sas", "sas"),
     ("sarl", "sarl"),
     ("sasu", "sasu"),
@@ -78,6 +85,7 @@ PLACE_LEGAL_ENTITY_TYPE_MAPPING = [
     ("scop", "scop"),
     ("spl", "spl"),
     ("spl", "societe publique locale"),
+    (CHOICE_OTHER, "non déclaré"),
 ]
 
 TARGET_AUDIENCE_CHOICES = [
