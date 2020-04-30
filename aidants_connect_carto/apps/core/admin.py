@@ -5,7 +5,15 @@ from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateF
 
 
 class DataSourceAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "type", "place_count", "created_at")
+    list_display = (
+        "id",
+        "name",
+        "type",
+        "dataset_last_updated",
+        "place_count",
+        "created_at",
+    )
+    ordering = ("name",)
     list_filter = ("type",)
 
 
@@ -20,6 +28,7 @@ class PlaceAdmin(admin.ModelAdmin):
         "service_count",
         "created_at",
     )
+    ordering = ("id",)
     list_filter = ("address_region_name",)
 
 
@@ -34,6 +43,7 @@ class ServiceAdmin(admin.ModelAdmin):
         "is_free",
         "created_at",
     )
+    ordering = ("id",)
     list_filter = ("place__name",)
 
 
