@@ -14,6 +14,7 @@ from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 import_config: JSONField
 - place_fields_set
 - place_fields_mapping_auto
+- place_fields_mapping_boolean
 - place_fields_mapping_process
 - place_fields_mapping_additional_information
 """
@@ -30,6 +31,11 @@ def create_place(row, data_source):
     for elem in data_source.import_config.get("place_fields_mapping_auto", []):
         place_dict[elem["place_field"]] = row[elem["file_field"]]
 
+    for elem in data_source.import_config.get("place_fields_mapping_boolean", []):
+        place_dict[elem["place_field"]] = utilities.process_boolean(
+            row[elem["file_field"]]
+        )
+
     for elem in data_source.import_config.get("place_fields_mapping_process", []):
         if elem["place_field"] == "legal_entity_type":
             place_dict["legal_entity_type"] = utilities.process_legal_entity_type(
@@ -37,11 +43,31 @@ def create_place(row, data_source):
             )
 
         if elem["place_field"] == "address_raw":
-            place_dict["address_raw"] = utilities.clean_address_raw(
-                address=row[elem["file_field"][0]],
-                postcode=row[elem["file_field"][1]],
-                city=row[elem["file_field"][2]],
-            )
+            """
+            Different options:
+            - "20 Avenue de Ségur 75007 Paris"
+            - ["20 Avenue de Ségur", "75007", "Paris"]
+            - [["20", "Avenue", "de Ségur"], "75007", "Paris"]
+            """
+            if type(elem["file_field"]) == list:
+                address_temp = ""
+                if type(elem["file_field"][0] == list):
+                    address_temp = " ".join(
+                        [
+                            row[item].strip()
+                            for item in elem["file_field"][0]
+                            if item not in ["", "0", 0, False, None]
+                        ]
+                    )
+                else:
+                    address_temp = row[elem["file_field"][0]]
+                place_dict["address_raw"] = utilities.clean_address_raw_list(
+                    address=address_temp,
+                    postcode=row[elem["file_field"][1]],
+                    city=row[elem["file_field"][2]],
+                )
+            else:
+                place_dict["address_raw"] = row[elem["file_field"]]
             address_api_results_processed = utilities.process_address(
                 place_dict["address_raw"]
             )
@@ -69,8 +95,24 @@ def create_place(row, data_source):
                 place_dict["latitude"] = address_api_results_processed["latitude"]
                 place_dict["longitude"] = address_api_results_processed["longitude"]
 
+        if elem["place_field"] == "contact_phone_raw":
+            place_dict["contact_phone_raw"] = row[elem["file_field"]]
+            place_dict["contact_phone"] = utilities.process_phone_number(
+                place_dict["contact_phone_raw"]
+            )
+
         if elem["place_field"] == "opening_hours_raw":
-            place_dict["opening_hours_raw"] = row[elem["file_field"]]
+            """
+            Different options:
+            - "du lundi au vendredi de 9h à 18h"
+            - ["Lundi: 9h-18h", "Mardi: 9h-12h"]
+            """
+            if type(elem["file_field"]) == list:
+                place_dict["opening_hours_raw"] = "|".join(
+                    [row[item] for item in elem["file_field"]]
+                )
+            else:
+                place_dict["opening_hours_raw"] = row[elem["file_field"]]
             place_dict[
                 "opening_hours_osm_format"
             ] = utilities.process_opening_hours_to_osm_format(
@@ -110,7 +152,12 @@ class Command(BaseCommand):
 
         # encoding="utf-8-sig" for files that start with '\ufeff'
         with open(data_source.dataset_local_path, mode="rt", encoding="utf-8-sig") as f:
-            reader = csv.DictReader(f, delimiter=";")
+            FILE_DELIMITER = (
+                data_source.import_config["dataset_file_delimiter"]
+                if ("dataset_file_delimiter" in data_source.import_config)
+                else ";"
+            )
+            reader = csv.DictReader(f, delimiter=FILE_DELIMITER)
             # print(reader.fieldnames)
             print(data_source.name)
 

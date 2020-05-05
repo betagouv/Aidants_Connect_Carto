@@ -29,6 +29,16 @@ def process_float(value: str):
     return None
 
 
+# Boolean fields
+
+
+def process_boolean(value: str):
+    if value:
+        if any(elem in value.lower() for elem in ["oui"]):
+            return True
+    return False
+
+
 # Mappings
 
 
@@ -42,7 +52,7 @@ def process_legal_entity_type(value: str):
 # Address
 
 
-def clean_address_raw(address: str, postcode: str, city: str):
+def clean_address_raw_list(address: str, postcode: str, city: str):
     """
     Clean a bit the address_raw
     Why? To get better results from the BAN Address API
@@ -100,7 +110,9 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
             "city": results_first_address["properties"]["city"],
             "departement_code": address_context_split[0],
             "departement_name": address_context_split[1],
-            "region_name": address_context_split[2],
+            "region_name": address_context_split[2]
+            if (len(address_context_split) > 2)
+            else address_context_split[1],  # dom-tom # noqa
             "latitude": results_first_address["geometry"]["coordinates"][1],
             "longitude": results_first_address["geometry"]["coordinates"][0],
             "score": results_first_address["properties"]["score"],
@@ -140,7 +152,11 @@ def process_opening_hours_to_osm_format(opening_hours_string: str):
     "Du lundi au vendredi de 8h30 à 12h et de 14h à 17h30" --> "Mo-Fr 08:30-12:00,14:00-17:30" # noqa
     """
     if opening_hours_string:
-        opening_hours_string_cleaned = _clean_opening_hours(opening_hours_string)
+        if " | " in opening_hours_string:
+            opening_hours_string = _clean_opening_hours_list(
+                opening_hours_string.split(" | ")
+            )
+        opening_hours_string_cleaned = _clean_full_opening_hours(opening_hours_string)
         try:
             return _sanitize_opening_hours_with_hoh(opening_hours_string_cleaned)
         except:  # noqa
@@ -148,7 +164,28 @@ def process_opening_hours_to_osm_format(opening_hours_string: str):
     return ""
 
 
-def _clean_opening_hours(opening_hours_string: str):
+def _clean_opening_hours_list(opening_hours_list: list):
+    """
+    Input: ["9:00 - 12:00 / 13:30 - 17:00", "10:00 - 13:00"]
+    Output: "Mo 9:00-12:00,13:30-17:00; Tu 10:00-13:00"
+    """
+    MINIMUM_DAY_CHARS = 2
+    # init
+    opening_hours_list_cleaned = []
+    days_list = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
+    # loop
+    for index, elem in enumerate(opening_hours_list):
+        if len(opening_hours_list[index]) > MINIMUM_DAY_CHARS:
+            temp_opening_hours_day = (
+                days_list[index]
+                + " "
+                + _clean_day_opening_hours(opening_hours_list[index])
+            )
+            opening_hours_list_cleaned.append(temp_opening_hours_day)
+    return "; ".join(opening_hours_list_cleaned)
+
+
+def _clean_day_opening_hours(opening_hours_string: str):
     """
     'Du lundi au vendredi : 09:00-12:00 et 14:00-16:30 / Samedi : 09:00-12:00'
     'Mo-Fr 09:00-12:00, 14:00-16:30 ; Sa 09:00-12:00'
@@ -169,7 +206,7 @@ def _clean_opening_hours(opening_hours_string: str):
     opening_hours_string = re.sub(" de", "", opening_hours_string, flags=re.IGNORECASE)
     opening_hours_string = re.sub("le ", "", opening_hours_string, flags=re.IGNORECASE)
     opening_hours_string = opening_hours_string.replace(" :", "")
-    opening_hours_string = opening_hours_string.replace(" / ", ";")  # seperates days
+    opening_hours_string = opening_hours_string.replace(" / ", ",")  # seperates times
     opening_hours_string = opening_hours_string.replace("/", ",")  # seperates times
     opening_hours_string = opening_hours_string.replace("–", "-")
     opening_hours_string = opening_hours_string.replace(" - ", "-")
@@ -236,6 +273,14 @@ def _clean_opening_hours(opening_hours_string: str):
     opening_hours_string = re.sub(
         "dimanche", "Su", opening_hours_string, flags=re.IGNORECASE
     )
+    return opening_hours_string.lower().strip()
+
+
+def _clean_full_opening_hours(opening_hours_string: str):
+    # week/full specific rules
+    opening_hours_string = opening_hours_string.replace(" / ", ";")  # seperates days
+    # normal cleaning
+    opening_hours_string = _clean_day_opening_hours(opening_hours_string)
     return opening_hours_string.lower()
 
 
@@ -261,7 +306,7 @@ def _sanitize_opening_hours_with_hoh(opening_hours: str):
     '  mo-su 09:30-20h;jan off' --> 'Mo-Su 09:30-20:00; Jan off'
     'Tu 14h-16h' --> 'Tu 14:00-16:00'
     """
-    sanitized_opening_hours = hoh.sanitize(opening_hours)
+    sanitized_opening_hours = hoh.sanitize(opening_hours.strip())
     hoh.OHParser(sanitized_opening_hours, locale="fr")  # fails if given a wrong format
     return sanitized_opening_hours
 

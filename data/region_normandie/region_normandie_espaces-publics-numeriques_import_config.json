@@ -1,0 +1,82 @@
+{
+    "data_source_name": "Région Normandie",
+    "data_source_type": "région",
+    "dataset_name": "Espaces publics numériques",
+    "dataset_url": "https://geo.data.gouv.fr/fr/datasets/3316c824665e5d19c0ef21102775ed94440a8aed",
+    "dataset_file_path": "data/region_normandie/GEO_NUM_DAN_SRTN_espaces_publics_numeriques.csv",
+    "dataset_last_updated": "2020-03-07",
+    "import_comment": "Export en csv rajoute des '.000000'",
+    "import_config": {
+        "dataset_file_delimiter": ",",
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "NOM"
+            },
+            {
+                "place_field": "supporting_structure_name",
+                "file_field": "STRUCT_ACC"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "COURRIEL"
+            },
+            {
+                "place_field": "contact_website_url",
+                "file_field": "WEB"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "address_raw",
+                "file_field": [["N_VOIE", "N_VOIE_COM", "TYPE_VOIE", "NOM_VOIE"], "CP_NV", "COMMUNE_NV"]
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "TEL"
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            {
+                "place_field": "code_lieu",
+                "file_field": "CODE_LIEU"
+            },
+            {
+                "place_field": "code_type",
+                "file_field": "CODE_TYPE"
+            },
+            {
+                "place_field": "ref",
+                "file_field": "REF"
+            },
+            {
+                "place_field": "sigle",
+                "file_field": "SIGLE"
+            },
+            {
+                "place_field": "gepn",
+                "file_field": "GEPN"
+            },
+            {
+                "place_field": "crant",
+                "file_field": "CRANT"
+            },
+            {
+                "place_field": "statut",
+                "file_field": "STATUT"
+            },
+            {
+                "place_field": "visible",
+                "file_field": "VISIBLE"
+            },
+            {
+                "place_field": "address_complement",
+                "file_field": "COMPLEMENT"
+            },
+            {
+                "place_field": "address_lieu_dit",
+                "file_field": "LIEU_DIT"
+            }
+        ]
+    }
+}

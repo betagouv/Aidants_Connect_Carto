@@ -42,11 +42,28 @@ class UtilitiesTestCase(TestCase):
                 "Mo 09:00-12:00,14:00-21:00; Tu 09:00-12:00,14:00-18:00; We 09:00-12:00,14:00-21:00; Th, Fr 09:00-12:00,14:00-18:00; Sa 09:00-12:00",
             ),
             ("Du lundi au samedi de 9-13h/14h-20h", "Mo-Sa 09:00-13:00,14:00-20:00"),
+            (
+                "9:00 - 12:00 / 13:30 - 17:00 | 9:00 - 12:00 / 13:30 - 17:00 |  |  | - | 10:00 - 13:00 | -",
+                "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00,13:30-17:00; Sa 10:00-13:00",
+            ),
+            (
+                "9:00 - 12:00 / 13:30 - 17:00 | 9:00 - 12:00",
+                "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00",
+            ),
+            # (
+            #     "9:00 - 12:00 / 13:30 - 17:00",
+            #     "09:00-12:00,13:30-17:00"
+            # ),
             # fail
             (
                 "du lundi au vendredi de 9 à 12 h et de 14 à 18 h, le samedi de 10 à 13 h",
                 "",
             ),
+            (
+                "Lundi : 9:00 - 12:00 / 13:30 - 17:00; Mardi : 9:00 - 12:00 / 13:30 - 17:00; Samedi : -",
+                "",
+            ),
+            ("Mo 10:00-13:00,après-midi sur rdv", ""),
             ("Lundi", ""),
         ]
         for opening_hours in opening_hours_list:
@@ -76,7 +93,7 @@ class UtilitiesTestCase(TestCase):
             )
             self.assertEqual(phone_number_raw_processed, phone_number_formatted)
 
-    def test_clean_address_raw(self):
+    def test_clean_address_raw_list(self):
         address_raw_list = [
             ("11 place d’armes", "83000", "TOULON", "11 place d’armes 83000 TOULON"),
             (
@@ -93,7 +110,7 @@ class UtilitiesTestCase(TestCase):
             ),
         ]
         for address_raw in address_raw_list:
-            address_raw_cleaned = utilities.clean_address_raw(
+            address_raw_cleaned = utilities.clean_address_raw_list(
                 address_raw[0], address_raw[1], address_raw[2]
             )
             self.assertEqual(address_raw_cleaned, address_raw[3])
@@ -102,18 +119,20 @@ class UtilitiesTestCase(TestCase):
         address_list = [
             (
                 "20 Avenue de Ségur 75007 Paris",
-                "20 Avenue de Ségur 75007 Paris",
-                "Paris",
-                "Île-de-France",
-            )
+                ["20 Avenue de Ségur 75007 Paris", "Paris", "Île-de-France"],
+            ),
+            (
+                "Rue case toto 97217 Les Anses-d'Arlet",
+                ["Rue Case Toto 97217 Les Anses-d'Arlet", "Martinique", "Martinique"],
+            ),
         ]
         for address in address_list:
             address_raw = address[0]
-            address_formatted = address[1]
-            address_departement = address[2]
-            address_region = address[3]
+            address_formatted = address[1][0]
+            address_departement = address[1][1]
+            address_region = address[1][2]
             address_raw_processed = utilities.process_address(address_raw)
-            address_raw_processed_cleaned = f"{address_raw_processed['housenumber']} {address_raw_processed['street']} {address_raw_processed['postcode']} {address_raw_processed['city']}"
+            address_raw_processed_cleaned = f"{address_raw_processed['housenumber']}{' ' if address_raw_processed['housenumber'] else ''}{address_raw_processed['street']} {address_raw_processed['postcode']} {address_raw_processed['city']}"
             self.assertEqual(address_raw_processed_cleaned, address_formatted)
             self.assertEqual(
                 address_raw_processed["departement_name"], address_departement

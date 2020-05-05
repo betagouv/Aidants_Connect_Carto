@@ -24,9 +24,6 @@ class PlaceSearchForm(ModelForm):
         label=Service._meta.get_field("has_label_aidants_connect").verbose_name,
         initial=False,
     )
-    service_label_mfs = forms.BooleanField(
-        label=Service._meta.get_field("has_label_mfs").verbose_name, initial=False
-    )
 
     ADD_EMPTY_CHOICE_FIELDS = [
         "type",
@@ -47,8 +44,8 @@ class PlaceSearchForm(ModelForm):
             # "has_equipment_scanner",
             # "has_equipment_printer",
             "service_name",
+            "has_label_fs",
             "service_label_aidants_connect",
-            "service_label_mfs",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -122,10 +119,10 @@ class PlaceSearchEngine:
         if query.get("service_name", "") != "":
             qs = qs.filter(services__name=query.get("service_name"))
 
+        if query.get("has_label_fs", "") != "":
+            qs = qs.filter(has_label_fs=True)
         if query.get("service_label_aidants_connect", "") != "":
             qs = qs.filter(services__has_label_aidants_connect=True)
-        if query.get("service_label_mfs", "") != "":
-            qs = qs.filter(services__has_label_mfs=True)
 
         return qs  # Note: at this point, the database query has not been executed yet.
 

@@ -29,7 +29,7 @@ default_permissions : ('add', 'change', 'delete', 'view')
 ## place(aidants_connect_carto.apps.core.models.Place)
 
 ```
-Place(id, name, supporting_structure_name, description, type, status, legal_entity_type, siret, address_raw, address_housenumber, address_street, address_postcode, address_citycode, address_city, address_departement_code, address_departement_name, address_region_name, latitude, longitude, is_itinerant, itinerant_details, is_online, contact_phone_raw, contact_phone, contact_phone_details, contact_email, contact_website_url, contact_facebook_url, contact_twitter_url, contact_youtube_url, opening_hours_raw, opening_hours_osm_format, has_equipment_wifi, has_equipment_computer, has_equipment_scanner, has_equipment_printer, equipment_other, has_accessibility_hi, has_accessibility_mi, has_accessibility_pi, has_accessibility_vi, languages, target_audience_raw, target_audience, payment_methods, logo_url, additional_information, data_source, osm_node_id, created_at, updated_at)
+Place(id, name, supporting_structure_name, description, type, status, legal_entity_type, siret, address_raw, address_housenumber, address_street, address_postcode, address_citycode, address_city, address_departement_code, address_departement_name, address_region_name, latitude, longitude, is_itinerant, itinerant_details, is_online, contact_phone_raw, contact_phone, contact_phone_details, contact_email, contact_website_url, contact_facebook_url, contact_twitter_url, contact_youtube_url, opening_hours_raw, opening_hours_osm_format, has_equipment_wifi, has_equipment_computer, has_equipment_scanner, has_equipment_printer, equipment_other, has_accessibility_hi, has_accessibility_mi, has_accessibility_pi, has_accessibility_vi, languages, target_audience_raw, target_audience, payment_methods, has_label_fs, logo_url, additional_information, data_source, osm_node_id, created_at, updated_at)
 ```
 
 |Name|Fullname|Type|Unique|Null/Blank|Comment|
@@ -79,6 +79,7 @@ Place(id, name, supporting_structure_name, description, type, status, legal_enti
 |target_audience_raw |Le public cible |text | |Blank | |
 |target_audience |Public cible |varchar(32)[] | |Blank | |
 |payment_methods |Les moyens de paiement |varchar(150) | |Blank | |
+|has_label_fs |Labellisé France Service |boolean | | | |
 |logo_url |L'adresse du logo du lieu |varchar(300) | |Blank | |
 |additional_information |Informations additionnelles stockées au format JSON |jsonb | |Both | |
 |data_source |data source |integer | |Null |FK:aidants_connect_carto.apps.core.models.DataSource |
@@ -96,7 +97,7 @@ default_permissions : ('add', 'change', 'delete', 'view')
 ## service(aidants_connect_carto.apps.core.models.Service)
 
 ```
-Service(id, name, description, siret, target_audience, support_access, support_mode, schedule_hours_raw, schedule_hours_osm_format, is_free, price_details, payment_methods, has_label_aidants_connect, has_label_mfs, label_other, additional_information, place, created_at, updated_at)
+Service(id, name, description, siret, target_audience, support_access, support_mode, schedule_hours_raw, schedule_hours_osm_format, is_free, price_details, payment_methods, has_label_aidants_connect, label_other, additional_information, place, created_at, updated_at)
 ```
 
 |Name|Fullname|Type|Unique|Null/Blank|Comment|
@@ -114,7 +115,6 @@ Service(id, name, description, siret, target_audience, support_access, support_m
 |price_details |Le details des prix |text | |Blank | |
 |payment_methods |Les moyens de paiements spécifiques à ce service |text | |Blank | |
 |has_label_aidants_connect |Labellisé Aidants Connect |boolean | | | |
-|has_label_mfs |Labellisé France Service |boolean | | | |
 |label_other |Autres labels |varchar(300) | |Blank | |
 |additional_information |Informations additionnelles stockées au format JSON |jsonb | |Both | |
 |place |place |integer | | |FK:aidants_connect_carto.apps.core.models.Place |
