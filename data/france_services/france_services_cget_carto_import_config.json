@@ -5,8 +5,14 @@
     "dataset_url": "https://cget-carto.github.io/France-services/",
     "dataset_file_path": "data/france_services/france_services_cget-carto.csv",
     "dataset_last_updated": "2020-03-31",
-    "import_comment": "Convertir geojson en csv.",
+    "import_comment": "Convertir geojson en csv. Horaires séparées par jour",
     "import_config": {
+        "place_fields_set": [
+            {
+                "place_field": "has_label_fs",
+                "value": true
+            }
+        ],
         "place_fields_mapping_auto": [
             {
                 "place_field": "name",

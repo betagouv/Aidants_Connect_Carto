@@ -12,6 +12,7 @@ from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 
 """
 import_config: JSONField
+- dataset_file_delimiter
 - place_fields_set
 - place_fields_mapping_auto
 - place_fields_mapping_boolean
@@ -51,7 +52,7 @@ def create_place(row, data_source):
             """
             if type(elem["file_field"]) == list:
                 address_temp = ""
-                if type(elem["file_field"][0] == list):
+                if type(elem["file_field"][0]) == list:
                     address_temp = " ".join(
                         [
                             row[item].strip()
@@ -152,10 +153,8 @@ class Command(BaseCommand):
 
         # encoding="utf-8-sig" for files that start with '\ufeff'
         with open(data_source.dataset_local_path, mode="rt", encoding="utf-8-sig") as f:
-            FILE_DELIMITER = (
-                data_source.import_config["dataset_file_delimiter"]
-                if ("dataset_file_delimiter" in data_source.import_config)
-                else ";"
+            FILE_DELIMITER = data_source.import_config.get(
+                "dataset_file_delimiter", ";"
             )
             reader = csv.DictReader(f, delimiter=FILE_DELIMITER)
             # print(reader.fieldnames)
