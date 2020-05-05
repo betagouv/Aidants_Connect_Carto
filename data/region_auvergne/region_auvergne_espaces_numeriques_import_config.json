@@ -5,6 +5,7 @@
     "dataset_url": "http://opendata.auvergnerhonealpes.eu/data/espaces-numeriques-en-auvergne/7-espaces-numeriques-en-auvergne.htm",
     "dataset_file_path": "data/region_auvergne/espaces_numeriques_en_auvergne.csv",
     "dataset_last_updated": "2016-10-27",
+    "import_comment": "Le plus: nom des contact_person (rajouter dans la base ?). Le moins: pas d'id, pas d'horaires, pas de service. Pre-processing: colonne 'Porteur': 'Non déclaré' --> ''",
     "import_config": {
         "place_fields_mapping_auto": [
             {

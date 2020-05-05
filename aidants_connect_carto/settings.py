@@ -184,6 +184,11 @@ MODELSDOC_DISPLAY_FIELDS = (
     ("Null/Blank", "null_blank"),
     ("Comment", "comment"),
 )
+MODELSDOC_MODEL_OPTIONS = (
+    "unique_together",
+    "index_together",
+    "ordering",
+)
 
 
 # API URLS

@@ -5,25 +5,25 @@
 ## data source(aidants_connect_carto.apps.core.models.DataSource)
 
 ```
-DataSource(id, name, description, type, dataset_url, contact_website_url, logo_url, created_at, updated_at)
+DataSource(id, name, description, type, contact_website_url, logo_url, dataset_name, dataset_url, dataset_local_path, dataset_last_updated, import_config, import_comment, created_at, updated_at)
 ```
 
 |Name|Fullname|Type|Unique|Null/Blank|Comment|
 |---|---|---|---|---|---|
 |id |ID |serial |True |Blank | |
-|name |Le nom de la source de donnée |varchar(300) | | | |
+|name |Le nom du fournisseur de donnée |varchar(300) | | | |
 |description |Une description |text | |Blank | |
 |type |Le type de source |varchar(32) | | | |
-|dataset_url |L'adresse où l'on peut trouver le jeu de donnée |varchar(300) | |Blank | |
-|contact_website_url |L'adresse du site internet |varchar(300) | |Blank | |
+|contact_website_url |L'adresse du site internet de la source de donnée |varchar(300) | |Blank | |
 |logo_url |L'adresse du logo de la source de donnée |varchar(300) | |Blank | |
+|dataset_name |Le nom du jeu de donnée |varchar(300) | | | |
+|dataset_url |L'adresse où l'on peut trouver le jeu de donnée |varchar(300) | |Blank | |
+|dataset_local_path |Le chemin d'accès au jeu de donnée |varchar(300) | | | |
+|dataset_last_updated |La date de dernière mise à jour du jeu de donnée |date | |Both | |
+|import_config |Information et configuration de l'import de la donnée |jsonb | |Both | |
+|import_comment |Informations complémentaires sur l'import de la donnée |text | |Blank | |
 |created_at |La date de création |timestamp with time zone | |Blank | |
 |updated_at |La date de dernière modification |timestamp with time zone | |Blank | |
-
-Options
-```
-default_permissions : ('add', 'change', 'delete', 'view')
-```
 
 
 ## place(aidants_connect_carto.apps.core.models.Place)
@@ -40,7 +40,7 @@ Place(id, name, supporting_structure_name, description, type, status, legal_enti
 |description |Une description du lieu |text | |Blank | |
 |type |La typologie du lieu |varchar(32) | | |centre social:Centre social, securite sociale:Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...), tiers lieu:Tiers-lieu & coworking, FabLab, association:Association, maison quartier:Maison de quartier, pimms:Point Information Médiation Multi Services (PIMMS), msap:Maison de Service au Public (MSAP), bibliotheque:Bibliothèque - Médiathèque, formation:Organisme de formations, pole emploi:Pôle Emploi, commune:Commune (Ville, CCAS, Centre Culturel...), intercommunalite:Intercommunalité (EPCI), administration:Administration - Collectivité territoriale, departement:Département (UTPAS, MDS, MDSI, UTAS...), prefecture:Préfecture, Sous-Préfecture, autre:Autre, Inconnu |
 |status |Le statut du lieu |varchar(32) | | |public:Public, prive:Privé, public-prive:Public / Privé, autre:Autre, Inconnu |
-|legal_entity_type |La nature juridique du lieu |varchar(32) | | |association:Association, collectivite:Collectivité locale ou territoriale, cae:Coopérative d'Activités et d'Entrepreneur·es (CAE), epci:Établissement public de coopération intercommunale (EPCI), epscp:Établissement public à caractère scientifique, culturel et professionnel (EPSCP), sas:Société par actions simplifiée (SAS), sarl:Société à responsabilité limitée (SARL), sasu:Société par actions simplifiée unipersonnelle (SASU), scic:société coopérative d’intérêt collectif (SCIC), scop:Société coopérative et participative (SCOP), spl:Société publique locale (SPL), autre:Autre, Inconnu |
+|legal_entity_type |La nature juridique du lieu |varchar(32) | | |association:Association, collectivite:Collectivité locale ou territoriale, cae:Coopérative d'Activités et d'Entrepreneur·es (CAE), epci:Établissement public de coopération intercommunale (EPCI), epic:Établissement public à caractère industriel et commercial (EPIC), epscp:Établissement public à caractère scientifique, culturel et professionnel (EPSCP), gip:Groupement d'intérêt public (GIP), sas:Société par actions simplifiée (SAS), sarl:Société à responsabilité limitée (SARL), sasu:Société par actions simplifiée unipersonnelle (SASU), scic:société coopérative d’intérêt collectif (SCIC), scop:Société coopérative et participative (SCOP), spl:Société publique locale (SPL), autre:Autre, Inconnu |
 |siret |Coordonnées juridiques (SIRET) |varchar(14) | |Blank | |
 |address_raw |L'adresse complète |varchar(300) | | | |
 |address_housenumber |Le numéro avec indice de répétition éventuel (bis, ter, A, B) |varchar(15) | |Blank | |
@@ -90,7 +90,6 @@ Place(id, name, supporting_structure_name, description, type, status, legal_enti
 Options
 ```
 ordering : ['id']
-default_permissions : ('add', 'change', 'delete', 'view')
 ```
 
 
@@ -124,249 +123,6 @@ Service(id, name, description, siret, target_audience, support_access, support_m
 Options
 ```
 ordering : ['id']
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## entrée d’historique(django.contrib.admin.models.LogEntry)
-
-```
-LogEntry(id, action_time, user, content_type, object_id, object_repr, action_flag, change_message)
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|action_time |heure de l’action |timestamp with time zone | | | |
-|user |utilisateur |integer | | |FK:django.contrib.auth.models.User |
-|content_type |type de contenu |integer | |Both |FK:django.contrib.contenttypes.models.ContentType |
-|object_id |id de l’objet |text | |Both | |
-|object_repr |représentation de l’objet |varchar(200) | | | |
-|action_flag |indicateur de l’action |smallint | | |1:Ajout, 2:Modifier, 3:Suppression |
-|change_message |message de modification |text | |Blank | |
-
-Options
-```
-ordering : ('-action_time',)
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## permission(django.contrib.auth.models.Permission)
-
-```
-
-    The permissions system provides a way to assign permissions to specific
-    users and groups of users.
-
-    The permission system is used by the Django admin site, but may also be
-    useful in your own code. The Django admin site uses permissions as follows:
-
-        - The "add" permission limits the user's ability to view the "add" form
-          and add an object.
-        - The "change" permission limits a user's ability to view the change
-          list, view the "change" form and change an object.
-        - The "delete" permission limits the ability to delete an object.
-        - The "view" permission limits the ability to view an object.
-
-    Permissions are set globally per type of object, not per specific object
-    instance. It is possible to say "Mary may change news stories," but it's
-    not currently possible to say "Mary may change news stories, but only the
-    ones she created herself" or "Mary may only change news stories that have a
-    certain status or publication date."
-
-    The permissions listed above are automatically created for each model.
-    
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|name |nom |varchar(255) | | | |
-|content_type |type de contenu |integer | | |FK:django.contrib.contenttypes.models.ContentType |
-|codename |nom de code |varchar(100) | | | |
-
-Options
-```
-unique_together : (('content_type', 'codename'),)
-ordering : ('content_type__app_label', 'content_type__model', 'codename')
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## Relation group-permission(django.contrib.auth.models.Group_permissions)
-
-```
-Group_permissions(id, group, permission)
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|group |group |integer | | |FK:django.contrib.auth.models.Group |
-|permission |permission |integer | | |FK:django.contrib.auth.models.Permission |
-
-Options
-```
-unique_together : (('group', 'permission'),)
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## groupe(django.contrib.auth.models.Group)
-
-```
-
-    Groups are a generic way of categorizing users to apply permissions, or
-    some other label, to those users. A user can belong to any number of
-    groups.
-
-    A user in a group automatically has all the permissions granted to that
-    group. For example, if the group 'Site editors' has the permission
-    can_edit_home_page, any user in that group will have that permission.
-
-    Beyond permissions, groups are a convenient way to categorize users to
-    apply some label, or extended functionality, to them. For example, you
-    could create a group 'Special users', and you could write code that would
-    do special things to those users -- such as giving them access to a
-    members-only portion of your site, or sending them members-only email
-    messages.
-    
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|name |nom |varchar(150) |True | | |
-|permissions |permissions | | |Blank |M2M:django.contrib.auth.models.Permission (through: django.contrib.auth.models.Group_permissions) |
-
-Options
-```
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## Relation user-group(django.contrib.auth.models.User_groups)
-
-```
-User_groups(id, user, group)
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|user |user |integer | | |FK:django.contrib.auth.models.User |
-|group |group |integer | | |FK:django.contrib.auth.models.Group |
-
-Options
-```
-unique_together : (('user', 'group'),)
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## Relation user-permission(django.contrib.auth.models.User_user_permissions)
-
-```
-User_user_permissions(id, user, permission)
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|user |user |integer | | |FK:django.contrib.auth.models.User |
-|permission |permission |integer | | |FK:django.contrib.auth.models.Permission |
-
-Options
-```
-unique_together : (('user', 'permission'),)
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## utilisateur(django.contrib.auth.models.User)
-
-```
-
-    Users within the Django authentication system are represented by this
-    model.
-
-    Username and password are required. Other fields are optional.
-    
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|password |mot de passe |varchar(128) | | | |
-|last_login |dernière connexion |timestamp with time zone | |Both | |
-|is_superuser |statut super-utilisateur |boolean | | | |
-|username |nom d’utilisateur |varchar(150) |True | | |
-|first_name |prénom |varchar(30) | |Blank | |
-|last_name |nom |varchar(150) | |Blank | |
-|email |adresse électronique |varchar(254) | |Blank | |
-|is_staff |statut équipe |boolean | | | |
-|is_active |actif |boolean | | | |
-|date_joined |date d’inscription |timestamp with time zone | | | |
-|groups |groupes | | |Blank |M2M:django.contrib.auth.models.Group (through: django.contrib.auth.models.User_groups) |
-|user_permissions |permissions de l’utilisateur | | |Blank |M2M:django.contrib.auth.models.Permission (through: django.contrib.auth.models.User_user_permissions) |
-
-Options
-```
-swappable : AUTH_USER_MODEL
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## type de contenu(django.contrib.contenttypes.models.ContentType)
-
-```
-ContentType(id, app_label, model)
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
-|app_label |app label |varchar(100) | | | |
-|model |nom de la classe python du modèle |varchar(100) | | | |
-
-Options
-```
-unique_together : (('app_label', 'model'),)
-default_permissions : ('add', 'change', 'delete', 'view')
-```
-
-
-## session(django.contrib.sessions.models.Session)
-
-```
-
-    Django provides full support for anonymous sessions. The session
-    framework lets you store and retrieve arbitrary data on a
-    per-site-visitor basis. It stores data on the server side and
-    abstracts the sending and receiving of cookies. Cookies contain a
-    session ID -- not the data itself.
-
-    The Django sessions framework is entirely cookie-based. It does
-    not fall back to putting session IDs in URLs. This is an intentional
-    design decision. Not only does that behavior make URLs ugly, it makes
-    your site vulnerable to session-ID theft via the "Referer" header.
-
-    For complete documentation on using Sessions in your code, consult
-    the sessions documentation that is shipped with Django (also available
-    on the Django Web site).
-    
-```
-
-|Name|Fullname|Type|Unique|Null/Blank|Comment|
-|---|---|---|---|---|---|
-|session_key |clé de session |varchar(40) |True | | |
-|session_data |données de session |text | | | |
-|expire_date |date d'expiration |timestamp with time zone | | | |
-
-Options
-```
-default_permissions : ('add', 'change', 'delete', 'view')
 ```
 
 
