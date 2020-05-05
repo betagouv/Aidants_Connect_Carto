@@ -2,6 +2,7 @@ from django.contrib import messages
 
 from django.shortcuts import render, redirect, get_object_or_404
 
+from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core.models import Place, DataSource
 from aidants_connect_carto.apps.core.search import PlaceSearchEngine, PlaceSearchForm
 from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
@@ -127,3 +128,31 @@ def data_sources_list(request):
     data_sources = DataSource.objects.all()  # .order_by("name")
 
     return render(request, "data_sources_list.html", {"data_sources": data_sources},)
+
+
+def stats(request):
+    data_source_count = DataSource.objects.count()
+    place_count = Place.objects.count()
+    place_with_service_count = Place.objects.exclude(services__isnull=True).count()
+    service_name_aggregation = []
+    for service_name in constants.SERVICE_NAME_LIST:
+        service_name_aggregation.append(
+            {
+                "service_name": service_name,
+                "place_count": Place.objects.filter(
+                    services__name=service_name
+                ).count(),
+            }
+        )
+    service_name_aggregation.sort(key=lambda x: x["place_count"], reverse=True)
+
+    return render(
+        request,
+        "stats.html",
+        {
+            "data_source_count": data_source_count,
+            "place_count": place_count,
+            "place_with_service_count": place_with_service_count,
+            "service_name_aggregation": service_name_aggregation,
+        },
+    )

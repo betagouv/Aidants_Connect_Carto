@@ -51,6 +51,9 @@ a.no-decoration {
 .font-size-small {
   font-size: small;
 }
+.font-weight-normal {
+  font-weight: 400;
+}
 
 .col-33 {
   width: 33%;
@@ -85,6 +88,10 @@ a.no-decoration {
 }
 .float-right {
   float: right;
+}
+
+.small-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 
