@@ -9,8 +9,9 @@ class DataSourceAdmin(admin.ModelAdmin):
         "id",
         "name",
         "type",
-        "dataset_last_updated",
+        "dataset_name",
         "place_count",
+        "dataset_last_updated",
         "created_at",
     )
     ordering = ("name",)
@@ -25,11 +26,20 @@ class PlaceAdmin(admin.ModelAdmin):
         "id",
         "name",
         "address_raw",
+        "data_source",
         "service_count",
         "created_at",
     )
     ordering = ("id",)
-    list_filter = ("address_region_name",)
+    list_filter = (
+        "data_source__name",
+        "address_region_name",
+        "address_departement_name",
+    )
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
 
 
 class ServiceAdmin(admin.ModelAdmin):
