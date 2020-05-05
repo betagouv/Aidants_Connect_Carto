@@ -1,0 +1,37 @@
+{
+    "data_source_name": "Région Corse",
+    "data_source_type": "région",
+    "dataset_name": "Espaces de coworking de Corse",
+    "dataset_url": "https://data.corse.fr/explore/dataset/espaces-de-coworking-de-corse/information/",
+    "dataset_file_path": "data/region_corse/espaces-de-coworking-de-corse.csv",
+    "dataset_last_updated": "2018-09-28",
+    "import_comment": "Export en csv rajoute des '.0'. Absence de colonne 'type'.",
+    "import_config": {
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "etablissem"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "contact"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "address_raw",
+                "file_field": ["adresse", "cp", "commune"]
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            {
+                "place_field": "latitude",
+                "file_field": "Y"
+            },
+            {
+                "place_field": "longitude",
+                "file_field": "X"
+            }
+        ]
+    }
+}

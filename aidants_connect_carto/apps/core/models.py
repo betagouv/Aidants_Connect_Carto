@@ -26,7 +26,9 @@ class DataSource(models.Model):
 
     # --- contact
     contact_website_url = models.URLField(
-        verbose_name="L'adresse du site internet", max_length=300, blank=True,
+        verbose_name="L'adresse du site internet de la source de donnée",
+        max_length=300,
+        blank=True,
     )
 
     # --- other
@@ -348,6 +350,11 @@ class Place(models.Model):
         help_text="Espèces, Carte Bancaire, ...",
     )  # PAYMENT_CHOICES
 
+    # --- labels
+    has_label_fs = models.BooleanField(
+        verbose_name="Labellisé France Service", default=False
+    )
+
     # --- other
     logo_url = models.URLField(
         verbose_name="L'adresse du logo du lieu",
@@ -544,9 +551,6 @@ class Service(models.Model):
     # label_aptic = # ManyToManyField ?
     has_label_aidants_connect = models.BooleanField(
         verbose_name="Labellisé Aidants Connect", default=False
-    )
-    has_label_mfs = models.BooleanField(
-        verbose_name="Labellisé France Service", default=False
     )
     label_other = models.CharField(
         verbose_name="Autres labels", max_length=300, blank=True
