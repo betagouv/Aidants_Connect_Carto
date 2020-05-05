@@ -76,7 +76,7 @@ class DataSource(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name}: {self.dataset_name}"
 
     @property
     def place_count(self) -> int:
@@ -396,6 +396,10 @@ class Place(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    # @property
+    # def data_source_name(self) -> str:
+    #     return self.data_source
 
     @property
     def service_count(self) -> int:
