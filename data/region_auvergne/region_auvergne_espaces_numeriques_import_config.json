@@ -17,10 +17,6 @@
                 "comment": "removed 'Non déclaré' values beforehand"
             },
             {
-                "place_field": "contact_phone_raw",
-                "file_field": "Téléphone"
-            },
-            {
                 "place_field": "contact_email",
                 "file_field": "E mail"
             },
@@ -37,6 +33,10 @@
             {
                 "place_field": "address_raw",
                 "file_field": ["Adresse", "Code postal", "Commune"]
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "Téléphone"
             }
         ],
         "place_fields_mapping_additional_information": [

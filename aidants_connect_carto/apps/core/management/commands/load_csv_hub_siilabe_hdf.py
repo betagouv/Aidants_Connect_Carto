@@ -66,7 +66,7 @@ def create_place(row, source_id):
     if status_value:
         place.status = status_value
 
-    place.address_raw = utilities.clean_address_raw(
+    place.address_raw = utilities.clean_address_raw_list(
         row["Adresse SP"], row["CP"], row["Commune"]
     )
     address_api_results_processed = utilities.process_address(place.address_raw)

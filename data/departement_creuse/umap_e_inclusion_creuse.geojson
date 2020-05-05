@@ -1,0 +1,293 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "MediumBlue",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#2Cube",
+        "description": "10 avenue des lissiers - 23200 Aubusson\ntel : 06 07 06 47 27 - mail : rigalheloise@2cube.org\n\nSite : [[http://2cube.org/]]\n\n**Services**\n- Espace de travail partagé - coworking\n- Bureau\n- Pépinières d'entreprise\n\n**Médiation numérique**\n- Le web\n- Les réseaux sociaux\n- autres domaines professionnels"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.170022,
+          45.954426
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "DarkOrange",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#AGORA",
+        "description": "2 avenue du Docteur Butaud - 23400 Bourganeuf\ntel : 05 55 64 24 33 - mail : p.llamas@cavl-agora.asso.fr\n\nsite : [[http://cavl-agora.asso.fr/]]\n\n**Services**\n- Centre de loisirs\n- Point Information Jeunesse\n- Centre d'Animation de la Vie Locale\n- Espace Public Numérique\n\n**Médiation Numérique**\n- Les bases informatiques\n- Les emails\n- Le web\n- Les réseaux sociaux\n- Sécurité informatique\n- Accès aux droits\n\n**Public**\n- Jeune\n- Demandeur d'emploi\n- Retraité\n"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.756958,
+          45.955142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "DodgerBlue",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#Café de l'Espace",
+        "description": "Le Bourg - 23260 Flayat\ntel : 05 55 67 51 38 - mail : technique.eaaf@gmail.com\n\n[[https://www.facebook.com/Cafe.de.lEspace/?ref=br_rs|Facebook]]\n\n**Services**\n- Café\n- Restaurant\n- Espace de travail partagé - Coworking\n\n**Médiation Numérique**\n- Ateliers de base\n\n\n\n"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.382783,
+          45.776455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "OrangeRed",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#CAVL AGIR",
+        "description": "51 avenue de la Gare - 23700 Auzances\ntel : 05 55 82 80 47 - mail : direction-agir@hotmail.fr\n\n[[https://cavlagir.com]]\n\n**Services**\n- Espace emploi\n- Ateliers linguistiques pour adultes\n- Accompagnement à la mobilité\n- Accueil de loisirs\n- Mission locale\n- Point Information Jeunesse\n\n**Médiation numérique**\n- * En cours de structuration*\n\n**Public**\n- Jeune\n- Demandeur d'emploi\n- Retraité\n- Associatif"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.496579,
+          46.028346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "Violet",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#Creuse Toujours",
+        "description": "2 rue de la Poste - 23290 Fursac\ntel : 09 80 56 63 78 - mail : contact@creusetoujours.fr\n\n*En cours de structuration*\n"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.512777,
+          46.145626
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "Lime",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#CTRL-A",
+        "description": "Le Bourg - 23340 Faux-la-Montagne\nte : 06 43 46 66 90 - mail : asso@ctrl-a.fr\n\n[[https://www.ctrl-a.fr/]]\n\n**Services**\n- Ateliers numériques divers\n- Reconditionnement ordinateurs\n- Valorisation des systèmes et outils libres\n\n**Médiation numérique**\n- Les bases de l'informatique (utilisation clavier/souris)\n- La bureautique\n- Les emails\n- Le web\n- La sensibilisation à l'identité numérique et aux données personnelles\n- Comment protéger son ordinateur (les antivirus et le nettoyage logiciel)\n- Les logiciels libres\n- Le RGPD\n- Le chiffrement des données\n\n**Public**\n- Jeune\n- Actif\n- Demandeur d'emploi\n- Retraité\n- Professionnel\n- Associatif\n"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.936104,
+          45.74967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "Black",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#l'Alzire",
+        "description": "Auberge culturelle\n\n30 Grande Rue - 23140 JARNAGES\ntel : 05 55 84 47 27 - mail : contact@alzire.fr\n\nsite : [[http://alzire.fr/]]\n\n**Services**\n- Hôtel\n- Café\n- Restaurant\n- Salle de réunion\n- Espace de travail partagé\n\n**Médiation numérique**\n*En cours de déploiement*"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.084247,
+          46.181801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "White",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#La Bascule",
+        "description": "La Renouée, 10 rue de la fontaine - 23340 Gentioux-Pigerolles\ntel : 05 55 66 15 33 - mail : labascule@millevaches.net\n\n[[https://renouee.millevaches.net/]]\n\n**Services**\n- Logement\n- Bureau partagé\n- Salle de réunion\n- Salle d'activités\n- Jardin\n- Le club (salle de jeux et activités)\n\n**Médiation numérique**\n- Les bases de l'informatique (utilisation clavier/souris)\n- La bureautique\n- La sensibilisation à l'identité numérique et aux données personnelles\n- Comment protéger son ordinateur (les antivirus et le nettoyage logiciel)\n\n**Public**\n- Demandeur d'emploi\n- Retraité\n- Associatif\n- Professionnel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.993155,
+          45.78363
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "Orange",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#La Boutique",
+        "description": "9 rue onze novembre - 23600 Boussac\ntel : 05 19 70 03 00 - mail : laboutique@creuseconfluence.com\n\nsite : [[https://la-boutique-pepiniere-coworking.business.site/?m=true&fbclid=IwAR1Xt0uzhAbEWF9lOO0pCv0KlzdMRCLuTodhbGyyJEiXvRjocqpL5U1BYYc]]\n\n**Services**\n- Espace de travail partagé - coworking\n- Bureaux\n- Accès Public Numérique\n\n**Médiation Numérique**\n- Les bases de l'informatique (utilisation clavier/souris)\n- La bureautique\n- Les emails\n- Le web\n- Les réseaux sociaux\n- La sensibilisation à l'identité numérique et aux données personnelles\n- La sécurité numérique\n\n**Public**\n- Jeune\n- Actif\n- Demandeur d'emploi\n- Retraité\n- Professionnel\n- Associatif\n"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.216164,
+          46.348224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "LimeGreen",
+          "iconClass": "Drop",
+          "popupShape": "Panel",
+          "showLabel": null
+        },
+        "name": "#La Palette",
+        "description": "9 place de la Poste - 23800 Dun le Palestel\ntel : 05 87 60 00 00 - mail : contact@lapalette23.fr\n\nsite :  [[https://www.lapalette.tl/]]\n\n**Services **\n- Point Information Jeunesse\n- Maison des Services au Public\n- Point d'appui à la vie associative\n- Réseau de professionnels indépendants\n- Accompagnement de projets citoyens\n\n**Médiation numérique**\n- Les bases de l'informatique\n- La bureautique\n- Les emails\n- Le web\n- La sensibilisation à l'identité numérique et aux données personnelles\n- Sécurité numérique\n- Accès aux droits\n\n**Public**\n- Jeune\n- Retraité\n- Associatif\n \n## Permanence pass numérique-les mardis matins de 09H à 12H"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.663656,
+          46.30532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "Tan",
+          "iconClass": "Drop",
+          "zoomTo": 16,
+          "popupShape": "Panel",
+          "showLabel": null
+        },
+        "name": "#La Quincaillerie \"Numérique\"",
+        "description": "*Tiers-lieu hybride de l'Agglomération du Grand Guéret.*\n\nAdresse : 6 rue Maurice Rollinat - 23000 Guéret\nTéléphone : 05 55 80 93 25 / mail : contact@laquincaillerie.tl\n\n[[https://www.laquincaillerie.tl]]\n\n**Services** \n- Accès public numérique\n- Espace de travail partagé - Coworking\n- Fablab\n- Espace convivialité\n\n**Médiation Numérique**\n- Les bases de l'informatique (utilisation clavier/souris)\n- La bureautique\n- Les emails\n- Le web\n- Les réseaux sociaux\n- La sensibilisation à l'identité numérique et aux données personnelles\n- Comment protéger son ordinateur (les antivirus et le nettoyage logiciel)\n- Accès aux droits\n- Problèmes logiciels et matériels (Bidouille Camp')\n\n**Public**\n- Jeune\n- Actif\n- Demandeur d'emploi\n- Retraité\n- Professionnel\n- Associatif "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.869199,
+          46.172022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "FireBrick",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#Le Chai",
+        "description": "22 rue Grande - 23 220 Bonnat\ntel : 05 44 30 07 66 - mail : lechai23@orange.fr\n\n[[https://www.facebook.com/Le-Chai-1972071889739933/|Facebook]]\n\n**Services**\n- Espace de réunion\n- Espace de travail partagé\n- Un Fablab\n- Espace public numérique\n- Espace d'exposition\n\n*Médiation numérique*\n- Les base de l'informatique\n- Les mails\n- Le web\n- Les réseaux sociaux\n- Systèmes et logiciels libres\n- Logiciel de PAO\n- Fablab (modélisation et impression 3D, Makey-Makey...)\n- Sécurité, nettoyage et réparation ordinateur\n\n**Public**\n- Jeune\n- Actif\n- Demandeur d'emploi\n- Retraité\n- Professionnel\n- Associatif"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.905962,
+          46.326161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "DarkGrey",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#Les Ateliers de la Mine",
+        "description": "2 allée de la Mine - 23150 Lavaveix les Mines\ntel : 05 55 62 17 02 - mail : contact@lesateliersdelamine.tl\n\nsite : [[http://lesateliersdelamine.tl/]]\n\n**Services**\n- 6 bureaux de 24 à 55 m²\n- 2 ateliers de 200m²\n- Espace de travail partagé - Coworking\n- Espace Public Numérique\n\n**Médiation numérique**\n- Permanence numérique\n- Ateliers numériques"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.090127,
+          46.070142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "Red",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#MJC LaSout",
+        "description": "27 rue de Lavaud - 23300 La Souterraine\ntel : 05 55 63 19 06 - mail : direction@mjclasout.fr\n\n[[http://www.mjclasout.fr/]]\n\n**Services**\n- Centre d'Animation de la Vie Locale\n- Espace Jeunes\n- Point Information Jeunesse\n\n**Médiation numérique**\n*En cours de structuration*\n\n**Public**\n- Jeunes\n- Actif\n- Demandeur d'emploi\n- Retraité\n- Professionnel\n- Associatif"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.489726,
+          46.237738
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "_umap_options": {
+          "color": "Black",
+          "iconClass": "Drop",
+          "popupShape": "Panel"
+        },
+        "name": "#Ressourcerie la Dynamo",
+        "description": "1 ZA des Granges - 23170 Chambon sur Voueize\ntel : 05 55 65 00 47 - mail : ressourcerie-ladynamo@gmail.com\n\n[[https://www.ressourcerieladynamo.com/]]\n\n**Services**\n- Ressourcerie\n- Boutique\n- Espace de Vie Sociale\n\n**Médiation numérique**\n- Découverte des bases\n- Logiciels libres\n- Les emails\n- Le web\n\n**Public**\n- Actif\n- Demandeur d'emploi\n- Retraité"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.420211,
+          46.188328
+        ]
+      }
+    }
+  ]
+}

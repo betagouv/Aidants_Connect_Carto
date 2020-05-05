@@ -183,6 +183,15 @@
         {{ form.payment_methods }}
       </div>
 
+      <h3>Labels</h3>
+
+      <div class="form__group">
+        <div class="input__group">
+          {{ form.has_label_fs }}
+          <label class="label-inline" for="{{ form.has_label_fs.id_for_label }}">{{ form.has_label_fs.label | safe }}</label>
+        </div>
+      </div>
+
       <div class="form__group">
         <input type="submit" value="Sauvegarder">
       </div>
