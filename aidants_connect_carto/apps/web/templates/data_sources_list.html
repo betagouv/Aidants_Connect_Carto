@@ -22,6 +22,9 @@
         <div class="card">
           <div class="card__content">
             <h4>{{ data_source.name }}</h4>
+            <div class="card__meta">
+              {{ data_source.dataset_name }}
+            </div>
             <!-- <div class="card__meta"></div> -->
             <p class="text-quote">{{ data_source.type }}</p>
             <p>📍&nbsp;{{ data_source.places.count }} Lieux</p>
