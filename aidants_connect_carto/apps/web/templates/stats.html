@@ -1,0 +1,62 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    {% if messages %}
+      <div class="notification success" role="alert">
+        {% for message in messages %}
+          {{ message | safe }}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <h1 class="section__title">Statistiques</h1>
+    <p class="section__subtitle">Donnée, usage et mesures d'impacts</p>
+  </div>
+</section>
+<section class="section section-grey">
+  <div class="container">
+    <div class="tiles">
+      <h2>Les données disponibles</h2>
+      <div class="grid">
+        <div class="tile text-center">
+          <h3 class="font-weight-normal">Jeux de données</h3>
+          <h3><strong>{{ data_source_count }}</strong></h3>
+        </div>
+        <div class="tile text-center">
+          <h3 class="font-weight-normal">Lieux</h3>
+          <h3><strong>{{ place_count }}</strong></h3>
+        </div>
+        <div class="tile text-center">
+          <h3 class="font-weight-normal">Lieux avec service(s)</h3>
+          <h3><strong>{{ place_with_service_count }}</strong></h3>
+        </div>
+      </div>
+
+      <br />
+      <h2>Lieux par service</h2>
+      <div class="grid small-grid">
+        {% for stat_item in service_name_aggregation %}
+          <div class="tile text-center">
+            <h6 class="font-weight-normal">{{ stat_item.service_name }}</h6>
+            <h3><strong>{{ stat_item.place_count }}</strong></h3>
+          </div>
+        {% endfor %}
+      </div>
+      <p>les services sont amenés à être étoffés</p>
+
+      <br />
+      <h2>Couverture géographique</h2>
+      
+      <p>à venir</p>
+
+      <br />
+      <h2>Champs calculés</h2>
+
+      <p>à venir</p>
+    </div>
+  </div>
+</section>
+{% endblock content %}
