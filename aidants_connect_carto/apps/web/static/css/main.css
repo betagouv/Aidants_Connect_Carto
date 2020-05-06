@@ -25,6 +25,24 @@ label.label-inline {
 }
 
 
+/* Footer */
+
+.footer__logo .logo__beta {
+  width: 170px;
+}
+
+.footer__social {
+  margin: 0;
+}
+
+.footer__links h2 {
+  word-break: break-word;
+}
+.footer__links a:visited {
+  color: #fff;
+}
+
+
 /* Custom css */
 
 h5, h6 {
@@ -42,6 +60,15 @@ a.tile:hover {
 a.no-decoration {
   color: inherit;
   text-decoration: inherit;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+}
+.table-bordered thead td,
+.table-bordered thead th {
+  border-bottom-width: 2px;
 }
 
 .inline-children > * {
