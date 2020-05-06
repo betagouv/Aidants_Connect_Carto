@@ -53,9 +53,56 @@
       <p>à venir</p>
 
       <br />
-      <h2>Champs calculés</h2>
+      <h2>Remplissage des champs</h2>
 
-      <p>à venir</p>
+      <h3 class="margin-bottom-O">Lieux</h3>
+
+      {% for field in place_field_fill %}
+        <div style="overflow-x:scroll">
+          <p>Champs <strong>{{ field.name }}</strong> <small>(nombre de lieux sur {{ place_count }})</small></p>
+          <table class="table">
+            <thead>
+              <tr>
+                {% for elem in field.fill_stats %}
+                <th class="text-lowercase">{{ elem.key }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for elem in field.fill_stats %}
+                <td>{{ elem.value }}</td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+
+      <h3 class="margin-bottom-O">Services</h3>
+
+      {% for field in service_field_fill %}
+        <div style="overflow-x:scroll">
+          <p>Champs <strong>{{ field.name }}</strong> <small>(nombre de services sur {{ service_count }})</small></p>
+          <table class="table">
+            <thead>
+              <tr>
+                {% for elem in field.fill_stats %}
+                <th class="text-lowercase">{{ elem.key }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for elem in field.fill_stats %}
+                <td>{{ elem.value }}</td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+
     </div>
   </div>
 </section>
