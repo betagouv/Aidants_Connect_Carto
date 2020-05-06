@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 
 from aidants_connect_carto import constants
-from aidants_connect_carto.apps.core.models import Place, DataSource
+from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 from aidants_connect_carto.apps.core.search import PlaceSearchEngine, PlaceSearchForm
 from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
 
@@ -134,6 +134,8 @@ def stats(request):
     data_source_count = DataSource.objects.count()
     place_count = Place.objects.count()
     place_with_service_count = Place.objects.exclude(services__isnull=True).count()
+    service_count = Service.objects.count()
+
     service_name_aggregation = []
     for service_name in constants.SERVICE_NAME_LIST:
         service_name_aggregation.append(
@@ -146,6 +148,25 @@ def stats(request):
         )
     service_name_aggregation.sort(key=lambda x: x["place_count"], reverse=True)
 
+    import pandas as pd
+    import numpy as np
+
+    place_df = pd.DataFrame.from_records(Place.objects.all().values())
+    place_df = (
+        place_df.replace("", np.nan)
+        .replace([], np.nan)
+        .replace(constants.CHOICE_OTHER, np.nan)
+    )  # noqa
+    place_fields_fill_count_df = place_df.count()
+
+    service_df = pd.DataFrame.from_records(Service.objects.all().values())
+    service_df = (
+        service_df.replace("", np.nan)
+        .replace(constants.CHOICE_OTHER, np.nan)
+        .replace([], np.nan)
+    )
+    service_fields_fill_count_df = service_df.count()
+
     return render(
         request,
         "stats.html",
@@ -153,6 +174,101 @@ def stats(request):
             "data_source_count": data_source_count,
             "place_count": place_count,
             "place_with_service_count": place_with_service_count,
+            "service_count": service_count,
             "service_name_aggregation": service_name_aggregation,
+            "place_field_fill": [
+                {
+                    "name": "Adresse",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in [
+                            "address_raw",
+                            "address_housenumber",
+                            "address_street",
+                            "address_postcode",
+                            "address_city",
+                            "address_departement_name",
+                            "address_region_name",
+                            "latitude",
+                            "longitude",
+                        ]
+                    ],
+                },
+                {
+                    "name": "Contact",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in [
+                            "contact_phone_raw",
+                            "contact_phone",
+                            "contact_email",
+                            "contact_website_url",
+                            "contact_facebook_url",
+                            "contact_twitter_url",
+                            "contact_youtube_url",
+                        ]
+                    ],
+                },
+                {
+                    "name": "Horaires",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in ["opening_hours_raw", "opening_hours_osm_format"]
+                    ],
+                },
+                {
+                    "name": "Public cible",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in ["target_audience_raw", "target_audience"]
+                    ],
+                },
+                {
+                    "name": "autres",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in [
+                            "supporting_structure_name",
+                            "type",
+                            "status",
+                            "legal_entity_type",
+                            "siret",
+                            "is_itinerant",
+                            "is_online",
+                            "languages",
+                            "payment_methods",
+                            "osm_node_id",
+                        ]
+                    ],
+                },
+            ],
+            "service_field_fill": [
+                {
+                    "name": "Horaires",
+                    "fill_stats": [
+                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        for key in ["schedule_hours_raw", "schedule_hours_osm_format"]
+                    ],
+                },
+                {
+                    "name": "Accompagnement",
+                    "fill_stats": [
+                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        for key in ["target_audience", "support_access", "support_mode"]
+                    ],
+                },
+                {
+                    "name": "autres",
+                    "fill_stats": [
+                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        for key in [
+                            "siret",
+                            "price_details",
+                            "payment_methods",
+                            "label_other",
+                        ]
+                    ],
+                },
+            ],
         },
     )
