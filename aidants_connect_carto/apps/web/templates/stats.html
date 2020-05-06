@@ -59,8 +59,8 @@
 
       {% for field in place_field_fill %}
         <div style="overflow-x:scroll">
-          <p>Champs <strong>{{ field.name }}</strong> <small>(nombre de lieux sur {{ place_count }})</small></p>
-          <table class="table">
+          <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de lieux sur {{ place_count }})</small></p>
+          <table class="table table-bordered">
             <thead>
               <tr>
                 {% for elem in field.fill_stats %}
@@ -83,8 +83,8 @@
 
       {% for field in service_field_fill %}
         <div style="overflow-x:scroll">
-          <p>Champs <strong>{{ field.name }}</strong> <small>(nombre de services sur {{ service_count }})</small></p>
-          <table class="table">
+          <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de services sur {{ service_count }})</small></p>
+          <table class="table table-bordered">
             <thead>
               <tr>
                 {% for elem in field.fill_stats %}
