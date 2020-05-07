@@ -12,77 +12,58 @@
         {% endfor %}
       </div>
     {% endif %}
-    <h1 class="section__title">Tous les lieux</h1>
+    <!-- <h1 class="section__title">Tous les lieux</h1> -->
     <form class="full-width" method="GET">
-      <h2>Recherche rapide</h2>
+      <h2>Recherche</h2>
       <div class="form__group">
-        <input type="text" name="name" maxlength="300" id="id_name" style="width:50%" placeholder="Chercher un lieu..." autofocus>
-        <!-- {{ search_form.name }} -->
+        <input type="text" name="name" maxlength="300" id="id_name" style="width:50%" placeholder="Chercher un nom de lieu..." autofocus>
       </div>
-      <!-- <h3>ou</h3> -->
-      <div class="form__group">
-        <span>
-          <a href="{% url 'places-list' %}?service_name=Accès à un équipement informatique">Accès à un équipement informatique</a>
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        <span>
-          <a href="{% url 'places-list' %}?service_name=Accompagnement aux démarches administratives en ligne">Accompagnement aux démarches administratives en ligne</a>
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        <span>
-          <a href="{% url 'places-list' %}?service_name=Acquisition de compétences numériques">Acquisition de compétences numériques</a>
-        </span>
-      </div>
-      <div class="form__group">
-        <!-- <span>
-          <a>Services labellisés #APTIC</a>
-        </span>
-        &nbsp;&nbsp;&nbsp; -->
-        <span>
-          <a href="{% url 'places-list' %}?service_label_aidants_connect=on">Services labellisés Aidants Connect</a>
-        </span>
-      </div>
-      <h3 class="margin-bottom-O">
-        Filtres avancés
-        <!-- <small><a id="place_list_filters_toggle" class="caret-down"></a></small> -->
-        <small><a id="place_list_filters_toggle" class="font-size-small">Afficher</a></small>
-      </h3>
-      <section id="place_list_filters_form" class="full-width border-left-dashed" style="display:none">
+      <p>
+        <!-- Filtres -->
+        <!-- <small><a id="form_filters_toggle" class="caret-down"></a></small> -->
+        <a id="form_filters_toggle">Ajouter des filtres ▸</a>
+      </p>
+      <section id="form_filters_section" class="full-width border-left-dashed margin-bottom-20" style="display:none">
+        <h5>Filtres</h5>
         <div class="form__group">
-          <fieldset>
-            <legend>Type de lieu :</legend>
-            {{ search_form.type }}
-          </fieldset>
+          <div class="row">
+            <fieldset>
+              <legend>Type de lieu :</legend>
+              {{ search_form.type }}
+            </fieldset>
+            <fieldset>
+              <legend>Service proposé :</legend>
+              {{ search_form.service_name }}
+            </fieldset>
+            <fieldset>
+              <legend>Horaires d'ouverture :</legend>
+              {{ search_form.opening_hours }}
+            </fieldset>
+          </div>
         </div>
         <div class="form__group">
+          <legend>Labels :</legend>
           <fieldset>
-            <legend>Service proposé :</legend>
-            {{ search_form.service_name }}
-          </fieldset>
-        </div>
-        <div class="form__group">
-          <fieldset>
-            <legend>Labels :</legend>
             {{ search_form.has_label_fs }}<label class="label-inline" for="{{ search_form.has_label_fs.id_for_label }}">{{ search_form.has_label_fs.label | safe }}</label>
+          </fieldset>
+          <fieldset>
             {{ search_form.service_label_aidants_connect }}<label class="label-inline" for="{{ search_form.service_label_aidants_connect.id_for_label }}">{{ search_form.service_label_aidants_connect.label | safe }}</label>
           </fieldset>
         </div>
         <div class="form__group">
-          <fieldset>
-            <legend>Horaires d'ouverture :</legend>
-            {{ search_form.opening_hours }}
-            <!-- <input type="radio" name="radio" id="opening_hours_date" value="opening_hours_date" checked><label for="opening_hours_date" class="label-inline">Ouvert le 'datetime'</label> -->
-          </fieldset>
-        </div>
-        <div class="form__group">
-          <fieldset>
-            <legend>Localisation :</legend>
-            Département : {{ search_form.address_departement_name }}<!-- <label for="id_address_departement_name" class="label-inline">{{ search_form.address_departement_name.label | safe }}</label> -->
-            Région : {{ search_form.address_region_name }}<!-- <label for="id_address_region_name" class="label-inline">{{ search_form.address_region_name.label | safe }}</label> -->
-          </fieldset>
+          <div class="row">
+            <fieldset>
+              <legend>Département :</legend>
+              {{ search_form.address_departement_name }}
+            </fieldset>
+            <fieldset>
+              <legend>Région :</legend>
+              {{ search_form.address_region_name }}
+            </fieldset>
+            <fieldset></fieldset>
+          </div>
         </div>
       </section>
-      <br />
       <input type="submit" value="Lancer la recherche">
     </form>
   </div>
@@ -170,12 +151,12 @@
 
 {% block extrajs %}
 <script>
-  const element_place_list_filters_toggle = document.getElementById("place_list_filters_toggle");
-  const element_place_list_filters_form = document.getElementById("place_list_filters_form");
-  element_place_list_filters_toggle.addEventListener("click", function() {
-    // element_place_list_filters_toggle.className = (element_place_list_filters_toggle.className === "caret-down") ? "caret-up" : "caret-down";
-    element_place_list_filters_toggle.text = (element_place_list_filters_toggle.text === "Afficher") ? "Cacher" : "Afficher";
-    element_place_list_filters_form.style.display = (element_place_list_filters_form.style.display === "block") ? "none" : "block";
+  const element_form_filters_toggle = document.getElementById("form_filters_toggle");
+  const element_form_filters_section = document.getElementById("form_filters_section");
+  element_form_filters_toggle.addEventListener("click", function() {
+    // element_form_filters_toggle.className = (element_form_filters_toggle.className === "caret-down") ? "caret-up" : "caret-down";
+    element_form_filters_toggle.text = (element_form_filters_toggle.text === "Ajouter des filtres ▸") ? "Cacher les filtres ▾" : "Ajouter des filtres ▸";
+    element_form_filters_section.style.display = (element_form_filters_section.style.display === "block") ? "none" : "block";
   }, false);
 </script>
 {% endblock extrajs %}

@@ -27,8 +27,7 @@
     </div>
 
     <p class="section__subtitle">
-      Ce lieu propose {{ place.service_count }} service{{ place.service_count | pluralize }}.
-      <!-- <small><a>Voir tous les services.</a></small> -->
+      {{ place.description }}
     </p>
 
     <div class="row">
@@ -107,7 +106,7 @@
       </ul>
     {% else %}
       <p>
-        🕒 Les <strong>horaires d'ouvertures</strong> sont inconnus.
+        🕒 Les <strong>horaires d'ouvertures</strong> sont inconnues.
         <small><a>Rajouter les horaires.</a></small>
       </p>
     {% endif %}
@@ -116,78 +115,52 @@
 </section>
 <section class="section section-grey">
   <div class="container">
-    <h2 class="section__title">Services proposés</h2>
-    <div class="grid">
-      {% for service in place_services %}
-        <!-- <div class="tile">
-          <p class="text-align-center">{{ service.name }}</p>
-          <div class="font-size-small">
-            {% if service.schedule_hours_raw %}
-            <p title="Horaires">
-              🕒 {{ service.schedule_hours_raw }}
-            </p>
-            {% endif %}
-            <p title="Tags">
-              {% for target in service.target_audience %}
-              <span class="label label--inactive">{{ target }}</span>
-              {% endfor %}
-              {% if service.support_access %}
-              <span class="label label">{{ service.support_access }}</span>
+    {% if place_services %}
+      <h2 class="section__title">Services proposés</h2>
+      <div class="grid">
+        {% for service in place_services %}
+          <div class="card">
+            <div class="card__content">
+              <h6>{{ service.name }}</h6>
+              {% if service.schedule_hours_raw %}
+                <div class="font-size-small" title="Horaires">
+                  🕒 {{ service.schedule_hours_raw }}
+                </div>
               {% endif %}
-              {% if service.support_mode %}
-              <span class="label label">{{ service.support_mode }}</span>
-              {% endif %}
-              {% if service.has_label_aidants_connect %}
-              <span class="label label--active">Aidants Connect</span>
-              {% endif %}
-            </p>
+            </div>
+            <div class="card__extra">
+              <span title="Tags">
+                {% if service.is_free %}
+                  <span class="label label-small label--active">Gratuit</span>
+                {% else %}
+                <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
+                {% endif %}
+                {% for target in service.target_audience %}
+                  <span class="label label-small label--inactive">{{ target }}</span>
+                {% endfor %}
+                {% if service.support_access %}
+                  <span class="label label-small label">{{ service.support_access }}</span>
+                {% endif %}
+                {% if service.support_mode %}
+                  <span class="label label-small label">{{ service.support_mode }}</span>
+                {% endif %}
+                {% if service.has_label_aidants_connect %}
+                  <span class="label label-small label--active">Aidants Connect</span>
+                {% endif %}
+              </span>
+            </div>
           </div>
-        </div> -->
-        <div class="card">
-          <div class="card__content">
-            <h6>{{ service.name }}</h6>
-            {% if service.schedule_hours_raw %}
-              <div class="font-size-small" title="Horaires">
-                🕒 {{ service.schedule_hours_raw }}
-              </div>
-            {% endif %}
-          </div>
-          <div class="card__extra">
-            <span title="Tags">
-              {% if service.is_free %}
-                <span class="label label-small label--active">Gratuit</span>
-              {% else %}
-              <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
-              {% endif %}
-              {% for target in service.target_audience %}
-                <span class="label label-small label--inactive">{{ target }}</span>
-              {% endfor %}
-              {% if service.support_access %}
-                <span class="label label-small label">{{ service.support_access }}</span>
-              {% endif %}
-              {% if service.support_mode %}
-                <span class="label label-small label">{{ service.support_mode }}</span>
-              {% endif %}
-              {% if service.has_label_aidants_connect %}
-                <span class="label label-small label--active">Aidants Connect</span>
-              {% endif %}
-            </span>
-          </div>
-        </div>
-      {% endfor %}
-      <!-- <a class="tile" href="{% url 'service-create' place_id=place.id %}">
-        <h3>➕</h3>
-        <p class="no-margin color-primary">Ajouter un service</p>
-      </a> -->
-    </div>
+        {% endfor %}
+        <!-- <a class="tile" href="{% url 'service-create' place_id=place.id %}">
+          <h3>➕</h3>
+          <p class="no-margin color-primary">Ajouter un service</p>
+        </a> -->
+      </div>
+    {% else %}
+      <h2 class="section__title">Aucun service référencé</h2>
+    {% endif %}
   </div>
 </section>
-
-<!-- <section class="section section-white">
-  <div class="container">
-    <h2 class="section__title">Agenda</h2>
-  </div>
-</section> -->
 
 <!-- <section class="section section-grey">
   <div class="container">
@@ -215,9 +188,12 @@
 </script>
 
 <script>
-  document.getElementById("opening_hours_week_toggle").addEventListener("click", function() {
-    console.log(document.getElementById("opening_hours_week").style.display);
-    document.getElementById("opening_hours_week").style.display = (document.getElementById("opening_hours_week").style.display === "block") ? "none" : "block";
-  }, false);
+  const opening_hours_week_toggle_element = document.getElementById("opening_hours_week_toggle");
+  if (opening_hours_week_toggle_element) {
+    opening_hours_week_toggle_element.addEventListener("click", function() {
+      console.log(document.getElementById("opening_hours_week").style.display);
+      document.getElementById("opening_hours_week").style.display = (document.getElementById("opening_hours_week").style.display === "block") ? "none" : "block";
+    }, false);
+  }
 </script>
 {% endblock extrajs %}
