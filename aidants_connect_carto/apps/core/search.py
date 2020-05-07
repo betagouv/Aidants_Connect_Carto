@@ -6,19 +6,15 @@ from django.core.paginator import Paginator
 from aidants_connect_carto import constants
 
 from aidants_connect_carto.apps.core.models import Place, Service
-from aidants_connect_carto.apps.core.forms import HorizontalRadioSelect
 
 
 class PlaceSearchForm(ModelForm):
-    opening_hours = forms.ChoiceField(
-        choices=[("ouvert", "Ouvert en ce moment")],
-        widget=HorizontalRadioSelect(),
-        # help_text=Service._meta.get_field("opening_hours_raw").help_text,
-    )
     service_name = forms.ChoiceField(
         choices=zip(constants.SERVICE_NAME_LIST, constants.SERVICE_NAME_LIST),
-        widget=HorizontalRadioSelect(),
-        # help_text=Service._meta.get_field("name").help_text,
+        widget=forms.Select(),
+    )
+    opening_hours = forms.ChoiceField(
+        choices=[("ouvert", "Ouvert en ce moment")], widget=forms.Select(),
     )
     service_label_aidants_connect = forms.BooleanField(
         label=Service._meta.get_field("has_label_aidants_connect").verbose_name,
