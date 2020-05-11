@@ -13,7 +13,7 @@ class PlaceSearchForm(ModelForm):
     name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Chercher un nom de lieu ou de ville...",
+                "placeholder": "Le nom d'un lieu ou d'une ville",
                 "autofocus": "autofocus",
             }
         )
