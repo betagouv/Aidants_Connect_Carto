@@ -9,9 +9,32 @@
     <p>
       Découvrez tous les lieux de l'inclusion numérique et orientez les publics vers l'offre de médiation et de formation au numérique
     </p>
-    <p>
+    <!-- <p>
       <a href="{% url 'places-list' %}"><img style="vertical-align:middle;" src="{% static 'img/openmoji/search_color_1F50D.svg' %}" height="30" />Rechercher un lieu</a>
-    </p>
+    </p> -->
+    
+    <br />
+    <br />
+
+    <form action="/lieux" method="GET">
+        <div class="form__group">
+          <!-- <div class="input__group">
+            {{ search_form.name }}
+            <button class="button" type="submit"><img style="vertical-align:middle;" src="{% static 'img/openmoji/search_color_1F50D.svg' %}" height="30" />Rechercher un lieu</button>
+          </div> -->
+          <div class="row">
+            <fieldset style="min-width:300px">
+              {{ search_form.name }}
+            </fieldset>
+            <!-- <fieldset>
+              {{ search_form.service_name }}
+            </fieldset> -->
+            <fieldset>
+              <button class="button" style="margin:0" type="submit">🔍&nbsp;Rechercher</button>
+            </fieldset>
+          </div>
+        </div>
+    </form>
   </div>
 </div>
 {% endblock hero %}
@@ -29,7 +52,7 @@
       </div>
       <div>
         <p class="lead-text">
-          Vous accompagnez régulièrement des personnes en difficulté avec le numérique dans la réalisation de démarches en ligne ? Aidants Connect est fait pour vous !
+          Vous accompagnez régulièrement des personnes en difficulté avec le numérique dans la réalisation de démarches en ligne ? <a href="https://aidantsconnect.beta.gouv.fr/">Aidants Connect</a> est fait pour vous !
         </p>
         <p>Ce service sécurise et facilite le « faire pour le compte de ».</p>
       </div>
