@@ -9,7 +9,8 @@ from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateF
 
 
 def home_page(request):
-    return render(request, "home_page.html")
+    form = PlaceSearchForm(request.GET)
+    return render(request, "home_page.html", {"search_form": form})
 
 
 def places_list(request):
