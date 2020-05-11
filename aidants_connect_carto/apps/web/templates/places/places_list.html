@@ -16,8 +16,7 @@
     <form class="full-width" method="GET">
       <h2>Recherche</h2>
       <div class="form__group">
-        <!-- {{ search_form.name }} -->
-        <input type="text" name="{{ search_form.name.name }}" maxlength="300" id="{{ search_form.name.id_for_label }}" {% if search_form.name.value != None %}value="{{ search_form.name.value|stringformat:'s' }}"{% endif %} placeholder="Chercher un nom de lieu..." autofocus>
+        {{ search_form.name }}
       </div>
       <p title="Filtres">
         {% for key, value in search_results.query.items %}

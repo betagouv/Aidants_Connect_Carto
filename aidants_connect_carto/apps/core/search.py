@@ -1,6 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.forms import ModelForm
+from django.contrib.postgres.search import SearchVector
 from django.core.paginator import Paginator
 
 from aidants_connect_carto import constants
@@ -9,6 +10,15 @@ from aidants_connect_carto.apps.core.models import Place, Service
 
 
 class PlaceSearchForm(ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Chercher un nom de lieu ou de ville...",
+                "autofocus": "autofocus",
+            }
+        )
+    )
+
     service_name = forms.ChoiceField(
         choices=zip(constants.SERVICE_NAME_LIST, constants.SERVICE_NAME_LIST),
         widget=forms.Select(),
@@ -98,7 +108,10 @@ class PlaceSearchEngine:
 
         # And then, little by little, we narrow the search down.
         if self.query.get("name"):
-            qs = qs.filter(name__icontains=self.query.get("name"))
+            # qs = qs.filter(name__icontains=self.query.get("name"))
+            qs = qs.annotate(
+                search=SearchVector("name") + SearchVector("address_city")
+            ).filter(search=self.query.get("name"))
 
         if self.query.get("type"):
             qs = qs.filter(type=self.query.get("type"))
