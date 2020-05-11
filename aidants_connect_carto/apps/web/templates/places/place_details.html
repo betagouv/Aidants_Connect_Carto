@@ -35,13 +35,13 @@
         <h5>Informations</h5>
         <p class="text-quote">{{ place.get_type_display }}</p>
         <p class="Public cible">
-          Public cible :<br />
+          Public cible :
           {% for target in place.target_audience %}
             <span class="label label-small">{{ target }}</span>
           {% endfor %}
         </p>
         <p title="Equipements">
-          Equipements disponibles :<br />
+          Equipements disponibles :
           {% if place.has_equipment_wifi %}
             <span class="label label-small label--inactive">WiFi</span>
           {% endif %}
@@ -50,7 +50,7 @@
           {% endif %}
         </p>
         <p title="Accessibilité">
-          Accessibilité :<br />
+          Accessibilité :
           {% if place.has_accessibility_hi %}
             <span><img src="{% static 'img/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
           {% endif %}
@@ -95,7 +95,7 @@
 
     {% if place.opening_hours_osm_format %}
       <p>
-        🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de
+        🕒&nbsp;Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de
         {% for timespan in place.opening_hours_today %}<span> {{ timespan.beginning | date:"H:i" }} à {{ timespan.end | date:"H:i" }}</span>{% endfor %}.
         <small><a id="opening_hours_week_toggle">Voir toute la semaine.</a></small>
       </p>
@@ -106,7 +106,7 @@
       </ul>
     {% else %}
       <p>
-        🕒 Les <strong>horaires d'ouvertures</strong> sont inconnues.
+        🕒&nbsp;Les <strong>horaires d'ouvertures</strong> sont inconnues.
         <small><a>Rajouter les horaires.</a></small>
       </p>
     {% endif %}
