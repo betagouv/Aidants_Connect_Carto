@@ -142,6 +142,18 @@ select {
   width: 300px;
 }
 
+input#id_name {
+  max-width: 500px;
+}
+
+.filter-label {
+  display: inline-block;
+  border: 1px solid var(--theme-primary);
+  border-radius: 15px;
+  margin: 2.5px;
+  padding: 2.5px 5px;
+}
+
 .caret-up {
   display: inline-block;
   width: 0;

@@ -74,8 +74,16 @@ class PlaceSearchEngine:
         the Django `QueryDict from an incoming HTTP request.`
         Returns an object with 2 keys: 'places_page' and 'places_total'
         """
-        self.query = query.copy()
+        # clean incoming query (remove keys with empty string)
+        self.query = dict()
+        for (key, value) in query.items():
+            if value != "":
+                self.query[key] = value
+
+        # build queryset
         self.queryset = self._build_queryset()
+
+        # build results
         self.results = self._build_results()
 
         return self.results
@@ -84,40 +92,39 @@ class PlaceSearchEngine:
         """Progressively build, and then return, the relevant Django ORM queryset
         by analyzing the specified query.
         """
-        query = self.query
 
         # We start with all the objects.
         qs = Place.objects.all()
 
         # And then, little by little, we narrow the search down.
-        if query.get("name", "") != "":
-            qs = qs.filter(name__icontains=query.get("name"))
+        if self.query.get("name"):
+            qs = qs.filter(name__icontains=self.query.get("name"))
 
-        if query.get("type", "") != "":
-            qs = qs.filter(type=query.get("type"))
+        if self.query.get("type"):
+            qs = qs.filter(type=self.query.get("type"))
 
-        if query.get("address_departement_name", "") != "":
+        if self.query.get("address_departement_name"):
             qs = qs.filter(
-                address_departement_name=query.get("address_departement_name")
+                address_departement_name=self.query.get("address_departement_name")
             )
-        if query.get("address_region_name", "") != "":
-            qs = qs.filter(address_region_name=query.get("address_region_name"))
+        if self.query.get("address_region_name"):
+            qs = qs.filter(address_region_name=self.query.get("address_region_name"))
 
-        # if query.get("has_equipment_wifi", "") != "":
+        # if self.query.get("has_equipment_wifi"):
         #     qs = qs.filter(has_equipment_wifi=True)
-        # if query.get("has_equipment_computer", "") != "":
+        # if self.query.get("has_equipment_computer"):
         #     qs = qs.filter(has_equipment_computer=True)
-        # if query.get("has_equipment_scanner", "") != "":
+        # if self.query.get("has_equipment_scanner"):
         #     qs = qs.filter(has_equipment_scanner=True)
-        # if query.get("has_equipment_printer", "") != "":
+        # if self.query.get("has_equipment_printer"):
         #     qs = qs.filter(has_equipment_printer=True)
 
-        if query.get("service_name", "") != "":
-            qs = qs.filter(services__name=query.get("service_name"))
+        if self.query.get("service_name"):
+            qs = qs.filter(services__name=self.query.get("service_name"))
 
-        if query.get("has_label_fs", "") != "":
+        if self.query.get("has_label_fs"):
             qs = qs.filter(has_label_fs=True)
-        if query.get("service_label_aidants_connect", "") != "":
+        if self.query.get("service_label_aidants_connect"):
             qs = qs.filter(services__has_label_aidants_connect=True)
 
         return qs  # Note: at this point, the database query has not been executed yet.
@@ -138,7 +145,7 @@ class PlaceSearchEngine:
         raw_results = self.queryset
 
         # opening_hours (place.is_open) filter
-        if self.query.get("opening_hours", "") != "":
+        if self.query.get("opening_hours"):
             raw_results = [place for place in raw_results if place.is_open]
 
         # paginator <-- db query is executed here!
@@ -146,4 +153,8 @@ class PlaceSearchEngine:
         page_number = self.query.get("page", 1)
         page_obj = paginator.get_page(page_number)
 
-        return {"places_page": page_obj, "places_total": paginator.count}
+        return {
+            "query": self.query,
+            "places_page": page_obj,
+            "places_total": paginator.count,
+        }

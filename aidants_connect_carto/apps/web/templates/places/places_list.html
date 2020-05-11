@@ -16,33 +16,40 @@
     <form class="full-width" method="GET">
       <h2>Recherche</h2>
       <div class="form__group">
-        <input type="text" name="name" maxlength="300" id="id_name" style="width:50%" placeholder="Chercher un nom de lieu..." autofocus>
+        <!-- {{ search_form.name }} -->
+        <input type="text" name="{{ search_form.name.name }}" maxlength="300" id="{{ search_form.name.id_for_label }}" {% if search_form.name.value != None %}value="{{ search_form.name.value|stringformat:'s' }}"{% endif %} placeholder="Chercher un nom de lieu..." autofocus>
       </div>
-      <p>
-        <!-- Filtres -->
+      <p title="Filtres">
+        {% for key, value in search_results.query.items %}
+          {% if key != 'name' %}
+            <span class="filter-label">
+              {{ value }}
+            </span>
+          {% endif %}
+        {% endfor %}
         <!-- <small><a id="form_filters_toggle" class="caret-down"></a></small> -->
         <a id="form_filters_toggle">Ajouter des filtres ▸</a>
       </p>
-      <section id="form_filters_section" class="full-width border-left-dashed margin-bottom-20" style="display:none">
+      <section id="form_filters_section" class="full-width border-left-dashed margin-bottom-20">
         <h5>Filtres</h5>
         <div class="form__group">
           <div class="row">
             <fieldset>
-              <legend>Type de lieu :</legend>
+              <legend>🏢&nbsp;Type de lieu :</legend>
               {{ search_form.type }}
             </fieldset>
             <fieldset>
-              <legend>Service proposé :</legend>
+              <legend>📝&nbsp;Service proposé :</legend>
               {{ search_form.service_name }}
             </fieldset>
             <fieldset>
-              <legend>Horaires d'ouverture :</legend>
+              <legend>🕒&nbsp;Horaires d'ouverture :</legend>
               {{ search_form.opening_hours }}
             </fieldset>
           </div>
         </div>
         <div class="form__group">
-          <legend>Labels :</legend>
+          <legend>🏷️&nbsp;Labels :</legend>
           <fieldset>
             {{ search_form.has_label_fs }}<label class="label-inline" for="{{ search_form.has_label_fs.id_for_label }}">{{ search_form.has_label_fs.label | safe }}</label>
           </fieldset>
@@ -53,15 +60,18 @@
         <div class="form__group">
           <div class="row">
             <fieldset>
-              <legend>Département :</legend>
+              <legend>📍&nbsp;Département :</legend>
               {{ search_form.address_departement_name }}
             </fieldset>
             <fieldset>
-              <legend>Région :</legend>
+              <legend>📍&nbsp;Région :</legend>
               {{ search_form.address_region_name }}
             </fieldset>
             <fieldset></fieldset>
           </div>
+        </div>
+        <div class="form__group">
+          <a href="{% url 'places-list' %}?name={{ search_form.name.value }}">Tout effacer</a>
         </div>
       </section>
       <input type="submit" value="Lancer la recherche">
@@ -93,17 +103,14 @@
           <div class="card__content">
             <h4><a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a></h4>
             <div class="card__meta">
-              <!-- <span>📍&nbsp;{{ place.address_raw }}</span> -->
               <span>📍&nbsp;{{ place.display_address_full }}</span>
             </div>
             <p class="text-quote">{{ place.get_type_display }}</p>
-            <!-- <p>{{ place.service_count }} service{{ place.service_count | pluralize }}</p> -->
             <ul>
               {% for service in place.services.all %}
               <li>{{ service.name }}</li>
               {% endfor %}
             </ul>
-            <!-- <p>{{ place.service_list }}</p> -->
           </div>
           <div class="card__extra">
             <!-- Public cible -->
@@ -120,7 +127,6 @@
                 <span class="label">Fermé</span>
               {% endif %}
             </span>
-            
           </div>
         </div>
       {% endfor %}
@@ -151,8 +157,20 @@
 
 {% block extrajs %}
 <script>
+  // init
+  const urlParams = new URLSearchParams(window.location.search);
   const element_form_filters_toggle = document.getElementById("form_filters_toggle");
   const element_form_filters_section = document.getElementById("form_filters_section");
+  
+  // check url params
+  for (const param of urlParams.entries()) {
+    console.log(param)
+    if (param[1] !== "") {
+      element_form_filters_section.style.display = "none";
+    }
+  }
+
+  // form filter toggle
   element_form_filters_toggle.addEventListener("click", function() {
     // element_form_filters_toggle.className = (element_form_filters_toggle.className === "caret-down") ? "caret-up" : "caret-down";
     element_form_filters_toggle.text = (element_form_filters_toggle.text === "Ajouter des filtres ▸") ? "Cacher les filtres ▾" : "Ajouter des filtres ▸";
