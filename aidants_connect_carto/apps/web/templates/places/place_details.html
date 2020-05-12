@@ -88,7 +88,7 @@
         <p>{{ place.address_housenumber }} {{place.address_street }}, {{ place.address_postcode }} {{ place.address_city }}</p>
         <!-- <img src="{% static 'img/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
         {% if place.latitude and place.longitude %}
-          <div id="map-details"></div>
+          <div id="map-place-details"></div>
         {% endif %}
       </div>
     </div>
@@ -181,9 +181,9 @@
 
 <script>
   // leaflet map
-  if (document.getElementById("map-details")) {
-    place_coordinates = [parseFloat("{{ place.latitude | safe}}"), parseFloat("{{ place.longitude | safe}}")];
-    var map = L.map('map-details').setView(place_coordinates, 13);
+  if (document.getElementById("map-place-details")) {
+    place_coordinates = [parseFloat("{{ place.latitude | safe }}"), parseFloat("{{ place.longitude | safe }}")];
+    var map = L.map('map-place-details').setView(place_coordinates, 13);
     L.marker(place_coordinates).addTo(map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

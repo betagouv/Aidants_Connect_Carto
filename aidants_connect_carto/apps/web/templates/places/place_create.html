@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="col-50 no-margin">
-            <div id="map-form"></div>
+            <div id="map-place-form"></div>
           </div>
         </div>
       </div>
@@ -221,7 +221,7 @@
 <script src="{% static 'js/libraries/yohours.js' %}"></script>
 <script>
   // leaflet map
-  var map = L.map('map-form').setView([46.7, 2.1], 5);
+  var map = L.map('map-place-form').setView([46.7, 2.1], 5);
   var marker;
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

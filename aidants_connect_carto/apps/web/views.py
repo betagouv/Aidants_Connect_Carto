@@ -1,5 +1,9 @@
-from django.contrib import messages
+import json
+import pandas as pd
+import numpy as np
 
+from django.contrib import messages
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 
 from aidants_connect_carto import constants
@@ -149,15 +153,31 @@ def stats(request):
         )
     service_name_aggregation.sort(key=lambda x: x["place_count"], reverse=True)
 
-    import pandas as pd
-    import numpy as np
+    place_per_region = (
+        Place.objects.exclude(address_region_name="")
+        .values("address_region_name")
+        .annotate(place_count=Count("id"))
+        .order_by("address_region_name")
+    )
+
+    with open("data/geo/regions-version-simplifiee.geojson", "r") as f:
+        region_geojson = json.load(f)
+        for index, region in enumerate(region_geojson["features"]):
+            region_geojson["features"][index]["properties"]["place_count"] = next(
+                (
+                    region_agg["place_count"]
+                    for region_agg in place_per_region
+                    if region_agg["address_region_name"] == region["properties"]["nom"]
+                ),
+                0,
+            )
 
     place_df = pd.DataFrame.from_records(Place.objects.all().values())
     place_df = (
         place_df.replace("", np.nan)
         .replace([], np.nan)
         .replace(constants.CHOICE_OTHER, np.nan)
-    )  # noqa
+    )
     place_fields_fill_count_df = place_df.count()
 
     service_df = pd.DataFrame.from_records(Service.objects.all().values())
@@ -177,6 +197,8 @@ def stats(request):
             "place_with_service_count": place_with_service_count,
             "service_count": service_count,
             "service_name_aggregation": service_name_aggregation,
+            "region_geojson": json.dumps(region_geojson),
+            "place_per_region": place_per_region,
             "place_field_fill": [
                 {
                     "name": "Adresse",
