@@ -148,7 +148,8 @@ input#id_name {
 
 .filter-label {
   display: inline-block;
-  border: 1px solid var(--theme-primary);
+  background-color: var(--lighter-grey);
+  border: 1px solid var(--theme-border-lighter);
   border-radius: 15px;
   margin: 2.5px;
   padding: 2.5px 5px;
