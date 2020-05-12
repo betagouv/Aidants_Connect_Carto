@@ -99,7 +99,7 @@
         {% for timespan in place.opening_hours_today %}<span> {{ timespan.beginning | date:"H:i" }} à {{ timespan.end | date:"H:i" }}</span>{% endfor %}.
         <small><a id="opening_hours_week_toggle">Voir toute la semaine.</a></small>
       </p>
-      <ul id="opening_hours_week" style="display:none">
+      <ul id="opening_hours_week_section" style="display:none">
         {% for opening_hours_day in place.opening_hours_week_description %}
           <li>{{ opening_hours_day }}</li>
         {% endfor %}
@@ -192,11 +192,14 @@
 </script>
 
 <script>
+  // init
   const opening_hours_week_toggle_element = document.getElementById("opening_hours_week_toggle");
+  const opening_hours_week_section_element = document.getElementById("opening_hours_week_section");
+  
+  // opening_hours toggle
   if (opening_hours_week_toggle_element) {
     opening_hours_week_toggle_element.addEventListener("click", function() {
-      console.log(document.getElementById("opening_hours_week").style.display);
-      document.getElementById("opening_hours_week").style.display = (document.getElementById("opening_hours_week").style.display === "block") ? "none" : "block";
+      opening_hours_week_section_element.style.display = (opening_hours_week_section_element.style.display === "block") ? "none" : "block";
     }, false);
   }
 </script>

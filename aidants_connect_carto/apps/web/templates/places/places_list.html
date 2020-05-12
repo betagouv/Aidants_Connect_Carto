@@ -158,22 +158,21 @@
 <script>
   // init
   const urlParams = new URLSearchParams(window.location.search);
-  const element_form_filters_toggle = document.getElementById("form_filters_toggle");
-  const element_form_filters_section = document.getElementById("form_filters_section");
+  const form_filters_toggle_element = document.getElementById("form_filters_toggle");
+  const form_filters_section_element = document.getElementById("form_filters_section");
   
-  // check url params
+  // check url params: if at least 1 is not empty, then hide filters
   for (const param of urlParams.entries()) {
     console.log(param)
     if (param[1] !== "") {
-      element_form_filters_section.style.display = "none";
+      form_filters_section_element.style.display = "none";
     }
   }
 
   // form filter toggle
-  element_form_filters_toggle.addEventListener("click", function() {
-    // element_form_filters_toggle.className = (element_form_filters_toggle.className === "caret-down") ? "caret-up" : "caret-down";
-    element_form_filters_toggle.text = (element_form_filters_toggle.text === "Ajouter des filtres ▸") ? "Cacher les filtres ▾" : "Ajouter des filtres ▸";
-    element_form_filters_section.style.display = (element_form_filters_section.style.display === "block") ? "none" : "block";
+  form_filters_toggle_element.addEventListener("click", function() {
+    form_filters_toggle_element.text = (form_filters_toggle_element.text === "Ajouter des filtres ▸") ? "Cacher les filtres ▾" : "Ajouter des filtres ▸";
+    form_filters_section_element.style.display = (form_filters_section_element.style.display === "block") ? "none" : "block";
   }, false);
 </script>
 {% endblock extrajs %}
