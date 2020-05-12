@@ -36,7 +36,8 @@
       </div>
 
       <br />
-      <h2>Lieux par service</h2>
+
+      <h2>Le nombre de lieux par service</h2>
       <div class="grid small-grid">
         {% for stat_item in service_name_aggregation %}
           <div class="tile text-center">
@@ -45,65 +46,85 @@
           </div>
         {% endfor %}
       </div>
-      <p>les services sont amenés à être étoffés</p>
+      <p>ℹ️ les services sont amenés à être étoffés.</p>
 
       <br />
-      <h2>Couverture géographique</h2>
+
+      <h2>La couverture géographique</h2>
       
       <p>à venir</p>
 
       <br />
-      <h2>Remplissage des champs</h2>
 
-      <h3 class="margin-bottom-O">Lieux</h3>
+      <h2><a id="advanced_stats_toggle" class="no-decoration">Statistiques avancées ▸</a></h2>
 
-      {% for field in place_field_fill %}
-        <div style="overflow-x:scroll">
-          <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de lieux sur {{ place_count }})</small></p>
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                {% for elem in field.fill_stats %}
-                <th class="text-lowercase">{{ elem.key }}</th>
-                {% endfor %}
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for elem in field.fill_stats %}
-                <td>{{ elem.value }}</td>
-                {% endfor %}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      {% endfor %}
+      <section id="advanced_stats_section" style="display:none">
+        <h3 class="margin-bottom-O">Lieux: remplissage des champs</h3>
 
-      <h3 class="margin-bottom-O">Services</h3>
+        {% for field in place_field_fill %}
+          <div style="overflow-x:scroll">
+            <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de lieux sur {{ place_count }})</small></p>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <th class="text-lowercase">{{ elem.key }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <td>{{ elem.value }}</td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        {% endfor %}
 
-      {% for field in service_field_fill %}
-        <div style="overflow-x:scroll">
-          <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de services sur {{ service_count }})</small></p>
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                {% for elem in field.fill_stats %}
-                <th class="text-lowercase">{{ elem.key }}</th>
-                {% endfor %}
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for elem in field.fill_stats %}
-                <td>{{ elem.value }}</td>
-                {% endfor %}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      {% endfor %}
+        <h3 class="margin-bottom-O">Remplissage des champs des services</h3>
+
+        {% for field in service_field_fill %}
+          <div style="overflow-x:scroll">
+            <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de services sur {{ service_count }})</small></p>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <th class="text-lowercase">{{ elem.key }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <td>{{ elem.value }}</td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        {% endfor %}
+      </section>
 
     </div>
   </div>
 </section>
 {% endblock content %}
+
+{% block extrajs %}
+<script>
+  // init
+  const advanced_stats_toggle_element = document.getElementById("advanced_stats_toggle");
+  const advanced_stats_section_element = document.getElementById("advanced_stats_section");
+
+  // advanced stats toggle
+  if (advanced_stats_toggle_element) {
+    advanced_stats_toggle_element.addEventListener("click", function() {
+      advanced_stats_toggle_element.text = (advanced_stats_toggle_element.text === "Statistiques avancées ▸") ? "Statistiques avancées ▾" : "Statistiques avancées ▸";
+      advanced_stats_section_element.style.display = (advanced_stats_section_element.style.display === "block") ? "none" : "block";
+    }, false);
+  }
+</script>
+{% endblock extrajs %}
