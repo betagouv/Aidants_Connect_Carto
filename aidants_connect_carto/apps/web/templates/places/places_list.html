@@ -19,17 +19,17 @@
         {{ search_form.name }}
       </div>
       <p title="Filtres">
-        {% for key, value in search_results.query.items %}
-          {% if key != 'name' %}
+        {% for filter in search_results.current_filters %}
+          {% if filter.type != 'name' %}
             <span class="filter-label">
-              {{ value }}
+              {{ filter.value }} <a class="no-decoration" href="{% url 'places-list' %}?{{ filter.url_parameters_with_filter_removed }}"><strong>&nbsp;&times;</strong></a>
             </span>
           {% endif %}
         {% endfor %}
         <!-- <small><a id="form_filters_toggle" class="caret-down"></a></small> -->
         <a id="form_filters_toggle">Ajouter des filtres ▸</a>
       </p>
-      <section id="form_filters_section" class="full-width border-left-dashed margin-bottom-20">
+      <section id="form_filters_section" class="full-width border-left-dashed margin-bottom-20" style="{% if search_results.has_filters %}display:none{% endif %}">
         <h5>Filtres</h5>
         <div class="form__group">
           <div class="row">
@@ -161,13 +161,13 @@
   const form_filters_toggle_element = document.getElementById("form_filters_toggle");
   const form_filters_section_element = document.getElementById("form_filters_section");
   
-  // check url params: if at least 1 is not empty, then hide filters
-  for (const param of urlParams.entries()) {
-    console.log(param)
-    if (param[1] !== "") {
-      form_filters_section_element.style.display = "none";
-    }
-  }
+  // // check url params: if at least 1 is not empty, then hide filters
+  // for (const param of urlParams.entries()) {
+  //   console.log(param)
+  //   if (param[1] !== "") {
+  //     form_filters_section_element.style.display = "none";
+  //   }
+  // }
 
   // form filter toggle
   form_filters_toggle_element.addEventListener("click", function() {

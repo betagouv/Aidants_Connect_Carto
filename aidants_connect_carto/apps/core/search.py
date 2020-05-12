@@ -79,16 +79,14 @@ class PlaceSearchEngine:
         )
 
     def search(self, query):
-        """Execute the specified `query` and return the results as a `dict`.
+        """
+        Execute the specified `query` and return the results as a `dict`.
         The `query` itself is passed as a `dict`, or possibly directly
         the Django `QueryDict from an incoming HTTP request.`
         Returns an object with 2 keys: 'places_page' and 'places_total'
         """
-        # clean incoming query (remove keys with empty string)
-        self.query = dict()
-        for (key, value) in query.items():
-            if value != "":
-                self.query[key] = value
+        # clean incoming query
+        self.query = self._clean_query(query)
 
         # build queryset
         self.queryset = self._build_queryset()
@@ -98,8 +96,23 @@ class PlaceSearchEngine:
 
         return self.results
 
+    def _clean_query(self, query):
+        """
+        Clean the incoming query
+        - remove keys with empty string
+        (TODO: clean empty keys in the frontend on submit ?)
+        """
+        cleaned_query = dict()
+
+        for (key, value) in query.items():
+            if value != "":
+                cleaned_query[key] = value
+
+        return cleaned_query
+
     def _build_queryset(self):
-        """Progressively build, and then return, the relevant Django ORM queryset
+        """
+        Progressively build, and then return, the relevant Django ORM queryset
         by analyzing the specified query.
         """
 
@@ -143,13 +156,15 @@ class PlaceSearchEngine:
         return qs  # Note: at this point, the database query has not been executed yet.
 
     def _build_results(self):
-        """Execute the database query and build the results to be returned
+        """
+        Execute the database query and build the results to be returned
         to the calling code, typically as a more or less complex `dict`, which
         could also contain meta-information about the search, like the total
         number of results, ...
         - order_by
         - opening_hours
         - pagination
+        - current filters
         """
         # order_by
         order_by_field = self.query.get("order_by", self.DEFAULT_ORDER_BY)
@@ -166,8 +181,22 @@ class PlaceSearchEngine:
         page_number = self.query.get("page", 1)
         page_obj = paginator.get_page(page_number)
 
+        # current filters
+        current_filters_list = []
+        for (key, value) in self.query.items():
+            current_filters_list.append(
+                {
+                    "type": key,
+                    "value": value,
+                    "url_parameters_with_filter_removed": "&".join(
+                        [f"{k}={v}" for k, v in self.query.items() if k != key]
+                    ),
+                }
+            )
+
         return {
-            "query": self.query,
+            "has_filters": bool(self.query),
+            "current_filters": current_filters_list,
             "places_page": page_obj,
             "places_total": paginator.count,
         }
