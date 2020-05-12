@@ -185,11 +185,15 @@ input#id_name {
 
 /* Address Map */
 
-#map-details {
+#map-place-details {
   height: 175px;
 }
-#map-form {
+#map-place-form {
   height: 300px;
+}
+#map-stats-converture {
+  height: 500px;
+  max-width: 400px;
 }
 
 /* Calendar widget */
