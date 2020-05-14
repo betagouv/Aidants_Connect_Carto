@@ -45,7 +45,7 @@
       <div class="grid small-grid">
         {% for stat_item in service_name_aggregation %}
           <div class="tile text-center">
-            <h6 class="font-weight-normal">{{ stat_item.service_name }}</h6>
+            <h6 class="font-weight-normal">{{ stat_item.name }}</h6>
             <h3><strong>{{ stat_item.place_count }}</strong></h3>
           </div>
         {% endfor %}
@@ -64,16 +64,16 @@
           <thead>
             <tr>
               <th>Région</th>
-              {% for region in place_per_region %}
-                <th class="text-lowercase">{{ region.address_region_name | default:"inconnu" }}</th>
+              {% for stat_item in place_address_region_name_aggregation %}
+                <th class="text-lowercase">{{ stat_item.address_region_name | default:"inconnu" }}</th>
               {% endfor %}
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Lieux</td>
-              {% for region in place_per_region %}
-                <td>{{ region.place_count }}</td>
+              {% for stat_item in place_address_region_name_aggregation %}
+                <td>{{ stat_item.place_count }}</td>
               {% endfor %}
             </tr>
           </tbody>

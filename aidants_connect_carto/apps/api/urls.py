@@ -37,6 +37,7 @@ urlpatterns = [
         views.PlaceServiceDetail.as_view(),
         name="place-service-detail",
     ),
+    path("stats", views.stats, name="stats"),
     path("address/search", views.address_search, name="address-search"),
 ]
 
