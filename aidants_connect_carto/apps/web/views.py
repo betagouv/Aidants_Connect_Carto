@@ -1,14 +1,10 @@
-import json
-import pandas as pd
-import numpy as np
-
 from django.contrib import messages
-from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 
 from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 from aidants_connect_carto.apps.core.search import PlaceSearchEngine, PlaceSearchForm
+from aidants_connect_carto.apps.core.stats import get_model_stats
 from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
 
 
@@ -136,42 +132,28 @@ def data_sources_list(request):
 
 
 def stats(request):
-    data_source_count = DataSource.objects.count()
-    place_count = Place.objects.count()
-    place_with_service_count = Place.objects.exclude(services__isnull=True).count()
-    service_count = Service.objects.count()
+    model_stats = get_model_stats()
 
-    service_name_aggregation = []
-    for service_name in constants.SERVICE_NAME_LIST:
-        service_name_aggregation.append(
-            {
-                "service_name": service_name,
-                "place_count": Place.objects.filter(
-                    services__name=service_name
-                ).count(),
-            }
-        )
-    service_name_aggregation.sort(key=lambda x: x["place_count"], reverse=True)
+    import json
+    import pandas as pd
+    import numpy as np
 
-    place_per_region = (
-        Place.objects.exclude(address_region_name="")
-        .values("address_region_name")
-        .annotate(place_count=Count("id"))
-        .order_by("address_region_name")
-    )
-
+    # region geojson
     with open("data/geo/regions-version-simplifiee.geojson", "r") as f:
         region_geojson = json.load(f)
         for index, region in enumerate(region_geojson["features"]):
             region_geojson["features"][index]["properties"]["place_count"] = next(
                 (
                     region_agg["place_count"]
-                    for region_agg in place_per_region
+                    for region_agg in model_stats[
+                        "place_address_region_name_aggregation"
+                    ]
                     if region_agg["address_region_name"] == region["properties"]["nom"]
                 ),
                 0,
             )
 
+    # place fields fill stats
     place_df = pd.DataFrame.from_records(Place.objects.all().values())
     place_df = (
         place_df.replace("", np.nan)
@@ -180,6 +162,7 @@ def stats(request):
     )
     place_fields_fill_count_df = place_df.count()
 
+    # service fields fill stats
     service_df = pd.DataFrame.from_records(Service.objects.all().values())
     service_df = (
         service_df.replace("", np.nan)
@@ -192,13 +175,8 @@ def stats(request):
         request,
         "stats.html",
         {
-            "data_source_count": data_source_count,
-            "place_count": place_count,
-            "place_with_service_count": place_with_service_count,
-            "service_count": service_count,
-            "service_name_aggregation": service_name_aggregation,
+            **model_stats,
             "region_geojson": json.dumps(region_geojson),
-            "place_per_region": place_per_region,
             "place_field_fill": [
                 {
                     "name": "Adresse",
