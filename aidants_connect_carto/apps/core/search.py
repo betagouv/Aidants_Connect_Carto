@@ -82,7 +82,7 @@ class PlaceSearchEngine:
             "RESULTS_PER_PAGE", settings.SEARCH_RESULTS_PER_PAGE
         )
 
-    def search(self, query):
+    def search(self, query: dict):
         """
         Execute the specified `query` and return the results as a `dict`.
         The `query` itself is passed as a `dict`, or possibly directly
@@ -100,7 +100,7 @@ class PlaceSearchEngine:
 
         return self.results
 
-    def _clean_query(self, query):
+    def _clean_query(self, query: dict):
         """
         Clean the incoming query
         - remove keys with empty string
