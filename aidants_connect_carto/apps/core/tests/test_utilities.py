@@ -1,10 +1,9 @@
 # flake8: noqa
-from django.test import tag, TestCase
+from django.test import TestCase
 
 from aidants_connect_carto.apps.core import utilities
 
 
-@tag("utilities")
 class UtilitiesTestCase(TestCase):
     def test_process_opening_hours_to_osm_format(self):
         opening_hours_list = [
