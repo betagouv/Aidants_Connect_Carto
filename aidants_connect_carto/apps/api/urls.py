@@ -16,15 +16,20 @@ schema_view = get_schema_view(
     ),
 )
 
-
+app_name = "api"
 urlpatterns = [
-    path("", views.api_root),
+    path("", views.api_root, name="root"),
     re_path(
         r"^swagger/$",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
     path("data-sources/", views.DataSourceList.as_view(), name="data-source-list"),
+    path(
+        "data-sources/<int:data_source_id>/",
+        views.DataSourceDetail.as_view(),
+        name="data-source-detail",
+    ),
     path("places/", views.PlaceList.as_view(), name="place-list"),
     path("places/<int:place_id>/", views.PlaceDetail.as_view(), name="place-detail"),
     path(

@@ -4,8 +4,9 @@ from aidants_connect_carto.apps.core import search
 from aidants_connect_carto.apps.core.models import DataSource, Place, Service
 
 
-class SearchTestCase(TestCase):
-    def setUp(self):
+class SearchTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
         data_source_1 = DataSource.objects.create(
             name="Region Test", type="region", dataset_name="Lieux EPN 2019"
         )

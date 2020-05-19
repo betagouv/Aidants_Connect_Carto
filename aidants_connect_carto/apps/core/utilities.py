@@ -119,6 +119,24 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
         }
 
 
+def get_address_full(
+    address_housenumber: str,
+    address_street: str,
+    address_postcode: str,
+    address_city: str,
+) -> str:
+    """
+    20 Avenue de Ségur, 75007 Paris
+    """
+    return (
+        f"{(address_housenumber + ' ') if address_housenumber else ''}"
+        f"{address_street}"
+        f"{', ' if (address_housenumber or address_street) else ''}"
+        f"{(address_postcode + ' ') if address_postcode else ''}"
+        f"{address_city}"
+    )
+
+
 # Phone number
 
 
@@ -309,6 +327,85 @@ def _sanitize_opening_hours_with_hoh(opening_hours: str):
     sanitized_opening_hours = hoh.sanitize(opening_hours.strip())
     hoh.OHParser(sanitized_opening_hours, locale="fr")  # fails if given a wrong format
     return sanitized_opening_hours
+
+
+def get_opening_hours_osm_format_description(
+    opening_hours_osm_format_string: str,
+) -> list:
+    """
+    Transform opening_hours_osm_format into a readable description
+    'Mo-Fr 08:00-20:00' --> ['Du lundi au vendredi : 08:00 – 20:00.']
+
+    TODO: Store as model field ?
+    """
+    if not opening_hours_osm_format_string:
+        return []
+
+    oh = hoh.OHParser(opening_hours_osm_format_string, locale="fr")
+    return oh.description()
+
+
+def get_opening_hours_osm_format_week_description(
+    opening_hours_osm_format_string: str,
+) -> list:
+    """
+    Transform `opening_hours_osm_format` into a list
+    of readable descriptions per day.
+
+    For example, if `opening_hours_osm_format` contains the string
+    "Mo-Fr 08:00-20:00", this method returns the following output:
+    [
+        'Lundi : 08:00 – 20:00',
+        'Mardi : 08:00 – 20:00',
+        'Mercredi : 08:00 – 20:00',
+        'Jeudi : 08:00 – 20:00',
+        'Vendredi : 08:00 – 20:00',
+        'Samedi : fermé'
+        'Dimanche : fermé'
+    ]
+
+    TODO: Store as model field ?
+    """
+    if not opening_hours_osm_format_string:
+        return []
+
+    oh = hoh.OHParser(opening_hours_osm_format_string, locale="fr")
+    return oh.plaintext_week_description().split("\n")
+
+
+def get_opening_hours_osm_format_today(opening_hours_osm_format_string: str) -> list:
+    """
+    Get the opening times of the current day.
+
+    For example, if `opening_hours_osm_format` contains the string "Mo-Fr 8:00-20:00",
+    this method returns the following output:
+    [
+        {
+            'beginning': datetime.datetime(2020, 4, 8, 8, 0),
+            'end': datetime.datetime(2020, 4, 8, 20, 0),
+            'status': True,
+            'timespan': <TimeSpan from ('normal', datetime.time(8, 0)) to ('normal', datetime.time(20, 0))>  # noqa
+        }
+    ]
+
+    Usage: loop on results, then loop on timespan
+    """
+    if not opening_hours_osm_format_string:
+        return []
+
+    oh = hoh.OHParser(opening_hours_osm_format_string, locale="fr")
+    return oh.get_day().timespans
+
+
+def get_opening_hours_osm_format_is_open(opening_hours_osm_format_string: str) -> bool:
+    """
+    Return `True` if the `place` is currently open, or `False` otherwise.
+    """
+    if not opening_hours_osm_format_string:
+        return False
+
+    oh = hoh.OHParser(opening_hours_osm_format_string, locale="fr")
+    return oh.is_open()
 
 
 # Other fields
