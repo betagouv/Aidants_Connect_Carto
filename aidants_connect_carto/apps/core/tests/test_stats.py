@@ -4,8 +4,9 @@ from aidants_connect_carto.apps.core import stats
 from aidants_connect_carto.apps.core.models import DataSource, Place, Service
 
 
-class StatsTestCase(TestCase):
-    def setUp(self):
+class StatsTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
         data_source_1 = DataSource.objects.create(
             name="Region Test", type="region", dataset_name="Lieux EPN 2019"
         )
@@ -47,7 +48,7 @@ class StatsTestCase(TestCase):
         service_model_stats = stats.get_service_model_stats()
         self.assertIsInstance(service_model_stats, dict)
         self.assertEqual(service_model_stats["service_count"], 3)
-        self.assertEqual(len(service_model_stats["service_name_aggregation"]), 5)
+        self.assertEqual(len(service_model_stats["service_name_aggregation"]), 6)
         self.assertEqual(
             service_model_stats["service_name_aggregation"][0]["name"],
             "Stockage numérique sécurisé",

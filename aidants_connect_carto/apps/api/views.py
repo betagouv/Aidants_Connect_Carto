@@ -23,12 +23,12 @@ from aidants_connect_carto.apps.core.utilities import call_ban_address_search_ap
 def api_root(request):
     return Response(
         {
-            "swagger-ui": reverse("schema-swagger-ui", request=request),
-            "data-sources": reverse("data-source-list", request=request),
-            "places": reverse("place-list", request=request),
+            "swagger-ui": reverse("api:schema-swagger-ui", request=request),
+            "data-sources": reverse("api:data-source-list", request=request),
+            "places": reverse("api:place-list", request=request),
             # 'services': reverse('service-list', request=request, format=format)
-            "stats": reverse("stats", request=request),
-            "address-search": reverse("address-search", request=request),
+            "stats": reverse("api:stats", request=request),
+            "address-search": reverse("api:address-search", request=request),
         }
     )
 
@@ -43,6 +43,19 @@ class DataSourceList(APIView):
         data_sources = DataSource.objects.all()
 
         serializer = DataSourceSerializer(data_sources, many=True)
+        return Response(serializer.data)
+
+
+class DataSourceDetail(APIView):
+    """
+    Retrieve, update or delete a data source instance.
+    """
+
+    @swagger_auto_schema(responses={200: DataSourceSerializer})
+    def get(self, request, data_source_id, format=None):
+        data_source = get_object_or_404(DataSource, pk=data_source_id)
+
+        serializer = DataSourceSerializer(data_source)
         return Response(serializer.data)
 
 
