@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     "drf_yasg",
+    "modelsdoc",
     "aidants_connect_carto.apps.core",
     "aidants_connect_carto.apps.web",
     "aidants_connect_carto.apps.api",
@@ -169,6 +170,25 @@ GRAPH_MODELS = {
     "all_applications": True,
     "group_models": True,
 }
+
+
+# django-modelsdoc: listing_models
+
+MODELSDOC_DISPLAY_FIELDS = (
+    ("Name", "name"),
+    ("Fullname", "verbose_name"),
+    ("Type", "db_type"),
+    # ('PK', 'primary_key'),
+    ("Unique", "unique"),
+    # ('Index', 'db_index'),
+    ("Null/Blank", "null_blank"),
+    ("Comment", "comment"),
+)
+MODELSDOC_MODEL_OPTIONS = (
+    "unique_together",
+    "index_together",
+    "ordering",
+)
 
 
 # API URLS
