@@ -10,7 +10,7 @@ from aidants_connect_carto import constants
 class DataSource(models.Model):
     # --- basics
     name = models.CharField(
-        verbose_name="Le nom de la source de donnée", max_length=300
+        verbose_name="Le nom du fournisseur de donnée", max_length=300
     )
     description = models.TextField(
         verbose_name="Une description",
@@ -23,11 +23,6 @@ class DataSource(models.Model):
         # choices=constants.DATA_SOURCE_TYPE_CHOICES,
         # default=constants.CHOICE_OTHER,
     )
-    dataset_url = models.URLField(
-        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
-        max_length=300,
-        blank=True,
-    )
 
     # --- contact
     contact_website_url = models.URLField(
@@ -38,6 +33,35 @@ class DataSource(models.Model):
     logo_url = models.URLField(
         verbose_name="L'adresse du logo de la source de donnée",
         max_length=300,
+        blank=True,
+    )
+
+    # --- dataset details
+    dataset_name = models.CharField(
+        verbose_name="Le nom du jeu de donnée", max_length=300
+    )
+    dataset_url = models.URLField(
+        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
+        max_length=300,
+        blank=True,
+    )
+    dataset_local_path = models.CharField(
+        verbose_name="Le chemin d'accès au jeu de donnée", max_length=300
+    )
+    dataset_last_updated = models.DateField(
+        verbose_name="La date de dernière mise à jour du jeu de donnée",
+        blank=True,
+        null=True,
+    )
+
+    # --- import details
+    import_config = JSONField(
+        verbose_name="Information et configuration de l'import de la donnée",
+        blank=True,
+        null=True,
+    )
+    import_comment = models.TextField(
+        verbose_name="Informations complémentaires sur l'import de la donnée",
         blank=True,
     )
 
