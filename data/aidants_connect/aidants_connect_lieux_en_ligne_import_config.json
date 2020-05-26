@@ -11,8 +11,7 @@
         "place_fields_set": [
             {
                 "place_field": "is_online",
-                "value": "true",
-                "type": "boolean"
+                "value": true
             }
         ],
         "place_fields_mapping_auto": [
