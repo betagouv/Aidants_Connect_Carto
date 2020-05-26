@@ -132,6 +132,7 @@ HANDICAP_CHOICES = [
 SERVICE_NAME_LIST = [
     "Accès à un équipement informatique",
     "Accompagnement aux démarches administratives en ligne",
+    "Évaluation de compétences numériques",
     "Acquisition de compétences numériques",
     "Vente de matériel informatique",
     "Stockage numérique sécurisé",
