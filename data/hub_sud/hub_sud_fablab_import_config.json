@@ -1,7 +1,7 @@
 {
-    "data_source_name": "Hub du Sud",
+    "data_source_name": "Région Provence-Alpes-Côte d'Azur",
     "data_source_type": "hub",
-    "dataset_name": "Lieux Médiation_fablab_SudLab_LABELS",
+    "dataset_name": "Hub du Sud",
     "dataset_url": "",
     "dataset_file_path": "data/hub_sud/Copie de Lieux Médiation_fablab_SudLab_LABELS.csv",
     "dataset_last_updated": "",

@@ -1,0 +1,59 @@
+{
+    "data_source_name": "",
+    "data_source_type": "",
+    "dataset_name": "",
+    "dataset_url": "",
+    "dataset_file_path": "data/...",
+    "dataset_last_updated": "2020-01-30",
+    "import_comment": "",
+    "import_config": {
+        "dataset_file_delimiter": ",",
+        "place_fields_set": [
+            {
+                "place_field": "type",
+                "value": "tiers lieu"
+            },
+            {
+                "place_field": "is_online",
+                "value": "true",
+                "type": "boolean"
+            }
+        ],
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "NOM"
+            }
+        ],
+        "place_fields_mapping_boolean": [
+            {
+                "place_field": "",
+                "file_field": ""
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "legal_entity_type",
+                "file_field": "Statut"
+            },
+            {
+                "place_field": "address_raw",
+                "file_field": [["N_VOIE", "N_VOIE_COM", "TYPE_VOIE", "NOM_VOIE"], "CP_NV", "COMMUNE_NV"]
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "TEL"
+            },
+            {
+                "place_field": "opening_hours_raw",
+                "file_field": "HORAIRES"
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            {
+                "place_field": "code_lieu",
+                "file_field": "CODE_LIEU"
+            }
+        ]
+    }
+}
