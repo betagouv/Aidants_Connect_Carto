@@ -66,7 +66,10 @@
               <legend>📍&nbsp;Région :</legend>
               {{ search_form.address_region_name }}
             </fieldset>
-            <fieldset></fieldset>
+            <fieldset>
+              <legend>💻📞&nbsp;En ligne :</legend>
+              {{ search_form.is_online }}
+            </fieldset>
           </div>
         </div>
         <div class="form__group">
@@ -100,14 +103,24 @@
       {% for place in search_results.places_page %}
         <div class="card">
           <div class="card__content">
-            <h4><a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a></h4>
-            <div class="card__meta">
-              <span>📍&nbsp;{{ place.display_address_full }}</span>
-            </div>
+            <h4>
+              <a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a>
+            </h4>
+            {% if place.supporting_structure_name %}
+              <div class="card__meta">
+                {{ place.supporting_structure_name }}
+              </div>
+            {% endif %}
             <p class="text-quote">{{ place.get_type_display }}</p>
+
+            {% if place.is_online %}
+            <p>💻📞&nbsp;En ligne ou par téléphone</p>
+            {% else %}
+            <p>📍&nbsp;{{ place.display_address_full }}</p>
+            {% endif %}
             <ul>
               {% for service in place.services.all %}
-              <li>{{ service.name }}</li>
+                <li>{{ service.name }}</li>
               {% endfor %}
             </ul>
           </div>

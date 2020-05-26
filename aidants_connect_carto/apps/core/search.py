@@ -24,7 +24,10 @@ class PlaceSearchForm(ModelForm):
         widget=forms.Select(),
     )
     opening_hours = forms.ChoiceField(
-        choices=[("ouvert", "Ouvert en ce moment")], widget=forms.Select(),
+        choices=[("open", "Ouvert en ce moment")], widget=forms.Select(),
+    )
+    is_online = forms.ChoiceField(
+        choices=[("hide", "Cacher"), ("only", "Uniquement")], widget=forms.Select(),
     )
     service_label_aidants_connect = forms.BooleanField(
         label=Service._meta.get_field("has_label_aidants_connect").verbose_name,
@@ -34,6 +37,7 @@ class PlaceSearchForm(ModelForm):
     ADD_EMPTY_CHOICE_FIELDS = [
         "type",
         "opening_hours",
+        "is_online",
         "service_name",
     ]
 
@@ -128,6 +132,12 @@ class PlaceSearchEngine:
 
         if self.query.get("type"):
             qs = qs.filter(type=self.query.get("type"))
+
+        if self.query.get("is_online"):
+            is_online_filter_value = (
+                True if (self.query.get("is_online") == "uniquement") else False
+            )
+            qs = qs.filter(is_online=is_online_filter_value)
 
         if self.query.get("address_departement_name"):
             qs = qs.filter(
