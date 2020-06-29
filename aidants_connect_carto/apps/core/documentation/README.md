@@ -38,9 +38,7 @@ python manage.py listing_models --app core --format md --output aidants_connect_
 
 #### Améliorations
 
-Pouvoir Afficher un choice par ligne:
-- https://github.com/tell-k/django-modelsdoc/issues/8
-- `MODELSDOC_FIELD_WRAPPER = 'aidants_connect_carto.apps.core.documentation.custom_field_wrapper'`
+Un CustomFieldWrapper pour avoir les choices sous forme de liste.
 
 ### Générer la documentation du modèle de donnée en graph (png)
 

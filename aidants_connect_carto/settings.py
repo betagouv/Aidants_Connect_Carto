@@ -190,6 +190,8 @@ MODELSDOC_MODEL_OPTIONS = (
     "ordering",
 )
 
+MODELSDOC_FIELD_WRAPPER = "aidants_connect_carto.apps.core.documentation.modelsdoc_custom_field_wrapper.CustomFieldWrapper"
+
 
 # API URLS
 
