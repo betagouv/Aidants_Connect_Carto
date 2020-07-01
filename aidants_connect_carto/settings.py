@@ -164,6 +164,12 @@ CSP_SCRIPT_SRC = _CSP_SELF
 CSP_STYLE_SRC = _CSP_SELF
 
 
+# SSL security
+
+SECURE_SSL_REDIRECT = False if os.getenv("SECURE_SSL_REDIRECT") == "False" else True
+SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS", 0)
+
+
 # Django Extensions: graph_models
 
 GRAPH_MODELS = {
