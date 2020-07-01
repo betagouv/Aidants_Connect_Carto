@@ -124,6 +124,3 @@ Options
 ```
 ordering : ['id']
 ```
-
-
-
