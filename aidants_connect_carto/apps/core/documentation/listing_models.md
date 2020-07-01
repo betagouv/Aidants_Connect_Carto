@@ -101,7 +101,7 @@ Service(id, name, description, siret, target_audience, support_access, support_m
 
 |Name|Fullname|Type|Unique|Null/Blank|Comment|
 |---|---|---|---|---|---|
-|id |ID |serial |True |Blank | |
+|id |ID |serial |True |Blank |- Accès à un équipement informatique<br>- Accompagnement aux démarches administratives en ligne<br>- Évaluation de compétences numériques<br>- Acquisition de compétences numériques<br>- Vente de matériel informatique<br>- Stockage numérique sécurisé |
 |name |Le nom du service |varchar(300) | | | |
 |description |Une description du service |text | |Blank | |
 |siret |Coordonnées juridiques (SIRET) |varchar(14) | |Blank | |

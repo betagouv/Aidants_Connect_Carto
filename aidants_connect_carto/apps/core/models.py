@@ -486,7 +486,9 @@ class Service(models.Model):
     # AUTO_POPULATED_FIELDS = ("place_id")
 
     # --- basics
-    name = models.CharField(verbose_name="Le nom du service", max_length=300)
+    name = models.CharField(
+        verbose_name="Le nom du service", max_length=300
+    )  # choices=zip(constants.SERVICE_NAME_LIST, constants.SERVICE_NAME_LIST)
     description = models.TextField(
         verbose_name="Une description du service", blank=True
     )
