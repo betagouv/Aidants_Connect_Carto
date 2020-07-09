@@ -27,13 +27,14 @@
             </div>
             <!-- <div class="card__meta"></div> -->
             <p class="text-quote">{{ data_source.type }}</p>
-            <p>📍&nbsp;{{ data_source.places.count }} Lieux</p>
+            <p>📍&nbsp;{{ data_source.places.count }} Lieux</a>
             <p>🕒&nbsp;Ajouté le {{ data_source.created_at | date:"d F Y" }}</p>
           </div>
           <div class="card__extra">
             <!-- <span>🔗&nbsp;{{ data_source.dataset_url }}</span> -->
+            <span class="label label--inactive">🔍&nbsp;<a href="{% url 'places-list' %}?datasource_name={{ data_source.name }}&dataset_name={{ data_source.dataset_name }}">rechercher</a></span>
             {% if data_source.dataset_url %}
-              <span class="label label--inactive"><a href="{{ data_source.dataset_url }}" target="_blank">lien</a></span>
+              <span class="label float-right">🔗&nbsp;<a href="{{ data_source.dataset_url }}" target="_blank">source</a></span>
             {% endif %}
           </div>
         </div>

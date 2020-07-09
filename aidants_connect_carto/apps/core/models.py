@@ -74,6 +74,9 @@ class DataSource(models.Model):
         verbose_name="La date de dernière modification", auto_now=True
     )
 
+    class Meta:
+        unique_together = ("name", "dataset_name")
+
     def __str__(self):
         return f"{self.name}: {self.dataset_name}"
 
