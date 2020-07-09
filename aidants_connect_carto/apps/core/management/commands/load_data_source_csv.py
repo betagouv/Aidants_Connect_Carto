@@ -57,7 +57,11 @@ def create_place(row, data_source):
     place_fields_set
     """
     for elem in data_source.import_config.get("place_fields_set", []):
-        place_dict[elem["place_field"]] = elem["value"]
+        if "type" in elem:
+            if elem["type"] == "boolean":
+                place_dict[elem["place_field"]] = bool(elem["value"] == "true")
+        else:
+            place_dict[elem["place_field"]] = elem["value"]
 
     """
     place_fields_mapping_auto
@@ -185,6 +189,7 @@ def create_place(row, data_source):
 
     place_dict["data_source_id"] = data_source.id
 
+    print(place_dict)
     place = Place.objects.create(**place_dict)
     # print(row["ID"], "-->", place.id)
     print("-->", place.id)
