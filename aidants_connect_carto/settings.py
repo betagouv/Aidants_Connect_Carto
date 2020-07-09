@@ -170,6 +170,14 @@ SECURE_SSL_REDIRECT = False if os.getenv("SECURE_SSL_REDIRECT") == "False" else 
 SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS", 0)
 
 
+# Django Extensions: shell_plus
+
+SHELL_PLUS_IMPORTS = [
+    "from datetime import datetime, timedelta",
+    "from aidants_connect_carto.apps.core import utilities",
+]
+
+
 # Django Extensions: graph_models
 
 GRAPH_MODELS = {
