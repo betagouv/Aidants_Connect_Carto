@@ -164,6 +164,20 @@ CSP_SCRIPT_SRC = _CSP_SELF
 CSP_STYLE_SRC = _CSP_SELF
 
 
+# SSL security
+
+SECURE_SSL_REDIRECT = False if os.getenv("SECURE_SSL_REDIRECT") == "False" else True
+SECURE_HSTS_SECONDS = os.getenv("SECURE_HSTS_SECONDS", 0)
+
+
+# Django Extensions: shell_plus
+
+SHELL_PLUS_IMPORTS = [
+    "from datetime import datetime, timedelta",
+    "from aidants_connect_carto.apps.core import utilities",
+]
+
+
 # Django Extensions: graph_models
 
 GRAPH_MODELS = {
@@ -189,6 +203,8 @@ MODELSDOC_MODEL_OPTIONS = (
     "index_together",
     "ordering",
 )
+
+MODELSDOC_FIELD_WRAPPER = "aidants_connect_carto.apps.core.documentation.modelsdoc_custom_field_wrapper.CustomFieldWrapper"
 
 
 # API URLS
