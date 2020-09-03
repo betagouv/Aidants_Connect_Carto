@@ -1,0 +1,101 @@
+{
+    "data_source_name": "ANCT",
+    "data_source_type": "national",
+    "dataset_name": "France Services",
+    "dataset_url": "https://cget-carto.github.io/France-services/",
+    "dataset_file_path": "data/france_services/france_services_cget-carto.csv",
+    "dataset_last_updated": "2020-03-31",
+    "import_comment": "Convertir geojson en csv. Horaires séparées par jour",
+    "import_config": {
+        "place_fields_set": [
+            {
+                "place_field": "has_label_fs",
+                "value": true
+            }
+        ],
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "lib_france_services"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "CONTACT.MAIL"
+            }
+        ],
+        "place_fields_mapping_boolean": [
+            {
+                "place_field": "is_itinerant",
+                "file_field": "ITINERANCE"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "address_raw",
+                "file_field": ["ADRESSE", "code_postal", "lib_com"]
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "TELEPHONE"
+            },
+            {
+                "place_field": "opening_hours_raw",
+                "file_field": ["h_lundi", "h_mardi", "h_mercredi", "h_jeudi", "h_vendredi", "h_samedi"]
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            {
+                "place_field": "matricule",
+                "file_field": "MATRICULE"
+            },
+            {
+                "place_field": "complement_address",
+                "file_field": "COMPLEMENT.D.ADRESSE"
+            },
+            {
+                "place_field": "commentaire_horaires",
+                "file_field": "Commentaire.horaires"
+            },
+            {
+                "place_field": "format_fs",
+                "file_field": "FORMAT_FS"
+            },
+            {
+                "place_field": "group_name",
+                "file_field": "Groupe"
+            },
+            {
+                "place_field": "group_id",
+                "file_field": "X._groupe"
+            },
+            {
+                "place_field": "group_id",
+                "file_field": "X._groupe"
+            },
+            {
+                "place_field": "groupe_fs_responsable",
+                "file_field": "Goupe_France_Services_responsable"
+            },
+            {
+                "place_field": "groupe_antennes",
+                "file_field": "Goupe_Antennes"
+            },
+            {
+                "place_field": "labellisation",
+                "file_field": "Labellisation"
+            },
+            {
+                "place_field": "categorie",
+                "file_field": "categorie"
+            },
+            {
+                "place_field": "latitude",
+                "file_field": "LATITUDE"
+            },
+            {
+                "place_field": "longitude",
+                "file_field": "LONGITUDE"
+            }
+        ]
+    }
+}

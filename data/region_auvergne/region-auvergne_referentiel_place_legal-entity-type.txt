@@ -1,0 +1,6 @@
+association
+association (délégation de service public)
+collectivité
+epic (etablissement public à caractère industriel et commercial)
+gip (groupement d'intérêt public)
+non déclaré

@@ -1,0 +1,54 @@
+{
+    "data_source_name": "Région Auvergne-Rhône-Alpes",
+    "data_source_type": "région",
+    "dataset_name": "FabLab : Laboratoires de fabrication numérique en Auvergne",
+    "dataset_url": "http://opendata.auvergnerhonealpes.eu/data/fablab-auvergne/7-fablab-laboratoires-de-fabrication-numerique-en-auvergne.htm",
+    "dataset_file_path": "data/region_auvergne/fablab__laboratoires_de_fabrication_numerique_en_auvergne.csv",
+    "dataset_last_updated": "2016-10-27",
+    "import_config": {
+        "place_fields_set": [
+            {
+                "place_field": "type",
+                "value": "tiers lieu"
+            }
+        ],
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "Nom"
+            },
+            {
+                "place_field": "supporting_structure_name",
+                "file_field": "Porteur"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "e-mail"
+            },
+            {
+                "place_field": "contact_website_url",
+                "file_field": "Site web"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "address_raw",
+                "file_field": ["Adresse", "Code postal", "Ville"]
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "Tél."
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            {
+                "place_field": "latitude",
+                "file_field": "Latitude"
+            },
+            {
+                "place_field": "longitude",
+                "file_field": "Longitude"
+            }
+        ]
+    }
+}

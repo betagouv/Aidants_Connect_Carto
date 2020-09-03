@@ -1,0 +1,74 @@
+{
+    "data_source_name": "Région Auvergne-Rhône-Alpes",
+    "data_source_type": "région",
+    "dataset_name": "Espaces Numériques en Auvergne",
+    "dataset_url": "http://opendata.auvergnerhonealpes.eu/data/espaces-numeriques-en-auvergne/7-espaces-numeriques-en-auvergne.htm",
+    "dataset_file_path": "data/region_auvergne/espaces_numeriques_en_auvergne.csv",
+    "dataset_last_updated": "2016-10-27",
+    "import_comment": "Le plus: nom des contact_person (rajouter dans la base ?). Le moins: pas d'id, pas d'horaires, pas de service. Pre-processing: colonne 'Porteur': 'Non déclaré' --> ''",
+    "import_config": {
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "Libellé de l'espace numérique"
+            },
+            {
+                "place_field": "supporting_structure_name",
+                "file_field": "Porteur",
+                "comment": "removed 'Non déclaré' values beforehand"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "E mail"
+            },
+            {
+                "place_field": "contact_website_url",
+                "file_field": "Site web"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "legal_entity_type",
+                "file_field": "Statut"
+            },
+            {
+                "place_field": "address_raw",
+                "file_field": ["Adresse", "Code postal", "Commune"]
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "Téléphone"
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            {
+                "place_field": "fax",
+                "file_field": "Fax"
+            },
+            {
+                "place_field": "address_departement_code",
+                "file_field": "Code Insee"
+            },
+            {
+                "place_field": "contact_person_1",
+                "file_field": "Contact 1"
+            },
+            {
+                "place_field": "contact_person_2",
+                "file_field": "Contact 2"
+            },
+            {
+                "place_field": "contact_person_1_fonction",
+                "file_field": "Fonction contact 1"
+            },
+            {
+                "place_field": "latitude",
+                "file_field": "Latitude"
+            },
+            {
+                "place_field": "longitude",
+                "file_field": "Longitude"
+            }
+        ]
+    }
+}

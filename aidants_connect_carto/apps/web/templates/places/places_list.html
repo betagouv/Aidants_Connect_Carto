@@ -63,8 +63,8 @@
         <div class="form__group">
           <fieldset>
             <legend>Labels :</legend>
+            {{ search_form.has_label_fs }}<label class="label-inline" for="{{ search_form.has_label_fs.id_for_label }}">{{ search_form.has_label_fs.label | safe }}</label>
             {{ search_form.service_label_aidants_connect }}<label class="label-inline" for="{{ search_form.service_label_aidants_connect.id_for_label }}">{{ search_form.service_label_aidants_connect.label | safe }}</label>
-            {{ search_form.service_label_mfs }}<label class="label-inline" for="{{ search_form.service_label_mfs.id_for_label }}">{{ search_form.service_label_mfs.label | safe }}</label>
           </fieldset>
         </div>
         <div class="form__group">

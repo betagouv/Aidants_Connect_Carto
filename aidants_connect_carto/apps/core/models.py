@@ -10,7 +10,7 @@ from aidants_connect_carto import constants
 class DataSource(models.Model):
     # --- basics
     name = models.CharField(
-        verbose_name="Le nom de la source de donnée", max_length=300
+        verbose_name="Le nom du fournisseur de donnée", max_length=300
     )
     description = models.TextField(
         verbose_name="Une description",
@@ -23,21 +23,47 @@ class DataSource(models.Model):
         # choices=constants.DATA_SOURCE_TYPE_CHOICES,
         # default=constants.CHOICE_OTHER,
     )
-    dataset_url = models.URLField(
-        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
-        max_length=300,
-        blank=True,
-    )
 
     # --- contact
     contact_website_url = models.URLField(
-        verbose_name="L'adresse du site internet", max_length=300, blank=True,
+        verbose_name="L'adresse du site internet de la source de donnée",
+        max_length=300,
+        blank=True,
     )
 
     # --- other
     logo_url = models.URLField(
         verbose_name="L'adresse du logo de la source de donnée",
         max_length=300,
+        blank=True,
+    )
+
+    # --- dataset details
+    dataset_name = models.CharField(
+        verbose_name="Le nom du jeu de donnée", max_length=300
+    )
+    dataset_url = models.URLField(
+        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
+        max_length=300,
+        blank=True,
+    )
+    dataset_local_path = models.CharField(
+        verbose_name="Le chemin d'accès au jeu de donnée", max_length=300
+    )
+    dataset_last_updated = models.DateField(
+        verbose_name="La date de dernière mise à jour du jeu de donnée",
+        blank=True,
+        null=True,
+    )
+
+    # --- import details
+    import_config = JSONField(
+        verbose_name="Information et configuration de l'import de la donnée",
+        blank=True,
+        null=True,
+    )
+    import_comment = models.TextField(
+        verbose_name="Informations complémentaires sur l'import de la donnée",
         blank=True,
     )
 
@@ -50,7 +76,7 @@ class DataSource(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name}: {self.dataset_name}"
 
     @property
     def place_count(self) -> int:
@@ -324,6 +350,11 @@ class Place(models.Model):
         help_text="Espèces, Carte Bancaire, ...",
     )  # PAYMENT_CHOICES
 
+    # --- labels
+    has_label_fs = models.BooleanField(
+        verbose_name="Labellisé France Service", default=False
+    )
+
     # --- other
     logo_url = models.URLField(
         verbose_name="L'adresse du logo du lieu",
@@ -365,6 +396,10 @@ class Place(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    # @property
+    # def data_source_name(self) -> str:
+    #     return self.data_source
 
     @property
     def service_count(self) -> int:
@@ -520,9 +555,6 @@ class Service(models.Model):
     # label_aptic = # ManyToManyField ?
     has_label_aidants_connect = models.BooleanField(
         verbose_name="Labellisé Aidants Connect", default=False
-    )
-    has_label_mfs = models.BooleanField(
-        verbose_name="Labellisé France Service", default=False
     )
     label_other = models.CharField(
         verbose_name="Autres labels", max_length=300, blank=True
