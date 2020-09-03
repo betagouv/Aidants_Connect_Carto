@@ -1,11 +1,14 @@
 # flake8: noqa
-from django.test import tag, TestCase
+from datetime import date, datetime
+
+from freezegun import freeze_time
+
+from django.test import TestCase
 
 from aidants_connect_carto.apps.core import utilities
 
 
-@tag("utilities")
-class UtilitiesTestCase(TestCase):
+class UtilitiesOpeningHoursTest(TestCase):
     def test_process_opening_hours_to_osm_format(self):
         opening_hours_list = [
             (
@@ -72,8 +75,151 @@ class UtilitiesTestCase(TestCase):
             opening_hours_raw_processed = utilities.process_opening_hours_to_osm_format(
                 opening_hours_raw
             )
+            self.assertIsInstance(opening_hours_raw_processed, str)
             self.assertEqual(opening_hours_raw_processed, opening_hours_osm_format)
 
+    def test_get_opening_hours_osm_format_description(self):
+        opening_hours_osm_format_list = [
+            ("Mo-Fr 09:00-19:00", ["Du lundi au vendredi : 09:00 – 19:00."]),
+            (
+                "Mo-Th 09:00-19:00; Fr 08:00-12:00",
+                ["Du lundi au jeudi : 09:00 – 19:00.", "Le vendredi : 08:00 – 12:00."],
+            ),
+            ("", []),
+        ]
+        for opening_hours_osm_format in opening_hours_osm_format_list:
+            opening_hours_osm_format_description = utilities.get_opening_hours_osm_format_description(
+                opening_hours_osm_format[0]
+            )
+            self.assertIsInstance(opening_hours_osm_format_description, list)
+            self.assertEqual(
+                opening_hours_osm_format_description, opening_hours_osm_format[1]
+            )
+
+    def test_get_opening_hours_osm_format_week_description(self):
+        opening_hours_osm_format_list = [
+            (
+                "Mo-Fr 09:00-19:00",
+                [
+                    "Lundi : 09:00 – 19:00",
+                    "Mardi : 09:00 – 19:00",
+                    "Mercredi : 09:00 – 19:00",
+                    "Jeudi : 09:00 – 19:00",
+                    "Vendredi : 09:00 – 19:00",
+                    "Samedi : fermé",
+                    "Dimanche : fermé",
+                ],
+            ),
+            (
+                "Mo-Th 09:00-19:00; Fr 08:00-12:00",
+                [
+                    "Lundi : 09:00 – 19:00",
+                    "Mardi : 09:00 – 19:00",
+                    "Mercredi : 09:00 – 19:00",
+                    "Jeudi : 09:00 – 19:00",
+                    "Vendredi : 08:00 – 12:00",
+                    "Samedi : fermé",
+                    "Dimanche : fermé",
+                ],
+            ),
+            ("", []),
+        ]
+        for opening_hours_osm_format in opening_hours_osm_format_list:
+            opening_hours_osm_format_week_description = utilities.get_opening_hours_osm_format_week_description(
+                opening_hours_osm_format[0]
+            )
+            self.assertIsInstance(opening_hours_osm_format_week_description, list)
+            self.assertEqual(
+                opening_hours_osm_format_week_description, opening_hours_osm_format[1]
+            )
+
+    @freeze_time("2020-05-15 15:00:00")  # Friday 3PM
+    def test_get_opening_hours_osm_format_today(self):
+        opening_hours_osm_format_list = [
+            ("Mo-Fr 09:00-19:00", [1, "2020-05-15 09:00:00", "2020-05-15 19:00:00"]),
+            (
+                "Mo-Th 09:00-19:00; Fr 08:00-12:00",
+                [1, "2020-05-15 08:00:00", "2020-05-15 12:00:00"],
+            ),
+            (
+                "Fr 08:00-12:00,14:00-18:00",
+                [
+                    2,
+                    "2020-05-15 08:00:00",
+                    "2020-05-15 12:00:00",
+                    "2020-05-15 14:00:00",
+                    "2020-05-15 18:00:00",
+                ],
+            ),
+            ("", []),
+        ]
+        for opening_hours_osm_format in opening_hours_osm_format_list:
+            opening_hours_osm_format_today = utilities.get_opening_hours_osm_format_today(
+                opening_hours_osm_format[0]
+            )
+            self.assertIsInstance(opening_hours_osm_format_today, list)
+            if len(opening_hours_osm_format_today) > 0:
+                opening_hours_osm_format_today_length = opening_hours_osm_format[1][0]
+                opening_hours_osm_format_today_beginning_datetime = opening_hours_osm_format[
+                    1
+                ][
+                    1
+                ]
+                opening_hours_osm_format_today_end_datetime = opening_hours_osm_format[
+                    1
+                ][2]
+                self.assertEqual(
+                    len(opening_hours_osm_format_today),
+                    opening_hours_osm_format_today_length,
+                )
+                self.assertEqual(
+                    str(opening_hours_osm_format_today[0].beginning),
+                    opening_hours_osm_format_today_beginning_datetime,
+                )
+                self.assertEqual(
+                    str(opening_hours_osm_format_today[0].end),
+                    opening_hours_osm_format_today_end_datetime,
+                )
+                if len(opening_hours_osm_format_today) > 1:
+                    opening_hours_osm_format_today_afternoon_beginning_datetime = opening_hours_osm_format[
+                        1
+                    ][
+                        3
+                    ]
+                    opening_hours_osm_format_today_afternoon_end_datetime = opening_hours_osm_format[
+                        1
+                    ][
+                        4
+                    ]
+                    self.assertEqual(
+                        str(opening_hours_osm_format_today[1].beginning),
+                        opening_hours_osm_format_today_afternoon_beginning_datetime,
+                    )
+                    self.assertEqual(
+                        str(opening_hours_osm_format_today[1].end),
+                        opening_hours_osm_format_today_afternoon_end_datetime,
+                    )
+
+    @freeze_time("2020-05-15 15:00:00")  # Friday 3PM
+    def test_get_opening_hours_osm_format_today(self):
+        opening_hours_osm_format_list = [
+            ("Mo-Fr 09:00-19:00", True),
+            ("Mo-Th 09:00-19:00; Fr 08:00-12:00", False),
+            ("Fr 08:00-12:00,14:00-18:00", True),
+            ("Mo-Th 09:00-19:00", False),
+            ("", False),
+        ]
+        for opening_hours_osm_format in opening_hours_osm_format_list:
+            opening_hours_osm_format_today = utilities.get_opening_hours_osm_format_is_open(
+                opening_hours_osm_format[0]
+            )
+            self.assertIsInstance(opening_hours_osm_format_today, bool)
+            self.assertEqual(
+                opening_hours_osm_format_today, opening_hours_osm_format[1]
+            )
+
+
+class UtilitiesPhoneTest(TestCase):
     def test_process_phone_number(self):
         phone_number_list = [
             ("01 23 45 67 89", "0123456789"),
@@ -93,6 +239,8 @@ class UtilitiesTestCase(TestCase):
             )
             self.assertEqual(phone_number_raw_processed, phone_number_formatted)
 
+
+class UtilitiesAddressTest(TestCase):
     def test_clean_address_raw_list(self):
         address_raw_list = [
             ("11 place d’armes", "83000", "TOULON", "11 place d’armes 83000 TOULON"),
@@ -138,3 +286,23 @@ class UtilitiesTestCase(TestCase):
                 address_raw_processed["departement_name"], address_departement
             )
             self.assertEqual(address_raw_processed["region_name"], address_region)
+
+    def test_get_address_full(self):
+        address_list = [
+            (
+                ["20", "Avenue de Ségur", "75007", "Paris"],
+                "20 Avenue de Ségur, 75007 Paris",
+            ),
+            (
+                ["", "Place de la République", "75021", "Paris"],
+                "Place de la République, 75021 Paris",
+            ),
+            (["", "", "38000", "Grenoble"], "38000 Grenoble"),
+            (["", "", "", ""], ""),
+            ([None, "", "", ""], ""),
+        ]
+        for address in address_list:
+            address_full = utilities.get_address_full(
+                address[0][0], address[0][1], address[0][2], address[0][3]
+            )
+            self.assertEqual(address_full, address[1])

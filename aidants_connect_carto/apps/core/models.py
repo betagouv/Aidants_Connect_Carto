@@ -2,9 +2,8 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.core.validators import RegexValidator
 
-import humanized_opening_hours as hoh
-
 from aidants_connect_carto import constants
+from aidants_connect_carto.apps.core import utilities
 
 
 class DataSource(models.Model):
@@ -397,44 +396,37 @@ class Place(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-    # @property
-    # def data_source_name(self) -> str:
-    #     return self.data_source
-
     @property
     def service_count(self) -> int:
         return self.services.count()
 
     @property
     def service_list(self) -> list():
-        return self.services.values_list("name", flat=True)
+        return list(self.services.values_list("name", flat=True))
 
     @property
     def display_address_full(self) -> str:
         """
         20 Avenue de Ségur, 75007 Paris
         """
-        return (
-            f"{self.address_housenumber}"
-            f"{' ' if self.address_housenumber else ''}"
-            f"{self.address_street}, "
-            f"{self.address_postcode} "
-            f"{self.address_city}"
+        return utilities.get_address_full(
+            self.address_housenumber,
+            self.address_street,
+            self.address_postcode,
+            self.address_city,
         )
 
     @property
     def opening_hours_description(self) -> list:
         """
         Transform opening_hours_osm_format into a readable description
-        'Mo-Fr 8:00-20:00' --> ['Du lundi au vendredi : 08:00 – 20:00.']
+        'Mo-Fr 08:00-20:00' --> ['Du lundi au vendredi : 08:00 – 20:00.']
 
         TODO: Store as model field ?
         """
-        if not self.opening_hours_osm_format:
-            return []
-
-        oh = hoh.OHParser(self.opening_hours_osm_format, locale="fr")
-        return oh.description()
+        return utilities.get_opening_hours_osm_format_description(
+            self.opening_hours_osm_format
+        )
 
     @property
     def opening_hours_week_description(self) -> list:
@@ -443,7 +435,7 @@ class Place(models.Model):
         of readable descriptions per day.
 
         For example, if `opening_hours_osm_format` contains the string
-        "Mo-Fr 8:00-20:00", this method returns the following output:
+        "Mo-Fr 08:00-20:00", this method returns the following output:
         [
             'Lundi : 08:00 – 20:00',
             'Mardi : 08:00 – 20:00',
@@ -456,15 +448,14 @@ class Place(models.Model):
 
         TODO: Store as model field ?
         """
-        if not self.opening_hours_osm_format:
-            return []
-
-        oh = hoh.OHParser(self.opening_hours_osm_format, locale="fr")
-        return oh.plaintext_week_description().split("\n")
+        return utilities.get_opening_hours_osm_format_week_description(
+            self.opening_hours_osm_format
+        )
 
     @property
     def opening_hours_today(self) -> list:
-        """Get the opening times of the current day.
+        """
+        Get the opening times of the current day.
 
         For example, if `opening_hours_osm_format` contains the string "Mo-Fr 8:00-20:00",
         this method returns the following output:
@@ -477,20 +468,18 @@ class Place(models.Model):
             }
         ]
         """
-        if not self.opening_hours_osm_format:
-            return []
-
-        oh = hoh.OHParser(self.opening_hours_osm_format, locale="fr")
-        return oh.get_day().timespans
+        return utilities.get_opening_hours_osm_format_today(
+            self.opening_hours_osm_format
+        )
 
     @property
     def is_open(self) -> bool:
-        """Return `True` if the `place` is currently open, or `False` otherwise."""
-        if not self.opening_hours_osm_format:
-            return False
-
-        oh = hoh.OHParser(self.opening_hours_osm_format, locale="fr")
-        return oh.is_open()
+        """
+        Return `True` if the `place` is currently open, or `False` otherwise.
+        """
+        return utilities.get_opening_hours_osm_format_is_open(
+            self.opening_hours_osm_format
+        )
 
 
 class Service(models.Model):
