@@ -20,39 +20,41 @@ class ApiTest(TestCase):
         )
 
     def test_get_root_api(self):
-        response = self.client.get(reverse("api:root"))
+        response = self.client.get(reverse("api:root"), secure=True)
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.data, dict)
 
     def test_get_data_source_list(self):
-        response = self.client.get(reverse("api:data-source-list"))
+        response = self.client.get(reverse("api:data-source-list"), secure=True)
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.data, list)
         self.assertEqual(len(response.data), 1)
 
     def test_get_data_source_detail(self):
         response = self.client.get(
-            reverse("api:data-source-detail", args=[self.data_source_1.id])
+            reverse("api:data-source-detail", args=[self.data_source_1.id]), secure=True
         )
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.data, dict)
         self.assertEqual(response.data["name"], "Region Test")
 
     def test_get_place_list(self):
-        response = self.client.get(reverse("api:place-list"))
+        response = self.client.get(reverse("api:place-list"), secure=True)
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.data, list)
         self.assertEqual(len(response.data), 1)
 
     def test_get_place_detail(self):
-        response = self.client.get(reverse("api:place-detail", args=[self.place_1.id]))
+        response = self.client.get(
+            reverse("api:place-detail", args=[self.place_1.id]), secure=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.data, dict)
         self.assertEqual(response.data["name"], "Lieu Test 1")
 
     def test_get_service_list(self):
         response = self.client.get(
-            reverse("api:place-service-list", args=[self.place_1.id])
+            reverse("api:place-service-list", args=[self.place_1.id]), secure=True
         )
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.data, list)
@@ -62,7 +64,8 @@ class ApiTest(TestCase):
         response = self.client.get(
             reverse(
                 "api:place-service-detail", args=[self.place_1.id, self.service_1.id]
-            )
+            ),
+            secure=True,
         )
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.data, dict)
