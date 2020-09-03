@@ -1,14 +1,16 @@
 from django.contrib import messages
-
 from django.shortcuts import render, redirect, get_object_or_404
 
-from aidants_connect_carto.apps.core.models import Place, DataSource
+from aidants_connect_carto import constants
+from aidants_connect_carto.apps.core.models import Place, Service, DataSource
 from aidants_connect_carto.apps.core.search import PlaceSearchEngine, PlaceSearchForm
+from aidants_connect_carto.apps.core.stats import get_model_stats
 from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
 
 
 def home_page(request):
-    return render(request, "home_page.html")
+    form = PlaceSearchForm(request.GET)
+    return render(request, "home_page.html", {"search_form": form})
 
 
 def places_list(request):
@@ -127,3 +129,147 @@ def data_sources_list(request):
     data_sources = DataSource.objects.all()  # .order_by("name")
 
     return render(request, "data_sources_list.html", {"data_sources": data_sources},)
+
+
+def stats(request):
+    model_stats = get_model_stats()
+
+    import json
+    import pandas as pd
+    import numpy as np
+
+    # region geojson
+    with open("data/geo/regions-version-simplifiee.geojson", "r") as f:
+        region_geojson = json.load(f)
+        for index, region in enumerate(region_geojson["features"]):
+            region_geojson["features"][index]["properties"]["place_count"] = next(
+                (
+                    region_agg["place_count"]
+                    for region_agg in model_stats[
+                        "place_address_region_name_aggregation"
+                    ]
+                    if region_agg["address_region_name"] == region["properties"]["nom"]
+                ),
+                0,
+            )
+
+    # place fields fill stats
+    place_df = pd.DataFrame.from_records(Place.objects.all().values())
+    place_df = (
+        place_df.replace("", np.nan)
+        .replace([], np.nan)
+        .replace(constants.CHOICE_OTHER, np.nan)
+    )
+    place_fields_fill_count_df = place_df.count()
+
+    # service fields fill stats
+    service_df = pd.DataFrame.from_records(Service.objects.all().values())
+    service_df = (
+        service_df.replace("", np.nan)
+        .replace(constants.CHOICE_OTHER, np.nan)
+        .replace([], np.nan)
+    )
+    service_fields_fill_count_df = service_df.count()
+
+    return render(
+        request,
+        "stats.html",
+        {
+            **model_stats,
+            "region_geojson": json.dumps(region_geojson),
+            "place_field_fill": [
+                {
+                    "name": "Adresse",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in [
+                            "address_raw",
+                            "address_housenumber",
+                            "address_street",
+                            "address_postcode",
+                            "address_city",
+                            "address_departement_name",
+                            "address_region_name",
+                            "latitude",
+                            "longitude",
+                        ]
+                    ],
+                },
+                {
+                    "name": "Contact",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in [
+                            "contact_phone_raw",
+                            "contact_phone",
+                            "contact_email",
+                            "contact_website_url",
+                            "contact_facebook_url",
+                            "contact_twitter_url",
+                            "contact_youtube_url",
+                        ]
+                    ],
+                },
+                {
+                    "name": "Horaires",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in ["opening_hours_raw", "opening_hours_osm_format"]
+                    ],
+                },
+                {
+                    "name": "Public cible",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in ["target_audience_raw", "target_audience"]
+                    ],
+                },
+                {
+                    "name": "autres",
+                    "fill_stats": [
+                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        for key in [
+                            "supporting_structure_name",
+                            "type",
+                            "status",
+                            "legal_entity_type",
+                            "siret",
+                            "is_itinerant",
+                            "is_online",
+                            "languages",
+                            "payment_methods",
+                            "osm_node_id",
+                        ]
+                    ],
+                },
+            ],
+            "service_field_fill": [
+                {
+                    "name": "Horaires",
+                    "fill_stats": [
+                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        for key in ["schedule_hours_raw", "schedule_hours_osm_format"]
+                    ],
+                },
+                {
+                    "name": "Accompagnement",
+                    "fill_stats": [
+                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        for key in ["target_audience", "support_access", "support_mode"]
+                    ],
+                },
+                {
+                    "name": "autres",
+                    "fill_stats": [
+                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        for key in [
+                            "siret",
+                            "price_details",
+                            "payment_methods",
+                            "label_other",
+                        ]
+                    ],
+                },
+            ],
+        },
+    )

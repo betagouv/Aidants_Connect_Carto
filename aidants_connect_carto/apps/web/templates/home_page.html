@@ -1,27 +1,62 @@
 {% extends 'layouts/main.html' %}
 
+{% load static %}
+
 {% block hero %}
 <div class="hero">
-  <div class="hero__container">
-    <div class="row">
-      <div class="hero__description text-center">
-        <h1 class="brand">Bienvenue sur l'outil Cartographie d'Aidants Connect</h1>
-        <p class="lead-text">
-          Vous accompagnez régulièrement des personnes en difficulté avec le numérique dans la réalisation de démarches en ligne ? Aidants Connect est fait pour vous !
-        </p>
-        <p>Ce service sécurise et facilite le « faire pour le compte de ».</p>
-      </div>
-    </div>
+  <div class="hero__container text-center">
+    <h1 class="brand">Bienvenue sur l'outil Cartographie d'Aidants Connect</h1>
+    <p>
+      Découvrez tous les lieux de l'inclusion numérique et orientez les publics vers l'offre de médiation et de formation au numérique
+    </p>
+    <!-- <p>
+      <a href="{% url 'places-list' %}"><img style="vertical-align:middle;" src="{% static 'img/openmoji/search_color_1F50D.svg' %}" height="30" />Rechercher un lieu</a>
+    </p> -->
+    
+    <br />
+    <br />
+
+    <form action="/lieux" method="GET">
+        <div class="form__group">
+          <!-- <div class="input__group">
+            {{ search_form.name }}
+            <button class="button" type="submit"><img style="vertical-align:middle;" src="{% static 'img/openmoji/search_color_1F50D.svg' %}" height="30" />Rechercher un lieu</button>
+          </div> -->
+          <div class="row">
+            <fieldset style="min-width:300px">
+              {{ search_form.name }}
+            </fieldset>
+            <!-- <fieldset>
+              {{ search_form.service_name }}
+            </fieldset> -->
+            <fieldset>
+              <button class="button" style="margin:0" type="submit">🔍&nbsp;Rechercher</button>
+            </fieldset>
+          </div>
+        </div>
+    </form>
   </div>
 </div>
 {% endblock hero %}
 
 {% block content %}
-<div class="notification full-width" role="alert">Vous êtes sur un site en construction, l’interface proposée sera amenée à changer grâce à vos <a href="https://github.com/betagouv/Aidants_Connect_Carto/issues/new">retours</a> !</div>
-
-<div class="section text-center">
-  <div class="container">
-    <a href="{% url 'places-list' %}">Tous les lieux</a>
-  </div>
+<div class="notification full-width" role="alert">
+  Vous êtes sur un site en construction, l’interface proposée sera amenée à changer grâce à vos <a href="https://github.com/betagouv/Aidants_Connect_Carto/issues/new">retours</a> !
 </div>
+
+<section class="section section-grey text-center">
+  <div class="container">
+    <div class="row">
+      <div>
+        <img style="max-width:250px" src="{% static 'img/aidants-connect_logo.png' %}" alt="Logo Aidants Connect" />
+      </div>
+      <div>
+        <p class="lead-text">
+          Vous accompagnez régulièrement des personnes en difficulté avec le numérique dans la réalisation de démarches en ligne ? <a href="https://aidantsconnect.beta.gouv.fr/">Aidants Connect</a> est fait pour vous !
+        </p>
+        <p>Ce service sécurise et facilite le « faire pour le compte de ».</p>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}

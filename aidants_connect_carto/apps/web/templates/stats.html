@@ -1,0 +1,197 @@
+{% extends 'layouts/main.html' %}
+
+{% load static %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/libraries/leaflet@1.6.0.css' %}">
+{% endblock extracss %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    {% if messages %}
+      <div class="notification success" role="alert">
+        {% for message in messages %}
+          {{ message | safe }}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <h1 class="section__title">Statistiques</h1>
+    <p class="section__subtitle">Donnée, usage et mesures d'impacts</p>
+  </div>
+</section>
+<section class="section section-grey">
+  <div class="container">
+    <div class="tiles">
+      <h2>Les données disponibles</h2>
+      <div class="grid">
+        <div class="tile text-center">
+          <h3 class="font-weight-normal">Jeux de données</h3>
+          <h3><strong>{{ data_source_count }}</strong></h3>
+        </div>
+        <div class="tile text-center">
+          <h3 class="font-weight-normal">Lieux</h3>
+          <h3><strong>{{ place_count }}</strong></h3>
+        </div>
+        <div class="tile text-center">
+          <h3 class="font-weight-normal">Lieux avec service(s)</h3>
+          <h3><strong>{{ place_with_service_count }}</strong></h3>
+        </div>
+      </div>
+
+      <br />
+
+      <h2>Le nombre de lieux par service</h2>
+      <div class="grid small-grid">
+        {% for stat_item in service_name_aggregation %}
+          <div class="tile text-center">
+            <h6 class="font-weight-normal">{{ stat_item.name }}</h6>
+            <h3><strong>{{ stat_item.place_count }}</strong></h3>
+          </div>
+        {% endfor %}
+      </div>
+      <p>ℹ️ les services sont amenés à être étoffés.</p>
+
+      <br />
+
+      <h2>La couverture géographique</h2>
+      
+      <div id="map-stats-converture"></div>
+
+      <div style="overflow-x:scroll">
+        <p class="margin-bottom-O">Le nombre de lieux par région</p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Région</th>
+              {% for stat_item in place_address_region_name_aggregation %}
+                <th class="text-lowercase">{{ stat_item.address_region_name | default:"inconnu" }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lieux</td>
+              {% for stat_item in place_address_region_name_aggregation %}
+                <td>{{ stat_item.place_count }}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br />
+
+      <h2><a id="advanced_stats_toggle" class="no-decoration">Statistiques avancées ▸</a></h2>
+
+      <section id="advanced_stats_section" style="display:none">
+        <h3 class="margin-bottom-O">Lieux: remplissage des champs</h3>
+
+        {% for field in place_field_fill %}
+          <div style="overflow-x:scroll">
+            <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de lieux sur {{ place_count }})</small></p>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <th class="text-lowercase">{{ elem.key }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <td>{{ elem.value }}</td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        {% endfor %}
+
+        <h3 class="margin-bottom-O">Remplissage des champs des services</h3>
+
+        {% for field in service_field_fill %}
+          <div style="overflow-x:scroll">
+            <p class="margin-bottom-O">Champs <strong>{{ field.name }}</strong> <small>(nombre de services sur {{ service_count }})</small></p>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <th class="text-lowercase">{{ elem.key }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for elem in field.fill_stats %}
+                  <td>{{ elem.value }}</td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        {% endfor %}
+      </section>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block extrajs %}
+<script src="{% static 'js/libraries/leaflet@1.6.0.js' %}"></script>
+
+<script>
+  // leaflet map
+  function getColor(d) {
+    return d > 1000 ? '#3388ff' :
+           d > 500  ? '#5b9fff' :
+           d > 200  ? '#84b7ff' :
+           d > 100  ? '#adcfff' :
+           d > 50   ? '#d6e7ff' :
+          //  d > 20   ? '#d6e7ff' :
+          //  d > 10   ? '#FED976' :
+                      '#FFFFFF';
+  }
+  function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.place_count),
+        weight: 2,
+        opacity: 1,
+        color: '#3388ff',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+  }
+  function onEachFeature(feature, layer) {
+    layer.bindPopup('<h6>' + feature.properties.nom + '</h6><div><strong>' + feature.properties.place_count + '</strong> lieux</div>');
+  }
+  if (document.getElementById("map-stats-converture")) {
+    map_settings = { zoomControl: false, scrollWheelZoom: false, dragging: false };
+    metropole_coordinates = [45.5, 2];
+    var map = L.map('map-stats-converture', map_settings).setView(metropole_coordinates, 5);
+    console.log({{ region_geojson | safe }})
+    L.geoJSON({{ region_geojson | safe }}, { style: style, onEachFeature: onEachFeature }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+  }
+  // TODO: domtom
+  // https://github.com/etalab/transport-site/blob/7a9a525e3bcd4c677485e676f49b1f97b49c3505/apps/transport/client/javascripts/map.js#L621
+</script>
+
+<script>
+  // init
+  const advanced_stats_toggle_element = document.getElementById("advanced_stats_toggle");
+  const advanced_stats_section_element = document.getElementById("advanced_stats_section");
+
+  // advanced stats toggle
+  if (advanced_stats_toggle_element) {
+    advanced_stats_toggle_element.addEventListener("click", function() {
+      advanced_stats_toggle_element.text = (advanced_stats_toggle_element.text === "Statistiques avancées ▸") ? "Statistiques avancées ▾" : "Statistiques avancées ▸";
+      advanced_stats_section_element.style.display = (advanced_stats_section_element.style.display === "block") ? "none" : "block";
+    }, false);
+  }
+</script>
+{% endblock extrajs %}

@@ -27,8 +27,7 @@
     </div>
 
     <p class="section__subtitle">
-      Ce lieu propose {{ place.service_count }} service{{ place.service_count | pluralize }}.
-      <!-- <small><a>Voir tous les services.</a></small> -->
+      {{ place.description }}
     </p>
 
     <div class="row">
@@ -36,13 +35,13 @@
         <h5>Informations</h5>
         <p class="text-quote">{{ place.get_type_display }}</p>
         <p class="Public cible">
-          Public cible :<br />
+          Public cible :
           {% for target in place.target_audience %}
             <span class="label label-small">{{ target }}</span>
           {% endfor %}
         </p>
         <p title="Equipements">
-          Equipements disponibles :<br />
+          Equipements disponibles :
           {% if place.has_equipment_wifi %}
             <span class="label label-small label--inactive">WiFi</span>
           {% endif %}
@@ -51,7 +50,7 @@
           {% endif %}
         </p>
         <p title="Accessibilité">
-          Accessibilité :<br />
+          Accessibilité :
           {% if place.has_accessibility_hi %}
             <span><img src="{% static 'img/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
           {% endif %}
@@ -89,26 +88,26 @@
         <p>{{ place.address_housenumber }} {{place.address_street }}, {{ place.address_postcode }} {{ place.address_city }}</p>
         <!-- <img src="{% static 'img/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
         {% if place.latitude and place.longitude %}
-          <div id="map-details"></div>
+          <div id="map-place-details"></div>
         {% endif %}
       </div>
     </div>
 
     {% if place.opening_hours_osm_format %}
       <p>
-        🕒 Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de
+        🕒&nbsp;Les <strong>horaires d'ouvertures</strong> aujourd'hui sont de
         {% for timespan in place.opening_hours_today %}<span> {{ timespan.beginning | date:"H:i" }} à {{ timespan.end | date:"H:i" }}</span>{% endfor %}.
         <small><a id="opening_hours_week_toggle">Voir toute la semaine.</a></small>
       </p>
-      <ul id="opening_hours_week" style="display:none">
+      <ul id="opening_hours_week_section" style="display:none">
         {% for opening_hours_day in place.opening_hours_week_description %}
           <li>{{ opening_hours_day }}</li>
         {% endfor %}
       </ul>
     {% else %}
       <p>
-        🕒 Les <strong>horaires d'ouvertures</strong> sont inconnus.
-        <small><a>Rajouter les horaires.</a></small>
+        🕒&nbsp;Les <strong>horaires d'ouvertures</strong> sont inconnues.
+        <small><a href="#contribution">Rajouter les horaires</a></small>
       </p>
     {% endif %}
 
@@ -116,78 +115,56 @@
 </section>
 <section class="section section-grey">
   <div class="container">
-    <h2 class="section__title">Services proposés</h2>
-    <div class="grid">
-      {% for service in place_services %}
-        <!-- <div class="tile">
-          <p class="text-align-center">{{ service.name }}</p>
-          <div class="font-size-small">
-            {% if service.schedule_hours_raw %}
-            <p title="Horaires">
-              🕒 {{ service.schedule_hours_raw }}
-            </p>
-            {% endif %}
-            <p title="Tags">
-              {% for target in service.target_audience %}
-              <span class="label label--inactive">{{ target }}</span>
-              {% endfor %}
-              {% if service.support_access %}
-              <span class="label label">{{ service.support_access }}</span>
+    {% if place_services %}
+      <h2 class="section__title">Services proposés</h2>
+      <div class="grid">
+        {% for service in place_services %}
+          <div class="card">
+            <div class="card__content">
+              <h6>{{ service.name }}</h6>
+              {% if service.schedule_hours_raw %}
+                <div class="font-size-small" title="Horaires">
+                  🕒 {{ service.schedule_hours_raw }}
+                </div>
               {% endif %}
-              {% if service.support_mode %}
-              <span class="label label">{{ service.support_mode }}</span>
-              {% endif %}
-              {% if service.has_label_aidants_connect %}
-              <span class="label label--active">Aidants Connect</span>
-              {% endif %}
-            </p>
+            </div>
+            <div class="card__extra">
+              <span title="Tags">
+                {% if service.is_free %}
+                  <span class="label label-small label--active">Gratuit</span>
+                {% else %}
+                <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
+                {% endif %}
+                {% for target in service.target_audience %}
+                  <span class="label label-small label--inactive">{{ target }}</span>
+                {% endfor %}
+                {% if service.support_access %}
+                  <span class="label label-small label">{{ service.support_access }}</span>
+                {% endif %}
+                {% if service.support_mode %}
+                  <span class="label label-small label">{{ service.support_mode }}</span>
+                {% endif %}
+                {% if service.has_label_aidants_connect %}
+                  <span class="label label-small label--active">Aidants Connect</span>
+                {% endif %}
+              </span>
+            </div>
           </div>
-        </div> -->
-        <div class="card">
-          <div class="card__content">
-            <h6>{{ service.name }}</h6>
-            {% if service.schedule_hours_raw %}
-              <div class="font-size-small" title="Horaires">
-                🕒 {{ service.schedule_hours_raw }}
-              </div>
-            {% endif %}
-          </div>
-          <div class="card__extra">
-            <span title="Tags">
-              {% if service.is_free %}
-                <span class="label label-small label--active">Gratuit</span>
-              {% else %}
-              <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
-              {% endif %}
-              {% for target in service.target_audience %}
-                <span class="label label-small label--inactive">{{ target }}</span>
-              {% endfor %}
-              {% if service.support_access %}
-                <span class="label label-small label">{{ service.support_access }}</span>
-              {% endif %}
-              {% if service.support_mode %}
-                <span class="label label-small label">{{ service.support_mode }}</span>
-              {% endif %}
-              {% if service.has_label_aidants_connect %}
-                <span class="label label-small label--active">Aidants Connect</span>
-              {% endif %}
-            </span>
-          </div>
-        </div>
-      {% endfor %}
-      <!-- <a class="tile" href="{% url 'service-create' place_id=place.id %}">
-        <h3>➕</h3>
-        <p class="no-margin color-primary">Ajouter un service</p>
-      </a> -->
-    </div>
+        {% endfor %}
+        <!-- <a class="tile" href="{% url 'service-create' place_id=place.id %}">
+          <h3>➕</h3>
+          <p class="no-margin color-primary">Ajouter un service</p>
+        </a> -->
+      </div>
+    {% else %}
+      <h2 class="section__title">Aucun service référencé</h2>
+    {% endif %}
   </div>
 </section>
 
-<!-- <section class="section section-white">
-  <div class="container">
-    <h2 class="section__title">Agenda</h2>
-  </div>
-</section> -->
+<div id="contribution" class="notification full-width" role="alert">
+  ✍️&nbsp;Les informations affichées ne sont pas à jour, ou simplement absentes ? Vous pouvez <a href="mailto:carto@aidantsconnect.beta.gouv.fr?subject=%5BContribution%5D%20Modification%20du%20lieu%20{{ place.id }}&body=Bonjour,%0A%0AVeuillez%20nous%20indiquer%20les%20informations%20manquantes.%20On%20fera%20de%20notre%20mieux%20pour%20mettre%20%C3%A0%20jour%20la%20donn%C3%A9e,%20et%20informer%20le%20fournisseur%20de%20donn%C3%A9e.%0A%0AMerci%20de%20votre%20contribution%20!">suggérer une modification</a>.
+</div>
 
 <!-- <section class="section section-grey">
   <div class="container">
@@ -204,9 +181,9 @@
 
 <script>
   // leaflet map
-  if (document.getElementById("map-details")) {
-    place_coordinates = [parseFloat("{{ place.latitude | safe}}"), parseFloat("{{ place.longitude | safe}}")];
-    var map = L.map('map-details').setView(place_coordinates, 13);
+  if (document.getElementById("map-place-details")) {
+    place_coordinates = [parseFloat("{{ place.latitude | safe }}"), parseFloat("{{ place.longitude | safe }}")];
+    var map = L.map('map-place-details').setView(place_coordinates, 13);
     L.marker(place_coordinates).addTo(map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -215,9 +192,15 @@
 </script>
 
 <script>
-  document.getElementById("opening_hours_week_toggle").addEventListener("click", function() {
-    console.log(document.getElementById("opening_hours_week").style.display);
-    document.getElementById("opening_hours_week").style.display = (document.getElementById("opening_hours_week").style.display === "block") ? "none" : "block";
-  }, false);
+  // init
+  const opening_hours_week_toggle_element = document.getElementById("opening_hours_week_toggle");
+  const opening_hours_week_section_element = document.getElementById("opening_hours_week_section");
+  
+  // opening_hours toggle
+  if (opening_hours_week_toggle_element) {
+    opening_hours_week_toggle_element.addEventListener("click", function() {
+      opening_hours_week_section_element.style.display = (opening_hours_week_section_element.style.display === "block") ? "none" : "block";
+    }, false);
+  }
 </script>
 {% endblock extrajs %}

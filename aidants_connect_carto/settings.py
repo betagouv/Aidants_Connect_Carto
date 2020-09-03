@@ -159,7 +159,7 @@ _CSP_SELF = (
     "https://code.jquery.com/jquery-3.4.1.min.js",
 )
 CSP_DEFAULT_SRC = _CSP_SELF
-CSP_IMG_SRC = _CSP_SELF
+CSP_IMG_SRC = _CSP_SELF + ("data:",)
 CSP_SCRIPT_SRC = _CSP_SELF
 CSP_STYLE_SRC = _CSP_SELF
 

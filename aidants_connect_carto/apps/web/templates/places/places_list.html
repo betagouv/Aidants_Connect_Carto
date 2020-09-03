@@ -12,77 +12,67 @@
         {% endfor %}
       </div>
     {% endif %}
-    <h1 class="section__title">Tous les lieux</h1>
+    <!-- <h1 class="section__title">Tous les lieux</h1> -->
     <form class="full-width" method="GET">
-      <h2>Recherche rapide</h2>
+      <h2>Recherche</h2>
       <div class="form__group">
-        <input type="text" name="name" maxlength="300" id="id_name" style="width:50%" placeholder="Chercher un lieu..." autofocus>
-        <!-- {{ search_form.name }} -->
+        {{ search_form.name }}
       </div>
-      <!-- <h3>ou</h3> -->
-      <div class="form__group">
-        <span>
-          <a href="{% url 'places-list' %}?service_name=Accès à un équipement informatique">Accès à un équipement informatique</a>
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        <span>
-          <a href="{% url 'places-list' %}?service_name=Accompagnement aux démarches administratives en ligne">Accompagnement aux démarches administratives en ligne</a>
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        <span>
-          <a href="{% url 'places-list' %}?service_name=Acquisition de compétences numériques">Acquisition de compétences numériques</a>
-        </span>
-      </div>
-      <div class="form__group">
-        <!-- <span>
-          <a>Services labellisés #APTIC</a>
-        </span>
-        &nbsp;&nbsp;&nbsp; -->
-        <span>
-          <a href="{% url 'places-list' %}?service_label_aidants_connect=on">Services labellisés Aidants Connect</a>
-        </span>
-      </div>
-      <h3 class="margin-bottom-O">
-        Filtres avancés
-        <!-- <small><a id="place_list_filters_toggle" class="caret-down"></a></small> -->
-        <small><a id="place_list_filters_toggle" class="font-size-small">Afficher</a></small>
-      </h3>
-      <section id="place_list_filters_form" class="full-width border-left-dashed" style="display:none">
+      <p title="Filtres">
+        {% for filter in search_results.current_filters %}
+          {% if filter.type != 'name' %}
+            <span class="filter-label">
+              {{ filter.value }} <a class="no-decoration" href="{% url 'places-list' %}?{{ filter.url_parameters_with_filter_removed }}"><strong>&nbsp;&times;</strong></a>
+            </span>
+          {% endif %}
+        {% endfor %}
+        <!-- <small><a id="form_filters_toggle" class="caret-down"></a></small> -->
+        <a id="form_filters_toggle">Ajouter des filtres ▸</a>
+      </p>
+      <section id="form_filters_section" class="full-width border-left-dashed margin-bottom-20" style="{% if search_results.has_filters %}display:none{% endif %}">
+        <h5>Filtres</h5>
         <div class="form__group">
-          <fieldset>
-            <legend>Type de lieu :</legend>
-            {{ search_form.type }}
-          </fieldset>
+          <div class="row">
+            <fieldset>
+              <legend>🏢&nbsp;Type de lieu :</legend>
+              {{ search_form.type }}
+            </fieldset>
+            <fieldset>
+              <legend>📝&nbsp;Service proposé :</legend>
+              {{ search_form.service_name }}
+            </fieldset>
+            <fieldset>
+              <legend>🕒&nbsp;Horaires d'ouverture :</legend>
+              {{ search_form.opening_hours }}
+            </fieldset>
+          </div>
         </div>
         <div class="form__group">
+          <legend>🏷️&nbsp;Labels :</legend>
           <fieldset>
-            <legend>Service proposé :</legend>
-            {{ search_form.service_name }}
-          </fieldset>
-        </div>
-        <div class="form__group">
-          <fieldset>
-            <legend>Labels :</legend>
             {{ search_form.has_label_fs }}<label class="label-inline" for="{{ search_form.has_label_fs.id_for_label }}">{{ search_form.has_label_fs.label | safe }}</label>
+          </fieldset>
+          <fieldset>
             {{ search_form.service_label_aidants_connect }}<label class="label-inline" for="{{ search_form.service_label_aidants_connect.id_for_label }}">{{ search_form.service_label_aidants_connect.label | safe }}</label>
           </fieldset>
         </div>
         <div class="form__group">
-          <fieldset>
-            <legend>Horaires d'ouverture :</legend>
-            {{ search_form.opening_hours }}
-            <!-- <input type="radio" name="radio" id="opening_hours_date" value="opening_hours_date" checked><label for="opening_hours_date" class="label-inline">Ouvert le 'datetime'</label> -->
-          </fieldset>
+          <div class="row">
+            <fieldset>
+              <legend>📍&nbsp;Département :</legend>
+              {{ search_form.address_departement_name }}
+            </fieldset>
+            <fieldset>
+              <legend>📍&nbsp;Région :</legend>
+              {{ search_form.address_region_name }}
+            </fieldset>
+            <fieldset></fieldset>
+          </div>
         </div>
         <div class="form__group">
-          <fieldset>
-            <legend>Localisation :</legend>
-            Département : {{ search_form.address_departement_name }}<!-- <label for="id_address_departement_name" class="label-inline">{{ search_form.address_departement_name.label | safe }}</label> -->
-            Région : {{ search_form.address_region_name }}<!-- <label for="id_address_region_name" class="label-inline">{{ search_form.address_region_name.label | safe }}</label> -->
-          </fieldset>
+          <a href="{% url 'places-list' %}?name={{ search_form.name.value }}">Tout effacer</a>
         </div>
       </section>
-      <br />
       <input type="submit" value="Lancer la recherche">
     </form>
   </div>
@@ -112,17 +102,14 @@
           <div class="card__content">
             <h4><a href="{% url 'place-details' place_id=place.id %}">{{ place.name }}</a></h4>
             <div class="card__meta">
-              <!-- <span>📍&nbsp;{{ place.address_raw }}</span> -->
               <span>📍&nbsp;{{ place.display_address_full }}</span>
             </div>
             <p class="text-quote">{{ place.get_type_display }}</p>
-            <!-- <p>{{ place.service_count }} service{{ place.service_count | pluralize }}</p> -->
             <ul>
               {% for service in place.services.all %}
               <li>{{ service.name }}</li>
               {% endfor %}
             </ul>
-            <!-- <p>{{ place.service_list }}</p> -->
           </div>
           <div class="card__extra">
             <!-- Public cible -->
@@ -139,7 +126,6 @@
                 <span class="label">Fermé</span>
               {% endif %}
             </span>
-            
           </div>
         </div>
       {% endfor %}
@@ -170,12 +156,23 @@
 
 {% block extrajs %}
 <script>
-  const element_place_list_filters_toggle = document.getElementById("place_list_filters_toggle");
-  const element_place_list_filters_form = document.getElementById("place_list_filters_form");
-  element_place_list_filters_toggle.addEventListener("click", function() {
-    // element_place_list_filters_toggle.className = (element_place_list_filters_toggle.className === "caret-down") ? "caret-up" : "caret-down";
-    element_place_list_filters_toggle.text = (element_place_list_filters_toggle.text === "Afficher") ? "Cacher" : "Afficher";
-    element_place_list_filters_form.style.display = (element_place_list_filters_form.style.display === "block") ? "none" : "block";
+  // init
+  const urlParams = new URLSearchParams(window.location.search);
+  const form_filters_toggle_element = document.getElementById("form_filters_toggle");
+  const form_filters_section_element = document.getElementById("form_filters_section");
+  
+  // // check url params: if at least 1 is not empty, then hide filters
+  // for (const param of urlParams.entries()) {
+  //   console.log(param)
+  //   if (param[1] !== "") {
+  //     form_filters_section_element.style.display = "none";
+  //   }
+  // }
+
+  // form filter toggle
+  form_filters_toggle_element.addEventListener("click", function() {
+    form_filters_toggle_element.text = (form_filters_toggle_element.text === "Ajouter des filtres ▸") ? "Cacher les filtres ▾" : "Ajouter des filtres ▸";
+    form_filters_section_element.style.display = (form_filters_section_element.style.display === "block") ? "none" : "block";
   }, false);
 </script>
 {% endblock extrajs %}

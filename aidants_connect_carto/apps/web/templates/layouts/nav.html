@@ -1,4 +1,5 @@
 {% load static %}
+
 <header class="navbar">
   <div class="navbar__container">
     <a class="navbar__home" href="{% url 'home-page' %}">
@@ -10,7 +11,7 @@
       <ul class="nav__links">
         <li class="nav__item">
           <a href="{% url 'places-list' %}"  {% if request.path == '/lieux' %}class="active"{% endif %}>
-            Tous les lieux
+            🔍&nbsp;Rechercher un lieu
           </a>
         </li>
         <li class="nav__item">

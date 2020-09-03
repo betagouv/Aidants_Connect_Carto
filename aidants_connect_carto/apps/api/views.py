@@ -15,6 +15,7 @@ from aidants_connect_carto.apps.api.serializers import (
     ServiceSerializer,
 )
 from aidants_connect_carto.apps.core.models import DataSource, Place  # Service
+from aidants_connect_carto.apps.core.stats import get_model_stats
 from aidants_connect_carto.apps.core.utilities import call_ban_address_search_api
 
 
@@ -22,9 +23,12 @@ from aidants_connect_carto.apps.core.utilities import call_ban_address_search_ap
 def api_root(request):
     return Response(
         {
+            "swagger-ui": reverse("schema-swagger-ui", request=request),
             "data-sources": reverse("data-source-list", request=request),
             "places": reverse("place-list", request=request),
             # 'services': reverse('service-list', request=request, format=format)
+            "stats": reverse("stats", request=request),
+            "address-search": reverse("address-search", request=request),
         }
     )
 
@@ -141,6 +145,13 @@ class PlaceServiceDetail(APIView):
     #     service = get_object_or_404(place.services.all(), pk=service_id)
     #     service.delete()
     #     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@swagger_auto_schema(method="get")
+@api_view(["GET"])
+def stats(request):
+    model_stats = get_model_stats()
+    return Response(model_stats)
 
 
 address_search_q_param = openapi.Parameter(

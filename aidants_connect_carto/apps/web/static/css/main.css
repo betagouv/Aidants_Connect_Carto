@@ -25,6 +25,24 @@ label.label-inline {
 }
 
 
+/* Footer */
+
+.footer__logo .logo__beta {
+  width: 170px;
+}
+
+.footer__social {
+  margin: 0;
+}
+
+.footer__links h2 {
+  word-break: break-word;
+}
+.footer__links a:visited {
+  color: #fff;
+}
+
+
 /* Custom css */
 
 h5, h6 {
@@ -44,12 +62,24 @@ a.no-decoration {
   text-decoration: inherit;
 }
 
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+}
+.table-bordered thead td,
+.table-bordered thead th {
+  border-bottom-width: 2px;
+}
+
 .inline-children > * {
   display: inline;
 }
 
 .font-size-small {
   font-size: small;
+}
+.font-weight-normal {
+  font-weight: 400;
 }
 
 .col-33 {
@@ -69,6 +99,9 @@ a.no-decoration {
 .margin-bottom-O {
   margin-bottom: 0;
 }
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
 
 .label-small {
   padding: 0.2em 0.4em;
@@ -86,6 +119,13 @@ a.no-decoration {
 .float-right {
   float: right;
 }
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.small-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
 
 
 /* Forms */
@@ -96,6 +136,23 @@ form.full-width {
 
 form legend {
   font-weight: bold;
+}
+
+select {
+  width: 300px;
+}
+
+input#id_name {
+  max-width: 500px;
+}
+
+.filter-label {
+  display: inline-block;
+  background-color: var(--lighter-grey);
+  border: 1px solid var(--theme-border-lighter);
+  border-radius: 15px;
+  margin: 2.5px;
+  padding: 2.5px 5px;
 }
 
 .caret-up {
@@ -121,7 +178,7 @@ form legend {
 
 .border-left-dashed {
   border-left: 5px solid var(--theme-primary);
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
 
@@ -129,11 +186,15 @@ form legend {
 
 /* Address Map */
 
-#map-details {
+#map-place-details {
   height: 175px;
 }
-#map-form {
+#map-place-form {
   height: 300px;
+}
+#map-stats-converture {
+  height: 500px;
+  max-width: 400px;
 }
 
 /* Calendar widget */
