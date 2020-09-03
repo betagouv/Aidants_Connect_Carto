@@ -27,7 +27,11 @@
     </div>
 
     <p class="section__subtitle">
-      {{ place.description }}
+      <span>{{ place.supporting_structure_name }}</span>
+      {% if place.supporting_structure_name and place.description %}
+      <span>•</span>
+      {% endif %}
+      <span>{{ place.description }}</span>
     </p>
 
     <div class="row">
@@ -40,30 +44,34 @@
             <span class="label label-small">{{ target }}</span>
           {% endfor %}
         </p>
-        <p title="Equipements">
-          Equipements disponibles :
-          {% if place.has_equipment_wifi %}
-            <span class="label label-small label--inactive">WiFi</span>
-          {% endif %}
-          {% if place.has_equipment_computer %}
-            <span class="label label-small label--inactive">Ordinateur</span>
-          {% endif %}
-        </p>
-        <p title="Accessibilité">
-          Accessibilité :
-          {% if place.has_accessibility_hi %}
-            <span><img src="{% static 'img/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
-          {% endif %}
-          {% if place.has_accessibility_mi %}
-            <span><img src="{% static 'img/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
-          {% endif %}
-          {% if place.has_accessibility_pi %}
-            <span><img src="{% static 'img/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
-          {% endif %}
-          {% if place.has_accessibility_vi %}
-            <span><img src="{% static 'img/handicaps/accessibility_vi_icon.jpg' %}" height="30" /></span>
-          {% endif %}
-        </p>
+        {% if not place.is_online %}
+          <p title="Equipements">
+            Equipements disponibles :
+            {% if place.has_equipment_wifi %}
+              <span class="label label-small label--inactive">WiFi</span>
+            {% endif %}
+            {% if place.has_equipment_computer %}
+              <span class="label label-small label--inactive">Ordinateur</span>
+            {% endif %}
+          </p>
+        {% endif %}
+        {% if not place.is_online %}
+          <p title="Accessibilité">
+            Accessibilité :
+            {% if place.has_accessibility_hi %}
+              <span><img src="{% static 'img/handicaps/accessibility_hi_icon.jpg' %}" height="30" /></span>
+            {% endif %}
+            {% if place.has_accessibility_mi %}
+              <span><img src="{% static 'img/handicaps/accessibility_mi_icon.jpg' %}" height="30" /></span>
+            {% endif %}
+            {% if place.has_accessibility_pi %}
+              <span><img src="{% static 'img/handicaps/accessibility_pi_icon.jpg' %}" height="30" /></span>
+            {% endif %}
+            {% if place.has_accessibility_vi %}
+              <span><img src="{% static 'img/handicaps/accessibility_vi_icon.jpg' %}" height="30" /></span>
+            {% endif %}
+          </p>
+        {% endif %}
       </div>
       <div class="col-33">
         <h5>Prendre contact</h5>
@@ -84,8 +92,16 @@
       </div>
       <div class="col-33">
         <h5>S'y rendre</h5>
-        <!-- <p>{{ place.address_raw }}</p> -->
-        <p>{{ place.address_housenumber }} {{place.address_street }}, {{ place.address_postcode }} {{ place.address_city }}</p>
+        {% if place.is_online %}
+          <p><i>Ce lieu est uniquement accessible en ligne ou par téléphone</i></p>
+        {% else %}
+          {% if place.address_raw %}
+            <p>{{ place.address_housenumber }} {{place.address_street }}, {{ place.address_postcode }} {{ place.address_city }}</p>
+          {% else %}
+            <p><i>Adresse inconnue</i></p>
+        {% endif %}
+        
+        {% endif %}
         <!-- <img src="{% static 'img/osm-screenshot_square.png' %}" style="max-width: 200px;" /> -->
         {% if place.latitude and place.longitude %}
           <div id="map-place-details"></div>

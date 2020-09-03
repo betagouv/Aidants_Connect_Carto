@@ -26,21 +26,44 @@ def create_place(row, data_source):
 
     place_dict = {}
 
+    """
+    place_fields_set
+    """
     for elem in data_source.import_config.get("place_fields_set", []):
         place_dict[elem["place_field"]] = elem["value"]
 
+    """
+    place_fields_mapping_auto
+    """
     for elem in data_source.import_config.get("place_fields_mapping_auto", []):
         place_dict[elem["place_field"]] = row[elem["file_field"]]
 
+    """
+    place_fields_mapping_boolean
+    """
     for elem in data_source.import_config.get("place_fields_mapping_boolean", []):
         place_dict[elem["place_field"]] = utilities.process_boolean(
             row[elem["file_field"]]
         )
 
+    """
+    place_fields_mapping_process
+    - legal_entity_type
+    - target_audience_raw
+    - address_raw
+    - contact_phone_raw
+    - opening_hours_raw
+    """
     for elem in data_source.import_config.get("place_fields_mapping_process", []):
         if elem["place_field"] == "legal_entity_type":
             place_dict["legal_entity_type"] = utilities.process_legal_entity_type(
                 row[elem["file_field"]]
+            )
+
+        if elem["place_field"] == "target_audience_raw":
+            place_dict["target_audience_raw"] = row[elem["file_field"]]
+            place_dict["target_audience"] = utilities.process_target_audience(
+                place_dict["target_audience_raw"]
             )
 
         if elem["place_field"] == "address_raw":
@@ -49,6 +72,7 @@ def create_place(row, data_source):
             - "20 Avenue de Ségur 75007 Paris"
             - ["20 Avenue de Ségur", "75007", "Paris"]
             - [["20", "Avenue", "de Ségur"], "75007", "Paris"]
+            - ""
             """
             if type(elem["file_field"]) == list:
                 address_temp = ""
@@ -107,6 +131,7 @@ def create_place(row, data_source):
             Different options:
             - "du lundi au vendredi de 9h à 18h"
             - ["Lundi: 9h-18h", "Mardi: 9h-12h"]
+            - ""
             """
             if type(elem["file_field"]) == list:
                 place_dict["opening_hours_raw"] = "|".join(
@@ -120,6 +145,9 @@ def create_place(row, data_source):
                 place_dict["opening_hours_raw"]
             )
 
+    """
+    additional_information
+    """
     place_dict["additional_information"] = {}
     for elem in data_source.import_config.get(
         "place_fields_mapping_additional_information", []
@@ -133,7 +161,19 @@ def create_place(row, data_source):
     place = Place.objects.create(**place_dict)
     # print(row["ID"], "-->", place.id)
     print("-->", place.id)
-    # return place
+    return place
+
+
+def create_service(row, place):
+    print("in service")
+
+    # service_dict = {}
+
+    if row["services proposés"]:
+        service_name_list = row["services proposés"].split(", ")
+        for service_name in service_name_list:
+            service = Service.objects.create(place_id=place.id, name=service_name)
+            print("-->", service.id)
 
 
 class Command(BaseCommand):
@@ -165,4 +205,7 @@ class Command(BaseCommand):
                 print(index, row)
 
                 # place = create_place(row)
-                create_place(row, data_source)
+                place = create_place(row, data_source)
+
+                if "services proposés" in row:
+                    create_service(row, place)

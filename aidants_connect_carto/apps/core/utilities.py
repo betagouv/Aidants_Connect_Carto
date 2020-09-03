@@ -34,7 +34,7 @@ def process_float(value: str):
 
 def process_boolean(value: str):
     if value:
-        if any(elem in value.lower() for elem in ["oui"]):
+        if any(elem in value.lower() for elem in ["oui", "vrai", "true"]):
             return True
     return False
 
@@ -43,9 +43,10 @@ def process_boolean(value: str):
 
 
 def process_legal_entity_type(value: str):
-    for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
-        if value.strip().lower() in legal_entity_type_mapping_item[1].lower():
-            return legal_entity_type_mapping_item[0]
+    if value:
+        for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
+            if value.strip().lower() in legal_entity_type_mapping_item[1].lower():
+                return legal_entity_type_mapping_item[0]
     return constants.CHOICE_OTHER
 
 
@@ -328,19 +329,20 @@ def process_target_audience(value: str):
     Familles allocataires avec quotient familial (QF) inférieur à 800
     """
     target_audience_list = []
-    if any(elem in value.lower() for elem in ["public"]):
-        target_audience_list.append("tout public")
-    if any(elem in value.lower() for elem in ["jeune"]):
-        target_audience_list.append("-25 ans")
-    if any(
-        elem in value.lower()
-        for elem in ["senior", "sénior", "retraite", "retraité", "âgé"]
-    ):
-        target_audience_list.append("senior")
-    if any(elem in value.lower() for elem in ["demandeurs d'emploi"]):
-        target_audience_list.append("demandeur emploi")
-    if any(elem in value.lower() for elem in ["allocataire", "minima"]):
-        target_audience_list.append("allocataire")
+    if value:
+        if any(elem in value.lower() for elem in ["public"]):
+            target_audience_list.append("tout public")
+        if any(elem in value.lower() for elem in ["jeune"]):
+            target_audience_list.append("-25 ans")
+        if any(
+            elem in value.lower()
+            for elem in ["senior", "sénior", "retraite", "retraité", "âgé"]
+        ):
+            target_audience_list.append("senior")
+        if any(elem in value.lower() for elem in ["demandeurs d'emploi"]):
+            target_audience_list.append("demandeur emploi")
+        if any(elem in value.lower() for elem in ["allocataire", "minima"]):
+            target_audience_list.append("allocataire")
     return target_audience_list
 
 

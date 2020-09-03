@@ -1,0 +1,61 @@
+{
+    "data_source_name": "Aidants Connect",
+    "data_source_type": "national",
+    "dataset_name": "Lieux en ligne",
+    "dataset_url": "",
+    "dataset_file_path": "data/aidants_connect/BDD Lieux en ligne 2020-05-26.csv",
+    "dataset_last_updated": "2020-05-26",
+    "import_comment": "",
+    "import_config": {
+        "dataset_file_delimiter": ",",
+        "place_fields_set": [
+            {
+                "place_field": "is_online",
+                "value": true
+            }
+        ],
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "nom"
+            },
+            {
+                "place_field": "supporting_structure_name",
+                "file_field": "structure porteuse"
+            },
+            {
+                "place_field": "description",
+                "file_field": "description"
+            },
+            {
+                "place_field": "legal_entity_type",
+                "file_field": "legal_entity_type"
+            },
+            {
+                "place_field": "contact_website_url",
+                "file_field": "contact_website_url"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "target_audience_raw",
+                "file_field": "public cible"
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "contact_phone"
+            },
+            {
+                "place_field": "opening_hours_raw",
+                "file_field": "horaires"
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            
+            {
+                "place_field": "service_name",
+                "file_field": "services proposés"
+            }
+        ]
+    }
+}
