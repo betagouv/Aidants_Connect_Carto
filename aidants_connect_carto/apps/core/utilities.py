@@ -42,12 +42,27 @@ def process_boolean(value: str):
 # Mappings
 
 
+def process_type(value: str):
+    if value:
+        for type_mapping_item in constants.PLACE_TYPE_MAPPING:
+            if value.strip().lower() in type_mapping_item[1].lower():
+                return type_mapping_item[0]
+    return constants.CHOICE_OTHER
+
+
 def process_legal_entity_type(value: str):
     if value:
         for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
             if value.strip().lower() in legal_entity_type_mapping_item[1].lower():
                 return legal_entity_type_mapping_item[0]
     return constants.CHOICE_OTHER
+
+
+def process_service_name(value: str):
+    if value:
+        for service_name_mapping_item in constants.SERVICE_NAME_MAPPING:
+            if value.strip().lower() == service_name_mapping_item[1].lower():
+                return service_name_mapping_item[0]
 
 
 # Address

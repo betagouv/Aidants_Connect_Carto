@@ -86,6 +86,9 @@ def create_place(row, data_source):
     - opening_hours_raw
     """
     for elem in data_source.import_config.get("place_fields_mapping_process", []):
+        if elem["place_field"] == "type":
+            place_dict["type"] = utilities.process_type(row[elem["file_field"]])
+
         if elem["place_field"] == "legal_entity_type":
             place_dict["legal_entity_type"] = utilities.process_legal_entity_type(
                 row[elem["file_field"]]
@@ -196,16 +199,30 @@ def create_place(row, data_source):
     return place
 
 
-def create_service(row, place):
+def create_service(row, data_source, place):
     print("in service")
 
     # service_dict = {}
 
-    if row["services proposés"]:
-        service_name_list = row["services proposés"].split(", ")
-        for service_name in service_name_list:
-            service = Service.objects.create(place_id=place.id, name=service_name)
+    # get list of services
+    service_name_list = row[
+        data_source.import_config.get("place_service").get("file_field")
+    ]
+    if data_source.import_config.get("place_service").get("split_delimeter"):
+        service_name_list = service_name_list.split(
+            data_source.import_config.get("place_service").get("split_delimeter")
+        )
+
+    # create services
+    for service_name in service_name_list:
+        service_name_processed = utilities.process_service_name(service_name)
+        if service_name_processed:
+            service = Service.objects.create(
+                place_id=place.id, name=service_name_processed
+            )
             print("-->", service.id)
+        else:
+            print("=== process_service_name() failed", service_name)
 
 
 class Command(BaseCommand):
@@ -255,5 +272,5 @@ class Command(BaseCommand):
                     # place = create_place(row)
                     place = create_place(row, data_source)
 
-                    if "services proposés" in row:
-                        create_service(row, place)
+                    if data_source.import_config.get("place_service", None):
+                        create_service(row, data_source, place)

@@ -48,7 +48,7 @@ class StatsTest(TestCase):
         service_model_stats = stats.get_service_model_stats()
         self.assertIsInstance(service_model_stats, dict)
         self.assertEqual(service_model_stats["service_count"], 3)
-        self.assertEqual(len(service_model_stats["service_name_aggregation"]), 6)
+        self.assertEqual(len(service_model_stats["service_name_aggregation"]), 7)
         self.assertEqual(
             service_model_stats["service_name_aggregation"][0]["name"],
             "Stockage numérique sécurisé",

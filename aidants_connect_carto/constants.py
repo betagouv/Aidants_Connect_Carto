@@ -1,3 +1,5 @@
+# flake8: noqa
+
 CHOICE_OTHER = "autre"
 
 PLACE_TYPE_CHOICES = [
@@ -11,6 +13,7 @@ PLACE_TYPE_CHOICES = [
     ("bibliotheque", "Bibliothèque - Médiathèque"),
     ("formation", "Organisme de formations"),
     ("pole emploi", "Pôle Emploi"),
+    ("la poste", "La Poste"),
     ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
     ("intercommunalite", "Intercommunalité (EPCI)"),
     ("administration", "Administration - Collectivité territoriale"),
@@ -19,22 +22,10 @@ PLACE_TYPE_CHOICES = [
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
-PLACE_TYPE_MAPPING = [
-    ("centre social", "Centre social"),
-    ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
-    ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
-    ("association", "Association"),
-    ("maison quartier", "Maison de quartier"),
-    ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
-    ("msap", "Maison de Service au Public (MSAP)"),
-    ("bibliotheque", "Bibliothèque - Médiathèque"),
-    ("formation", "Organisme de formations"),
-    ("pole emploi", "Pôle Emploi"),
-    ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
-    ("intercommunalite", "Intercommunalité (EPCI)"),
-    ("administration", "Administration - Collectivité territoriale"),
-    ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
-    ("prefecture", "Préfecture, Sous-Préfecture"),
+PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
+    ("securite sociale", "CAF"),
+    ("securite sociale", "MSA"),
+    ("administration", "collectivité"),
 ]
 
 PLACE_STATUS_CHOICES = [
@@ -52,7 +43,7 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     ("epic", "Établissement public à caractère industriel et commercial (EPIC)"),
     (
         "epscp",
-        "Établissement public à caractère scientifique, culturel et professionnel (EPSCP)",  # noqa
+        "Établissement public à caractère scientifique, culturel et professionnel (EPSCP)",
     ),
     ("gip", "Groupement d'intérêt public (GIP)"),
     ("sas", "Société par actions simplifiée (SAS)"),
@@ -64,8 +55,7 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
-PLACE_LEGAL_ENTITY_TYPE_MAPPING = [
-    ("association", "association"),
+PLACE_LEGAL_ENTITY_TYPE_MAPPING = PLACE_LEGAL_ENTITY_TYPE_CHOICES + [
     ("association", "association (délégation de service public)"),
     ("collectivite", "collectivite"),
     ("collectivite", "collectivité"),
@@ -136,6 +126,16 @@ SERVICE_NAME_LIST = [
     "Acquisition de compétences numériques",
     "Vente de matériel informatique",
     "Stockage numérique sécurisé",
+    "Pratiquer des activités récréatives numériques",
+]
+
+SERVICE_NAME_MAPPING = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST)) + [
+    ("Accès à un équipement informatique", "Accès à Internet en autonomie"),
+    (
+        "Accompagnement aux démarches administratives en ligne",
+        "Etre accompagné dans ses démarches administratives",
+    ),
+    ("Acquisition de compétences numériques", "Etre initié aux outils numériques"),
 ]
 
 SERVICE_SUPPORT_ACCESS_CHOICES = [

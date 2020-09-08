@@ -5,6 +5,7 @@ from freezegun import freeze_time
 
 from django.test import TestCase
 
+from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core import utilities
 
 
@@ -306,3 +307,39 @@ class UtilitiesAddressTest(TestCase):
                 address[0][0], address[0][1], address[0][2], address[0][3]
             )
             self.assertEqual(address_full, address[1])
+
+
+class UtilitiesMappingTest(TestCase):
+    def test_process_type(self):
+        place_type_list = [
+            ("CAF", "securite sociale"),
+            ("", constants.CHOICE_OTHER),
+        ]
+        for place_type in place_type_list:
+            self.assertEqual(utilities.process_type(place_type[0]), place_type[1])
+
+    def test_process_legal_entity_type(self):
+        legal_entity_type_list = [
+            ("association", "association"),
+            ("CAE", "cae"),
+            ("", constants.CHOICE_OTHER),
+        ]
+        for legal_entity_type in legal_entity_type_list:
+            self.assertEqual(
+                utilities.process_legal_entity_type(legal_entity_type[0]),
+                legal_entity_type[1],
+            )
+
+    def test_process_service_name(self):
+        process_service_name_list = [
+            (
+                "Etre initié aux outils numériques",
+                "Acquisition de compétences numériques",
+            ),
+            ("", None),
+        ]
+        for process_service_name in process_service_name_list:
+            self.assertEqual(
+                utilities.process_service_name(process_service_name[0]),
+                process_service_name[1],
+            )
