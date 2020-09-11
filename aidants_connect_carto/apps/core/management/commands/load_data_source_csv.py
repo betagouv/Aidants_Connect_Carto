@@ -79,6 +79,7 @@ def create_place(row, data_source):
 
     """
     place_fields_mapping_process
+    - type
     - legal_entity_type
     - target_audience_raw
     - address_raw

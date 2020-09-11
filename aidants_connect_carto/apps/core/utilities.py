@@ -39,7 +39,7 @@ def process_boolean(value: str):
     return False
 
 
-# Mappings
+# Mapping to string
 
 
 def process_type(value: str):
@@ -63,6 +63,18 @@ def process_service_name(value: str):
         for service_name_mapping_item in constants.SERVICE_NAME_MAPPING:
             if value.strip().lower() == service_name_mapping_item[1].lower():
                 return service_name_mapping_item[0]
+
+
+# Mapping to list
+
+
+def process_target_audience(value: str):
+    target_audience_list = []
+    if value:
+        for target_audience_mapping_item in constants.TARGET_AUDIENCE_MAPPING:
+            if any(elem in value.lower() for elem in target_audience_mapping_item[1]):
+                target_audience_list.append(target_audience_mapping_item[0])
+    return target_audience_list
 
 
 # Address
@@ -425,37 +437,6 @@ def get_opening_hours_osm_format_is_open(opening_hours_osm_format_string: str) -
 
 
 # Other fields
-
-
-def process_target_audience(value: str):
-    """
-    Tout public
-    Demandeurs d'emploi
-    Adhérents
-    Séniors
-    Assurés sociaux
-    jeunes
-    Jeunes entre 16 et 25 ans
-    Enseignants, formateurs jeunesses, membres associatifs
-    Allocataires CAF
-    Familles allocataires avec quotient familial (QF) inférieur à 800
-    """
-    target_audience_list = []
-    if value:
-        if any(elem in value.lower() for elem in ["public"]):
-            target_audience_list.append("tout public")
-        if any(elem in value.lower() for elem in ["jeune"]):
-            target_audience_list.append("-25 ans")
-        if any(
-            elem in value.lower()
-            for elem in ["senior", "sénior", "retraite", "retraité", "âgé"]
-        ):
-            target_audience_list.append("senior")
-        if any(elem in value.lower() for elem in ["demandeurs d'emploi"]):
-            target_audience_list.append("demandeur emploi")
-        if any(elem in value.lower() for elem in ["allocataire", "minima"]):
-            target_audience_list.append("allocataire")
-    return target_audience_list
 
 
 def process_support_access(value: str):

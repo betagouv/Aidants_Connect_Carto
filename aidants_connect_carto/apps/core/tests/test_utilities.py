@@ -343,3 +343,20 @@ class UtilitiesMappingTest(TestCase):
                 utilities.process_service_name(process_service_name[0]),
                 process_service_name[1],
             )
+
+    def test_process_target_audience(self):
+        target_audience_list = [
+            ("Droits des étrangers", ["etranger"]),
+            ("Personnes de nationalité étrangère", ["etranger"]),
+            ("Moins de 26 ans", ["jeune"]),
+            ("PLUS DE 50 ANS", ["senior"]),
+            (
+                "Personnes en situation de handicap, Personnes en recherche d'emploi",
+                ["demandeur emploi", "handicap"],
+            ),
+        ]
+        for target_audience in target_audience_list:
+            self.assertEqual(
+                utilities.process_target_audience(target_audience[0]),
+                target_audience[1],
+            )

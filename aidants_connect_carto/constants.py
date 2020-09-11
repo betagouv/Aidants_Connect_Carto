@@ -3,29 +3,32 @@
 CHOICE_OTHER = "autre"
 
 PLACE_TYPE_CHOICES = [
+    ("administration", "Administration - Collectivité territoriale"),
+    ("association", "Association"),
+    ("bibliotheque", "Bibliothèque - Médiathèque"),
+    ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
     ("centre social", "Centre social"),
+    ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
+    ("formation", "Organisme de formations"),
+    ("intercommunalite", "Intercommunalité (EPCI)"),
+    ("la poste", "La Poste"),
+    ("maison quartier", "Maison de quartier"),
+    ("msap", "Maison de Service au Public (MSAP)"),
+    ("pole emploi", "Pôle Emploi"),
+    ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
+    ("prefecture", "Préfecture, Sous-Préfecture"),
     ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
     ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
-    ("association", "Association"),
-    ("maison quartier", "Maison de quartier"),
-    ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
-    ("msap", "Maison de Service au Public (MSAP)"),
-    ("bibliotheque", "Bibliothèque - Médiathèque"),
-    ("formation", "Organisme de formations"),
-    ("pole emploi", "Pôle Emploi"),
-    ("la poste", "La Poste"),
-    ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
-    ("intercommunalite", "Intercommunalité (EPCI)"),
-    ("administration", "Administration - Collectivité territoriale"),
-    ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
-    ("prefecture", "Préfecture, Sous-Préfecture"),
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
 PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
+    ("administration", "collectivité"),
+    ("bibliotheque", "Bibliothèque / Médiathèque"),
+    ("commune", "Commune (Mairie, CCAS, Centre Culturel, Centre Social...)"),
     ("securite sociale", "CAF"),
     ("securite sociale", "MSA"),
-    ("administration", "collectivité"),
+    ("tiers lieu", "Tiers-Lieu"),
 ]
 
 PLACE_STATUS_CHOICES = [
@@ -80,11 +83,35 @@ PLACE_LEGAL_ENTITY_TYPE_MAPPING = PLACE_LEGAL_ENTITY_TYPE_CHOICES + [
 
 TARGET_AUDIENCE_CHOICES = [
     ("tout public", "Tout public"),
-    ("-25 ans", "-25 ans, Jeune"),
-    ("senior", "Sénior"),
-    ("demandeur emploi", "Demandeur d'emploi"),
-    ("famille", "Famille"),
     ("allocataire", "Allocataires"),
+    ("demandeur emploi", "Demandeurs d'emploi"),
+    ("etranger", "Étrangers"),
+    ("famille", "Familles"),
+    ("jeune", "-25 ans, Jeunes"),
+    ("handicap", "Personnes en situation de handicap"),
+    ("senior", "Séniors"),
+]
+
+"""
+Tout public
+Demandeurs d'emploi
+Adhérents
+Séniors
+Assurés sociaux
+jeunes
+Jeunes entre 16 et 25 ans
+Enseignants, formateurs jeunesses, membres associatifs
+Allocataires CAF
+Familles allocataires avec quotient familial (QF) inférieur à 800
+"""
+TARGET_AUDIENCE_MAPPING = [
+    ("tout public", ["public"]),
+    ("allocataire", ["allocataire", "minima", "rsa", "caf"]),
+    ("demandeur emploi", ["demandeur", "emploi"]),
+    ("etranger", ["etranger", "étranger", "étrangère"]),
+    ("handicap", ["handicap"]),
+    ("jeune", ["jeune", "moins de"]),
+    ("senior", ["senior", "retraite", "retraité", "âgé", "plus de"]),
 ]
 
 LANGUAGE_CHOICES = [
@@ -144,10 +171,21 @@ SERVICE_SUPPORT_ACCESS_CHOICES = [
     ("public cible", "Public cible uniquement"),
     ("adherents", "Adhérents uniquement"),
 ]
+
+SERVICE_SUPPORT_ACCESS_MAPPING = SERVICE_SUPPORT_ACCESS_CHOICES + [
+    ("libre", "sans rendez-vous"),
+    ("libre", "ouvert à tous"),
+    ("inscription", "prise de rendez-vous"),
+    ("inscription", "sur rendez-vous"),
+    ("inscription", "ouvert à tous sur réservation"),
+]
+
 SERVICE_SUPPORT_MODE_CHOICES = [
     ("individuel", "Individuel, Personnalisé"),
     ("collectif", "Collectif"),
 ]
+
+SUPPORT_MODE_MAPPING = []
 
 FRANCE_REGION_LIST = [
     "Auvergne-Rhône-Alpes",
