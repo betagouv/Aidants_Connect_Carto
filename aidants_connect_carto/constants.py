@@ -2,6 +2,7 @@
 
 CHOICE_OTHER = "autre"
 
+# TODO: Maison France Services as a tag instead of a type
 PLACE_TYPE_CHOICES = [
     ("administration", "Administration - Collectivité territoriale"),
     ("association", "Association"),
@@ -9,6 +10,7 @@ PLACE_TYPE_CHOICES = [
     ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
     ("centre social", "Centre social"),
     ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
+    ("epn", "Espace Public Numérique (EPN)"),
     ("formation", "Organisme de formations"),
     ("intercommunalite", "Intercommunalité (EPCI)"),
     ("la poste", "La Poste"),
@@ -23,19 +25,30 @@ PLACE_TYPE_CHOICES = [
 ]
 
 PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
-    ("administration", "collectivité"),
     ("bibliotheque", "Bibliothèque / Médiathèque"),
+    ("centre social", "centre socio-culturel"),
+    ("centre social", "centre socioculturel"),
     ("commune", "Commune (Mairie, CCAS, Centre Culturel, Centre Social...)"),
-    ("securite sociale", "CAF"),
-    ("securite sociale", "MSA"),
-    ("tiers lieu", "Tiers-Lieu"),
+    ("maison quartier", "Structure associative de quartier"),
+    ("tiers lieu", "Tiers-Lieux"),
+    ("tiers lieu", "Fablab / Hackerspace"),
+    ("tiers lieu", "Espace de coworking"),
 ]
 
+# TODO: quid d'avoir l'info "Privé" seule ?
 PLACE_STATUS_CHOICES = [
     ("public", "Public"),
-    ("prive", "Privé"),
+    (
+        "prive-lucratif",
+        "Privé à but lucratif (entreprises, auto-entrepreneurs, SCOP, SCIC...)",
+    ),
+    ("prive-non-lucratif", "Privé à but non lucratif (association, ONG...)"),
     ("public-prive", "Public / Privé"),
     (CHOICE_OTHER, "Autre, Inconnu"),
+]
+
+PLACE_STATUS_MAPPING = PLACE_STATUS_CHOICES + [
+    ("public", "Public : Collectivité"),
 ]
 
 PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
@@ -162,7 +175,15 @@ SERVICE_NAME_MAPPING = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST)) + [
         "Accompagnement aux démarches administratives en ligne",
         "Etre accompagné dans ses démarches administratives",
     ),
+    (
+        "Accompagnement aux démarches administratives en ligne",
+        "Accompagnements proposés aux démarches en ligne",
+    ),
     ("Acquisition de compétences numériques", "Etre initié aux outils numériques"),
+    (
+        "Acquisition de compétences numériques",
+        "Formations compétences de base proposées",
+    ),
 ]
 
 SERVICE_SUPPORT_ACCESS_CHOICES = [

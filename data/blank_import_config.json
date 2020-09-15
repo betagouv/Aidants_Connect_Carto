@@ -23,6 +23,18 @@
             {
                 "place_field": "name",
                 "file_field": "NOM"
+            },
+            {
+                "place_field": "description",
+                "file_field": "Description"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "Email"
+            },
+            {
+                "place_field": "contact_website_url",
+                "file_field": "Site internet"
             }
         ],
         "place_fields_mapping_boolean": [
@@ -33,11 +45,24 @@
         ],
         "place_fields_mapping_process": [
             {
+                "place_field": "type",
+                "file_field": "Nature de la structure"
+            },
+            {
+                "place_field": "status",
+                "file_field": "Public / Privé"
+            },
+            {
                 "place_field": "legal_entity_type",
-                "file_field": "Statut"
+                "file_field": "Statut juridique"
+            },
+            {
+                "place_field": "target_audience_raw",
+                "file_field": "publics spécifiques"
             },
             {
                 "place_field": "address_raw",
+                "file_field": ["Adresse postale", "Code postal", "Ville"]
                 "file_field": [["N_VOIE", "N_VOIE_COM", "TYPE_VOIE", "NOM_VOIE"], "CP_NV", "COMMUNE_NV"]
             },
             {
@@ -47,6 +72,7 @@
             {
                 "place_field": "opening_hours_raw",
                 "file_field": "HORAIRES"
+                "file_field": ["h_lundi", "h_mardi", "h_mercredi", "h_jeudi", "h_vendredi", "h_samedi"]
             }
         ],
         "place_fields_mapping_additional_information": [
@@ -54,6 +80,10 @@
                 "place_field": "code_lieu",
                 "file_field": "CODE_LIEU"
             }
-        ]
+        ],
+        "place_service": {
+            "file_field": "services",
+            "split_delimeter": " / "
+        }
     }
 }

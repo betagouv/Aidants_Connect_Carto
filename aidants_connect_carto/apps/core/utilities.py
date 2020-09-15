@@ -50,6 +50,14 @@ def process_type(value: str):
     return constants.CHOICE_OTHER
 
 
+def process_status(value: str):
+    if value:
+        for status_mapping_item in constants.PLACE_STATUS_MAPPING:
+            if value.strip().lower() == status_mapping_item[1].lower():
+                return status_mapping_item[0]
+    return constants.CHOICE_OTHER
+
+
 def process_legal_entity_type(value: str):
     if value:
         for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
@@ -117,7 +125,6 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
     if results_json["features"]:
         results_first_address = results_json["features"][0]
         # if (len(results_json["features"]) == 1) or (results_first_address["properties"]["score"] > score_threshold): # noqa
-        # print(results_first_address)
         address_housenumber = (
             results_first_address["properties"]["housenumber"]
             if (results_first_address["properties"]["type"] == "housenumber")
@@ -190,19 +197,25 @@ def process_phone_number(phone_number_string: str):
 # Opening Hours
 
 
-def process_opening_hours_to_osm_format(opening_hours_string: str):
+def process_opening_hours_to_osm_format(opening_hours):
     """
-    Input: opening_hours raw string
+    Input: opening_hours raw string (or list)
     Output: opening_hours with osm format if correctly formated, empty string instead
     Exemples:
     "Du lundi au vendredi de 8h30 à 12h et de 14h à 17h30" --> "Mo-Fr 08:30-12:00,14:00-17:30" # noqa
     """
-    if opening_hours_string:
-        if " | " in opening_hours_string:
-            opening_hours_string = _clean_opening_hours_list(
-                opening_hours_string.split(" | ")
-            )
+    if opening_hours:
+        # opening_hours is a list
+        if type(opening_hours) == list:
+            opening_hours_string = _clean_opening_hours_list(opening_hours)
+        # opening_hours is a string
+        elif " | " in opening_hours:
+            opening_hours_string = _clean_opening_hours_list(opening_hours.split(" | "))
+        else:
+            opening_hours_string = opening_hours
+
         opening_hours_string_cleaned = _clean_full_opening_hours(opening_hours_string)
+
         try:
             return _sanitize_opening_hours_with_hoh(opening_hours_string_cleaned)
         except:  # noqa
@@ -274,6 +287,17 @@ def _clean_day_opening_hours(opening_hours_string: str):
     # fix other sanitization errors
     opening_hours_string = re.sub(
         "9-", "9h-", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "9-", "9h-", opening_hours_string, flags=re.IGNORECASE
+    )
+
+    # off
+    opening_hours_string = re.sub(
+        "fermé", "off", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "fermeture", "off", opening_hours_string, flags=re.IGNORECASE
     )
 
     # day of weeks

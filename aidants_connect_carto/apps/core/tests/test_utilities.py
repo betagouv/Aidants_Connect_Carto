@@ -69,6 +69,18 @@ class UtilitiesOpeningHoursTest(TestCase):
             ),
             ("Mo 10:00-13:00,après-midi sur rdv", ""),
             ("Lundi", ""),
+            (
+                [
+                    "9h - 18h",
+                    "9h à 12h - 13h30 à 17h",
+                    "14h00 à 18h30",
+                    "9/17",
+                    "9h - 18h",
+                    "fermé",
+                    "",
+                ],
+                "",  # "Mo 9h-18h; Tu 9h-12h,13:30-17h; We 14:00-18:30; Th 9,17; Fr 9h-18h; Sa off",
+            ),
         ]
         for opening_hours in opening_hours_list:
             opening_hours_raw = opening_hours[0]

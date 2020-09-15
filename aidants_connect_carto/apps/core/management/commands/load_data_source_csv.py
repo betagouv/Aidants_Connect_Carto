@@ -80,6 +80,7 @@ def create_place(row, data_source):
     """
     place_fields_mapping_process
     - type
+    - status
     - legal_entity_type
     - target_audience_raw
     - address_raw
@@ -89,6 +90,9 @@ def create_place(row, data_source):
     for elem in data_source.import_config.get("place_fields_mapping_process", []):
         if elem["place_field"] == "type":
             place_dict["type"] = utilities.process_type(row[elem["file_field"]])
+
+        if elem["place_field"] == "status":
+            place_dict["status"] = utilities.process_status(row[elem["file_field"]])
 
         if elem["place_field"] == "legal_entity_type":
             place_dict["legal_entity_type"] = utilities.process_legal_entity_type(
@@ -169,9 +173,9 @@ def create_place(row, data_source):
             - ""
             """
             if type(elem["file_field"]) == list:
-                place_dict["opening_hours_raw"] = "|".join(
-                    [row[item] for item in elem["file_field"]]
-                )
+                place_dict["opening_hours_raw"] = [
+                    row[item] for item in elem["file_field"]
+                ]
             else:
                 place_dict["opening_hours_raw"] = row[elem["file_field"]]
             place_dict[

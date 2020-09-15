@@ -26,13 +26,15 @@
       {% endif %}
     </div>
 
-    <p class="section__subtitle">
-      <span>{{ place.supporting_structure_name }}</span>
-      {% if place.supporting_structure_name and place.description %}
-      <span>•</span>
-      {% endif %}
-      <span>{{ place.description }}</span>
-    </p>
+    {% if place.supporting_structure_name %}
+      <p class="section__subtitle">
+        {{ place.supporting_structure_name }}
+      </p>
+    {% endif %}
+
+    {% if place.description %}
+      <p>{{ place.description | linebreaks }}</p>
+    {% endif %}
 
     <div class="row">
       <div class="col-33">
