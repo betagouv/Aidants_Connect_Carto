@@ -38,17 +38,15 @@ PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
 # TODO: quid d'avoir l'info "Privé" seule ?
 PLACE_STATUS_CHOICES = [
     ("public", "Public"),
-    (
-        "prive-lucratif",
-        "Privé à but lucratif (entreprises, auto-entrepreneurs, SCOP, SCIC...)",
-    ),
-    ("prive-non-lucratif", "Privé à but non lucratif (association, ONG...)"),
+    ("prive", "Privé"),
     ("public-prive", "Public / Privé"),
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
 PLACE_STATUS_MAPPING = PLACE_STATUS_CHOICES + [
     ("public", "Public : Collectivité"),
+    ("prive", "Privé à but lucratif (entreprises, auto-entrepreneurs, SCOP, SCIC...)"),
+    ("prive", "Privé à but non lucratif (association, ONG...)"),
 ]
 
 PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
