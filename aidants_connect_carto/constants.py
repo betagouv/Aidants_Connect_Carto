@@ -2,6 +2,14 @@
 
 CHOICE_OTHER = "autre"
 
+DATA_SOURCE_TYPE_CHOICES = [
+    ("hub", "Hub"),
+    ("national", "National"),
+    ("region", "Région"),
+    ("departement", "Département"),
+    (CHOICE_OTHER, "Autre, Inconnu"),
+]
+
 # TODO: Maison France Services as a tag instead of a type
 PLACE_TYPE_CHOICES = [
     ("administration", "Administration - Collectivité territoriale"),

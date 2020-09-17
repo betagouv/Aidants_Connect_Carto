@@ -19,15 +19,22 @@ class DataSource(models.Model):
     type = models.CharField(
         verbose_name="Le type de source",
         max_length=32,
-        # choices=constants.DATA_SOURCE_TYPE_CHOICES,
-        # default=constants.CHOICE_OTHER,
+        choices=constants.DATA_SOURCE_TYPE_CHOICES,
+        default=constants.CHOICE_OTHER,
     )
 
     # --- contact
+    contact_email = models.EmailField(
+        verbose_name="Le courriel",
+        max_length=150,
+        blank=True,
+        help_text="exemple@email.fr",
+    )
     contact_website_url = models.URLField(
         verbose_name="L'adresse du site internet de la source de donnée",
         max_length=300,
         blank=True,
+        help_text="https://www.example.fr",
     )
 
     # --- other
@@ -35,6 +42,7 @@ class DataSource(models.Model):
         verbose_name="L'adresse du logo de la source de donnée",
         max_length=300,
         blank=True,
+        help_text="https://www.example.fr/logo.png",
     )
 
     # --- dataset details
@@ -83,6 +91,55 @@ class DataSource(models.Model):
     @property
     def place_count(self) -> int:
         return self.places.count()
+
+
+class DataSet(models.Model):
+    # --- basics
+    name = models.CharField(verbose_name="Le nom du jeu de donnée", max_length=300)
+    url = models.URLField(
+        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
+        max_length=300,
+        blank=True,
+    )
+    local_path = models.CharField(
+        verbose_name="Le chemin d'accès au jeu de donnée", max_length=300
+    )
+    last_updated = models.DateField(
+        verbose_name="La date de dernière mise à jour du jeu de donnée",
+        blank=True,
+        null=True,
+    )
+
+    # --- import details
+    import_config = JSONField(
+        verbose_name="Information et configuration de l'import de la donnée",
+        blank=True,
+        null=True,
+    )
+    import_comment = models.TextField(
+        verbose_name="Informations complémentaires sur l'import de la donnée",
+        blank=True,
+    )
+
+    # --- links to other models & databases
+    data_source = models.ForeignKey(
+        DataSource,
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="data_sets",
+    )
+
+    # --- timestamps
+    created_at = models.DateTimeField(
+        verbose_name="La date de création", auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name="La date de dernière modification", auto_now=True
+    )
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Place(models.Model):
@@ -249,7 +306,10 @@ class Place(models.Model):
         help_text="https://beta.gouv.fr/",
     )
     contact_facebook_url = models.URLField(
-        verbose_name="L'adresse de la page Facebook", max_length=300, blank=True
+        verbose_name="L'adresse de la page Facebook",
+        max_length=300,
+        blank=True,
+        help_text="https://www.facebook.com/",
     )
     contact_twitter_url = models.URLField(
         verbose_name="L'adresse de la page Twitter",
@@ -258,7 +318,10 @@ class Place(models.Model):
         help_text="https://twitter.com/betagouv",
     )
     contact_youtube_url = models.URLField(
-        verbose_name="L'adresse de la page Youtube", max_length=300, blank=True
+        verbose_name="L'adresse de la page Youtube",
+        max_length=300,
+        blank=True,
+        help_text="https://www.youtube.com/user/example",
     )
 
     # --- opening hours
@@ -409,6 +472,13 @@ class Place(models.Model):
     # --- links to other models & databases
     data_source = models.ForeignKey(
         DataSource,
+        blank=False,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="places",
+    )
+    data_set = models.ForeignKey(
+        DataSet,
         blank=False,
         null=True,
         on_delete=models.SET_NULL,
