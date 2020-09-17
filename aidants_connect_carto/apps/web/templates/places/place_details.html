@@ -26,13 +26,15 @@
       {% endif %}
     </div>
 
-    <p class="section__subtitle">
-      <span>{{ place.supporting_structure_name }}</span>
-      {% if place.supporting_structure_name and place.description %}
-      <span>•</span>
-      {% endif %}
-      <span>{{ place.description }}</span>
-    </p>
+    {% if place.supporting_structure_name %}
+      <p class="section__subtitle">
+        {{ place.supporting_structure_name }}
+      </p>
+    {% endif %}
+
+    {% if place.description %}
+      <p>{{ place.description | linebreaks }}</p>
+    {% endif %}
 
     <div class="row">
       <div class="col-33">
@@ -40,8 +42,8 @@
         <p class="text-quote">{{ place.get_type_display }}</p>
         <p class="Public cible">
           Public cible :
-          {% for target in place.target_audience %}
-            <span class="label label-small">{{ target }}</span>
+          {% for target_audience_item in place.target_audience %}
+            <span class="label label-small">{{ target_audience_item }}</span>
           {% endfor %}
         </p>
         {% if not place.is_online %}
@@ -151,14 +153,14 @@
                 {% else %}
                 <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
                 {% endif %}
-                {% for target in service.target_audience %}
-                  <span class="label label-small label--inactive">{{ target }}</span>
+                {% for target_audience_item in service.target_audience %}
+                  <span class="label label-small label--inactive">{{ target_audience_item }}</span>
                 {% endfor %}
-                {% if service.support_access %}
-                  <span class="label label-small label">{{ service.support_access }}</span>
+                {% for support_access_item in service.support_access %}
+                  <span class="label label-small label">{{ support_access_item }}</span>
                 {% endif %}
-                {% if service.support_mode %}
-                  <span class="label label-small label">{{ service.support_mode }}</span>
+                {% for support_mode_item service.support_mode %}
+                  <span class="label label-small label">{{ support_mode_item }}</span>
                 {% endif %}
                 {% if service.has_label_aidants_connect %}
                   <span class="label label-small label--active">Aidants Connect</span>

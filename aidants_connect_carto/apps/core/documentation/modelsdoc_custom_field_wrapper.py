@@ -3,10 +3,17 @@ from modelsdoc.utils import get_foreignkey  # , get_choices
 
 
 def get_choices_custom(field):
-    if not getattr(field, "choices", None):
+    if getattr(field, "choices", None):
+        # return ', '.join(['{}:{}'.format(*c) for c in field.choices])
+        return "**UNE SEULE valeur possible**<br>" + "<br>".join(
+            ["- {}".format(c[1]) for c in field.choices]
+        )
+    elif getattr(field, "base_field", None) and (getattr(field, "default") == list):
+        return "**PLUSIEURS valeurs possible**<br>" + "<br>".join(
+            ["- {}".format(c[1]) for c in field.base_field.choices]
+        )
+    else:
         return ""
-    # return ', '.join(['{}:{}'.format(*c) for c in field.choices])
-    return "<br>".join(["- {}".format(c[1]) for c in field.choices])
 
 
 class CustomFieldWrapper(FieldWrapper):

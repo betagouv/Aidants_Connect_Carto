@@ -1,47 +1,52 @@
+# flake8: noqa
+
 CHOICE_OTHER = "autre"
 
+# TODO: Maison France Services as a tag instead of a type
 PLACE_TYPE_CHOICES = [
+    ("administration", "Administration - Collectivité territoriale"),
+    ("association", "Association"),
+    ("bibliotheque", "Bibliothèque - Médiathèque"),
+    ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
     ("centre social", "Centre social"),
+    ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
+    ("epn", "Espace Public Numérique (EPN)"),
+    ("formation", "Organisme de formations"),
+    ("intercommunalite", "Intercommunalité (EPCI)"),
+    ("la poste", "La Poste"),
+    ("maison quartier", "Maison de quartier"),
+    ("msap", "Maison de Service au Public (MSAP)"),
+    ("pole emploi", "Pôle Emploi"),
+    ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
+    ("prefecture", "Préfecture, Sous-Préfecture"),
     ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
     ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
-    ("association", "Association"),
-    ("maison quartier", "Maison de quartier"),
-    ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
-    ("msap", "Maison de Service au Public (MSAP)"),
-    ("bibliotheque", "Bibliothèque - Médiathèque"),
-    ("formation", "Organisme de formations"),
-    ("pole emploi", "Pôle Emploi"),
-    ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
-    ("intercommunalite", "Intercommunalité (EPCI)"),
-    ("administration", "Administration - Collectivité territoriale"),
-    ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
-    ("prefecture", "Préfecture, Sous-Préfecture"),
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
-PLACE_TYPE_MAPPING = [
-    ("centre social", "Centre social"),
-    ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
-    ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
-    ("association", "Association"),
-    ("maison quartier", "Maison de quartier"),
-    ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
-    ("msap", "Maison de Service au Public (MSAP)"),
-    ("bibliotheque", "Bibliothèque - Médiathèque"),
-    ("formation", "Organisme de formations"),
-    ("pole emploi", "Pôle Emploi"),
-    ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
-    ("intercommunalite", "Intercommunalité (EPCI)"),
-    ("administration", "Administration - Collectivité territoriale"),
-    ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
-    ("prefecture", "Préfecture, Sous-Préfecture"),
+PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
+    ("bibliotheque", "Bibliothèque / Médiathèque"),
+    ("centre social", "centre socio-culturel"),
+    ("centre social", "centre socioculturel"),
+    ("commune", "Commune (Mairie, CCAS, Centre Culturel, Centre Social...)"),
+    ("maison quartier", "Structure associative de quartier"),
+    ("tiers lieu", "Tiers-Lieux"),
+    ("tiers lieu", "Fablab / Hackerspace"),
+    ("tiers lieu", "Espace de coworking"),
 ]
 
+# TODO: quid d'avoir l'info "Privé" seule ?
 PLACE_STATUS_CHOICES = [
     ("public", "Public"),
     ("prive", "Privé"),
     ("public-prive", "Public / Privé"),
     (CHOICE_OTHER, "Autre, Inconnu"),
+]
+
+PLACE_STATUS_MAPPING = PLACE_STATUS_CHOICES + [
+    ("public", "Public : Collectivité"),
+    ("prive", "Privé à but lucratif (entreprises, auto-entrepreneurs, SCOP, SCIC...)"),
+    ("prive", "Privé à but non lucratif (association, ONG...)"),
 ]
 
 PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
@@ -52,7 +57,7 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     ("epic", "Établissement public à caractère industriel et commercial (EPIC)"),
     (
         "epscp",
-        "Établissement public à caractère scientifique, culturel et professionnel (EPSCP)",  # noqa
+        "Établissement public à caractère scientifique, culturel et professionnel (EPSCP)",
     ),
     ("gip", "Groupement d'intérêt public (GIP)"),
     ("sas", "Société par actions simplifiée (SAS)"),
@@ -64,8 +69,7 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
-PLACE_LEGAL_ENTITY_TYPE_MAPPING = [
-    ("association", "association"),
+PLACE_LEGAL_ENTITY_TYPE_MAPPING = PLACE_LEGAL_ENTITY_TYPE_CHOICES + [
     ("association", "association (délégation de service public)"),
     ("collectivite", "collectivite"),
     ("collectivite", "collectivité"),
@@ -90,11 +94,62 @@ PLACE_LEGAL_ENTITY_TYPE_MAPPING = [
 
 TARGET_AUDIENCE_CHOICES = [
     ("tout public", "Tout public"),
-    ("-25 ans", "-25 ans, Jeune"),
-    ("senior", "Sénior"),
-    ("demandeur emploi", "Demandeur d'emploi"),
-    ("famille", "Famille"),
     ("allocataire", "Allocataires"),
+    ("demandeur emploi", "Demandeurs d'emploi"),
+    ("etranger", "Étrangers"),
+    ("famille", "Familles"),
+    ("jeune", "-25 ans, Jeunes"),
+    ("handicap", "Personnes en situation de handicap"),
+    ("senior", "Séniors"),
+]
+
+"""
+Tout public
+Demandeurs d'emploi
+Adhérents
+Séniors
+Assurés sociaux
+jeunes
+Jeunes entre 16 et 25 ans
+Enseignants, formateurs jeunesses, membres associatifs
+Allocataires CAF
+Familles allocataires avec quotient familial (QF) inférieur à 800
+"""
+TARGET_AUDIENCE_MAPPING = [
+    ("tout public", ["public"]),
+    ("allocataire", ["allocataire", "minima", "rsa", "caf"]),
+    ("demandeur emploi", ["demandeur", "emploi"]),
+    ("etranger", ["etranger", "étranger", "étrangère"]),
+    ("handicap", ["handicap"]),
+    ("jeune", ["jeune", "moins de"]),
+    ("senior", ["senior", "retraite", "retraité", "âgé", "plus de"]),
+]
+
+SUPPORT_ACCESS_CHOICES = [
+    ("libre", "Accès libre"),
+    ("inscription", "Sur inscription ou rendez-vous"),
+    ("public cible", "Public cible uniquement"),
+    ("adherent", "Adhérents uniquement"),
+]
+
+SUPPORT_ACCESS_MAPPING = SUPPORT_ACCESS_CHOICES + [
+    ("libre", "sans rendez-vous"),
+    ("libre", "ouvert à tous"),
+    ("inscription", "prise de rendez-vous"),
+    ("inscription", "sur rendez-vous"),
+    ("inscription", "ouvert à tous sur réservation"),
+    ("inscription", "rdv uniquement"),
+]
+
+SUPPORT_MODE_CHOICES = [
+    ("individuel", "Individuel, Personnalisé"),
+    ("collectif", "Collectif"),
+]
+
+SUPPORT_MODE_MAPPING = SUPPORT_MODE_CHOICES + [
+    ("individuel", "Accompagnement individualisé"),
+    ("individuel", "Accompagnement personnalisé"),
+    ("collectif", "groupe"),
 ]
 
 LANGUAGE_CHOICES = [
@@ -136,17 +191,24 @@ SERVICE_NAME_LIST = [
     "Acquisition de compétences numériques",
     "Vente de matériel informatique",
     "Stockage numérique sécurisé",
+    "Pratiquer des activités récréatives numériques",
 ]
 
-SERVICE_SUPPORT_ACCESS_CHOICES = [
-    ("libre", "Accès libre"),
-    ("inscription", "Sur inscription ou rendez-vous"),
-    ("public cible", "Public cible uniquement"),
-    ("adherents", "Adhérents uniquement"),
-]
-SERVICE_SUPPORT_MODE_CHOICES = [
-    ("individuel", "Individuel, Personnalisé"),
-    ("collectif", "Collectif"),
+SERVICE_NAME_MAPPING = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST)) + [
+    ("Accès à un équipement informatique", "Accès à Internet en autonomie"),
+    (
+        "Accompagnement aux démarches administratives en ligne",
+        "Etre accompagné dans ses démarches administratives",
+    ),
+    (
+        "Accompagnement aux démarches administratives en ligne",
+        "Accompagnements proposés aux démarches en ligne",
+    ),
+    ("Acquisition de compétences numériques", "Etre initié aux outils numériques"),
+    (
+        "Acquisition de compétences numériques",
+        "Formations compétences de base proposées",
+    ),
 ]
 
 FRANCE_REGION_LIST = [

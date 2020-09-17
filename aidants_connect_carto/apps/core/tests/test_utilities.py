@@ -5,6 +5,7 @@ from freezegun import freeze_time
 
 from django.test import TestCase
 
+from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core import utilities
 
 
@@ -68,6 +69,18 @@ class UtilitiesOpeningHoursTest(TestCase):
             ),
             ("Mo 10:00-13:00,après-midi sur rdv", ""),
             ("Lundi", ""),
+            (
+                [
+                    "9h - 18h",
+                    "9h à 12h - 13h30 à 17h",
+                    "14h00 à 18h30",
+                    "9/17",
+                    "9h - 18h",
+                    "fermé",
+                    "",
+                ],
+                "",  # "Mo 9h-18h; Tu 9h-12h,13:30-17h; We 14:00-18:30; Th 9,17; Fr 9h-18h; Sa off",
+            ),
         ]
         for opening_hours in opening_hours_list:
             opening_hours_raw = opening_hours[0]
@@ -306,3 +319,84 @@ class UtilitiesAddressTest(TestCase):
                 address[0][0], address[0][1], address[0][2], address[0][3]
             )
             self.assertEqual(address_full, address[1])
+
+
+class UtilitiesMappingTest(TestCase):
+    def test_process_type(self):
+        place_type_list = [
+            ("CAF", "securite sociale"),
+            ("", constants.CHOICE_OTHER),
+        ]
+        for place_type in place_type_list:
+            self.assertEqual(utilities.process_type(place_type[0]), place_type[1])
+
+    def test_process_legal_entity_type(self):
+        legal_entity_type_list = [
+            ("association", "association"),
+            ("CAE", "cae"),
+            ("", constants.CHOICE_OTHER),
+        ]
+        for legal_entity_type in legal_entity_type_list:
+            self.assertEqual(
+                utilities.process_legal_entity_type(legal_entity_type[0]),
+                legal_entity_type[1],
+            )
+
+    def test_process_service_name(self):
+        process_service_name_list = [
+            (
+                "Etre initié aux outils numériques",
+                "Acquisition de compétences numériques",
+            ),
+            ("", None),
+        ]
+        for process_service_name in process_service_name_list:
+            self.assertEqual(
+                utilities.process_service_name(process_service_name[0]),
+                process_service_name[1],
+            )
+
+    def test_process_target_audience(self):
+        target_audience_list = [
+            ("Droits des étrangers", ["etranger"]),
+            ("Personnes de nationalité étrangère", ["etranger"]),
+            ("Moins de 26 ans", ["jeune"]),
+            ("PLUS DE 50 ANS", ["senior"]),
+            (
+                "Personnes en situation de handicap, Personnes en recherche d'emploi",
+                ["demandeur emploi", "handicap"],
+            ),
+            ("", []),
+        ]
+        for target_audience in target_audience_list:
+            self.assertEqual(
+                utilities.process_target_audience(target_audience[0]),
+                target_audience[1],
+            )
+
+    def test_process_support_access(self):
+        support_access_list = [
+            ("sur Rendez-Vous", ["inscription"]),
+            ("sans Rendez-Vous", ["libre"]),
+            ("libre, réservation", ["libre", "inscription"]),
+            ("RDV", ["inscription"]),
+            ("'accès en mairie aux heures d'ouverture et sur rendez vous'", []),
+            ("Accès libre - accompagnement si besoin", []),
+            ("", []),
+        ]
+        for support_access in support_access_list:
+            self.assertEqual(
+                utilities.process_support_access(support_access[0]), support_access[1],
+            )
+
+    def test_process_support_mode(self):
+        support_mode_list = [
+            ("individuel", ["individuel"]),
+            ("accompagnement personnalisé", ["individuel"]),
+            ("Individuel, collectif", ["individuel", "collectif"]),
+            ("", []),
+        ]
+        for support_mode in support_mode_list:
+            self.assertEqual(
+                utilities.process_support_mode(support_mode[0]), support_mode[1],
+            )

@@ -1,6 +1,7 @@
 # flake8: noqa
 
 import csv
+import json
 import time
 
 from django.core.management import BaseCommand
@@ -8,6 +9,32 @@ from django.core.management import BaseCommand
 from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core import utilities
 from aidants_connect_carto.apps.core.models import Place, Service, DataSource
+
+
+def create_data_source(data_source_import_config_file):
+    print("in data_source")
+
+    with open(data_source_import_config_file) as json_file:
+        data_source_import_config = json.load(json_file)
+
+        data_source_dict = {}
+
+        data_source_dict["name"] = data_source_import_config["data_source_name"]
+        data_source_dict["type"] = data_source_import_config["data_source_type"]
+        data_source_dict["dataset_name"] = data_source_import_config["dataset_name"]
+        data_source_dict["dataset_url"] = data_source_import_config["dataset_url"]
+        data_source_dict["dataset_local_path"] = data_source_import_config[
+            "dataset_file_path"
+        ]
+        data_source_dict["dataset_last_updated"] = data_source_import_config[
+            "dataset_last_updated"
+        ]
+        data_source_dict["import_config"] = data_source_import_config["import_config"]
+        data_source_dict["import_comment"] = data_source_import_config["import_comment"]
+
+        data_source = DataSource.objects.create(**data_source_dict)
+        print("-->", data_source.id)
+        return data_source
 
 
 """
@@ -30,7 +57,11 @@ def create_place(row, data_source):
     place_fields_set
     """
     for elem in data_source.import_config.get("place_fields_set", []):
-        place_dict[elem["place_field"]] = elem["value"]
+        if "type" in elem:
+            if elem["type"] == "boolean":
+                place_dict[elem["place_field"]] = bool(elem["value"] == "true")
+        else:
+            place_dict[elem["place_field"]] = elem["value"]
 
     """
     place_fields_mapping_auto
@@ -48,13 +79,23 @@ def create_place(row, data_source):
 
     """
     place_fields_mapping_process
+    - type
+    - status
     - legal_entity_type
     - target_audience_raw
+    - support_access_raw
+    - support_mode_raw
     - address_raw
     - contact_phone_raw
     - opening_hours_raw
     """
     for elem in data_source.import_config.get("place_fields_mapping_process", []):
+        if elem["place_field"] == "type":
+            place_dict["type"] = utilities.process_type(row[elem["file_field"]])
+
+        if elem["place_field"] == "status":
+            place_dict["status"] = utilities.process_status(row[elem["file_field"]])
+
         if elem["place_field"] == "legal_entity_type":
             place_dict["legal_entity_type"] = utilities.process_legal_entity_type(
                 row[elem["file_field"]]
@@ -64,6 +105,18 @@ def create_place(row, data_source):
             place_dict["target_audience_raw"] = row[elem["file_field"]]
             place_dict["target_audience"] = utilities.process_target_audience(
                 place_dict["target_audience_raw"]
+            )
+
+        if elem["place_field"] == "support_access_raw":
+            place_dict["support_access_raw"] = row[elem["file_field"]]
+            place_dict["support_access"] = utilities.process_support_access(
+                place_dict["support_access_raw"]
+            )
+
+        if elem["place_field"] == "support_mode_raw":
+            place_dict["support_mode_raw"] = row[elem["file_field"]]
+            place_dict["support_mode"] = utilities.process_support_mode(
+                place_dict["support_mode_raw"]
             )
 
         if elem["place_field"] == "address_raw":
@@ -134,9 +187,9 @@ def create_place(row, data_source):
             - ""
             """
             if type(elem["file_field"]) == list:
-                place_dict["opening_hours_raw"] = "|".join(
-                    [row[item] for item in elem["file_field"]]
-                )
+                place_dict["opening_hours_raw"] = [
+                    row[item] for item in elem["file_field"]
+                ]
             else:
                 place_dict["opening_hours_raw"] = row[elem["file_field"]]
             place_dict[
@@ -158,54 +211,85 @@ def create_place(row, data_source):
 
     place_dict["data_source_id"] = data_source.id
 
+    print(place_dict)
     place = Place.objects.create(**place_dict)
     # print(row["ID"], "-->", place.id)
     print("-->", place.id)
     return place
 
 
-def create_service(row, place):
+def create_service(row, data_source, place):
     print("in service")
 
     # service_dict = {}
 
-    if row["services proposés"]:
-        service_name_list = row["services proposés"].split(", ")
-        for service_name in service_name_list:
-            service = Service.objects.create(place_id=place.id, name=service_name)
+    # get list of services
+    service_name_list = row[
+        data_source.import_config.get("place_service").get("file_field")
+    ]
+    if data_source.import_config.get("place_service").get("split_delimeter"):
+        service_name_list = service_name_list.split(
+            data_source.import_config.get("place_service").get("split_delimeter")
+        )
+
+    # create services
+    for service_name in service_name_list:
+        service_name_processed = utilities.process_service_name(service_name)
+        if service_name_processed:
+            service = Service.objects.create(
+                place_id=place.id, name=service_name_processed
+            )
             print("-->", service.id)
+        else:
+            print("=== process_service_name() failed", service_name)
 
 
 class Command(BaseCommand):
     """
     python manage.py load_data_source_csv --id 11
+    python manage.py load_data_source_csv --file data/hub_abc/hub_abc_import_config.json
     """
 
     help = "Load a csv file into the database"
 
     def add_arguments(self, parser):
-        parser.add_argument("--id", type=int)
+        parser.add_argument(
+            "--id", help="L'id dans la base de donnée du jeu de donnée", type=int
+        )
+        parser.add_argument(
+            "--file", help="Le chemin vers la config du jeu de donnée", type=str
+        )
 
     def handle(self, *args, **kwargs):
         data_source_id = kwargs["id"]
+        data_source_file = kwargs["file"]
 
-        data_source = DataSource.objects.get(pk=data_source_id)
+        if data_source_id:
+            data_source = DataSource.objects.get(pk=data_source_id)
+        else:
+            if data_source_file:
+                data_source = create_data_source(data_source_file)
+            else:
+                print("--id or --file argument missing")
 
-        # encoding="utf-8-sig" for files that start with '\ufeff'
-        with open(data_source.dataset_local_path, mode="rt", encoding="utf-8-sig") as f:
-            FILE_DELIMITER = data_source.import_config.get(
-                "dataset_file_delimiter", ";"
-            )
-            reader = csv.DictReader(f, delimiter=FILE_DELIMITER)
-            # print(reader.fieldnames)
-            print(data_source.name)
+        if data_source:
+            # encoding="utf-8-sig" for files that start with '\ufeff'
+            with open(
+                data_source.dataset_local_path, mode="rt", encoding="utf-8-sig"
+            ) as f:
+                FILE_DELIMITER = data_source.import_config.get(
+                    "dataset_file_delimiter", ";"
+                )
+                reader = csv.DictReader(f, delimiter=FILE_DELIMITER)
+                # print(reader.fieldnames)
+                print(data_source.name)
 
-            for index, row in enumerate(reader):
-                time.sleep(1)
-                print(index, row)
+                for index, row in enumerate(reader):
+                    time.sleep(1)
+                    print(index, row)
 
-                # place = create_place(row)
-                place = create_place(row, data_source)
+                    # place = create_place(row)
+                    place = create_place(row, data_source)
 
-                if "services proposés" in row:
-                    create_service(row, place)
+                    if data_source.import_config.get("place_service", None):
+                        create_service(row, data_source, place)

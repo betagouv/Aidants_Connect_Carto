@@ -1,0 +1,95 @@
+{
+    "data_source_name": "Hub Hubik",
+    "data_source_type": "hub",
+    "dataset_name": "Département Gironde",
+    "dataset_url": "",
+    "dataset_file_path": "data/hub_hubik/Cartographies departements - Gironde.csv",
+    "dataset_last_updated": "2020-01-20",
+    "import_comment": "liste de services et d'equipements",
+    "import_config": {
+        "place_fields_set": [
+        ],
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "Lieu"
+            },
+            {
+                "place_field": "description",
+                "file_field": "Description"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "Email"
+            },
+            {
+                "place_field": "contact_website_url",
+                "file_field": "Site internet"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "type",
+                "file_field": "Type Structure"
+            },
+            {
+                "place_field": "address_raw",
+                "file_field": "Adresse postale"
+            },
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "Téléphone"
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            {
+                "place_field": "Libellé 1",
+                "file_field": "Libellé 1"
+            },
+            {
+                "place_field": "Libellé 2",
+                "file_field": "Libellé 2"
+            },
+            {
+                "place_field": "Proposition de permanence",
+                "file_field": "Proposition de permanence"
+            },
+            {
+                "place_field": "Présence d'un médiateur",
+                "file_field": "Présence d'un médiateur"
+            },
+            {
+                "place_field": "Coord. X",
+                "file_field": "Coord. X"
+            },
+            {
+                "place_field": "Coord. X",
+                "file_field": "Coord. X"
+            },
+            {
+                "place_field": "Pôle territorial",
+                "file_field": "Pôle territorial"
+            },
+            {
+                "place_field": "Intercommunalité",
+                "file_field": "Intercommunalité"
+            },
+            {
+                "place_field": "services",
+                "file_field": "services"
+            },
+            {
+                "place_field": "equipements",
+                "file_field": "equipements"
+            },
+            {
+                "place_field": "Dernière MAJ",
+                "file_field": "Dernière MAJ"
+            }
+        ],
+        "place_service": {
+            "file_field": "services",
+            "split_delimeter": " / "
+        }
+    }
+}

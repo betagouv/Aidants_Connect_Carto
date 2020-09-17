@@ -39,7 +39,23 @@ def process_boolean(value: str):
     return False
 
 
-# Mappings
+# Mapping to string
+
+
+def process_type(value: str):
+    if value:
+        for type_mapping_item in constants.PLACE_TYPE_MAPPING:
+            if value.strip().lower() in type_mapping_item[1].lower():
+                return type_mapping_item[0]
+    return constants.CHOICE_OTHER
+
+
+def process_status(value: str):
+    if value:
+        for status_mapping_item in constants.PLACE_STATUS_MAPPING:
+            if value.strip().lower() == status_mapping_item[1].lower():
+                return status_mapping_item[0]
+    return constants.CHOICE_OTHER
 
 
 def process_legal_entity_type(value: str):
@@ -48,6 +64,47 @@ def process_legal_entity_type(value: str):
             if value.strip().lower() in legal_entity_type_mapping_item[1].lower():
                 return legal_entity_type_mapping_item[0]
     return constants.CHOICE_OTHER
+
+
+def process_service_name(value: str):
+    if value:
+        for service_name_mapping_item in constants.SERVICE_NAME_MAPPING:
+            if value.strip().lower() == service_name_mapping_item[1].lower():
+                return service_name_mapping_item[0]
+
+
+# Mapping to list
+
+
+def process_target_audience(value: str):
+    target_audience_list = []
+    if value:
+        for target_audience_mapping_item in constants.TARGET_AUDIENCE_MAPPING:
+            if any(elem in value.lower() for elem in target_audience_mapping_item[1]):
+                target_audience_list.append(target_audience_mapping_item[0])
+    return target_audience_list
+
+
+def process_support_access(value: str, seperator=","):
+    support_access_list = []
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            for support_access_mapping_item in constants.SUPPORT_ACCESS_MAPPING:
+                if value_item.strip().lower() in support_access_mapping_item[1].lower():
+                    support_access_list.append(support_access_mapping_item[0])
+    return support_access_list
+
+
+def process_support_mode(value: str, seperator=","):
+    support_mode_list = []
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            for support_mode_mapping_item in constants.SUPPORT_MODE_MAPPING:
+                if value_item.strip().lower() in support_mode_mapping_item[1].lower():
+                    support_mode_list.append(support_mode_mapping_item[0])
+    return support_mode_list
 
 
 # Address
@@ -90,7 +147,6 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
     if results_json["features"]:
         results_first_address = results_json["features"][0]
         # if (len(results_json["features"]) == 1) or (results_first_address["properties"]["score"] > score_threshold): # noqa
-        # print(results_first_address)
         address_housenumber = (
             results_first_address["properties"]["housenumber"]
             if (results_first_address["properties"]["type"] == "housenumber")
@@ -163,19 +219,25 @@ def process_phone_number(phone_number_string: str):
 # Opening Hours
 
 
-def process_opening_hours_to_osm_format(opening_hours_string: str):
+def process_opening_hours_to_osm_format(opening_hours):
     """
-    Input: opening_hours raw string
+    Input: opening_hours raw string (or list)
     Output: opening_hours with osm format if correctly formated, empty string instead
     Exemples:
     "Du lundi au vendredi de 8h30 à 12h et de 14h à 17h30" --> "Mo-Fr 08:30-12:00,14:00-17:30" # noqa
     """
-    if opening_hours_string:
-        if " | " in opening_hours_string:
-            opening_hours_string = _clean_opening_hours_list(
-                opening_hours_string.split(" | ")
-            )
+    if opening_hours:
+        # opening_hours is a list
+        if type(opening_hours) == list:
+            opening_hours_string = _clean_opening_hours_list(opening_hours)
+        # opening_hours is a string
+        elif " | " in opening_hours:
+            opening_hours_string = _clean_opening_hours_list(opening_hours.split(" | "))
+        else:
+            opening_hours_string = opening_hours
+
         opening_hours_string_cleaned = _clean_full_opening_hours(opening_hours_string)
+
         try:
             return _sanitize_opening_hours_with_hoh(opening_hours_string_cleaned)
         except:  # noqa
@@ -247,6 +309,17 @@ def _clean_day_opening_hours(opening_hours_string: str):
     # fix other sanitization errors
     opening_hours_string = re.sub(
         "9-", "9h-", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "9-", "9h-", opening_hours_string, flags=re.IGNORECASE
+    )
+
+    # off
+    opening_hours_string = re.sub(
+        "fermé", "off", opening_hours_string, flags=re.IGNORECASE
+    )
+    opening_hours_string = re.sub(
+        "fermeture", "off", opening_hours_string, flags=re.IGNORECASE
     )
 
     # day of weeks
@@ -410,71 +483,6 @@ def get_opening_hours_osm_format_is_open(opening_hours_osm_format_string: str) -
 
 
 # Other fields
-
-
-def process_target_audience(value: str):
-    """
-    Tout public
-    Demandeurs d'emploi
-    Adhérents
-    Séniors
-    Assurés sociaux
-    jeunes
-    Jeunes entre 16 et 25 ans
-    Enseignants, formateurs jeunesses, membres associatifs
-    Allocataires CAF
-    Familles allocataires avec quotient familial (QF) inférieur à 800
-    """
-    target_audience_list = []
-    if value:
-        if any(elem in value.lower() for elem in ["public"]):
-            target_audience_list.append("tout public")
-        if any(elem in value.lower() for elem in ["jeune"]):
-            target_audience_list.append("-25 ans")
-        if any(
-            elem in value.lower()
-            for elem in ["senior", "sénior", "retraite", "retraité", "âgé"]
-        ):
-            target_audience_list.append("senior")
-        if any(elem in value.lower() for elem in ["demandeurs d'emploi"]):
-            target_audience_list.append("demandeur emploi")
-        if any(elem in value.lower() for elem in ["allocataire", "minima"]):
-            target_audience_list.append("allocataire")
-    return target_audience_list
-
-
-def process_support_access(value: str):
-    """
-    'accès en mairie aux heures d'ouverture et sur rendez vous'
-    'Allocataires CAF'
-    'Accès libre - accompagnement si besoin'
-    'Accès libre / La consultation est limitée à 30 minutes par personne'
-    'accès libre hors ateliers'
-    """
-    if any(elem in value.lower() for elem in ["libre"]):
-        return "libre"
-    if any(
-        elem in value.lower()
-        for elem in ["rdv", "rendez", "inscription", "réservation"]
-    ):
-        return "inscription"
-    return ""
-
-
-def process_support_mode(value: str):
-    """
-    'Accompagnement individuel et personnalisé'
-    'accompagnement personnalisé sur demande'
-    'Collectif et accompagnement individuel'
-    'Individuel ou collectif'
-    """
-    if any(
-        elem in value.lower() for elem in ["personnalisé", "individuel", "personnel"]
-    ):
-        return "individuel"
-    if any(elem in value.lower() for elem in ["groupe", "collectif"]):
-        return "collectif"
-    return ""
 
 
 def process_cost(value: str):

@@ -197,6 +197,7 @@ MODELSDOC_DISPLAY_FIELDS = (
     # ('Index', 'db_index'),
     ("Null/Blank", "null_blank"),
     ("Comment", "comment"),
+    ("Example", "help_text"),
 )
 MODELSDOC_MODEL_OPTIONS = (
     "unique_together",

@@ -20,8 +20,9 @@
 
 ### Où trouver le modèle de donnée ?
 
+- en texte écrit: [wiki/Modèle-de-donnée-v1](https://github.com/betagouv/Aidants_Connect_Carto/wiki/Mod%C3%A8le-de-donn%C3%A9e-v1)
+- en texte généré automatique (Markdown): [core/documentation/listing_models.md](https://github.com/betagouv/Aidants_Connect_Carto/blob/master/aidants_connect_carto/apps/core/documentation/listing_models.md)
 - en code Python: [core/models.py](https://github.com/betagouv/Aidants_Connect_Carto/blob/master/aidants_connect_carto/apps/core/listing_models.py)
-- en texte (Markdown): [core/documentation/listing_models.md](https://github.com/betagouv/Aidants_Connect_Carto/blob/master/aidants_connect_carto/apps/core/documentation/models.md)
 - en image (PNG): [core/documentation/graph_models_with_fields.png](https://github.com/betagouv/Aidants_Connect_Carto/blob/master/aidants_connect_carto/apps/core/documentation/graph_models_with_fields.png) & [core/documentation/graph_models_without_fields.png](https://github.com/betagouv/Aidants_Connect_Carto/blob/master/aidants_connect_carto/apps/core/documentation/graph_models_without_fields.png)
 
 ### Générer la documentation du modèle de donnée en Markdown
