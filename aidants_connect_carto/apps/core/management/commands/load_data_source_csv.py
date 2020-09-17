@@ -83,6 +83,8 @@ def create_place(row, data_source):
     - status
     - legal_entity_type
     - target_audience_raw
+    - support_access_raw
+    - support_mode_raw
     - address_raw
     - contact_phone_raw
     - opening_hours_raw
@@ -103,6 +105,18 @@ def create_place(row, data_source):
             place_dict["target_audience_raw"] = row[elem["file_field"]]
             place_dict["target_audience"] = utilities.process_target_audience(
                 place_dict["target_audience_raw"]
+            )
+
+        if elem["place_field"] == "support_access_raw":
+            place_dict["support_access_raw"] = row[elem["file_field"]]
+            place_dict["support_access"] = utilities.process_support_access(
+                place_dict["support_access_raw"]
+            )
+
+        if elem["place_field"] == "support_mode_raw":
+            place_dict["support_mode_raw"] = row[elem["file_field"]]
+            place_dict["support_mode"] = utilities.process_support_mode(
+                place_dict["support_mode_raw"]
             )
 
         if elem["place_field"] == "address_raw":

@@ -61,6 +61,14 @@
                 "file_field": "publics spécifiques"
             },
             {
+                "place_field": "support_access_raw",
+                "file_field": "publics spécifiques"
+            },
+            {
+                "place_field": "support_mode_raw",
+                "file_field": "publics spécifiques"
+            },
+            {
                 "place_field": "address_raw",
                 "file_field": ["Adresse postale", "Code postal", "Ville"]
                 "file_field": [["N_VOIE", "N_VOIE_COM", "TYPE_VOIE", "NOM_VOIE"], "CP_NV", "COMMUNE_NV"]

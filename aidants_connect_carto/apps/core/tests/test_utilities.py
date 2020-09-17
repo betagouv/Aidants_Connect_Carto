@@ -366,9 +366,37 @@ class UtilitiesMappingTest(TestCase):
                 "Personnes en situation de handicap, Personnes en recherche d'emploi",
                 ["demandeur emploi", "handicap"],
             ),
+            ("", []),
         ]
         for target_audience in target_audience_list:
             self.assertEqual(
                 utilities.process_target_audience(target_audience[0]),
                 target_audience[1],
+            )
+
+    def test_process_support_access(self):
+        support_access_list = [
+            ("sur Rendez-Vous", ["inscription"]),
+            ("sans Rendez-Vous", ["libre"]),
+            ("libre, réservation", ["libre", "inscription"]),
+            ("RDV", ["inscription"]),
+            ("'accès en mairie aux heures d'ouverture et sur rendez vous'", []),
+            ("Accès libre - accompagnement si besoin", []),
+            ("", []),
+        ]
+        for support_access in support_access_list:
+            self.assertEqual(
+                utilities.process_support_access(support_access[0]), support_access[1],
+            )
+
+    def test_process_support_mode(self):
+        support_mode_list = [
+            ("individuel", ["individuel"]),
+            ("accompagnement personnalisé", ["individuel"]),
+            ("Individuel, collectif", ["individuel", "collectif"]),
+            ("", []),
+        ]
+        for support_mode in support_mode_list:
+            self.assertEqual(
+                utilities.process_support_mode(support_mode[0]), support_mode[1],
             )

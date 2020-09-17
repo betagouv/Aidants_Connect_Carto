@@ -85,6 +85,28 @@ def process_target_audience(value: str):
     return target_audience_list
 
 
+def process_support_access(value: str, seperator=","):
+    support_access_list = []
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            for support_access_mapping_item in constants.SUPPORT_ACCESS_MAPPING:
+                if value_item.strip().lower() in support_access_mapping_item[1].lower():
+                    support_access_list.append(support_access_mapping_item[0])
+    return support_access_list
+
+
+def process_support_mode(value: str, seperator=","):
+    support_mode_list = []
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            for support_mode_mapping_item in constants.SUPPORT_MODE_MAPPING:
+                if value_item.strip().lower() in support_mode_mapping_item[1].lower():
+                    support_mode_list.append(support_mode_mapping_item[0])
+    return support_mode_list
+
+
 # Address
 
 
@@ -461,40 +483,6 @@ def get_opening_hours_osm_format_is_open(opening_hours_osm_format_string: str) -
 
 
 # Other fields
-
-
-def process_support_access(value: str):
-    """
-    'accès en mairie aux heures d'ouverture et sur rendez vous'
-    'Allocataires CAF'
-    'Accès libre - accompagnement si besoin'
-    'Accès libre / La consultation est limitée à 30 minutes par personne'
-    'accès libre hors ateliers'
-    """
-    if any(elem in value.lower() for elem in ["libre"]):
-        return "libre"
-    if any(
-        elem in value.lower()
-        for elem in ["rdv", "rendez", "inscription", "réservation"]
-    ):
-        return "inscription"
-    return ""
-
-
-def process_support_mode(value: str):
-    """
-    'Accompagnement individuel et personnalisé'
-    'accompagnement personnalisé sur demande'
-    'Collectif et accompagnement individuel'
-    'Individuel ou collectif'
-    """
-    if any(
-        elem in value.lower() for elem in ["personnalisé", "individuel", "personnel"]
-    ):
-        return "individuel"
-    if any(elem in value.lower() for elem in ["groupe", "collectif"]):
-        return "collectif"
-    return ""
 
 
 def process_cost(value: str):

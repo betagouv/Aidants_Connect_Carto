@@ -4,7 +4,7 @@ from aidants_connect_carto import constants
 
 from aidants_connect_carto.apps.core.models import Place, Service
 from aidants_connect_carto.apps.core.forms import (
-    HorizontalRadioSelect,
+    # HorizontalRadioSelect,
     HorizontalCheckboxSelectMultiple,
 )
 
@@ -41,14 +41,14 @@ class ServiceCreateForm(forms.ModelForm):
         widget=HorizontalCheckboxSelectMultiple(),
         help_text=Service._meta.get_field("target_audience").help_text,
     )
-    support_access = forms.ChoiceField(
-        choices=constants.SERVICE_SUPPORT_ACCESS_CHOICES,
-        widget=HorizontalRadioSelect(),
+    support_access = forms.TypedMultipleChoiceField(
+        choices=constants.SUPPORT_ACCESS_CHOICES,
+        widget=HorizontalCheckboxSelectMultiple(),
         help_text=Service._meta.get_field("support_access").help_text,
     )
-    support_mode = forms.ChoiceField(
-        choices=constants.SERVICE_SUPPORT_MODE_CHOICES,
-        widget=HorizontalRadioSelect(),
+    support_mode = forms.TypedMultipleChoiceField(
+        choices=constants.SUPPORT_MODE_CHOICES,
+        widget=HorizontalCheckboxSelectMultiple(),
         help_text=Service._meta.get_field("support_mode").help_text,
     )
 

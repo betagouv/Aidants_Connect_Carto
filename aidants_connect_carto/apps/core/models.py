@@ -263,7 +263,7 @@ class Place(models.Model):
 
     # --- opening hours
     opening_hours_raw = models.TextField(
-        verbose_name="Les horaires d'ouverture",
+        verbose_name="Les horaires d'ouverture brut",
         blank=True,
         help_text="Du lundi au vendredi de 8h à 20h",
     )
@@ -272,6 +272,11 @@ class Place(models.Model):
         max_length=150,
         blank=True,
         help_text="Mo-Fr 8:00-20:00",
+    )
+    opening_hours_details = models.TextField(
+        verbose_name="Des détails supplémentaires sur les horaires d'ouverture",
+        blank=True,
+        help_text="sur rendez-vous le Mardi, porte-ouvertes le Mercredi, ...",
     )
 
     # --- equipments
@@ -334,17 +339,48 @@ class Place(models.Model):
     )
 
     # --- support
-    target_audience_raw = models.TextField(verbose_name="Le public cible", blank=True)
+    target_audience_raw = models.TextField(
+        verbose_name="Public(s) cible brut", blank=True
+    )
     target_audience = ArrayField(
-        verbose_name="Public cible",
+        verbose_name="Public(s) cible",
         base_field=models.CharField(
             max_length=32, blank=True, choices=constants.TARGET_AUDIENCE_CHOICES
         ),
         default=list,
         blank=True,
+        help_text="tout public, jeune, senior, allocataire, etranger, ...",
+    )
+    support_access_raw = models.TextField(
+        verbose_name="Modalité(s) d'accès brut", blank=True
+    )
+    support_access = ArrayField(
+        verbose_name="Modalité(s) d'accès",
+        base_field=models.CharField(
+            max_length=32, blank=True, choices=constants.SUPPORT_ACCESS_CHOICES
+        ),
+        default=list,
+        blank=True,
+        help_text="libre, inscription, adherent, ...",
+    )
+    support_mode_raw = models.TextField(
+        verbose_name="Modalité(s) d'accompagnement brut", blank=True
+    )
+    support_mode = ArrayField(
+        verbose_name="Modalité(s) d'accompagnement",
+        base_field=models.CharField(
+            max_length=32, blank=True, choices=constants.SUPPORT_MODE_CHOICES
+        ),
+        default=list,
+        blank=True,
+        help_text="individuel, collectif, ...",
     )
 
-    # --- payment
+    # --- price
+    is_free = models.BooleanField(verbose_name="Le lieu est-il gratuit ?", default=True)
+    price_details = models.TextField(
+        verbose_name="Le details des prix du lieu", blank=True
+    )
     payment_methods = models.CharField(
         verbose_name="Les moyens de paiement",
         max_length=150,
@@ -509,16 +545,18 @@ class Service(models.Model):
         blank=True,
     )
     support_access = models.CharField(
-        verbose_name="Modalités d'accès",
+        verbose_name="Modalités d'accès (si différent du lieu)",
         max_length=32,
         blank=True,
-        choices=constants.SERVICE_SUPPORT_ACCESS_CHOICES,
+        choices=constants.SUPPORT_ACCESS_CHOICES,
+        help_text="libre, inscription, adherent, ...",
     )  # multiple choices
     support_mode = models.CharField(
-        verbose_name="Modalités d'accompagnement",
+        verbose_name="Modalités d'accompagnement (si différent du lieu)",
         max_length=32,
         blank=True,
-        choices=constants.SERVICE_SUPPORT_MODE_CHOICES,
+        choices=constants.SUPPORT_MODE_CHOICES,
+        help_text="individuel, collectif, ...",
     )  # multiple choices
 
     # --- schedule
@@ -536,11 +574,13 @@ class Service(models.Model):
         help_text="Tu 14:00-18:00",
     )
 
-    # --- payment
+    # --- price
     is_free = models.BooleanField(
         verbose_name="Le service est-il gratuit ?", default=True
     )
-    price_details = models.TextField(verbose_name="Le details des prix", blank=True)
+    price_details = models.TextField(
+        verbose_name="Le details des prix du service", blank=True
+    )
     payment_methods = models.TextField(
         verbose_name="Les moyens de paiements spécifiques à ce service", blank=True,
     )  # PAYMENT_CHOICES

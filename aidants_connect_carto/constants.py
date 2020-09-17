@@ -125,6 +125,33 @@ TARGET_AUDIENCE_MAPPING = [
     ("senior", ["senior", "retraite", "retraité", "âgé", "plus de"]),
 ]
 
+SUPPORT_ACCESS_CHOICES = [
+    ("libre", "Accès libre"),
+    ("inscription", "Sur inscription ou rendez-vous"),
+    ("public cible", "Public cible uniquement"),
+    ("adherent", "Adhérents uniquement"),
+]
+
+SUPPORT_ACCESS_MAPPING = SUPPORT_ACCESS_CHOICES + [
+    ("libre", "sans rendez-vous"),
+    ("libre", "ouvert à tous"),
+    ("inscription", "prise de rendez-vous"),
+    ("inscription", "sur rendez-vous"),
+    ("inscription", "ouvert à tous sur réservation"),
+    ("inscription", "rdv uniquement"),
+]
+
+SUPPORT_MODE_CHOICES = [
+    ("individuel", "Individuel, Personnalisé"),
+    ("collectif", "Collectif"),
+]
+
+SUPPORT_MODE_MAPPING = SUPPORT_MODE_CHOICES + [
+    ("individuel", "Accompagnement individualisé"),
+    ("individuel", "Accompagnement personnalisé"),
+    ("collectif", "groupe"),
+]
+
 LANGUAGE_CHOICES = [
     ("fr", "Français"),
     ("en", "Anglais"),
@@ -183,28 +210,6 @@ SERVICE_NAME_MAPPING = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST)) + [
         "Formations compétences de base proposées",
     ),
 ]
-
-SERVICE_SUPPORT_ACCESS_CHOICES = [
-    ("libre", "Accès libre"),
-    ("inscription", "Sur inscription ou rendez-vous"),
-    ("public cible", "Public cible uniquement"),
-    ("adherents", "Adhérents uniquement"),
-]
-
-SERVICE_SUPPORT_ACCESS_MAPPING = SERVICE_SUPPORT_ACCESS_CHOICES + [
-    ("libre", "sans rendez-vous"),
-    ("libre", "ouvert à tous"),
-    ("inscription", "prise de rendez-vous"),
-    ("inscription", "sur rendez-vous"),
-    ("inscription", "ouvert à tous sur réservation"),
-]
-
-SERVICE_SUPPORT_MODE_CHOICES = [
-    ("individuel", "Individuel, Personnalisé"),
-    ("collectif", "Collectif"),
-]
-
-SUPPORT_MODE_MAPPING = []
 
 FRANCE_REGION_LIST = [
     "Auvergne-Rhône-Alpes",
