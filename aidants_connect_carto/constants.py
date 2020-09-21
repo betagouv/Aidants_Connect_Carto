@@ -2,11 +2,15 @@
 
 CHOICE_OTHER = "autre"
 
+DATA_SOURCE_TYPE_HUB = "hub"
+DATA_SOURCE_TYPE_NATIONAL = "national"
+DATA_SOURCE_TYPE_REGION = "region"
+DATA_SOURCE_TYPE_DEPARTEMENT = "departement"
 DATA_SOURCE_TYPE_CHOICES = [
-    ("hub", "Hub"),
-    ("national", "National"),
-    ("region", "Région"),
-    ("departement", "Département"),
+    (DATA_SOURCE_TYPE_HUB, "Hub"),
+    (DATA_SOURCE_TYPE_NATIONAL, "National"),
+    (DATA_SOURCE_TYPE_REGION, "Région"),
+    (DATA_SOURCE_TYPE_DEPARTEMENT, "Département"),
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 

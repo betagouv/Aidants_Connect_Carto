@@ -1,10 +1,10 @@
 {
     "data_source_name": "Aidants Connect",
     "data_source_type": "national",
-    "dataset_name": "Lieux en ligne",
-    "dataset_url": "",
-    "dataset_file_path": "data/aidants_connect/BDD Lieux en ligne 2020-05-26.csv",
-    "dataset_last_updated": "2020-05-26",
+    "name": "Lieux en ligne",
+    "url": "",
+    "file_path": "data/aidants_connect/BDD Lieux en ligne 2020-05-26.csv",
+    "last_updated": "2020-05-26",
     "import_comment": "",
     "import_config": {
         "dataset_file_delimiter": ",",

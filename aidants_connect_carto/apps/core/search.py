@@ -34,8 +34,8 @@ class PlaceSearchForm(ModelForm):
         initial=False,
     )
 
-    # datasource_name = forms.CharField()
-    # dataset_name = forms.CharField()
+    # data_source_name = forms.CharField()
+    # data_set_name = forms.CharField()
 
     ADD_EMPTY_CHOICE_FIELDS = [
         "type",
@@ -59,8 +59,8 @@ class PlaceSearchForm(ModelForm):
             "service_name",
             "has_label_fs",
             "service_label_aidants_connect",
-            # "datasource_name",
-            # "dataset_name",
+            # "data_source_name",
+            # "data_set_name",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -168,10 +168,12 @@ class PlaceSearchEngine:
         if self.query.get("service_label_aidants_connect"):
             qs = qs.filter(services__has_label_aidants_connect=True)
 
-        if self.query.get("datasource_name"):
-            qs = qs.filter(data_source__name=self.query.get("datasource_name"))
-        if self.query.get("dataset_name"):
-            qs = qs.filter(data_source__dataset_name=self.query.get("dataset_name"))
+        if self.query.get("data_source_name"):
+            qs = qs.filter(
+                data_set__data_source__name=self.query.get("data_source_name")
+            )
+        if self.query.get("data_set_name"):
+            qs = qs.filter(data_set__name=self.query.get("data_set_name"))
 
         return qs  # Note: at this point, the database query has not been executed yet.
 

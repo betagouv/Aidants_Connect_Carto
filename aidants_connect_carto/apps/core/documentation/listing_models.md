@@ -5,7 +5,7 @@
 ## data source(aidants_connect_carto.apps.core.models.DataSource)
 
 ```
-DataSource(id, name, description, type, contact_website_url, logo_url, dataset_name, dataset_url, dataset_local_path, dataset_last_updated, import_config, import_comment, created_at, updated_at)
+DataSource(id, name, description, type, contact_email, contact_website_url, logo_url, created_at, updated_at)
 ```
 
 |Name|Fullname|Type|Unique|Null/Blank|Comment|Example|
@@ -13,28 +13,38 @@ DataSource(id, name, description, type, contact_website_url, logo_url, dataset_n
 |id |ID |serial |True |Blank | | |
 |name |Le nom du fournisseur de donnée |varchar(300) | | | | |
 |description |Une description |text | |Blank | |Plus de détails sur la source de donnée |
-|type |Le type de source |varchar(32) | | | | |
-|contact_website_url |L'adresse du site internet de la source de donnée |varchar(300) | |Blank | | |
-|logo_url |L'adresse du logo de la source de donnée |varchar(300) | |Blank | | |
-|dataset_name |Le nom du jeu de donnée |varchar(300) | | | | |
-|dataset_url |L'adresse où l'on peut trouver le jeu de donnée |varchar(300) | |Blank | | |
-|dataset_local_path |Le chemin d'accès au jeu de donnée |varchar(300) | | | | |
-|dataset_last_updated |La date de dernière mise à jour du jeu de donnée |date | |Both | | |
-|import_config |Information et configuration de l'import de la donnée |jsonb | |Both | | |
-|import_comment |Informations complémentaires sur l'import de la donnée |text | |Blank | | |
+|type |Le type de source |varchar(32) | | |**UNE SEULE valeur possible**<br>- Hub<br>- National<br>- Région<br>- Département<br>- Autre, Inconnu | |
+|contact_email |Le courriel |varchar(150) | |Blank | |exemple@email.fr |
+|contact_website_url |L'adresse du site internet de la source de donnée |varchar(300) | |Blank | |https://www.example.fr |
+|logo_url |L'adresse du logo de la source de donnée |varchar(300) | |Blank | |https://www.example.fr/logo.png |
 |created_at |La date de création |timestamp with time zone | |Blank | | |
 |updated_at |La date de dernière modification |timestamp with time zone | |Blank | | |
 
-Options
+
+## data set(aidants_connect_carto.apps.core.models.DataSet)
+
 ```
-unique_together : (('name', 'dataset_name'),)
+DataSet(id, name, url, local_path, last_updated, import_config, import_comment, data_source, created_at, updated_at)
 ```
+
+|Name|Fullname|Type|Unique|Null/Blank|Comment|Example|
+|---|---|---|---|---|---|---|
+|id |ID |serial |True |Blank | | |
+|name |Le nom du jeu de donnée |varchar(300) | | | | |
+|url |L'adresse où l'on peut trouver le jeu de donnée |varchar(300) | |Blank | | |
+|local_path |Le chemin d'accès au jeu de donnée |varchar(300) | | | | |
+|last_updated |La date de dernière mise à jour du jeu de donnée |date | |Both | | |
+|import_config |Information et configuration de l'import de la donnée |jsonb | |Both | | |
+|import_comment |Informations complémentaires sur l'import de la donnée |text | |Blank | | |
+|data_source |data source |integer | |Null |FK:aidants_connect_carto.apps.core.models.DataSource | |
+|created_at |La date de création |timestamp with time zone | |Blank | | |
+|updated_at |La date de dernière modification |timestamp with time zone | |Blank | | |
 
 
 ## place(aidants_connect_carto.apps.core.models.Place)
 
 ```
-Place(id, name, supporting_structure_name, description, type, status, legal_entity_type, siret, address_raw, address_housenumber, address_street, address_postcode, address_citycode, address_city, address_departement_code, address_departement_name, address_region_name, latitude, longitude, is_itinerant, itinerant_details, is_online, contact_phone_raw, contact_phone, contact_phone_details, contact_email, contact_website_url, contact_facebook_url, contact_twitter_url, contact_youtube_url, opening_hours_raw, opening_hours_osm_format, opening_hours_details, has_equipment_wifi, has_equipment_computer, has_equipment_scanner, has_equipment_printer, equipment_other, has_accessibility_hi, has_accessibility_mi, has_accessibility_pi, has_accessibility_vi, languages, target_audience_raw, target_audience, support_access_raw, support_access, support_mode_raw, support_mode, is_free, price_details, payment_methods, has_label_fs, logo_url, additional_information, data_source, osm_node_id, created_at, updated_at)
+Place(id, name, supporting_structure_name, description, type, status, legal_entity_type, siret, address_raw, address_housenumber, address_street, address_postcode, address_citycode, address_city, address_departement_code, address_departement_name, address_region_name, latitude, longitude, is_itinerant, itinerant_details, is_online, contact_phone_raw, contact_phone, contact_phone_details, contact_email, contact_website_url, contact_facebook_url, contact_twitter_url, contact_youtube_url, opening_hours_raw, opening_hours_osm_format, opening_hours_details, has_equipment_wifi, has_equipment_computer, has_equipment_scanner, has_equipment_printer, equipment_other, has_accessibility_hi, has_accessibility_mi, has_accessibility_pi, has_accessibility_vi, languages, target_audience_raw, target_audience, support_access_raw, support_access, support_mode_raw, support_mode, is_free, price_details, payment_methods, has_label_fs, logo_url, additional_information, data_set, osm_node_id, created_at, updated_at)
 ```
 
 |Name|Fullname|Type|Unique|Null/Blank|Comment|Example|
@@ -66,9 +76,9 @@ Place(id, name, supporting_structure_name, description, type, status, legal_enti
 |contact_phone_details |Le details du numéro de téléphone (horaires, prix, ...) |text | |Blank | | |
 |contact_email |Le courriel |varchar(150) | |Blank | |exemple@email.fr |
 |contact_website_url |L'adresse du site internet |varchar(300) | |Blank | |https://beta.gouv.fr/ |
-|contact_facebook_url |L'adresse de la page Facebook |varchar(300) | |Blank | | |
+|contact_facebook_url |L'adresse de la page Facebook |varchar(300) | |Blank | |https://www.facebook.com/ |
 |contact_twitter_url |L'adresse de la page Twitter |varchar(300) | |Blank | |https://twitter.com/betagouv |
-|contact_youtube_url |L'adresse de la page Youtube |varchar(300) | |Blank | | |
+|contact_youtube_url |L'adresse de la page Youtube |varchar(300) | |Blank | |https://www.youtube.com/user/example |
 |opening_hours_raw |Les horaires d'ouverture brut |text | |Blank | |Du lundi au vendredi de 8h à 20h |
 |opening_hours_osm_format |Les horaires d'ouverture au format OpenStreetMap |varchar(150) | |Blank | |Mo-Fr 8:00-20:00 |
 |opening_hours_details |Des détails supplémentaires sur les horaires d'ouverture |text | |Blank | |sur rendez-vous le Mardi, porte-ouvertes le Mercredi, ... |
@@ -83,9 +93,9 @@ Place(id, name, supporting_structure_name, description, type, status, legal_enti
 |has_accessibility_vi |Handicap visuel |boolean | | | | |
 |languages |Langues parlées |varchar(150) | |Blank | |Français, Anglais, ... |
 |target_audience_raw |Public(s) cible brut |text | |Blank | | |
-|target_audience |Public(s) cible |varchar(32)[] | |Blank |**PLUSIEURS valeurs possible**<br>- Tout public<br>- Allocataires<br>- Demandeurs d'emploi<br>- Étrangers<br>- Familles<br>- -25 ans, Jeunes<br>- Personnes en situation de handicap<br>- Séniors | |
+|target_audience |Public(s) cible |varchar(32)[] | |Blank |**PLUSIEURS valeurs possible**<br>- Tout public<br>- Allocataires<br>- Demandeurs d'emploi<br>- Étrangers<br>- Familles<br>- -25 ans, Jeunes<br>- Personnes en situation de handicap<br>- Séniors |tout public, jeune, senior, allocataire, etranger, ... |
 |support_access_raw |Modalité(s) d'accès brut |text | |Blank | | |
-|support_access |Modalité(s) d'accès |varchar(32)[] | |Blank |**PLUSIEURS valeurs possible**<br>- Accès libre<br>- Sur inscription ou rendez-vous<br>- Public cible uniquement<br>- Adhérents uniquement |libre, inscription, adhérent, ... |
+|support_access |Modalité(s) d'accès |varchar(32)[] | |Blank |**PLUSIEURS valeurs possible**<br>- Accès libre<br>- Sur inscription ou rendez-vous<br>- Public cible uniquement<br>- Adhérents uniquement |libre, inscription, adherent, ... |
 |support_mode_raw |Modalité(s) d'accompagnement brut |text | |Blank | | |
 |support_mode |Modalité(s) d'accompagnement |varchar(32)[] | |Blank |**PLUSIEURS valeurs possible**<br>- Individuel, Personnalisé<br>- Collectif |individuel, collectif, ... |
 |is_free |Le lieu est-il gratuit ? |boolean | | | | |
@@ -94,7 +104,7 @@ Place(id, name, supporting_structure_name, description, type, status, legal_enti
 |has_label_fs |Labellisé France Service |boolean | | | | |
 |logo_url |L'adresse du logo du lieu |varchar(300) | |Blank | |https://beta.gouv.fr/img/logo_twitter_image-2019.jpg |
 |additional_information |Informations additionnelles stockées au format JSON |jsonb | |Both | | |
-|data_source |data source |integer | |Null |FK:aidants_connect_carto.apps.core.models.DataSource | |
+|data_set |data set |integer | |Null |FK:aidants_connect_carto.apps.core.models.DataSet | |
 |osm_node_id |OpenStreetMap node id |integer | |Both | |5266052428 |
 |created_at |La date de création |timestamp with time zone | |Blank | | |
 |updated_at |La date de dernière modification |timestamp with time zone | |Blank | | |
@@ -118,7 +128,7 @@ Service(id, name, description, siret, target_audience, support_access, support_m
 |description |Une description du service |text | |Blank | | |
 |siret |Coordonnées juridiques (SIRET) |varchar(14) | |Blank | | |
 |target_audience |Public cible (s'il est différent du public cible du lieu) |varchar(32)[] | |Blank |**PLUSIEURS valeurs possible**<br>- Tout public<br>- Allocataires<br>- Demandeurs d'emploi<br>- Étrangers<br>- Familles<br>- -25 ans, Jeunes<br>- Personnes en situation de handicap<br>- Séniors | |
-|support_access |Modalités d'accès (si différent du lieu) |varchar(32) | |Blank |**UNE SEULE valeur possible**<br>- Accès libre<br>- Sur inscription ou rendez-vous<br>- Public cible uniquement<br>- Adhérents uniquement |libre, inscription, adhérent, ... |
+|support_access |Modalités d'accès (si différent du lieu) |varchar(32) | |Blank |**UNE SEULE valeur possible**<br>- Accès libre<br>- Sur inscription ou rendez-vous<br>- Public cible uniquement<br>- Adhérents uniquement |libre, inscription, adherent, ... |
 |support_mode |Modalités d'accompagnement (si différent du lieu) |varchar(32) | |Blank |**UNE SEULE valeur possible**<br>- Individuel, Personnalisé<br>- Collectif |individuel, collectif, ... |
 |schedule_hours_raw |Les horaires du service (s'ils sont différents des horaires du lieu) |text | |Blank | |Le mardi de 14h à 18h |
 |schedule_hours_osm_format |Les horaires du service au format OpenStreetMap |varchar(150) | |Blank | |Tu 14:00-18:00 |

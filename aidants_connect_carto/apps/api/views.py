@@ -11,10 +11,11 @@ from rest_framework.views import APIView
 
 from aidants_connect_carto.apps.api.serializers import (
     DataSourceSerializer,
+    DataSetSerializer,
     PlaceSerializer,
     ServiceSerializer,
 )
-from aidants_connect_carto.apps.core.models import DataSource, Place  # Service
+from aidants_connect_carto.apps.core.models import DataSource, Place
 from aidants_connect_carto.apps.core.stats import get_model_stats
 from aidants_connect_carto.apps.core.utilities import call_ban_address_search_api
 
@@ -56,6 +57,34 @@ class DataSourceDetail(APIView):
         data_source = get_object_or_404(DataSource, pk=data_source_id)
 
         serializer = DataSourceSerializer(data_source)
+        return Response(serializer.data)
+
+
+class DataSourceDataSetList(APIView):
+    """
+    List all data sets of a data source, or create a new data set.
+    """
+
+    @swagger_auto_schema(responses={200: DataSetSerializer(many=True)})
+    def get(self, request, data_source_id, format=None):
+        data_source = get_object_or_404(DataSource, pk=data_source_id)
+        data_sets = data_source.data_sets
+
+        serializer = DataSetSerializer(data_sets, many=True)
+        return Response(serializer.data)
+
+
+class DataSourceDataSetDetail(APIView):
+    """
+    Retrieve, update or delete a data set instance.
+    """
+
+    @swagger_auto_schema(responses={200: DataSetSerializer})
+    def get(self, request, data_source_id, data_set_id, format=None):
+        data_source = get_object_or_404(DataSource, pk=data_source_id)
+        data_set = get_object_or_404(data_source.data_sets.all(), pk=data_set_id)
+
+        serializer = DataSetSerializer(data_set)
         return Response(serializer.data)
 
 

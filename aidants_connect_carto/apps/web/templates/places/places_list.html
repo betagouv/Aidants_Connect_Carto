@@ -26,8 +26,8 @@
               {% if filter.type == "service_name" %}📝{% endif %}
               {% if filter.type == "opening_hours" %}🕒{% endif %}
               {% if filter.type in "address_departement_name,address_region_name" %}📍{% endif %}
-              {% if filter.type == "datasource_name" %}📖{% endif %}
-              {% if filter.type == "dataset_name" %}🗺️{% endif %}
+              {% if filter.type == "data_source_name" %}📖{% endif %}
+              {% if filter.type == "data_set_name" %}🗺️{% endif %}
               {{ filter.value }}
               <a class="no-decoration" href="{% url 'places-list' %}?{{ filter.url_parameters_with_filter_removed }}"><strong>&nbsp;&times;</strong>
             </a>

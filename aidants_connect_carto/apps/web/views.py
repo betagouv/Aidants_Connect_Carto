@@ -126,9 +126,28 @@ def service_update(request, place_id, service_id):
 
 
 def data_sources_list(request):
-    data_sources = DataSource.objects.all()  # .order_by("name")
+    data_sources = DataSource.objects.select_related().all()
+    data_sources_count = data_sources.count()
+    data_sources_national = data_sources.filter(
+        type=constants.DATA_SOURCE_TYPE_NATIONAL
+    )
+    data_sources_hub = data_sources.filter(type=constants.DATA_SOURCE_TYPE_HUB)
+    data_sources_region = data_sources.filter(type=constants.DATA_SOURCE_TYPE_REGION)
+    data_sources_departement = data_sources.filter(
+        type=constants.DATA_SOURCE_TYPE_DEPARTEMENT
+    )
 
-    return render(request, "data_sources_list.html", {"data_sources": data_sources},)
+    return render(
+        request,
+        "data_sources_list.html",
+        {
+            "data_sources_count": data_sources_count,
+            "data_sources_national": data_sources_national,
+            "data_sources_hub": data_sources_hub,
+            "data_sources_region": data_sources_region,
+            "data_sources_departement": data_sources_departement,
+        },
+    )
 
 
 def stats(request):
@@ -213,21 +232,36 @@ def stats(request):
                 {
                     "name": "Horaires",
                     "fill_stats": [
-                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        {
+                            "key": key,
+                            "value": place_fields_fill_count_df[key]
+                            if (key in place_fields_fill_count_df)
+                            else 0,
+                        }
                         for key in ["opening_hours_raw", "opening_hours_osm_format"]
                     ],
                 },
                 {
                     "name": "Public cible",
                     "fill_stats": [
-                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        {
+                            "key": key,
+                            "value": place_fields_fill_count_df[key]
+                            if (key in place_fields_fill_count_df)
+                            else 0,
+                        }
                         for key in ["target_audience_raw", "target_audience"]
                     ],
                 },
                 {
                     "name": "autres",
                     "fill_stats": [
-                        {"key": key, "value": place_fields_fill_count_df[key]}
+                        {
+                            "key": key,
+                            "value": place_fields_fill_count_df[key]
+                            if (key in place_fields_fill_count_df)
+                            else 0,
+                        }
                         for key in [
                             "supporting_structure_name",
                             "type",
@@ -247,21 +281,36 @@ def stats(request):
                 {
                     "name": "Horaires",
                     "fill_stats": [
-                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        {
+                            "key": key,
+                            "value": service_fields_fill_count_df[key]
+                            if (key in service_fields_fill_count_df)
+                            else 0,
+                        }
                         for key in ["schedule_hours_raw", "schedule_hours_osm_format"]
                     ],
                 },
                 {
                     "name": "Accompagnement",
                     "fill_stats": [
-                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        {
+                            "key": key,
+                            "value": service_fields_fill_count_df[key]
+                            if (key in service_fields_fill_count_df)
+                            else 0,
+                        }
                         for key in ["target_audience", "support_access", "support_mode"]
                     ],
                 },
                 {
                     "name": "autres",
                     "fill_stats": [
-                        {"key": key, "value": service_fields_fill_count_df[key]}
+                        {
+                            "key": key,
+                            "value": service_fields_fill_count_df[key]
+                            if (key in service_fields_fill_count_df)
+                            else 0,
+                        }
                         for key in [
                             "siret",
                             "price_details",

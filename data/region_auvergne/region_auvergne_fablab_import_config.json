@@ -1,10 +1,11 @@
 {
     "data_source_name": "Région Auvergne-Rhône-Alpes",
-    "data_source_type": "région",
-    "dataset_name": "FabLab : Laboratoires de fabrication numérique en Auvergne",
-    "dataset_url": "http://opendata.auvergnerhonealpes.eu/data/fablab-auvergne/7-fablab-laboratoires-de-fabrication-numerique-en-auvergne.htm",
-    "dataset_file_path": "data/region_auvergne/fablab__laboratoires_de_fabrication_numerique_en_auvergne.csv",
-    "dataset_last_updated": "2016-10-27",
+    "data_source_type": "region",
+    "name": "FabLab : Laboratoires de fabrication numérique en Auvergne",
+    "url": "http://opendata.auvergnerhonealpes.eu/data/fablab-auvergne/7-fablab-laboratoires-de-fabrication-numerique-en-auvergne.htm",
+    "file_path": "data/region_auvergne/fablab__laboratoires_de_fabrication_numerique_en_auvergne.csv",
+    "last_updated": "2016-10-27",
+    "import_comment": "",
     "import_config": {
         "place_fields_set": [
             {

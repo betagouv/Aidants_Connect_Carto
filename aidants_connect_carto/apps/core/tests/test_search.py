@@ -1,19 +1,20 @@
 from django.test import TestCase
 
 from aidants_connect_carto.apps.core import search
-from aidants_connect_carto.apps.core.models import DataSource, Place, Service
+from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 
 
 class SearchTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        data_source_1 = DataSource.objects.create(
-            name="Region Test", type="region", dataset_name="Lieux EPN 2019"
+        data_source_1 = DataSource.objects.create(name="Region Test", type="region")
+        data_set_1 = DataSet.objects.create(
+            name="Lieux EPN 2019", data_source=data_source_1
         )
         place_1 = Place.objects.create(
             name="Lieu Test 1",
             address_region_name="Auvergne-Rhône-Alpes",
-            data_source_id=data_source_1.id,
+            data_set_id=data_set_1.id,
         )
         Service.objects.create(name="Stockage numérique sécurisé", place_id=place_1.id)
         place_2 = Place.objects.create(

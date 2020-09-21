@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from aidants_connect_carto.apps.core.models import DataSource, Place, Service
+from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 from aidants_connect_carto.apps.web.forms import PlaceCreateForm, ServiceCreateForm
 
 
@@ -9,13 +9,28 @@ class DataSourceAdmin(admin.ModelAdmin):
         "id",
         "name",
         "type",
-        "dataset_name",
+        "data_set_count",
         "place_count",
-        "dataset_last_updated",
         "created_at",
     )
     ordering = ("name",)
     list_filter = ("type",)
+
+
+class DataSetAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "data_source",
+        "name",
+        "place_count",
+        "last_updated",
+        "created_at",
+    )
+    ordering = (
+        "data_source",
+        "name",
+    )
+    list_filter = ("data_source",)
 
 
 class PlaceAdmin(admin.ModelAdmin):
@@ -26,13 +41,13 @@ class PlaceAdmin(admin.ModelAdmin):
         "id",
         "name",
         "address_raw",
-        "data_source",
+        "data_set",
         "service_count",
         "created_at",
     )
     ordering = ("id",)
     list_filter = (
-        "data_source__name",
+        "data_set__data_source__name",
         "address_region_name",
         "address_departement_name",
     )
@@ -58,5 +73,6 @@ class ServiceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(DataSource, DataSourceAdmin)
+admin.site.register(DataSet, DataSetAdmin)
 admin.site.register(Place, PlaceAdmin)
 admin.site.register(Service, ServiceAdmin)

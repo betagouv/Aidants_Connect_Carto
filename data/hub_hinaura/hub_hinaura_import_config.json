@@ -1,10 +1,10 @@
 {
     "data_source_name": "Hub Hinaura",
     "data_source_type": "hub",
-    "dataset_name": "test",
-    "dataset_url": "",
-    "dataset_file_path": "data/hub_hinaura/092020_test_bdd_Hinaura.csv",
-    "dataset_last_updated": "2020-01-01",
+    "name": "test",
+    "url": "",
+    "file_path": "data/hub_hinaura/092020_test_bdd_Hinaura.csv",
+    "last_updated": "2020-01-01",
     "import_comment": "",
     "import_config": {
         "dataset_file_delimiter": ",",

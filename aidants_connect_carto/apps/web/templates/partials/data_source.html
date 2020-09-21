@@ -1,0 +1,24 @@
+<div class="panel">
+  <div class="panel__header">
+    <h3>{{ data_source.name }}</h3>
+    <small class="panel__header-extra">{{ data_source.type }}</small>
+  </div>
+  <!-- Tous les jeux de données du fournisseur de donnée -->
+  <div class="grid">
+    {% for data_set in data_source.data_sets.all %}
+    <div class="card">
+      <div class="card__content">
+        <h5>{{ data_set.name }}</h5>
+        <p>{{ data_set.place_count }} Lieux</p>
+        <p>🕒&nbsp;Ajouté le {{ data_set.created_at | date:"d F Y" }}</p>
+      </div>
+      <div class="card__extra">
+        <span class="label label--inactive">🔍&nbsp;<a href="{% url 'places-list' %}?data_source_name={{ data_source.name }}&data_set_name={{ data_set.name }}">rechercher</a></span>
+        {% if data_source.url %}
+          <span class="label float-right">🔗&nbsp;<a href="{{ data_source.url }}" target="_blank">source</a></span>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -30,6 +30,16 @@ urlpatterns = [
         views.DataSourceDetail.as_view(),
         name="data-source-detail",
     ),
+    path(
+        "data-sources/<int:data_source_id>/data-sets/",
+        views.DataSourceDataSetList.as_view(),
+        name="data-source-data-set-list",
+    ),
+    path(
+        "data-sources/<int:data_source_id>/data-sets/<int:data_set_id>/",
+        views.DataSourceDataSetDetail.as_view(),
+        name="data-source-data-set-detail",
+    ),
     path("places/", views.PlaceList.as_view(), name="place-list"),
     path("places/<int:place_id>/", views.PlaceDetail.as_view(), name="place-detail"),
     path(

@@ -1,34 +1,47 @@
 from django.test import TestCase
 
-from aidants_connect_carto.apps.core.models import DataSource, Place, Service
+from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 
 
-class DataSourceModelTest(TestCase):
+class DataSourceAndDataSetModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.data_source_1 = DataSource.objects.create(
-            name="Region Test", type="region", dataset_name="Lieux EPN 2019"
+        cls.data_source_1 = DataSource.objects.create(name="Region Test", type="region")
+        cls.data_set_1 = DataSet.objects.create(
+            name="Lieux EPN 2019", data_source_id=cls.data_source_1.id
+        )
+        cls.data_set_2 = DataSet.objects.create(
+            name="Tiers Lieux", data_source_id=cls.data_source_1.id
         )
         cls.place_1 = Place.objects.create(
             name="Lieu Test 1",
             address_region_name="Auvergne-Rhône-Alpes",
-            data_source_id=cls.data_source_1.id,
+            data_set_id=cls.data_set_1.id,
+        )
+        cls.place_2 = Place.objects.create(
+            name="Lieu Test 2", data_set_id=cls.data_set_2.id,
         )
 
     def test_retrieve_data_source_instance(self):
-        self.assertEqual(str(self.data_source_1), "Region Test: Lieux EPN 2019")
-        self.assertEqual(self.data_source_1.place_count, 1)
+        self.assertEqual(str(self.data_source_1), "Region Test")
+        self.assertEqual(self.data_source_1.data_set_count, 2)
+        self.assertEqual(self.data_source_1.place_count, 2)
+
+    def test_retrieve_data_set_instance(self):
+        self.assertEqual(str(self.data_set_1), "Lieux EPN 2019")
+        self.assertEqual(self.data_set_1.place_count, 1)
 
 
 class PlaceModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.data_source_1 = DataSource.objects.create(
-            name="Region Test", type="region", dataset_name="Lieux EPN 2019"
+        cls.data_source_1 = DataSource.objects.create(name="Region Test", type="region")
+        cls.data_set_1 = DataSet.objects.create(
+            name="Lieux EPN 2019", data_source_id=cls.data_source_1.id
         )
         cls.place_1 = Place.objects.create(
             name="Lieu Test 1",
-            data_source_id=cls.data_source_1.id,
+            data_set_id=cls.data_set_1.id,
             address_housenumber="20",
             address_street="Avenue de Ségur",
             address_postcode="75007",
@@ -49,7 +62,7 @@ class PlaceModelTest(TestCase):
 
     def test_retrieve_place_instance(self):
         self.assertEqual(str(self.place_1), "Lieu Test 1")
-        self.assertEqual(str(self.place_1.data_source), "Region Test: Lieux EPN 2019")
+        self.assertEqual(str(self.place_1.data_set), "Lieux EPN 2019")
         self.assertEqual(self.place_1.service_list, ["Stockage numérique sécurisé"])
         self.assertEqual(self.place_1.service_count, 1)
 

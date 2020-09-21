@@ -1,10 +1,10 @@
 {
     "data_source_name": "",
     "data_source_type": "",
-    "dataset_name": "",
-    "dataset_url": "",
-    "dataset_file_path": "data/...",
-    "dataset_last_updated": "2020-01-30",
+    "name": "",
+    "url": "",
+    "file_path": "data/...",
+    "last_updated": "2020-01-30",
     "import_comment": "",
     "import_config": {
         "dataset_file_delimiter": ",",

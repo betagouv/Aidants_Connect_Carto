@@ -8,33 +8,45 @@ from django.core.management import BaseCommand
 
 from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core import utilities
-from aidants_connect_carto.apps.core.models import Place, Service, DataSource
+from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 
 
-def create_data_source(data_source_import_config_file):
+def get_or_create_data_source(data_set_import_config_file):
     print("in data_source")
 
-    with open(data_source_import_config_file) as json_file:
-        data_source_import_config = json.load(json_file)
+    with open(data_set_import_config_file) as json_file:
+        data_set_import_config = json.load(json_file)
 
         data_source_dict = {}
 
-        data_source_dict["name"] = data_source_import_config["data_source_name"]
-        data_source_dict["type"] = data_source_import_config["data_source_type"]
-        data_source_dict["dataset_name"] = data_source_import_config["dataset_name"]
-        data_source_dict["dataset_url"] = data_source_import_config["dataset_url"]
-        data_source_dict["dataset_local_path"] = data_source_import_config[
-            "dataset_file_path"
-        ]
-        data_source_dict["dataset_last_updated"] = data_source_import_config[
-            "dataset_last_updated"
-        ]
-        data_source_dict["import_config"] = data_source_import_config["import_config"]
-        data_source_dict["import_comment"] = data_source_import_config["import_comment"]
+        data_source_dict["name"] = data_set_import_config["data_source_name"]
+        data_source_dict["type"] = data_set_import_config["data_source_type"]
 
-        data_source = DataSource.objects.create(**data_source_dict)
-        print("-->", data_source.id)
+        data_source, created = DataSource.objects.get_or_create(**data_source_dict)
+        print("-->", data_source.id, "created ?", created)
         return data_source
+
+
+def create_data_set(data_source, data_set_import_config_file):
+    print("in data_set")
+
+    with open(data_set_import_config_file) as json_file:
+        data_set_import_config = json.load(json_file)
+
+        data_set_dict = {}
+
+        data_set_dict["name"] = data_set_import_config["name"]
+        data_set_dict["url"] = data_set_import_config["url"]
+        data_set_dict["local_path"] = data_set_import_config["file_path"]
+        data_set_dict["last_updated"] = data_set_import_config["last_updated"]
+        data_set_dict["import_config"] = data_set_import_config["import_config"]
+        data_set_dict["import_comment"] = data_set_import_config["import_comment"]
+
+        data_set_dict["data_source_id"] = data_source.id
+
+        data_set = DataSet.objects.create(**data_set_dict)
+        print("-->", data_set.id)
+        return data_set
 
 
 """
@@ -48,7 +60,7 @@ import_config: JSONField
 """
 
 
-def create_place(row, data_source):
+def create_place(row, data_set):
     print("in place")
 
     place_dict = {}
@@ -56,7 +68,7 @@ def create_place(row, data_source):
     """
     place_fields_set
     """
-    for elem in data_source.import_config.get("place_fields_set", []):
+    for elem in data_set.import_config.get("place_fields_set", []):
         if "type" in elem:
             if elem["type"] == "boolean":
                 place_dict[elem["place_field"]] = bool(elem["value"] == "true")
@@ -66,13 +78,13 @@ def create_place(row, data_source):
     """
     place_fields_mapping_auto
     """
-    for elem in data_source.import_config.get("place_fields_mapping_auto", []):
+    for elem in data_set.import_config.get("place_fields_mapping_auto", []):
         place_dict[elem["place_field"]] = row[elem["file_field"]]
 
     """
     place_fields_mapping_boolean
     """
-    for elem in data_source.import_config.get("place_fields_mapping_boolean", []):
+    for elem in data_set.import_config.get("place_fields_mapping_boolean", []):
         place_dict[elem["place_field"]] = utilities.process_boolean(
             row[elem["file_field"]]
         )
@@ -89,7 +101,7 @@ def create_place(row, data_source):
     - contact_phone_raw
     - opening_hours_raw
     """
-    for elem in data_source.import_config.get("place_fields_mapping_process", []):
+    for elem in data_set.import_config.get("place_fields_mapping_process", []):
         if elem["place_field"] == "type":
             place_dict["type"] = utilities.process_type(row[elem["file_field"]])
 
@@ -202,14 +214,14 @@ def create_place(row, data_source):
     additional_information
     """
     place_dict["additional_information"] = {}
-    for elem in data_source.import_config.get(
+    for elem in data_set.import_config.get(
         "place_fields_mapping_additional_information", []
     ):
         place_dict["additional_information"][elem["place_field"]] = row[
             elem["file_field"]
         ]
 
-    place_dict["data_source_id"] = data_source.id
+    place_dict["data_set_id"] = data_set.id
 
     print(place_dict)
     place = Place.objects.create(**place_dict)
@@ -218,18 +230,18 @@ def create_place(row, data_source):
     return place
 
 
-def create_service(row, data_source, place):
+def create_service(row, data_set, place):
     print("in service")
 
     # service_dict = {}
 
     # get list of services
     service_name_list = row[
-        data_source.import_config.get("place_service").get("file_field")
+        data_set.import_config.get("place_service").get("file_field")
     ]
-    if data_source.import_config.get("place_service").get("split_delimeter"):
+    if data_set.import_config.get("place_service").get("split_delimeter"):
         service_name_list = service_name_list.split(
-            data_source.import_config.get("place_service").get("split_delimeter")
+            data_set.import_config.get("place_service").get("split_delimeter")
         )
 
     # create services
@@ -246,15 +258,17 @@ def create_service(row, data_source, place):
 
 class Command(BaseCommand):
     """
-    python manage.py load_data_source_csv --id 11
-    python manage.py load_data_source_csv --file data/hub_abc/hub_abc_import_config.json
+    python manage.py load_data_set_csv --id 11
+    python manage.py load_data_set_csv --file data/hub_abc/hub_abc_import_config.json
     """
 
-    help = "Load a csv file into the database"
+    help = "Load a data set (csv file) into the database"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--id", help="L'id dans la base de donnée du jeu de donnée", type=int
+            "--id",
+            help="L'id du fournisseur de donnée (dans la base de donnée)",
+            type=int,
         )
         parser.add_argument(
             "--file", help="Le chemin vers la config du jeu de donnée", type=str
@@ -262,34 +276,37 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         data_source_id = kwargs["id"]
-        data_source_file = kwargs["file"]
+        data_set_file = kwargs["file"]
 
+        # get or create data_source
         if data_source_id:
             data_source = DataSource.objects.get(pk=data_source_id)
         else:
-            if data_source_file:
-                data_source = create_data_source(data_source_file)
+            if data_set_file:
+                data_source = get_or_create_data_source(data_set_file)
             else:
                 print("--id or --file argument missing")
 
         if data_source:
-            # encoding="utf-8-sig" for files that start with '\ufeff'
-            with open(
-                data_source.dataset_local_path, mode="rt", encoding="utf-8-sig"
-            ) as f:
-                FILE_DELIMITER = data_source.import_config.get(
-                    "dataset_file_delimiter", ";"
-                )
-                reader = csv.DictReader(f, delimiter=FILE_DELIMITER)
-                # print(reader.fieldnames)
-                print(data_source.name)
+            # create data_set
+            data_set = create_data_set(data_source, data_set_file)
 
-                for index, row in enumerate(reader):
-                    time.sleep(1)
-                    print(index, row)
+            if data_set:
+                # encoding="utf-8-sig" for files that start with '\ufeff'
+                with open(data_set.local_path, mode="rt", encoding="utf-8-sig") as f:
+                    FILE_DELIMITER = data_set.import_config.get(
+                        "dataset_file_delimiter", ";"
+                    )
+                    reader = csv.DictReader(f, delimiter=FILE_DELIMITER)
+                    # print(reader.fieldnames)
+                    print(data_set.name)
 
-                    # place = create_place(row)
-                    place = create_place(row, data_source)
+                    for index, row in enumerate(reader):
+                        time.sleep(1)
+                        print(index, row)
 
-                    if data_source.import_config.get("place_service", None):
-                        create_service(row, data_source, place)
+                        # place = create_place(row)
+                        place = create_place(row, data_set)
+
+                        if data_set.import_config.get("place_service", None):
+                            create_service(row, data_set, place)

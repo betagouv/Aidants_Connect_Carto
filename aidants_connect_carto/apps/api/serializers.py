@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 # from drf_braces.forms.serializer_form import SerializerForm
 
-from aidants_connect_carto.apps.core.models import DataSource, Place, Service
+from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 
 
 class DataSourceSerializer(serializers.ModelSerializer):
@@ -13,12 +13,24 @@ class DataSourceSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "type",
+            "contact_email",
             "contact_website_url",
             "logo_url",
-            "dataset_name",
-            "dataset_url",
-            # "dataset_local_path",
-            "dataset_last_updated",
+            "created_at",
+            "updated_at",
+        ]
+
+
+class DataSetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DataSet
+        fields = [
+            "id",
+            "data_source_id",
+            "name",
+            "url",
+            # "local_path",
+            "last_updated",
             # "import_config",
             # "import_comment",
             "created_at",
@@ -31,7 +43,7 @@ class PlaceSerializer(serializers.ModelSerializer):
         model = Place
         fields = [
             "id",
-            "data_source_id",
+            "data_set_id",
             "name",
             "supporting_structure_name",
             "description",

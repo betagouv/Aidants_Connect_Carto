@@ -1,10 +1,10 @@
 {
     "data_source_name": "Hub Hubik",
     "data_source_type": "hub",
-    "dataset_name": "Département Gironde",
-    "dataset_url": "",
-    "dataset_file_path": "data/hub_hubik/Cartographies departements - Gironde.csv",
-    "dataset_last_updated": "2020-01-20",
+    "name": "Département Gironde",
+    "url": "",
+    "file_path": "data/hub_hubik/Cartographies departements - Gironde.csv",
+    "last_updated": "2020-01-20",
     "import_comment": "liste de services et d'equipements",
     "import_config": {
         "place_fields_set": [

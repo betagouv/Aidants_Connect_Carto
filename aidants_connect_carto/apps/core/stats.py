@@ -1,12 +1,17 @@
 from django.db.models import Count
 
 from aidants_connect_carto import constants
-from aidants_connect_carto.apps.core.models import Place, Service, DataSource
+from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 
 
 def get_data_source_model_stats():
     data_source_count = DataSource.objects.count()
     return {"data_source_count": data_source_count}
+
+
+def get_data_set_model_stats():
+    data_set_count = DataSet.objects.count()
+    return {"data_set_count": data_set_count}
 
 
 def get_place_model_stats():
@@ -54,6 +59,7 @@ def get_model_stats():
     """
     return {
         **get_data_source_model_stats(),
+        **get_data_set_model_stats(),
         **get_place_model_stats(),
         **get_service_model_stats(),
     }

@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Count
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.core.validators import RegexValidator
 
@@ -45,35 +46,6 @@ class DataSource(models.Model):
         help_text="https://www.example.fr/logo.png",
     )
 
-    # --- dataset details
-    dataset_name = models.CharField(
-        verbose_name="Le nom du jeu de donnée", max_length=300
-    )
-    dataset_url = models.URLField(
-        verbose_name="L'adresse où l'on peut trouver le jeu de donnée",
-        max_length=300,
-        blank=True,
-    )
-    dataset_local_path = models.CharField(
-        verbose_name="Le chemin d'accès au jeu de donnée", max_length=300
-    )
-    dataset_last_updated = models.DateField(
-        verbose_name="La date de dernière mise à jour du jeu de donnée",
-        blank=True,
-        null=True,
-    )
-
-    # --- import details
-    import_config = JSONField(
-        verbose_name="Information et configuration de l'import de la donnée",
-        blank=True,
-        null=True,
-    )
-    import_comment = models.TextField(
-        verbose_name="Informations complémentaires sur l'import de la donnée",
-        blank=True,
-    )
-
     # --- timestamps
     created_at = models.DateTimeField(
         verbose_name="La date de création", auto_now_add=True
@@ -83,14 +55,20 @@ class DataSource(models.Model):
     )
 
     class Meta:
-        unique_together = ("name", "dataset_name")
+        constraints = [
+            models.UniqueConstraint(fields=["name"], name="unique data source name")
+        ]
 
     def __str__(self):
-        return f"{self.name}: {self.dataset_name}"
+        return f"{self.name}"
+
+    @property
+    def data_set_count(self) -> int:
+        return self.data_sets.count()
 
     @property
     def place_count(self) -> int:
-        return self.places.count()
+        return self.data_sets.aggregate(Count("places"))["places__count"]
 
 
 class DataSet(models.Model):
@@ -140,6 +118,10 @@ class DataSet(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    @property
+    def place_count(self) -> int:
+        return self.places.count()
 
 
 class Place(models.Model):
@@ -470,13 +452,6 @@ class Place(models.Model):
     )
 
     # --- links to other models & databases
-    data_source = models.ForeignKey(
-        DataSource,
-        blank=False,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name="places",
-    )
     data_set = models.ForeignKey(
         DataSet,
         blank=False,

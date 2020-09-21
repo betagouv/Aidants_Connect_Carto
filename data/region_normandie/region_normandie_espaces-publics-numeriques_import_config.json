@@ -1,10 +1,10 @@
 {
     "data_source_name": "Région Normandie",
-    "data_source_type": "région",
-    "dataset_name": "Espaces publics numériques",
-    "dataset_url": "https://geo.data.gouv.fr/fr/datasets/3316c824665e5d19c0ef21102775ed94440a8aed",
-    "dataset_file_path": "data/region_normandie/GEO_NUM_DAN_SRTN_espaces_publics_numeriques.csv",
-    "dataset_last_updated": "2020-03-07",
+    "data_source_type": "region",
+    "name": "Espaces publics numériques",
+    "url": "https://geo.data.gouv.fr/fr/datasets/3316c824665e5d19c0ef21102775ed94440a8aed",
+    "file_path": "data/region_normandie/GEO_NUM_DAN_SRTN_espaces_publics_numeriques.csv",
+    "last_updated": "2020-03-07",
     "import_comment": "Export en csv rajoute des '.000000'",
     "import_config": {
         "dataset_file_delimiter": ",",
