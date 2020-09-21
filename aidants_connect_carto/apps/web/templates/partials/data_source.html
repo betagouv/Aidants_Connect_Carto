@@ -2,6 +2,12 @@
   <div class="panel__header">
     <h3>{{ data_source.name }}</h3>
     <small class="panel__header-extra">{{ data_source.type }}</small>
+    <div>
+      {{ data_source.description }}
+      {% if data_source.contact_website_url %}
+        <a href="{{ data_source.contact_website_url }}" target="_blank">site internet</a>
+      {% endif %}
+    </div>
   </div>
   <!-- Tous les jeux de données du fournisseur de donnée -->
   <div class="grid">
@@ -14,8 +20,8 @@
       </div>
       <div class="card__extra">
         <span class="label label--inactive">🔍&nbsp;<a href="{% url 'places-list' %}?data_source_name={{ data_source.name }}&data_set_name={{ data_set.name }}">rechercher</a></span>
-        {% if data_source.url %}
-          <span class="label float-right">🔗&nbsp;<a href="{{ data_source.url }}" target="_blank">source</a></span>
+        {% if data_set.url %}
+          <span class="label float-right">🔗&nbsp;<a href="{{ data_set.url }}" target="_blank">source</a></span>
         {% endif %}
       </div>
     </div>

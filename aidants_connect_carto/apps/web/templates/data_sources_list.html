@@ -28,28 +28,28 @@
 <section class="section section-grey">
   <div class="container">
     
-  <h2 id="national">Fournisseurs de données nationaux <small>{{ data_sources_national.count }}</small></h2>
+  <h2 id="national">Fournisseurs de données nationaux&emsp;<small>{{ data_sources_national.count }}</small></h2>
     {% for data_source in data_sources_national %}
       {% include 'partials/data_source.html' with data_source=data_source %}
     {% endfor %}
 
     <hr>
 
-    <h2 id="hub">Fournisseurs de données "hub" <small>{{ data_sources_hub.count }}</small></h2>
+    <h2 id="hub">Fournisseurs de données "hub"&emsp;<small>{{ data_sources_hub.count }}</small></h2>
     {% for data_source in data_sources_hub %}
       {% include 'partials/data_source.html' with data_source=data_source %}
     {% endfor %}
 
     <hr>
 
-    <h2 id="region">Fournisseurs de données régionaux <small>{{ data_sources_region.count }}</small></h2>
+    <h2 id="region">Fournisseurs de données régionaux&emsp;<small>{{ data_sources_region.count }}</small></h2>
     {% for data_source in data_sources_region %}
       {% include 'partials/data_source.html' with data_source=data_source %}
     {% endfor %}
 
     <hr>
 
-    <h2 id="departement">Fournisseurs de données départementaux <small>{{ data_sources_departement.count }}</small></h2>
+    <h2 id="departement">Fournisseurs de données départementaux&emsp;<small>{{ data_sources_departement.count }}</small></h2>
     {% for data_source in data_sources_departement %}
       {% include 'partials/data_source.html' with data_source=data_source %}
     {% endfor %}
