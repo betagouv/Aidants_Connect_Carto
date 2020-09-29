@@ -1,0 +1,50 @@
+{
+    "data_source_name": "Hub Connumm",
+    "data_source_type": "hub",
+    "name": "Espaces de médiation numérique en Pays de la Loire",
+    "url": "https://conumm.netlify.app/",
+    "file_path": "data/hub_connumm/export_file.csv",
+    "last_updated": "2020-01-30",
+    "import_comment": "supprimé les cases NR.",
+    "import_config": {
+        "dataset_file_delimiter": ";",
+        "place_fields_mapping_auto": [
+            {
+                "place_field": "name",
+                "file_field": "Nom de la structure"
+            },
+            {
+                "place_field": "contact_email",
+                "file_field": "Mail contact"
+            },
+            {
+                "place_field": "contact_website_url",
+                "file_field": "Site Web"
+            }
+        ],
+        "place_fields_mapping_process": [
+            {
+                "place_field": "contact_phone_raw",
+                "file_field": "Numero de téléphone"
+            },
+            {
+                "place_field": "price_details",
+                "file_field": "Conditions d'acces"
+            },
+            {
+                "place_field": "address_raw",
+                "file_field": "Adresse postale"
+            }
+        ],
+        "place_fields_mapping_additional_information": [
+            "conum_id",
+            "Nom Prenom du référent",
+            "Activites proposees",
+            "Initions et/ou formations proposées",
+            "Public",
+            "APTIC",
+            "Date de mise a jour",
+            "URL illustration / Logo"
+        ]
+    }
+}

@@ -11,7 +11,7 @@
         "place_fields_set": [
             {
                 "place_field": "type",
-                "value": "tiers lieu"
+                "value": "EXEMPLE tiers lieu"
             },
             {
                 "place_field": "is_online",
@@ -22,75 +22,79 @@
         "place_fields_mapping_auto": [
             {
                 "place_field": "name",
-                "file_field": "NOM"
+                "file_field": "EXEMPLE Nom"
             },
             {
                 "place_field": "description",
-                "file_field": "Description"
+                "file_field": "EXEMPLE Description"
             },
             {
                 "place_field": "contact_email",
-                "file_field": "Email"
+                "file_field": "EXEMPLE Email"
             },
             {
                 "place_field": "contact_website_url",
-                "file_field": "Site internet"
+                "file_field": "EXEMPLE Site internet"
             }
         ],
         "place_fields_mapping_boolean": [
             {
                 "place_field": "",
-                "file_field": ""
+                "file_field": "EXEMPLE "
             }
         ],
         "place_fields_mapping_process": [
             {
                 "place_field": "type",
-                "file_field": "Nature de la structure"
+                "file_field": "EXEMPLE Nature de la structure"
             },
             {
                 "place_field": "status",
-                "file_field": "Public / Privé"
+                "file_field": "EXEMPLE Public / Privé"
             },
             {
                 "place_field": "legal_entity_type",
-                "file_field": "Statut juridique"
-            },
-            {
-                "place_field": "target_audience_raw",
-                "file_field": "publics spécifiques"
-            },
-            {
-                "place_field": "support_access_raw",
-                "file_field": "publics spécifiques"
-            },
-            {
-                "place_field": "support_mode_raw",
-                "file_field": "publics spécifiques"
-            },
-            {
-                "place_field": "address_raw",
-                "file_field": ["Adresse postale", "Code postal", "Ville"]
-                "file_field": [["N_VOIE", "N_VOIE_COM", "TYPE_VOIE", "NOM_VOIE"], "CP_NV", "COMMUNE_NV"]
+                "file_field": "EXEMPLE Statut juridique"
             },
             {
                 "place_field": "contact_phone_raw",
-                "file_field": "TEL"
+                "file_field": "EXEMPLE TEL"
+            },
+            {
+                "place_field": "target_audience_raw",
+                "file_field": "EXEMPLE publics spécifiques"
+            },
+            {
+                "place_field": "support_access_raw",
+                "file_field": "EXEMPLE modalités d'accès"
+            },
+            {
+                "place_field": "support_mode_raw",
+                "file_field": "EXEMPLE modalités d'accompagnement"
+            },
+            {
+                "place_field": "price_details",
+                "file_field": "EXEMPLE cout du lieu"
+            },
+            {
+                "place_field": "address_raw",
+                "file_field": ["EXEMPLE Adresse postale", "Code postal", "Ville"]
+                "file_field": [["EXEMPLE N_VOIE", "N_VOIE_COM", "TYPE_VOIE", "NOM_VOIE"], "CP_NV", "COMMUNE_NV"]
             },
             {
                 "place_field": "opening_hours_raw",
-                "file_field": "HORAIRES"
-                "file_field": ["h_lundi", "h_mardi", "h_mercredi", "h_jeudi", "h_vendredi", "h_samedi"]
+                "file_field": "EXEMPLE HORAIRES"
+                "file_field": ["EXEMPLE h_lundi", "h_mardi", "h_mercredi", "h_jeudi", "h_vendredi", "h_samedi"]
             }
         ],
         "place_fields_mapping_additional_information": [
             {
                 "place_field": "code_lieu",
-                "file_field": "CODE_LIEU"
+                "file_field": "EXEMPLE CODE_LIEU"
             }
         ],
         "place_service": {
-            "file_field": "services",
+            "file_field": "EXEMPLE services",
             "split_delimeter": " / "
         }
     }

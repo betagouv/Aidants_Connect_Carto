@@ -107,6 +107,44 @@ def process_support_mode(value: str, seperator=","):
     return support_mode_list
 
 
+# Contact: Phone number
+
+
+def process_phone_number(phone_number_string: str):
+    """
+    Input: phone_number raw string
+    Output: phone_number in 10 characters, empty string instead
+    Examples:
+    03 44 91 12 52
+    03.23.52.24.05
+    03-44-15-67-02
+    3960 (Service 0,06 € / mn + prix appel)
+    0810 25 59 80* (0,06 €/mn + prix appel)  Un conseiller vous répond du lundi au vendredi de 9h à 16h00. # noqa
+    """
+    phone_number_string_cleaned = (
+        phone_number_string.replace(" ", "").replace(".", "").replace("-", "")
+    )
+    if len(phone_number_string_cleaned) <= 10:
+        return phone_number_string_cleaned
+    return ""
+
+
+# Price details
+
+
+def process_price(value: str):
+    """
+    'Gratuit - Tarif d’adhésion annuelle : 6€'
+    'Gratuit pour les habitants du Sud-Avesnois / abonnement annuel de 80 euros pour les personnes extérieures' # noqa
+    """
+    if value:
+        if any(elem in value.lower() for elem in ["gratuit"]):
+            return True
+        if any(elem in value.lower() for elem in ["payant", "coût", "prix"]):
+            return False
+    return True
+
+
 # Address
 
 
@@ -192,28 +230,6 @@ def get_address_full(
         f"{(address_postcode + ' ') if address_postcode else ''}"
         f"{address_city}"
     )
-
-
-# Phone number
-
-
-def process_phone_number(phone_number_string: str):
-    """
-    Input: phone_number raw string
-    Output: phone_number in 10 characters, empty string instead
-    Examples:
-    03 44 91 12 52
-    03.23.52.24.05
-    03-44-15-67-02
-    3960 (Service 0,06 € / mn + prix appel)
-    0810 25 59 80* (0,06 €/mn + prix appel)  Un conseiller vous répond du lundi au vendredi de 9h à 16h00. # noqa
-    """
-    phone_number_string_cleaned = (
-        phone_number_string.replace(" ", "").replace(".", "").replace("-", "")
-    )
-    if len(phone_number_string_cleaned) <= 10:
-        return phone_number_string_cleaned
-    return ""
 
 
 # Opening Hours
@@ -480,19 +496,3 @@ def get_opening_hours_osm_format_is_open(opening_hours_osm_format_string: str) -
 
     oh = hoh.OHParser(opening_hours_osm_format_string, locale="fr")
     return oh.is_open()
-
-
-# Other fields
-
-
-def process_cost(value: str):
-    """
-    'Gratuit - Tarif d’adhésion annuelle : 6€'
-    'Gratuit pour les habitants du Sud-Avesnois / abonnement annuel de 80 euros pour les personnes extérieures' # noqa
-    """
-    if value:
-        if any(elem in value.lower() for elem in ["gratuit"]):
-            return True
-        if any(elem in value.lower() for elem in ["payant", "coût", "prix"]):
-            return False
-    return False

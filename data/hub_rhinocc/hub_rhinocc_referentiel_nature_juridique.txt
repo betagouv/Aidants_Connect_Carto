@@ -1,0 +1,12 @@
+Association
+Collectivites
+Collectivités
+Entreprise
+PRV. ASSOCIATION
+PRV. SARL
+PRV. SAS
+PRV. SCIC
+PRV. SCIC SARL
+PUB. COMMUNE
+PUB. EPCI
+PUB. SYNDICAT MIXTE

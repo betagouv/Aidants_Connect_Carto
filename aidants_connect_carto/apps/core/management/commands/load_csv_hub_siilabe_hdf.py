@@ -132,7 +132,7 @@ def create_service_equipement(row, place: Place):
     service_equipement.support_access = utilities.process_support_access(
         row["Conditions accès équipement"]
     )
-    service_equipement.is_free = utilities.process_cost(row["Coût accès équipement"])
+    service_equipement.is_free = utilities.process_price(row["Coût accès équipement"])
     service_equipement.price_details = row["Coût accès équipement"]
     service_equipement.schedule_hours_raw = row["Horaires équipement"]
     service_equipement.schedule_hours_osm_format = utilities.process_opening_hours_to_osm_format(
@@ -162,7 +162,7 @@ def create_service_mednum(row, place: Place):
     service_mednum.support_mode = utilities.process_support_mode(
         row["Accompagnement médnum"]
     )
-    service_mednum.is_free = utilities.process_cost(row["Coût accès démarches"])
+    service_mednum.is_free = utilities.process_price(row["Coût accès démarches"])
     service_mednum.price_details = row["Coût accès démarches"]
     service_mednum.schedule_hours_raw = row["Horaires médnum"]
     service_mednum.schedule_hours_osm_format = utilities.process_opening_hours_to_osm_format(
@@ -194,7 +194,7 @@ def create_service_demarches(row, place: Place):
     service_demarches.support_mode = utilities.process_support_mode(
         row["Accompagnement démarches"]
     )
-    service_demarches.is_free = utilities.process_cost(row["Coût accès démarches"])
+    service_demarches.is_free = utilities.process_price(row["Coût accès démarches"])
     service_demarches.schedule_hours_raw = row["Horaires démarches"]
     service_demarches.schedule_hours_osm_format = utilities.process_opening_hours_to_osm_format(
         service_demarches.schedule_hours_raw
@@ -217,7 +217,7 @@ def create_service_stockage(row, place: Place):
     service_stockage = Service()
     service_stockage.place_id = place.id
     service_stockage.name = "Stockage numérique sécurisé"
-    service_stockage.is_free = utilities.process_cost(row["Coût stockage"])
+    service_stockage.is_free = utilities.process_price(row["Coût stockage"])
 
     service_stockage.save()
     print(

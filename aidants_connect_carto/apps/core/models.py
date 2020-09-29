@@ -314,7 +314,7 @@ class Place(models.Model):
     )
     opening_hours_osm_format = models.CharField(
         verbose_name="Les horaires d'ouverture au format OpenStreetMap",
-        max_length=150,
+        max_length=300,
         blank=True,
         help_text="Mo-Fr 8:00-20:00",
     )
@@ -425,7 +425,7 @@ class Place(models.Model):
     is_free = models.BooleanField(verbose_name="Le lieu est-il gratuit ?", default=True)
     price_details = models.TextField(
         verbose_name="Le details des prix du lieu", blank=True
-    )
+    )  # price_details_raw ?
     payment_methods = models.CharField(
         verbose_name="Les moyens de paiement",
         max_length=150,
@@ -467,6 +467,11 @@ class Place(models.Model):
     )
 
     # --- timestamps
+    # last_updated = models.DateField(
+    #     verbose_name="La date de dernière mise à jour du lieu",
+    #     blank=True,
+    #     null=True,
+    # )
     created_at = models.DateTimeField(
         verbose_name="La date de création", auto_now_add=True
     )

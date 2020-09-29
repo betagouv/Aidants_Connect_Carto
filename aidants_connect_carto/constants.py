@@ -83,10 +83,10 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
 
 PLACE_LEGAL_ENTITY_TYPE_MAPPING = PLACE_LEGAL_ENTITY_TYPE_CHOICES + [
     ("association", "association (délégation de service public)"),
-    ("collectivite", "collectivite"),
-    ("collectivite", "collectivité"),
     ("collectivite", "collectivite territoriale"),
     ("collectivite", "collectivité territoriale"),
+    ("collectivite", "collectivites"),
+    ("collectivite", "collectivités"),
     ("cae", "cae"),
     ("cae", "sas-cae"),
     ("epci", "epci"),
@@ -128,7 +128,7 @@ Allocataires CAF
 Familles allocataires avec quotient familial (QF) inférieur à 800
 """
 TARGET_AUDIENCE_MAPPING = [
-    ("tout public", ["public"]),
+    ("tout public", ["public", "TP"]),
     ("allocataire", ["allocataire", "minima", "rsa", "caf"]),
     ("demandeur emploi", ["demandeur", "emploi"]),
     ("etranger", ["etranger", "étranger", "étrangère"]),

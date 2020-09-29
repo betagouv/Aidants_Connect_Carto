@@ -97,8 +97,9 @@ def create_place(row, data_set):
     - target_audience_raw
     - support_access_raw
     - support_mode_raw
-    - address_raw
     - contact_phone_raw
+    - price_details
+    - address_raw
     - opening_hours_raw
     """
     for elem in data_set.import_config.get("place_fields_mapping_process", []):
@@ -130,6 +131,16 @@ def create_place(row, data_set):
             place_dict["support_mode"] = utilities.process_support_mode(
                 place_dict["support_mode_raw"]
             )
+
+        if elem["place_field"] == "contact_phone_raw":
+            place_dict["contact_phone_raw"] = row[elem["file_field"]]
+            place_dict["contact_phone"] = utilities.process_phone_number(
+                place_dict["contact_phone_raw"]
+            )
+
+        if elem["place_field"] == "price_details":
+            place_dict["price_details"] = row[elem["file_field"]]
+            place_dict["is_free"] = utilities.process_price(place_dict["price_details"])
 
         if elem["place_field"] == "address_raw":
             """
@@ -185,12 +196,6 @@ def create_place(row, data_set):
                 place_dict["latitude"] = address_api_results_processed["latitude"]
                 place_dict["longitude"] = address_api_results_processed["longitude"]
 
-        if elem["place_field"] == "contact_phone_raw":
-            place_dict["contact_phone_raw"] = row[elem["file_field"]]
-            place_dict["contact_phone"] = utilities.process_phone_number(
-                place_dict["contact_phone_raw"]
-            )
-
         if elem["place_field"] == "opening_hours_raw":
             """
             Different options:
@@ -217,9 +222,12 @@ def create_place(row, data_set):
     for elem in data_set.import_config.get(
         "place_fields_mapping_additional_information", []
     ):
-        place_dict["additional_information"][elem["place_field"]] = row[
-            elem["file_field"]
-        ]
+        if type(elem) == dict:
+            place_dict["additional_information"][elem["place_field"]] = row[
+                elem["file_field"]
+            ]
+        if type(elem) == str:
+            place_dict["additional_information"][elem] = row[elem]
 
     place_dict["data_set_id"] = data_set.id
 
@@ -258,7 +266,6 @@ def create_service(row, data_set, place):
 
 class Command(BaseCommand):
     """
-    python manage.py load_data_set_csv --id 11
     python manage.py load_data_set_csv --file data/hub_abc/hub_abc_import_config.json
     """
 
@@ -266,30 +273,24 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--id",
-            help="L'id du fournisseur de donnée (dans la base de donnée)",
-            type=int,
-        )
-        parser.add_argument(
-            "--file", help="Le chemin vers la config du jeu de donnée", type=str
+            "--file",
+            help="Le chemin vers la config du jeu de donnée",
+            type=str,
+            default=None,
         )
 
     def handle(self, *args, **kwargs):
-        data_source_id = kwargs["id"]
-        data_set_file = kwargs["file"]
+        data_set_import_config_file = kwargs["file"]
 
-        # get or create data_source
-        if data_source_id:
-            data_source = DataSource.objects.get(pk=data_source_id)
+        if not data_set_import_config_file:
+            print("--file argument missing")
+            return
         else:
-            if data_set_file:
-                data_source = get_or_create_data_source(data_set_file)
-            else:
-                print("--id or --file argument missing")
+            # get or create data_source
+            data_source = get_or_create_data_source(data_set_import_config_file)
 
-        if data_source:
             # create data_set
-            data_set = create_data_set(data_source, data_set_file)
+            data_set = create_data_set(data_source, data_set_import_config_file)
 
             if data_set:
                 # encoding="utf-8-sig" for files that start with '\ufeff'
