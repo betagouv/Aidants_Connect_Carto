@@ -39,11 +39,13 @@
             },
             {
                 "place_field": "target_audience_raw",
-                "file_field": "public_toutes_actions"
+                "file_field": "public_toutes_actions",
+                "comment": "bonne qualité"
             },
             {
                 "place_field": "support_access_raw",
-                "file_field": "conditions_acces_toutes_actions"
+                "file_field": "conditions_acces_toutes_actions",
+                "comment": "Libre ou vide"
             },
             {
                 "place_field": "address_raw",

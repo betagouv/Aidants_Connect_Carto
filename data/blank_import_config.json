@@ -16,7 +16,7 @@
             {
                 "place_field": "is_online",
                 "value": "true",
-                "type": "boolean"
+                "type": "EXEMPLE boolean"
             }
         ],
         "place_fields_mapping_auto": [

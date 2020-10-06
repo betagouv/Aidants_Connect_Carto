@@ -46,6 +46,7 @@ class UtilitiesOpeningHoursTest(TestCase):
                 "Mo 09:00-12:00,14:00-21:00; Tu 09:00-12:00,14:00-18:00; We 09:00-12:00,14:00-21:00; Th, Fr 09:00-12:00,14:00-18:00; Sa 09:00-12:00",
             ),
             ("Du lundi au samedi de 9-13h/14h-20h", "Mo-Sa 09:00-13:00,14:00-20:00"),
+            # Array --> string with | seperator
             (
                 "9:00 - 12:00 / 13:30 - 17:00 | 9:00 - 12:00 / 13:30 - 17:00 |  |  | - | 10:00 - 13:00 | -",
                 "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00,13:30-17:00; Sa 10:00-13:00",
@@ -399,4 +400,17 @@ class UtilitiesMappingTest(TestCase):
         for support_mode in support_mode_list:
             self.assertEqual(
                 utilities.process_support_mode(support_mode[0]), support_mode[1],
+            )
+
+    def test_process_labels(self):
+        labels_list = [
+            ("aptic", ["APTIC"]),
+            ("aptic, mfs", ["APTIC", "France Services"]),
+            ("Aidants connect", ["Aidants Connect"]),
+            ("tiers-lieux", []),
+            ("", []),
+        ]
+        for labels in labels_list:
+            self.assertEqual(
+                utilities.process_labels(labels[0]), labels[1],
             )

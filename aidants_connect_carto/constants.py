@@ -156,6 +156,7 @@ SUPPORT_ACCESS_MAPPING = SUPPORT_ACCESS_CHOICES + [
 SUPPORT_MODE_CHOICES = [
     ("individuel", "Individuel, Personnalisé"),
     ("collectif", "Collectif"),
+    # autres ?
 ]
 
 SUPPORT_MODE_MAPPING = SUPPORT_MODE_CHOICES + [
@@ -221,6 +222,19 @@ SERVICE_NAME_MAPPING = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST)) + [
         "Acquisition de compétences numériques",
         "Formations compétences de base proposées",
     ),
+]
+
+LABEL_LIST = [
+    "APTIC",
+    "Aidants Connect",
+    "France Services",
+    "Fabriques de Territoire",  # Tiers-lieux
+    # "Autre"
+]
+
+LABEL_MAPPING = list(zip(LABEL_LIST, LABEL_LIST)) + [
+    ("France Services", "MFS"),
+    ("France Services", "Maison France Services"),
 ]
 
 FRANCE_REGION_LIST = [

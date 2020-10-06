@@ -107,6 +107,17 @@ def process_support_mode(value: str, seperator=","):
     return support_mode_list
 
 
+def process_labels(value: str, seperator=","):
+    labels_list = []
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            for labels_mapping_item in constants.LABEL_MAPPING:
+                if value_item.strip().lower() in labels_mapping_item[1].lower():
+                    labels_list.append(labels_mapping_item[0])
+    return labels_list
+
+
 # Contact: Phone number
 
 
@@ -182,7 +193,7 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
     type: 'housenumber', 'street', 'locality' or 'municipality'
     example of type 'street': Place de la Gare 59460 Jeumont
     """
-    if results_json["features"]:
+    if "features" in results_json:
         results_first_address = results_json["features"][0]
         # if (len(results_json["features"]) == 1) or (results_first_address["properties"]["score"] > score_threshold): # noqa
         address_housenumber = (

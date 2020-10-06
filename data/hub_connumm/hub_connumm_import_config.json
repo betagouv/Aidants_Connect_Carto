@@ -5,7 +5,7 @@
     "url": "https://conumm.netlify.app/",
     "file_path": "data/hub_connumm/export_file.csv",
     "last_updated": "2020-01-30",
-    "import_comment": "supprimé les cases NR.",
+    "import_comment": "supprimé les cases NR. Colonnes de services et de formations. Pas de colonnes type ni horaires d'ouverture.",
     "import_config": {
         "dataset_file_delimiter": ";",
         "place_fields_mapping_auto": [
@@ -29,7 +29,13 @@
             },
             {
                 "place_field": "price_details",
-                "file_field": "Conditions d'acces"
+                "file_field": "Conditions d'acces",
+                "comment": "Il y a aussi le champ 'acces-codes' issu d'un post-processing, et qui serait plus facilement exploitable"
+            },
+            {
+                "place_field": "target_audience_raw",
+                "file_field": "Public",
+                "comment": "beaucoup de valeurs possibles. séparateur '-'. Il y a aussi un champ 'publics-codes' issu d'un post-processing, et qui serait plus facilement exploitable"
             },
             {
                 "place_field": "address_raw",
@@ -41,7 +47,6 @@
             "Nom Prenom du référent",
             "Activites proposees",
             "Initions et/ou formations proposées",
-            "Public",
             "APTIC",
             "Date de mise a jour",
             "URL illustration / Logo"

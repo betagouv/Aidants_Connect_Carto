@@ -437,6 +437,18 @@ class Place(models.Model):
     has_label_fs = models.BooleanField(
         verbose_name="Labellisé France Service", default=False
     )
+    labels_raw = models.TextField(verbose_name="Label(s) brut", blank=True)
+    labels = ArrayField(
+        verbose_name="Label(s)",
+        base_field=models.CharField(
+            max_length=150,
+            blank=True,
+            choices=zip(constants.LABEL_LIST, constants.LABEL_LIST),
+        ),
+        default=list,
+        blank=True,
+        help_text="Aidants Connect, France Services, APTIC, ...",
+    )
 
     # --- other
     logo_url = models.URLField(

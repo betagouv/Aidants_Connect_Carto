@@ -1,0 +1,562 @@
+{
+  "services": {
+    "110": {
+      "label": "Panorama des plateformes de recherche d’emploi",
+      "theme_code": "1"
+    },
+    "111": {
+      "label": "Organiser sa recherche d'emploi",
+      "theme_code": "1"
+    },
+    "112": {
+      "label": "Découverte et usage de l’emploi Store",
+      "theme_code": "1"
+    },
+    "113": {
+      "label": "Utiliser les réseaux sociaux pour sa recherche d'emploi",
+      "theme_code": "1"
+    },
+    "114": {
+      "label": "Réalisation CV",
+      "theme_code": "1"
+    },
+    "115": {
+      "label": "Diffuser son CV en ligne",
+      "theme_code": "1"
+    },
+    "116": {
+      "label": "Découvrir et participer à des MOOCs",
+      "theme_code": "1"
+    },
+    "201": {
+      "label": "Les paiements en ligne",
+      "theme_code": "2"
+    },
+    "202": {
+      "label": "Signer numériquement des documents administratifs",
+      "theme_code": "2"
+    },
+    "203": {
+      "label": "Pôle Emploi : faire ses déclarations en ligne",
+      "theme_code": "2"
+    },
+    "204": {
+      "label": "Déclarer ses revenus en ligne et découvertes des services proposés",
+      "theme_code": "2"
+    },
+    "205": {
+      "label": "Accéder à ses droits sociaux et les gérer en ligne (RSA…)",
+      "theme_code": "2"
+    },
+    "206": {
+      "label": "Ouvrir et gérer son dossier de retraite (CNAF\/CARSAT) en ligne",
+      "theme_code": "2"
+    },
+    "207": {
+      "label": "Gérer son abonnement et ses factures d'électricité\/gaz en ligne",
+      "theme_code": "2"
+    },
+    "208": {
+      "label": "Gérer ses droits d'assuré social en ligne\/sur internet",
+      "theme_code": "2"
+    },
+    "209": {
+      "label": "Gérer ses droits et allocations (CAF...) en ligne\/sur internet",
+      "theme_code": "2"
+    },
+    "210": {
+      "label": "Plateforme La Poste : envoyer et recevoir des courriers",
+      "theme_code": "2"
+    },
+    "211": {
+      "label": "Plateforme La Poste : utiliser le coffre-fort en ligne",
+      "theme_code": "2"
+    },
+    "212": {
+      "label": "Plateforme Ameli.fr : la sécurité sociale en ligne",
+      "theme_code": "2"
+    },
+    "213": {
+      "label": "Découvrir les services en ligne de l'enfance de votre commune",
+      "theme_code": "2"
+    },
+    "214": {
+      "label": "Plateforme France Connect",
+      "theme_code": "2"
+    },
+    "301": {
+      "label": "Fonctionnement d’une box internet",
+      "theme_code": "3"
+    },
+    "302": {
+      "label": "Le smartphone : principes de fonctionnement",
+      "theme_code": "3"
+    },
+    "303": {
+      "label": "Poste informatique Windows",
+      "theme_code": "3"
+    },
+    "304": {
+      "label": "Poste informatique Mac OS",
+      "theme_code": "3"
+    },
+    "305": {
+      "label": "Poste informatique Linux",
+      "theme_code": "3"
+    },
+    "306": {
+      "label": "Internet : paramétrer un réseau wifi",
+      "theme_code": "3"
+    },
+    "307": {
+      "label": "Smartphones et Tablettes sous Androïd",
+      "theme_code": "3"
+    },
+    "308": {
+      "label": "Smartphone : Environnement IOS",
+      "theme_code": "3"
+    },
+    "309": {
+      "label": "Smartphone : Les applications clés",
+      "theme_code": "3"
+    },
+    "310": {
+      "label": "Smartphone : Les principaux gestes pour l'écran tactile",
+      "theme_code": "3"
+    },
+    "311": {
+      "label": "Smartphone : Les fonctionnalités de base",
+      "theme_code": "3"
+    },
+    "312": {
+      "label": "Smartphone : Télécharger une application sur les stores",
+      "theme_code": "3"
+    },
+    "313": {
+      "label": "Smartphone : Réglage et configuration de l'appareil",
+      "theme_code": "3"
+    },
+    "314": {
+      "label": "Gérer ses données : Sauvegardes locales (disques durs externes, clé USB)",
+      "theme_code": "3"
+    },
+    "315": {
+      "label": "Internet : fonctionnement des emails",
+      "theme_code": "3"
+    },
+    "316": {
+      "label": "Internet : fonctionnement des clients webmail",
+      "theme_code": "3"
+    },
+    "317": {
+      "label": "Internet : envoyer, recevoir, gérer ses emails",
+      "theme_code": "3"
+    },
+    "318": {
+      "label": "Transférer des fichiers volumineux",
+      "theme_code": "3"
+    },
+    "319": {
+      "label": "Internet : fonctionnement et outils de navigation web",
+      "theme_code": "3"
+    },
+    "320": {
+      "label": "Internet : comprendre une offre internet",
+      "theme_code": "3"
+    },
+    "321": {
+      "label": "Internet : comprendre les principes de fonctionnement",
+      "theme_code": "3"
+    },
+    "322": {
+      "label": "Internet : comprendre un réseau wifi",
+      "theme_code": "3"
+    },
+    "323": {
+      "label": "Gérer ses favoris de navigation",
+      "theme_code": "3"
+    },
+    "324": {
+      "label": "Effacer ses traces sur le web, protéger ses données personnelles",
+      "theme_code": "3"
+    },
+    "325": {
+      "label": "Découvrir les réseaux sociaux : définition, fonctionnement",
+      "theme_code": "3"
+    },
+    "326": {
+      "label": "Téléphonie : comprendre et comparer des offres mobiles",
+      "theme_code": "3"
+    },
+    "327": {
+      "label": "Facebook : Découverte",
+      "theme_code": "3"
+    },
+    "328": {
+      "label": "Twitter : Découverte",
+      "theme_code": "3"
+    },
+    "329": {
+      "label": "Instagram : Découverte",
+      "theme_code": "3"
+    },
+    "330": {
+      "label": "Pinterest : Découverte",
+      "theme_code": "3"
+    },
+    "331": {
+      "label": "Snapchat : Découverte",
+      "theme_code": "3"
+    },
+    "401": {
+      "label": "Traitement de texte : Découverte",
+      "theme_code": "4"
+    },
+    "402": {
+      "label": "Traitement de texte : Utilisation de base",
+      "theme_code": "4"
+    },
+    "403": {
+      "label": "Traitement de texte : Utilisation avancée",
+      "theme_code": "4"
+    },
+    "404": {
+      "label": "Tableur : Découverte",
+      "theme_code": "4"
+    },
+    "405": {
+      "label": "Tableur : Utilisation de base",
+      "theme_code": "4"
+    },
+    "406": {
+      "label": "Tableur : Utilisation avancée",
+      "theme_code": "4"
+    },
+    "407": {
+      "label": "Les solutions libres pour Les outils bureautiques",
+      "theme_code": "4"
+    },
+    "408": {
+      "label": "PAO : faire des présentations, des diaporamas",
+      "theme_code": "4"
+    },
+    "501": {
+      "label": "Composantes et facettes de l’identité numérique",
+      "theme_code": "5"
+    },
+    "502": {
+      "label": "Connaitre et gérer son identité numérique",
+      "theme_code": "5"
+    },
+    "503": {
+      "label": "Nettoyer son identité numérique",
+      "theme_code": "5"
+    },
+    "504": {
+      "label": "Les outils disponibles pour sécuriser ses usages numériques",
+      "theme_code": "5"
+    },
+    "505": {
+      "label": "Les biens communs : principes et enjeux",
+      "theme_code": "5"
+    },
+    "506": {
+      "label": "Le logiciel libre : principes et enjeux",
+      "theme_code": "5"
+    },
+    "507": {
+      "label": "Les licences libres",
+      "theme_code": "5"
+    },
+    "508": {
+      "label": "Les monnaies virtuelles",
+      "theme_code": "5"
+    },
+    "509": {
+      "label": "Big Data \/ Open Data : comprendre les données",
+      "theme_code": "5"
+    },
+    "510": {
+      "label": "Techniques de vérification de l’information",
+      "theme_code": "5"
+    },
+    "511": {
+      "label": "Neutralité du net : de quoi parle-t-on ?",
+      "theme_code": "5"
+    },
+    "512": {
+      "label": "Découvrir des alternatives libres et gratuits aux logiciels",
+      "theme_code": "5"
+    },
+    "513": {
+      "label": "Les outils libres pour la navigation Internet",
+      "theme_code": "5"
+    },
+    "514": {
+      "label": "Les outils libres pour gérer ses emails",
+      "theme_code": "5"
+    },
+    "515": {
+      "label": "Les alternatives à Google Drive",
+      "theme_code": "5"
+    },
+    "516": {
+      "label": "Les alternatives à Facebook",
+      "theme_code": "5"
+    },
+    "517": {
+      "label": "Panorama des objets connectés (Domotique, Sécurité, Santé)",
+      "theme_code": "5"
+    },
+    "518": {
+      "label": "Créer et paramétrer un compte Google",
+      "theme_code": "5"
+    },
+    "519": {
+      "label": "Organiser, explorer et partager des contenus numériques",
+      "theme_code": "5"
+    },
+    "520": {
+      "label": "Gérer ses données : Sauvegarde en ligne (dans le cloud)",
+      "theme_code": "5"
+    },
+    "521": {
+      "label": "Facebook : Approfondissement\n",
+      "theme_code": "5"
+    },
+    "522": {
+      "label": "Twitter : Approfondissement",
+      "theme_code": "5"
+    },
+    "523": {
+      "label": "Instagram : Approfondissement",
+      "theme_code": "5"
+    },
+    "524": {
+      "label": "Pinterest : Approfondissement",
+      "theme_code": "5"
+    },
+    "525": {
+      "label": "Organiser et partager sa veille",
+      "theme_code": "5"
+    },
+    "601": {
+      "label": "Etre parent à l'ère numérique : connaître les usages, jouer son rôle de parent",
+      "theme_code": "6"
+    },
+    "602": {
+      "label": "Panorama des usages numériques des adolescents",
+      "theme_code": "6"
+    },
+    "603": {
+      "label": "Les mécanismes excessifs ou addictifs liés au numérique",
+      "theme_code": "6"
+    },
+    "604": {
+      "label": "Les outils de protection de l’enfance",
+      "theme_code": "6"
+    },
+    "605": {
+      "label": "Comprendre les cultures numériques : les jeux vidéos",
+      "theme_code": "6"
+    },
+    "606": {
+      "label": "Suivre la scolarité de son enfant",
+      "theme_code": "6"
+    },
+    "607": {
+      "label": "Les conduites à risques et les bons usages du numérique",
+      "theme_code": "6"
+    },
+    "608": {
+      "label": "Outils numériques pour maîtriser sa consommation énergétique",
+      "theme_code": "6"
+    },
+    "701": {
+      "label": "Panorama d’usages créatifs du numérique",
+      "theme_code": "7"
+    },
+    "702": {
+      "label": "Panorama de la création artistique numérique",
+      "theme_code": "7"
+    },
+    "703": {
+      "label": "Fablab : charte, valeurs et panorama des outils numériques",
+      "theme_code": "7"
+    },
+    "704": {
+      "label": "Fonctionnement des plateformes de musique et de film en ligne",
+      "theme_code": "7"
+    },
+    "705": {
+      "label": "Découvrir l’univers des jeux vidéos",
+      "theme_code": "7"
+    },
+    "706": {
+      "label": "Les paiements en ligne",
+      "theme_code": "7"
+    },
+    "707": {
+      "label": "Comprendre les cultures numériques : les jeux vidéos",
+      "theme_code": "7"
+    },
+    "708": {
+      "label": "Photo numérique : usages courants (prise de vue, réglages)",
+      "theme_code": "7"
+    },
+    "709": {
+      "label": "Classer, gérer et partager ses photos",
+      "theme_code": "7"
+    },
+    "710": {
+      "label": "Images : gérer ses photos en ligne",
+      "theme_code": "7"
+    },
+    "711": {
+      "label": "Images : retoucher ses photos",
+      "theme_code": "7"
+    },
+    "712": {
+      "label": "Découverte et utilisation imprimante 3D",
+      "theme_code": "7"
+    },
+    "713": {
+      "label": "Vidéo : découvrir le montage vidéo",
+      "theme_code": "7"
+    },
+    "714": {
+      "label": "Découverte et utilisation d'une découpeuse numérique",
+      "theme_code": "7"
+    },
+    "715": {
+      "label": "Modélisation 3D",
+      "theme_code": "7"
+    },
+    "716": {
+      "label": "Internet : déposer une annonce sur Le Bon Coin ou autre site de petites annonces",
+      "theme_code": "7"
+    },
+    "717": {
+      "label": "Utiliser et contribuer à Wikipedia",
+      "theme_code": "7"
+    },
+    "718": {
+      "label": "Découvrir et contribuer à OpenStreetMap",
+      "theme_code": "7"
+    },
+    "719": {
+      "label": "Utiliser des outils de cartographie",
+      "theme_code": "7"
+    },
+    "720": {
+      "label": "Services et plateformes de démocratie participative",
+      "theme_code": "7"
+    },
+    "721": {
+      "label": "Découvrir et expérimenter la programmation informatique (code)",
+      "theme_code": "7"
+    },
+    "722": {
+      "label": "Utiliser des cartes, capteurs et outils interactifs",
+      "theme_code": "7"
+    },
+    "801": {
+      "label": "Panorama des outils de webconférence",
+      "theme_code": "8"
+    },
+    "802": {
+      "label": "Panorama des outils de travail collaboratif",
+      "theme_code": "8"
+    },
+    "803": {
+      "label": "Marchés publics : panorama des plateformes",
+      "theme_code": "8"
+    },
+    "804": {
+      "label": "Panorama des plateformes d’économie collaborative",
+      "theme_code": "8"
+    },
+    "805": {
+      "label": "Principes et fonctionnement du cloud",
+      "theme_code": "8"
+    },
+    "806": {
+      "label": "Google Drive et solutions alternatives",
+      "theme_code": "8"
+    },
+    "807": {
+      "label": "Skype",
+      "theme_code": "8"
+    },
+    "808": {
+      "label": "Marchés publics : Signer numériquement ses réponses",
+      "theme_code": "8"
+    },
+    "809": {
+      "label": "PAO : publier des présentations \/ diaporamas en ligne",
+      "theme_code": "8"
+    },
+    "810": {
+      "label": "Savoir pitcher son projet en 5 minutes",
+      "theme_code": "8"
+    },
+    "811": {
+      "label": "Créer un site web avec WordPress",
+      "theme_code": "8"
+    },
+    "812": {
+      "label": "Créer, paramétrer et utiliser une liste de diffusion",
+      "theme_code": "8"
+    },
+    "813": {
+      "label": "Utilisation d'un emplacement de co-working",
+      "theme_code": "8"
+    },
+    "814": {
+      "label": "Découvrir les métiers du numérique",
+      "theme_code": "8"
+    },
+    "815": {
+      "label": "Découverte des outils de messagerie instantanée (tchat)",
+      "theme_code": "8"
+    },
+    "816": {
+      "label": "Panorama des outils du cloud",
+      "theme_code": "8"
+    }
+  },
+  "themes": {
+    "1": {
+      "description": "CV, emploi store",
+      "label": "La recherche d'un emploi"
+    },
+    "2": {
+      "description": "Pôle Emploi, CAF, Sécurité sociale, abonnements et factures en ligne",
+      "label": "Les déclarations en ligne (E-admin)"
+    },
+    "3": {
+      "description": "Les principales fonctionnalités",
+      "label": "Les premiers pas sur internet et en informatique"
+    },
+    "4": {
+      "description": "Traitement de texte, tableurs, présentations",
+      "label": "L'utilisation des outils bureautiques"
+    },
+    "5": {
+      "description": "Réseaux sociaux, identités numériques, logiciels",
+      "label": "L'approfondissement du numérique"
+    },
+    "6": {
+      "description": "Conduites à risques, bons usages, scolarité des enfants",
+      "label": "Des conseils sur la parentalité numérique"
+    },
+    "7": {
+      "description": "Montage photos, vidéos, fablab, imprimante 3D",
+      "label": "L'utilisation d'outils créatifs"
+    },
+    "8": {
+      "description": "Espace de travail, messagerie, cloud",
+      "label": "Des usages professionnels sur informatique"
+    }
+  }
+}

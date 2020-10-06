@@ -33,7 +33,8 @@
             },
             {
                 "place_field": "status",
-                "file_field": "Type d'opérateur"
+                "file_field": "Type d'opérateur",
+                "comment": "sépare privé en 'privé lucratif' et 'privé non-lucratif'"
             },
             {
                 "place_field": "address_raw",
@@ -41,11 +42,13 @@
             },
             {
                 "place_field": "contact_phone_raw",
-                "file_field": "Téléphone"
+                "file_field": "Téléphone",
+                "comment": "il manque souvent le 0 devant"
             },
             {
                 "place_field": "opening_hours_raw",
-                "file_field": ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
+                "file_field": ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+                "comment": "formats variés, pas toujours exploitables"
             }
         ],
         "place_fields_mapping_additional_information": [
@@ -55,7 +58,8 @@
             },
             {
                 "place_field": "datetime_latest",
-                "file_field": "datetime_latest"
+                "file_field": "datetime_latest",
+                "comment": "date de dernière mise à jour de la donnée ?"
             },
             {
                 "place_field": "latitude",
@@ -71,7 +75,8 @@
             },
             {
                 "place_field": "informations_diverses",
-                "file_field": "Informations diverses"
+                "file_field": "Informations diverses",
+                "comment": "description ?"
             },
             {
                 "place_field": "publics_accueillis",
