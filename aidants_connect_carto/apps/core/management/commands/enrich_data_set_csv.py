@@ -76,6 +76,7 @@ def create_place_dict(row, data_set_import_config):
     - support_mode_raw
     - contact_phone_raw
     - price_details
+    - labels_raw
     - address_raw
     - opening_hours_raw
     """
@@ -108,6 +109,10 @@ def create_place_dict(row, data_set_import_config):
             place_dict["support_mode"] = utilities.process_support_mode(
                 place_dict["support_mode_raw"]
             )
+
+        if elem["place_field"] == "labels_raw":
+            place_dict["labels_raw"] = row[elem["file_field"]]
+            place_dict["labels"] = utilities.process_labels(place_dict["labels_raw"])
 
         if elem["place_field"] == "contact_phone_raw":
             place_dict["contact_phone_raw"] = row[elem["file_field"]]

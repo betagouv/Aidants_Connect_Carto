@@ -228,7 +228,8 @@ def create_place(row, data_set):
         "place_fields_mapping_additional_information", []
     ):
         if type(elem) == dict:
-            place_dict["additional_information"][elem["place_field"]] = row[
+            # elem["place_field"]
+            place_dict["additional_information"][elem["file_field"]] = row[
                 elem["file_field"]
             ]
         if type(elem) == str:
