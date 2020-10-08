@@ -1,0 +1,3 @@
+nom,structure_porteuse,description,type_lieu,statut,nature_juridique,siret,adresse_numero,adresse_rue,adresse_code_postal,adresse_code_insee,adresse_commune,adresse_departement,adresse_region,latitude,longitude,itinerant,en_ligne,contact_telephone,contact_telephone_details,contact_email,contact_web,contact_facebook,horaires_ouverture,public_cible,modalites_acces,modalites_accompagnement,tarifs,accessibilite,services,labels
+test,,,Association,,,,,,,,,,,,,,oui,,,,,,,"Allocataires,Tout public",,,,,,
+test,,,Association,,,,,,,,,,,,,,non,,,,,,,"Allocataires,Tout public",,,,,,

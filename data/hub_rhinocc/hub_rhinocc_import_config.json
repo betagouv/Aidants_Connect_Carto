@@ -29,8 +29,8 @@
         "place_fields_mapping_process": [
             {
                 "place_field": "type",
-                "file_field": "type_lieu",
-                "comment": "beaucoup de valeurs de l'ordre du nom du lieu"
+                "file_field": "rattachement",
+                "comment": "'type_lieu' a beaucoup de valeurs de l'ordre du nom du lieu, 'rattachement' est plus pertinent"
             },
             {
                 "place_field": "legal_entity_type",

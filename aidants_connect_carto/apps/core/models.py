@@ -176,7 +176,9 @@ class Place(models.Model):
         help_text="",
     )
     siret = models.CharField(
-        verbose_name="Coordonnées juridiques (SIRET)", max_length=14, blank=True
+        verbose_name="Identifiant INSEE de l'établissement ou de l'entreprise (SIRET)",
+        max_length=14,
+        blank=True,
     )
 
     # --- location

@@ -1,5 +1,13 @@
 # flake8: noqa
 
+"""
+extract values from tuples ?
+> shell_plus
+from aidants_connect_carto import constants
+for elem in constants.PLACE_TYPE_CHOICES:
+    print(elem[1])
+"""
+
 CHOICE_OTHER = "autre"
 
 DATA_SOURCE_TYPE_HUB = "hub"
@@ -51,7 +59,7 @@ PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
 PLACE_STATUS_CHOICES = [
     ("public", "Public"),
     ("prive", "Privé"),
-    ("public-prive", "Public / Privé"),
+    ("public-prive", "Public - Privé"),
     (CHOICE_OTHER, "Autre, Inconnu"),
 ]
 
@@ -75,7 +83,7 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     ("sas", "Société par actions simplifiée (SAS)"),
     ("sarl", "Société à responsabilité limitée (SARL)"),
     ("sasu", "Société par actions simplifiée unipersonnelle (SASU)"),
-    ("scic", "société coopérative d’intérêt collectif (SCIC)"),
+    ("scic", "Société coopérative d’intérêt collectif (SCIC)"),
     ("scop", "Société coopérative et participative (SCOP)"),
     ("spl", "Société publique locale (SPL)"),
     (CHOICE_OTHER, "Autre, Inconnu"),
@@ -110,7 +118,7 @@ TARGET_AUDIENCE_CHOICES = [
     ("demandeur emploi", "Demandeurs d'emploi"),
     ("etranger", "Étrangers"),
     ("famille", "Familles"),
-    ("jeune", "-25 ans, Jeunes"),
+    ("jeune", "Jeunes"),
     ("handicap", "Personnes en situation de handicap"),
     ("senior", "Séniors"),
 ]
