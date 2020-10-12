@@ -1,6 +1,6 @@
-Administration - Collectivité territoriale
+Administration / Collectivité territoriale
 Association
-Bibliothèque - Médiathèque
+Bibliothèque / Médiathèque
 Commune (Ville, CCAS, Centre Culturel...)
 Centre social
 Département (UTPAS, MDS, MDSI, UTAS...)
@@ -14,5 +14,5 @@ Pôle Emploi
 Point Information Médiation Multi Services (PIMMS)
 Préfecture, Sous-Préfecture
 Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)
-Tiers-lieu & coworking, FabLab
-Autre, Inconnu
+Tiers-lieu / Coworking / FabLab / Hackerspace
+Autre / Inconnu

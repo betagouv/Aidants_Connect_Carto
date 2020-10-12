@@ -51,9 +51,9 @@
       "constraints": {
         "required": true,
         "enum": [
-          "Administration - Collectivité territoriale",
+          "Administration / Collectivité territoriale",
           "Association",
-          "Bibliothèque - Médiathèque",
+          "Bibliothèque / Médiathèque",
           "Commune (Ville, CCAS, Centre Culturel...)",
           "Centre social",
           "Département (UTPAS, MDS, MDSI, UTAS...)",
@@ -67,8 +67,8 @@
           "Point Information Médiation Multi Services (PIMMS)",
           "Préfecture, Sous-Préfecture",
           "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)",
-          "Tiers-lieu & coworking, FabLab",
-          "Autre, Inconnu"
+          "Tiers-lieu / Coworking / FabLab / Hackerspace",
+          "Autre / Inconnu"
         ]
       }
     },
@@ -82,8 +82,8 @@
         "enum": [
           "Public",
           "Privé",
-          "Public - Privé",
-          "Autre, Inconnu"
+          "Public-privé",
+          "Autre / Inconnu"
         ]
       }
     },
@@ -108,7 +108,7 @@
           "Société coopérative d’intérêt collectif (SCIC)",
           "Société coopérative et participative (SCOP)",
           "Société publique locale (SPL)",
-          "Autre, Inconnu"
+          "Autre / Inconnu"
         ]
       }
     },

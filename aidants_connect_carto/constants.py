@@ -19,14 +19,14 @@ DATA_SOURCE_TYPE_CHOICES = [
     (DATA_SOURCE_TYPE_NATIONAL, "National"),
     (DATA_SOURCE_TYPE_REGION, "Région"),
     (DATA_SOURCE_TYPE_DEPARTEMENT, "Département"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
 # TODO: Maison France Services as a tag instead of a type
 PLACE_TYPE_CHOICES = [
-    ("administration", "Administration - Collectivité territoriale"),
+    ("administration", "Administration / Collectivité territoriale"),
     ("association", "Association"),
-    ("bibliotheque", "Bibliothèque - Médiathèque"),
+    ("bibliotheque", "Bibliothèque / Médiathèque"),
     ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
     ("centre social", "Centre social"),
     ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
@@ -40,8 +40,8 @@ PLACE_TYPE_CHOICES = [
     ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
     ("prefecture", "Préfecture, Sous-Préfecture"),
     ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
-    ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    ("tiers lieu", "Tiers-lieu / Coworking / FabLab / Hackerspace"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
 PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
@@ -55,14 +55,14 @@ PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
     ("tiers lieu", "Espace de coworking"),
 ]
 
-# TODO: quid d'avoir l'info "Privé" seule ?
 PLACE_STATUS_CHOICES = [
     ("public", "Public"),
     ("prive", "Privé"),
-    ("public-prive", "Public - Privé"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    ("public-prive", "Public-privé"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
+# TODO: séparer Privé à but lucratif et non lucratif ?
 PLACE_STATUS_MAPPING = PLACE_STATUS_CHOICES + [
     ("public", "Public : Collectivité"),
     ("prive", "Privé à but lucratif (entreprises, auto-entrepreneurs, SCOP, SCIC...)"),
@@ -86,7 +86,7 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     ("scic", "Société coopérative d’intérêt collectif (SCIC)"),
     ("scop", "Société coopérative et participative (SCOP)"),
     ("spl", "Société publique locale (SPL)"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
 PLACE_LEGAL_ENTITY_TYPE_MAPPING = PLACE_LEGAL_ENTITY_TYPE_CHOICES + [
@@ -148,8 +148,8 @@ TARGET_AUDIENCE_MAPPING = [
 SUPPORT_ACCESS_CHOICES = [
     ("libre", "Accès libre"),
     ("inscription", "Sur inscription ou rendez-vous"),
-    ("public cible", "Public cible uniquement"),
-    ("adherent", "Adhérents uniquement"),
+    ("public cible", "Public cible"),
+    ("adherent", "Adhérents"),
 ]
 
 SUPPORT_ACCESS_MAPPING = SUPPORT_ACCESS_CHOICES + [
@@ -162,7 +162,7 @@ SUPPORT_ACCESS_MAPPING = SUPPORT_ACCESS_CHOICES + [
 ]
 
 SUPPORT_MODE_CHOICES = [
-    ("individuel", "Individuel, Personnalisé"),
+    ("individuel", "Individuel"),  # Personnalisé
     ("collectif", "Collectif"),
     # autres ?
 ]

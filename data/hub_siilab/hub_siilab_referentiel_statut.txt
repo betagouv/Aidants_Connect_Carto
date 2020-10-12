@@ -1,0 +1,6 @@
+Autre
+Mixte
+Privé
+Public
+Public / Privé
+privé

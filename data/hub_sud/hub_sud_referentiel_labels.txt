@@ -1,35 +1,44 @@
+agréement direccte
 agrément éducation nationale
 agrément éducation populaire
-aptic, centre de ressource et d'information des bénévoles (crib)
-atelier partagé, atelier de fabrication et prototypage équipé (bois / métal), laboratoire de chimie équipé, bureaux, espace de coworking , salle de réunion, formation & accueil de résidence,workshop (vidéoprojecteur, paper board, rapsberry, plastifieuse…), matériel de sonorisation, matériel de prise de vue photographique
+aptic
+atelier de fabrication et prototypage équipé (bois / métal)
+atelier partagé
+bureaux
 ceei
+centre de ressource et d'information des bénévoles (crib)
 centre social
-chantier d'insertion, agréement direccte
+chantier d'insertion
 citélabs
+e-administration département du vaucluse
 e-cg vaucluse
 eda plateforme informatisée e-learning accompagnée e2c
+espace de coworking
 entreprise solidaire d'utilité sociale (esus)
 espace public numérique (epn)
-espace public numérique (epn), cyberbase, point information jeunesse (pij), point relais caf
+espace public numérique (epn), cyberbase, point information jeunesse (pij)
 evaluateurs clea copanef et référencement datadock
+formation & accueil de résidence
 grande ecole du numérique (gen)
-grande ecole du numérique (gen), point info caf, point ressources numérique pôle emploi
-grande ecole du numérique (gen), point relais caf, e-administration département du vauclusez, netpublic
 incubateur social camina
 information jeunesse (ij)
 information jeunesse, eurodesk, education populaire, organisme de formation
 initiative france
+laboratoire de chimie équipé
 maison de la saisonnalité
 maison de service au public (msap)
 maison de service au public (msap), grande ecole du numérique (gen)
 maison de services au public (msap)
 maison des adolescents
 maison publique de quartier
+matériel de prise de vue photographique
+matériel de sonorisation
+netpublic
+point appui pôle emploi
 point info caf
 point info familles
 point numérique caf
-point relais caf
-point relais caf, point appui pôle emploi
+point ressources numérique pôle emploi
 pôle entreprenariat collectif
 pôle territorial de coopération economique
 qualité régio
@@ -37,4 +46,6 @@ relais caf
 repair café
 retis / eben / french tech côte d'azur/la fabrique à entreprendre.
 réseau initiative
+salle de réunion
 structure fli
+workshop (vidéoprojecteur, paper board, rapsberry, plastifieuse…)
