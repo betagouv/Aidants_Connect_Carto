@@ -123,6 +123,15 @@
       }
     },
     {
+      "name": "adresse_brut",
+      "description": "L'adresse complète brut",
+      "exemple": "",
+      "type": "string",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "adresse_numero",
       "description": "Le numéro avec indice de répétition éventuel (bis, ter, A, B)",
       "exemple": "",
@@ -284,7 +293,16 @@
       }
     },
     {
-      "name": "horaires_ouverture",
+      "name": "horaires_ouverture_brut",
+      "description": "Les jours et horaires d'ouverture du lieu brut",
+      "exemple": "",
+      "type": "string",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "horaires_ouverture_osm",
       "description": "Les jours et horaires d'ouverture du lieu respectant le [format utilisé pour la clé 'opening_hours'](https://wiki.openstreetmap.org/wiki/FR:Key:opening_hours) dans OpenStreetMap. Un outil comme [YoHours](http://projets.pavie.info/yohours/) facilite la transformation des jours et horaires d'ouverture dans ce format. Celui-ci pouvant contenir des virgules comme signes de séparation, il est nécessaire d'entourer les valeurs de la chaîne de caractères par des guillemets doubles.",
       "example": "Mo-Fr 08:30-12:00,13:30-17:30; Sa 08:30-12:00",
       "type": "string",

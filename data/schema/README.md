@@ -62,3 +62,7 @@ TODO
 ```
 "primaryKey": "id"
 ```
+
+### source
+
+Spécifier la source de donnée du lieu
