@@ -260,6 +260,8 @@ def process_opening_hours_to_osm_format(opening_hours):
         # opening_hours is a string
         elif " | " in opening_hours:
             opening_hours_string = _clean_opening_hours_list(opening_hours.split(" | "))
+        elif "; " in opening_hours:
+            opening_hours_string = _clean_opening_hours_list(opening_hours.split("; "))
         else:
             opening_hours_string = opening_hours
 

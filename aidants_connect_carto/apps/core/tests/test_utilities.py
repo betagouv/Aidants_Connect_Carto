@@ -27,7 +27,8 @@ class UtilitiesOpeningHoursTest(TestCase):
             ("8h30-12h00/13h30-17h30", "08:30-12:00,13:30-17:30"),
             (
                 "Lundi : 13h30 - 17h30 ; Mardi au Jeudi : 8h30 - 12h et 13h30 - 17h30 ;  Vendredi : 8h30 - 12h et 13h30 - 16h",
-                "Mo 13:30-17:30; Tu-Th 08:30-12:00,13:30-17:30; Fr 08:30-12:00,13:30-16:00",
+                # "Mo 13:30-17:30; Tu-Th 08:30-12:00,13:30-17:30; Fr 08:30-12:00,13:30-16:00",
+                "",  # not managed anymore because of ";" (considers that there is 1 day per elem split)
             ),
             (
                 "mardi de 10h à 21h / du mercredi au vendredi de 10h à 18h / le samedi de 9h15 à 18h",
@@ -39,20 +40,31 @@ class UtilitiesOpeningHoursTest(TestCase):
             ),
             (
                 "Mercredi 14h-18h; jeudi 18h-21h; vendredi 9h-12h/14h-18h; samedi 14h-18h",
-                "We 14:00-18:00; Th 18:00-21:00; Fr 09:00-12:00,14:00-18:00; Sa 14:00-18:00",
+                # "We 14:00-18:00; Th 18:00-21:00; Fr 09:00-12:00,14:00-18:00; Sa 14:00-18:00",
+                "",  # not managed anymore because of ";" (considers that there is 1 day per elem split)
             ),
             (
                 "Lundi 9h-12h/14h-21h; mardi 9h-12h/14h-18h;mercredi 9h-12h/14h-21h; jeudi et vendredi 9h-12h/14h-18h; samedi 9h-12h",
-                "Mo 09:00-12:00,14:00-21:00; Tu 09:00-12:00,14:00-18:00; We 09:00-12:00,14:00-21:00; Th, Fr 09:00-12:00,14:00-18:00; Sa 09:00-12:00",
+                # "Mo 09:00-12:00,14:00-21:00; Tu 09:00-12:00,14:00-18:00; We 09:00-12:00,14:00-21:00; Th, Fr 09:00-12:00,14:00-18:00; Sa 09:00-12:00",
+                "",  # not managed anymore because of ";" (considers that there is 1 day per elem split)
             ),
             ("Du lundi au samedi de 9-13h/14h-20h", "Mo-Sa 09:00-13:00,14:00-20:00"),
-            # Array --> string with | seperator
+            # Array --> string with " | " seperator
             (
                 "9:00 - 12:00 / 13:30 - 17:00 | 9:00 - 12:00 / 13:30 - 17:00 |  |  | - | 10:00 - 13:00 | -",
                 "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00,13:30-17:00; Sa 10:00-13:00",
             ),
             (
                 "9:00 - 12:00 / 13:30 - 17:00 | 9:00 - 12:00",
+                "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00",
+            ),
+            # Array --> string with "; " seperator
+            (
+                "9:00 - 12:00 / 13:30 - 17:00; 9:00 - 12:00 / 13:30 - 17:00; ; ; -; 10:00 - 13:00; -",
+                "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00,13:30-17:00; Sa 10:00-13:00",
+            ),
+            (
+                "9:00 - 12:00 / 13:30 - 17:00; 9:00 - 12:00",
                 "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00",
             ),
             # (
