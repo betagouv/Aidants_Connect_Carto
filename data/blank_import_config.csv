@@ -1,12 +1,12 @@
 modele,fichier,commentaire
-nom,lieu_nom,
+nom,,
 structure_porteuse,,
 description,,
 type_lieu,,
 statut,,
 nature_juridique,,
-siret,SIRET,champ présent mais vide
-adresse_brut,"adresse,code_postal,commune",
+siret,,
+adresse_brut,,
 adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
@@ -18,17 +18,17 @@ latitude,,"(laisser vide, sera généré automatiquement par le script)"
 longitude,,"(laisser vide, sera généré automatiquement par le script)"
 itinerant,,
 en_ligne,,
-contact_telephone,telephone,
+contact_telephone,,
 contact_telephone_details,,
-contact_email,e_mail,
-contact_web,site_web,
+contact_email,,
+contact_web,,
 contact_facebook,,
-horaires_ouverture_brut,horaires,déjà au format OpenStreetMap
-horaires_ouverture_osm,horaires,"(laisser vide, sera généré automatiquement par le script)"
+horaires_ouverture_brut,,
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
 public_cible,,
 modalites_acces,,
-modalites_accompagnement,aide,"Liste d'ids, possible de mapper avec un fichier additionel. Difficilement exploitable dans l'état."
+modalites_accompagnement,,
 tarifs,,
-accessibilite,accessibilite,champ présent mais vide
-services,,"Champ 'services' dans le fichier. Liste d'ids, possible de mapper avec un fichier additionel. Difficilement exploitable dans l'état."
-labels,label,champ présent mais vide
+accessibilite,,
+services,,
+labels,,

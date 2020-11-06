@@ -2399,7 +2399,7 @@ De
 S";Af-J-De-S;Non;;;48.251492;-0.36539299999999997;2 Avenue Auguste Janvier 53160 Bais;0.94;housenumber;53016_0040_00002;2.0;Avenue Auguste Janvier;;53160;Bais;53, Mayenne, Pays de la Loire;53016;nan;;
 conum_369_;53170.0;53.0;Mayenne;La Maison de services au public du Pays de Meslay-Grez;1 Voie de la Guiternièe 53170 Meslay-du-Maine;02 43 64 24 06;http://www.paysmeslaygrez.fr/;;msap@paysmeslaygrez.fr;"Premiers pas sur internet
 Démarches administratives en ligne";PrIn-DeAd;"Accompagnements individuels
-Autonomie";AcIn-Au;;G;#REF!;;Non;;;47.949589;-0.542033;1 Voie de la Guiternière 53170 Meslay-du-Maine;0.88;housenumber;53152_0422_00001;1.0;Voie de la Guiternière;;53170;Meslay-du-Maine;53, Mayenne, Pays de la Loire;53152;nan;;
+Autonomie";AcIn-Au;;G;;;Non;;;47.949589;-0.542033;1 Voie de la Guiternière 53170 Meslay-du-Maine;0.88;housenumber;53152_0422_00001;1.0;Voie de la Guiternière;;53170;Meslay-du-Maine;53, Mayenne, Pays de la Loire;53152;nan;;
 conum_370_;53170.0;53.0;Mayenne;L'Espace multimédia du Pays de Meslay-Grez;1 Voie de la Guiternière 53170 Meslay-du-Maine;02 43 64 29 00;http://www.paysmeslaygrez.fr/HABITER/Services-aux-particuliers/Espace-Multimedia/L-acces-a-l-informatique-pour-tous;;;"Prise en main du matériel
 Prise en main des logiciels de base
 Prise en main des logiciels de base
@@ -3183,7 +3183,7 @@ Conditions particulières";G-CondP;"Af
 J
 De
 S";Af-J-De-S;Non;;;48.200328000000006;0.027017000000000003;8 Rue Pierreuse 72170 Ségrie;0.94;housenumber;72332_0124_00008;8.0;Rue Pierreuse;;72170;Ségrie;72, Sarthe, Pays de la Loire;72332;nan;;
-#REF!;nan;nan;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;#REF!;46.590082;-1.7086880000000002;Les Reffes 85150 Saint-Mathurin;0.31;street;85250_m1ygw3;nan;Les Reffes;;85150;Saint-Mathurin;85, Vendée, Pays de la Loire;85250;nan;;
+;nan;nan;;;;;;;;;;;;;;;;;;;46.590082;-1.7086880000000002;Les Reffes 85150 Saint-Mathurin;0.31;street;85250_m1ygw3;nan;Les Reffes;;85150;Saint-Mathurin;85, Vendée, Pays de la Loire;85250;nan;;
 conum_460_;72190.0;72.0;Sarthe;Mairie;Square Weyhe Coulaines;02 43 74 35 35;Http://Www.Coulaines.Fr/;;;"Démarches administratives en ligne
 
 Conseils";DeAd-Co;"Accompagnements individuels
@@ -4252,129 +4252,129 @@ Culture numérique";PrMa-PrLo-PrIn-CuNu-DeAd-ApMa-ApLo;"Initiations
 Accompagnements collectifs
 Accompagnements individuels
 Autonomie";In-AcCo-AcIn-Au;Gratuit;G;Tous publics;Tp;Non;44170;https://cscragon.centres-sociaux.fr/;47.165039;-1.541655;9 Rue du Vivier 44400 Rezé;0.96;housenumber;44143_3730_00009;9.0;Rue du Vivier;;44400;Rezé;44, Loire-Atlantique, Pays de la Loire;44143;nan;;
-conum_588_;49500.0;49.0;Maine-et-Loire;Segré - Sous-préfecture;2 Rue Lamartine 49500 Segré-en-Anjou-Bleu;NC;NC;NC;NC;Démarches administratives en ligne;DeAD;"Accompagnements individuels
+conum_588_;49500.0;49.0;Maine-et-Loire;Segré - Sous-préfecture;2 Rue Lamartine 49500 Segré-en-Anjou-Bleu;;;;;Démarches administratives en ligne;DeAD;"Accompagnements individuels
  Autonomie";AcIn- Au;Gratuit;G;Adultes / Familles;Af;Non;;;47.682017;-0.870165;2 Rue Lamartine 49500 Segré-en-Anjou Bleu;0.95;housenumber;49331_0790_00002;2.0;Rue Lamartine;;49500;Segré-en-Anjou Bleu;49, Maine-et-Loire, Pays de la Loire;49331;49331.0;Segré;
-conum_589_;49500.0;49.0;Maine-et-Loire;Segré - Sous-préfecture;2 Rue Lamartine 49500 Segré-en-Anjou-Bleu;NC;NC;NC;NC;Démarches administratives en ligne;DeAD;"Accompagnements individuels
+conum_589_;49500.0;49.0;Maine-et-Loire;Segré - Sous-préfecture;2 Rue Lamartine 49500 Segré-en-Anjou-Bleu;;;;;Démarches administratives en ligne;DeAD;"Accompagnements individuels
  Autonomie";AcIn- Au;Gratuit;G;Adultes / Familles;Af;Non;15/05/2020;;47.682017;-0.870165;2 Rue Lamartine 49500 Segré-en-Anjou Bleu;0.95;housenumber;49331_0790_00002;2.0;Rue Lamartine;;49500;Segré-en-Anjou Bleu;49, Maine-et-Loire, Pays de la Loire;49331;49331.0;Segré;
-conum_590_;49400.0;49.0;Maine-et-Loire;Saumur - sous-préfecture;33 Rue Beaurepaire 49400 Saumur;NC;NC;NC;NC;Démarches administratives en ligne;DeAD;"Accompagnements individuels
+conum_590_;49400.0;49.0;Maine-et-Loire;Saumur - sous-préfecture;33 Rue Beaurepaire 49400 Saumur;;;;;Démarches administratives en ligne;DeAD;"Accompagnements individuels
  Autonomie";AcIn- Au;Gratuit;G;Adultes / Familles;Af;Non;;;47.260222;-0.08131100000000001;33 Rue Beaurepaire 49400 Saumur;0.95;housenumber;49328_0190_00033;33.0;Rue Beaurepaire;;49400;Saumur;49, Maine-et-Loire, Pays de la Loire;49328;49328.0;Saumur;
-conum_591_;49330.0;49.0;Maine-et-Loire;Bibliothèque de Marigné;Rue Max Richard 49330 Marigné;02 41 27 66 95;https://valleesduhautanjou.fr;NC;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.722243;-0.6153810000000001;Rue Max Richard 49330 Les Hauts-d'Anjou;0.68;street;49189_0145;nan;Rue Max Richard;;49330;Les Hauts-d'Anjou;49, Maine-et-Loire, Pays de la Loire;49080;49189.0;Marigné;
-conum_592_;49330.0;49.0;Maine-et-Loire;Bibliothèque de Châteauneuf-sur-Sarthe - L'Attire-Lire;18 Rue tranchepied 49330 Châteauneuf-sur-Sarthe;02 41 33 88 54;https://valleesduhautanjou.fr;NC;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.679697999999995;-0.491881;18 Rue Tranchepied 49330 Les Hauts-d'Anjou;0.49;housenumber;49080_0110_00018;18.0;Rue Tranchepied;;49330;Les Hauts-d'Anjou;49, Maine-et-Loire, Pays de la Loire;49080;49080.0;Châteauneuf-sur-Sarthe;
-conum_593_;49370.0;49.0;Maine-et-Loire;Bibliothèque de Villemoisan;3 Rue de la Commanderie 49370 Villemoisan;NC;https://www.valleesduhautanjou.fr;NC;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.46502;-0.893073;3 Rue de la Commanderie 49370 Val d'Erdre-Auxence;0.67;housenumber;49376_0026_00003;3.0;Rue de la Commanderie;;49370;Val d'Erdre-Auxence;49, Maine-et-Loire, Pays de la Loire;49183;49376.0;Villemoisan;
-conum_594_;49370.0;49.0;Maine-et-Loire;Bibliothèque du Louroux-Béconnais;5 Place de la mairie 49370 Le Louroux-Béconnais;02 41 48 75 98;https://www.valleesduhautanjou.fr;NC;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.521859;-0.8841680000000001;5 Place de la Mairie 49370 Val d'Erdre-Auxence;0.53;housenumber;49183_0110_00005;5.0;Place de la Mairie;;49370;Val d'Erdre-Auxence;49, Maine-et-Loire, Pays de la Loire;49183;49183.0;Le Louroux-Béconnais;
-conum_595_;49440.0;49.0;Maine-et-Loire;Bibliothèque de la Cornuaille;1 Place de l'Eglise 49440 La Cornuaille;02 41 94 44 80;https://www.valleesduhautanjou.fr;NC;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.510695;-0.9837100000000001;1 Place de l'Eglise (La Cornuaille) 49370 Val d'Erdre-Auxence;0.78;housenumber;49108_0014_00001;1.0;Place de l'Eglise (La Cornuaille);;49370;Val d'Erdre-Auxence;49, Maine-et-Loire, Pays de la Loire;49183;49108.0;La Cornuaille;
-conum_596_;49370.0;49.0;Maine-et-Loire;Bibliothèque de Bécon Les Granits;25 Rue d'Angers 49370 Bécon-Les-Granits;02 41 87 64 78;https://www.valleesduhautanjou.fr;NC;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.503293;-0.798294;25 Rue d'Angers 49370 Bécon-les-Granits;0.94;housenumber;49026_0020_00025;25.0;Rue d'Angers;;49370;Bécon-les-Granits;49, Maine-et-Loire, Pays de la Loire;49026;nan;;
-conum_597_;49190.0;49.0;Maine-et-Loire;Bibliothèque municipale de Denée;9 Rue du Colonel 49190 Denée;02 41 78 3 84;http://1001pages.c3rb.org/;NC;bibliotheque@mairie-denee.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.376349;-0.605524;9 Rue du Colonel 49190 Denée;0.94;housenumber;49120_0140_00009;9.0;Rue du Colonel;;49190;Denée;49, Maine-et-Loire, Pays de la Loire;49120;nan;;
-conum_598_;49390.0;49.0;Maine-et-Loire;Bibliothèque de Vernantes;28 Rue de Jalesnes 49390 Vernantes;09 67 23 76 32;NC;NC;biblio.vernantes@orange.fr;"Prise en main du matériel
+conum_591_;49330.0;49.0;Maine-et-Loire;Bibliothèque de Marigné;Rue Max Richard 49330 Marigné;02 41 27 66 95;https://valleesduhautanjou.fr;;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.722243;-0.6153810000000001;Rue Max Richard 49330 Les Hauts-d'Anjou;0.68;street;49189_0145;nan;Rue Max Richard;;49330;Les Hauts-d'Anjou;49, Maine-et-Loire, Pays de la Loire;49080;49189.0;Marigné;
+conum_592_;49330.0;49.0;Maine-et-Loire;Bibliothèque de Châteauneuf-sur-Sarthe - L'Attire-Lire;18 Rue tranchepied 49330 Châteauneuf-sur-Sarthe;02 41 33 88 54;https://valleesduhautanjou.fr;;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.679697999999995;-0.491881;18 Rue Tranchepied 49330 Les Hauts-d'Anjou;0.49;housenumber;49080_0110_00018;18.0;Rue Tranchepied;;49330;Les Hauts-d'Anjou;49, Maine-et-Loire, Pays de la Loire;49080;49080.0;Châteauneuf-sur-Sarthe;
+conum_593_;49370.0;49.0;Maine-et-Loire;Bibliothèque de Villemoisan;3 Rue de la Commanderie 49370 Villemoisan;;https://www.valleesduhautanjou.fr;;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.46502;-0.893073;3 Rue de la Commanderie 49370 Val d'Erdre-Auxence;0.67;housenumber;49376_0026_00003;3.0;Rue de la Commanderie;;49370;Val d'Erdre-Auxence;49, Maine-et-Loire, Pays de la Loire;49183;49376.0;Villemoisan;
+conum_594_;49370.0;49.0;Maine-et-Loire;Bibliothèque du Louroux-Béconnais;5 Place de la mairie 49370 Le Louroux-Béconnais;02 41 48 75 98;https://www.valleesduhautanjou.fr;;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.521859;-0.8841680000000001;5 Place de la Mairie 49370 Val d'Erdre-Auxence;0.53;housenumber;49183_0110_00005;5.0;Place de la Mairie;;49370;Val d'Erdre-Auxence;49, Maine-et-Loire, Pays de la Loire;49183;49183.0;Le Louroux-Béconnais;
+conum_595_;49440.0;49.0;Maine-et-Loire;Bibliothèque de la Cornuaille;1 Place de l'Eglise 49440 La Cornuaille;02 41 94 44 80;https://www.valleesduhautanjou.fr;;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.510695;-0.9837100000000001;1 Place de l'Eglise (La Cornuaille) 49370 Val d'Erdre-Auxence;0.78;housenumber;49108_0014_00001;1.0;Place de l'Eglise (La Cornuaille);;49370;Val d'Erdre-Auxence;49, Maine-et-Loire, Pays de la Loire;49183;49108.0;La Cornuaille;
+conum_596_;49370.0;49.0;Maine-et-Loire;Bibliothèque de Bécon Les Granits;25 Rue d'Angers 49370 Bécon-Les-Granits;02 41 87 64 78;https://www.valleesduhautanjou.fr;;reseau.bibliotheques@valleesduhautanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.503293;-0.798294;25 Rue d'Angers 49370 Bécon-les-Granits;0.94;housenumber;49026_0020_00025;25.0;Rue d'Angers;;49370;Bécon-les-Granits;49, Maine-et-Loire, Pays de la Loire;49026;nan;;
+conum_597_;49190.0;49.0;Maine-et-Loire;Bibliothèque municipale de Denée;9 Rue du Colonel 49190 Denée;02 41 78 3 84;http://1001pages.c3rb.org/;;bibliotheque@mairie-denee.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.376349;-0.605524;9 Rue du Colonel 49190 Denée;0.94;housenumber;49120_0140_00009;9.0;Rue du Colonel;;49190;Denée;49, Maine-et-Loire, Pays de la Loire;49120;nan;;
+conum_598_;49390.0;49.0;Maine-et-Loire;Bibliothèque de Vernantes;28 Rue de Jalesnes 49390 Vernantes;09 67 23 76 32;;;biblio.vernantes@orange.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Autonomie 
  Initiations";Ac;Gratuit;G;Tout public;Tp;Non;;;47.393475;0.049893;28 Rue de Jalesnes 49390 Vernantes;0.94;housenumber;49368_0140_00028;28.0;Rue de Jalesnes;;49390;Vernantes;49, Maine-et-Loire, Pays de la Loire;49368;nan;;
-conum_599_;49190.0;49.0;Maine-et-Loire;Bibliothèque municipale de St-Aubin de Luigné;13 Rue Jean Pontoise 49190 St Aubin de Luigné;02 41 66 31 94;http://bibliotheque-1001pages.fr;NC;bibliotheque.staubin@valdulayon.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.328379999999996;-0.6708649999999999;Rue Jean de Pontoise 49750 Val-du-Layon;0.46;street;49265_0062;nan;Rue Jean de Pontoise;;49750;Val-du-Layon;49, Maine-et-Loire, Pays de la Loire;49292;49265.0;Saint-Aubin-de-Luigné;
-conum_600_;49250.0;49.0;Maine-et-Loire;Bibliothèque de Beaufort-en-Anjou;Place de la République 49250 Beaufort-en-Anjou;02 41 79 74 11;http://bibliotheque.beaufortenanjou.fr;NC;bibliotheque@beaufortenanjou.fr;"Lecture & activités
+conum_599_;49190.0;49.0;Maine-et-Loire;Bibliothèque municipale de St-Aubin de Luigné;13 Rue Jean Pontoise 49190 St Aubin de Luigné;02 41 66 31 94;http://bibliotheque-1001pages.fr;;bibliotheque.staubin@valdulayon.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.328379999999996;-0.6708649999999999;Rue Jean de Pontoise 49750 Val-du-Layon;0.46;street;49265_0062;nan;Rue Jean de Pontoise;;49750;Val-du-Layon;49, Maine-et-Loire, Pays de la Loire;49292;49265.0;Saint-Aubin-de-Luigné;
+conum_600_;49250.0;49.0;Maine-et-Loire;Bibliothèque de Beaufort-en-Anjou;Place de la République 49250 Beaufort-en-Anjou;02 41 79 74 11;http://bibliotheque.beaufortenanjou.fr;;bibliotheque@beaufortenanjou.fr;"Lecture & activités
  Culture numérique
  Démarches administratives en ligne";LeAC--CuNu--DeAd;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.438371000000004;-0.214259;Place de la Republique 49250 Beaufort-en-Anjou;0.95;street;49021_1121;nan;Place de la Republique;;49250;Beaufort-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49021;49021.0;Beaufort-en-Vallée;
-conum_601_;49410.0;49.0;Maine-et-Loire;Bibliothèque Saint-Florent-le Vieil;12 Avenue de l'Europe 49410 Saint-Florent-le-Vieil;02 41 72 75 52;http://mauges-sur-loire-pom.c3rb.org/;NC;NC;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.362991;-1.0192379999999999;12 Avenue de l'Europe 49410 Mauges-sur-Loire;0.53;housenumber;49276_0114_00012;12.0;Avenue de l'Europe;;49410;Mauges-sur-Loire;49, Maine-et-Loire, Pays de la Loire;49244;49276.0;Saint-Florent-le-Vieil;
-conum_602_;49370.0;49.0;Maine-et-Loire;Bibliothèque de La Pouëze;3 Cours de l'Arquenay 49370 Erdre-En-Anjou;02 41 41 5 67;http://bibliothequelapoueze.free.fr/;NC;bibliothequelapoueze@free.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.551933;-0.8099729999999999;3 Cour d'Arquenay 49220 Erdre-en-Anjou;0.67;housenumber;49249_0014_00003;3.0;Cour d'Arquenay;;49220;Erdre-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49367;49249.0;La Pouëze;
-conum_603_;49250.0;49.0;Maine-et-Loire;Médiathèque LirenLoire;10 Place Colonel Léon Faye 49250 La Ménitré;02 41 45 25 54;http://bibliotheque.beaufortenanjou.fr/;NC;lirenloire@laposte.net;"Prise en main du matériel
+conum_601_;49410.0;49.0;Maine-et-Loire;Bibliothèque Saint-Florent-le Vieil;12 Avenue de l'Europe 49410 Saint-Florent-le-Vieil;02 41 72 75 52;http://mauges-sur-loire-pom.c3rb.org/;;;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.362991;-1.0192379999999999;12 Avenue de l'Europe 49410 Mauges-sur-Loire;0.53;housenumber;49276_0114_00012;12.0;Avenue de l'Europe;;49410;Mauges-sur-Loire;49, Maine-et-Loire, Pays de la Loire;49244;49276.0;Saint-Florent-le-Vieil;
+conum_602_;49370.0;49.0;Maine-et-Loire;Bibliothèque de La Pouëze;3 Cours de l'Arquenay 49370 Erdre-En-Anjou;02 41 41 5 67;http://bibliothequelapoueze.free.fr/;;bibliothequelapoueze@free.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.551933;-0.8099729999999999;3 Cour d'Arquenay 49220 Erdre-en-Anjou;0.67;housenumber;49249_0014_00003;3.0;Cour d'Arquenay;;49220;Erdre-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49367;49249.0;La Pouëze;
+conum_603_;49250.0;49.0;Maine-et-Loire;Médiathèque LirenLoire;10 Place Colonel Léon Faye 49250 La Ménitré;02 41 45 25 54;http://bibliotheque.beaufortenanjou.fr/;;lirenloire@laposte.net;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;Initiations;In;Gratuit;G;Seniors;S;Non;;;47.402035999999995;-0.27031900000000003;10 Place Colonel Leon Faye 49250 La Ménitré;0.94;housenumber;49201_0060_00010;10.0;Place Colonel Leon Faye;;49250;La Ménitré;49, Maine-et-Loire, Pays de la Loire;49201;nan;;
-conum_604_;49170.0;49.0;Maine-et-Loire;Bibliothèque municipale Ouest-Anjou;Place du Cèdre 49170 Saint-Augustin-des-Bois;02 41 19 51 04;http://www.bibliotheques-ouest-anjou.net;NC;bibliotheque-st-augustin@orange.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.460243;-0.795153;Place de l'Eglise 49170 Saint-Augustin-des-Bois;0.65;street;49266_0092;nan;Place de l'Eglise;;49170;Saint-Augustin-des-Bois;49, Maine-et-Loire, Pays de la Loire;49266;nan;;
-conum_605_;49250.0;49.0;Maine-et-Loire;Bibliothèque Mathu'Lu;Passage des Grandes Bottes 49250 Saint-Mathurin-sur-Loire;02 41 57 09 76;http://mediatheques-loire-authion.fr/?id_profil=44;NC;bibliotheque-mathulu@loire-authion.fr;"Prise en main du matériel
+conum_604_;49170.0;49.0;Maine-et-Loire;Bibliothèque municipale Ouest-Anjou;Place du Cèdre 49170 Saint-Augustin-des-Bois;02 41 19 51 04;http://www.bibliotheques-ouest-anjou.net;;bibliotheque-st-augustin@orange.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.460243;-0.795153;Place de l'Eglise 49170 Saint-Augustin-des-Bois;0.65;street;49266_0092;nan;Place de l'Eglise;;49170;Saint-Augustin-des-Bois;49, Maine-et-Loire, Pays de la Loire;49266;nan;;
+conum_605_;49250.0;49.0;Maine-et-Loire;Bibliothèque Mathu'Lu;Passage des Grandes Bottes 49250 Saint-Mathurin-sur-Loire;02 41 57 09 76;http://mediatheques-loire-authion.fr/?id_profil=44;;bibliotheque-mathulu@loire-authion.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Lecture & activités";PrMa--PrLo--PrIn--LeAc;"Autonomie
  Initiations";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.410087;-0.32165;Passage des Grandes Bottes 49250 Loire-Authion;0.59;street;49307_0069;nan;Passage des Grandes Bottes;;49250;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49307.0;Saint-Mathurin-sur-Loire;
-conum_606_;49800.0;49.0;Maine-et-Loire;Bibliothèque Entre Loire et Authion;Rue de la Salette 49800 La Bohalle;02 41 74 69 24;http://mediatheques-loire-authion.fr/?id_profil=41;NC;biblio-labohalle@laposte.net;"Prise en main du matériel
+conum_606_;49800.0;49.0;Maine-et-Loire;Bibliothèque Entre Loire et Authion;Rue de la Salette 49800 La Bohalle;02 41 74 69 24;http://mediatheques-loire-authion.fr/?id_profil=41;;biblio-labohalle@laposte.net;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
   Lecture & activités";PrMa--PrLo--PrIn--LeAc;"Autonomie
  Initiations";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.421417;-0.3913;Rue de la Sallette 49800 Loire-Authion;0.68;street;49032_0087;nan;Rue de la Sallette;;49800;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49032.0;La Bohalle;
-conum_607_;49800.0;49.0;Maine-et-Loire;Bibliothèque Au Fil des Mots;Rue Ligérienne 49800 La Daguenière;02 41 95 88 56;http://mediatheques-loire-authion.fr/?id_profil=42;NC;bm.la.dagueniere@gmail.com;"Prise en main du matériel
+conum_607_;49800.0;49.0;Maine-et-Loire;Bibliothèque Au Fil des Mots;Rue Ligérienne 49800 La Daguenière;02 41 95 88 56;http://mediatheques-loire-authion.fr/?id_profil=42;;bm.la.dagueniere@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Lecture & activités";PrMa--PrLo--PrIn--LeAc;Initiations;In;Gratuit;G;Tout public;Tp;Non;;;47.419247;-0.428225;Rue Ligerienne (La Daguenière) 49800 Loire-Authion;0.9;street;49117_0026;nan;Rue Ligerienne (La Daguenière);;49800;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49117.0;La Daguenière;
-conum_608_;49800.0;49.0;Maine-et-Loire;Médiathèque des 4 vents;2 Rue de la Croix de Bois 49800 Brain-sur-l'Authion;02 41 78 66 80;http://mediatheques-loire-authion.fr/?id_profil=39;NC;mediatheque-des4vents@loire-authion.fr;"Prise en main du matériel
+conum_608_;49800.0;49.0;Maine-et-Loire;Médiathèque des 4 vents;2 Rue de la Croix de Bois 49800 Brain-sur-l'Authion;02 41 78 66 80;http://mediatheques-loire-authion.fr/?id_profil=39;;mediatheque-des4vents@loire-authion.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Accompagnements individuels
  Initiations
  Autonomie";AcIn- In- Au;Gratuit;G;Tout public;Tp;Non;;;47.445805;-0.411451;2 Rue de la Croix de Bois (Brain-sur-l'Authion) 49800 Loire-Authion;0.92;housenumber;49042_0040_00002;2.0;Rue de la Croix de Bois (Brain-sur-l'Authion);;49800;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49042.0;Brain-sur-l'Authion;
-conum_609_;49800.0;49.0;Maine-et-Loire;Médiathèque Au Fil des Pages;9 Rue du parc 49800 Andard;02 41 66 93 72;http://mediatheques-loire-authion.fr/?id_profil=36;NC;mediatheque.aufildespages@gmail.com;"Prise en main du matériel
+conum_609_;49800.0;49.0;Maine-et-Loire;Médiathèque Au Fil des Pages;9 Rue du parc 49800 Andard;02 41 66 93 72;http://mediatheques-loire-authion.fr/?id_profil=36;;mediatheque.aufildespages@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Initiations
  Accompagnements individuels
  Autonomie";AcIn- In- Au;Gratuit;G;Tout public;Tp;Non;;;47.456447999999995;-0.39723400000000003;9 Rue du Parc 49800 Loire-Authion;0.7;housenumber;49004_0047_00009;9.0;Rue du Parc;;49800;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49004.0;Andard;
-conum_610_;49630.0;49.0;Maine-et-Loire;Médiathèque Bouquins Passions;Impasse Jules-Frémont 49630 Corné;02 41 80 32 14;http://mediatheques-loire-authion.fr/?id_profil=40;NC;mediatheque-bouquinspassion@loire-authion.fr;"Prise en main du matériel
+conum_610_;49630.0;49.0;Maine-et-Loire;Médiathèque Bouquins Passions;Impasse Jules-Frémont 49630 Corné;02 41 80 32 14;http://mediatheques-loire-authion.fr/?id_profil=40;;mediatheque-bouquinspassion@loire-authion.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Accompagnements individuels
  Autonomie 
  Initiations";AcIn- In- Au;Gratuit;G;Tout public;Tp;Non;;;47.473499;-0.35254;Rue Jules Fremont 49800 Loire-Authion;0.46;street;49106_0061;nan;Rue Jules Fremont;;49800;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49106.0;Corné;
-conum_611_;49140.0;49.0;Maine-et-Loire;Bibliothèque Croq'Livres;5 Rue Saint Jacques 49140 Bauné;02 41 44 02 30;http://mediatheques-loire-authion.fr/?id_profil=38;NC;croqlivres.baune@gmail.com;"Prise en main du matériel
+conum_611_;49140.0;49.0;Maine-et-Loire;Bibliothèque Croq'Livres;5 Rue Saint Jacques 49140 Bauné;02 41 44 02 30;http://mediatheques-loire-authion.fr/?id_profil=38;;croqlivres.baune@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
   Lecture & activités";PrMa--PrLo--PrIn--LeAc;"Initiations
  Autonomie";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.499254;-0.317064;5 Rue Saint Jacques 49800 Loire-Authion;0.62;housenumber;49019_0056_00005;5.0;Rue Saint Jacques;;49800;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49019.0;Bauné;
-conum_612_;49070.0;49.0;Maine-et-Loire;Bibliothèque municipales et centre de documentation;Rue Felix Pauger 49070 Saint Lambert de la Potherie;02 41 77 56 19;latulu.c3rb.org;NC;biblio.stlambertlapotherie@laposte.net;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.48294;-0.678038;Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;0.89;street;49294_0037;nan;Rue Félix Pauger;;49070;Saint-Lambert-la-Potherie;49, Maine-et-Loire, Pays de la Loire;49294;nan;;
-conum_613_;49170.0;49.0;Maine-et-Loire;Médiathèque du Ponton;10 Rue Landeronde 49170 La Possonière;02 41 35 07 41;https://www.la-possonniere.fr/la-possonniere-au-quotidien/mediatheque/;NC;mediatheque@la-possonniere.fr;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.374010999999996;-0.688244;10 Rue de Landeronde 49170 La Possonnière;0.85;housenumber;49247_0084_00010;10.0;Rue de Landeronde;;49170;La Possonnière;49, Maine-et-Loire, Pays de la Loire;49247;nan;;
-conum_614_;49120.0;49.0;Maine-et-Loire;Médiathèque de Chemillé;5 Rue du Petit Bourg 49120 Chemillé-en-Anjou;NC;https://www.bibliothequeschemilleenanjou.net/;NC;reseaulecturepublique@chemille-en-anjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.219831;-0.725942;5 Rue du Petit Bourg 49120 Chemillé-en-Anjou;0.95;housenumber;49092_1000_00005;5.0;Rue du Petit Bourg;;49120;Chemillé-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49092;49092.0;Chemillé;
-conum_615_;49500.0;49.0;Maine-et-Loire;Médiathèque Segré en Anjou Bleu;39 Rue Charles de Gaulle 49500 Segré;02 41 61 15 50;NC;NC;mediatheque@segreeanjoubleu.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.689873;-0.87235;39 Rue Charles de Gaulle 49500 Segré-en-Anjou Bleu;0.8;housenumber;49331_0290_00039;39.0;Rue Charles de Gaulle;;49500;Segré-en-Anjou Bleu;49, Maine-et-Loire, Pays de la Loire;49331;49331.0;Segré;
-conum_616_;49260.0;49.0;Maine-et-Loire;Médiathèque François-Mitterand;1 Place Aubelle 49260 Montreuil-Bellay;02 41 38 26 91;www.bibliothques.agglo-saumur.fr;NC;mediatheque.montreuil@agglo-saumur.fr;"Prise en main du matériel
+conum_612_;49070.0;49.0;Maine-et-Loire;Bibliothèque municipales et centre de documentation;Rue Felix Pauger 49070 Saint Lambert de la Potherie;02 41 77 56 19;latulu.c3rb.org;;biblio.stlambertlapotherie@laposte.net;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.48294;-0.678038;Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;0.89;street;49294_0037;nan;Rue Félix Pauger;;49070;Saint-Lambert-la-Potherie;49, Maine-et-Loire, Pays de la Loire;49294;nan;;
+conum_613_;49170.0;49.0;Maine-et-Loire;Médiathèque du Ponton;10 Rue Landeronde 49170 La Possonière;02 41 35 07 41;https://www.la-possonniere.fr/la-possonniere-au-quotidien/mediatheque/;;mediatheque@la-possonniere.fr;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.374010999999996;-0.688244;10 Rue de Landeronde 49170 La Possonnière;0.85;housenumber;49247_0084_00010;10.0;Rue de Landeronde;;49170;La Possonnière;49, Maine-et-Loire, Pays de la Loire;49247;nan;;
+conum_614_;49120.0;49.0;Maine-et-Loire;Médiathèque de Chemillé;5 Rue du Petit Bourg 49120 Chemillé-en-Anjou;;https://www.bibliothequeschemilleenanjou.net/;;reseaulecturepublique@chemille-en-anjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.219831;-0.725942;5 Rue du Petit Bourg 49120 Chemillé-en-Anjou;0.95;housenumber;49092_1000_00005;5.0;Rue du Petit Bourg;;49120;Chemillé-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49092;49092.0;Chemillé;
+conum_615_;49500.0;49.0;Maine-et-Loire;Médiathèque Segré en Anjou Bleu;39 Rue Charles de Gaulle 49500 Segré;02 41 61 15 50;;;mediatheque@segreeanjoubleu.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.689873;-0.87235;39 Rue Charles de Gaulle 49500 Segré-en-Anjou Bleu;0.8;housenumber;49331_0290_00039;39.0;Rue Charles de Gaulle;;49500;Segré-en-Anjou Bleu;49, Maine-et-Loire, Pays de la Loire;49331;49331.0;Segré;
+conum_616_;49260.0;49.0;Maine-et-Loire;Médiathèque François-Mitterand;1 Place Aubelle 49260 Montreuil-Bellay;02 41 38 26 91;www.bibliothques.agglo-saumur.fr;;mediatheque.montreuil@agglo-saumur.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Initiations 
  Autonomie";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.129185;-0.153595;1 Place Rene Aubelle 49260 Montreuil-Bellay;0.84;housenumber;49215_1503_00001;1.0;Place Rene Aubelle;;49260;Montreuil-Bellay;49, Maine-et-Loire, Pays de la Loire;49215;nan;;
-conum_617_;49124.0;49.0;Maine-et-Loire;Médiathèque de La Ranloue;Mail Georges Sand 49124 Saint Barthélémy-d'Anjou;02 41 93 35 30;https://stbarthelemy.bibli.fr/index.php?database=stbartha;NC;mediatheque@ville-stbarth.fr;"Prise en main du matériel
+conum_617_;49124.0;49.0;Maine-et-Loire;Médiathèque de La Ranloue;Mail Georges Sand 49124 Saint Barthélémy-d'Anjou;02 41 93 35 30;https://stbarthelemy.bibli.fr/index.php?database=stbartha;;mediatheque@ville-stbarth.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Initiations
  Autonomie";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.470507;-0.503387;Mail de Saint Malo 49124 Saint-Barthélemy-d'Anjou;0.59;street;49267_0415;nan;Mail de Saint Malo;;49124;Saint-Barthélemy-d'Anjou;49, Maine-et-Loire, Pays de la Loire;49267;nan;;
-conum_618_;49530.0;49.0;Maine-et-Loire;Ludothèque d'Orée-d'Anjou;4 Rue des Noues 49530 Orée-d'Anjou;02 52 59 75 90;https://www.reseaubibliotheques-oreedanjou.fr;NC;reseaubibliotheques@oreedanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.334522;-1.206903;4 Rue des Noues (drain) 49530 Orée d'Anjou;0.81;housenumber;49069_0294_00004;4.0;Rue des Noues (drain);;49530;Orée d'Anjou;49, Maine-et-Loire, Pays de la Loire;49069;49126.0;Drain;
-conum_619_;49100.0;49.0;Maine-et-Loire;Bibliothèque de Saint Aubin sur Luigné;Rue Jean de Pontoise 49100 Luigné;02 41 66 31 94;http://www.bibliotheque-1001pages.fr/;NC;bibliotheque.staubin@valdulayon.fr;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.328379999999996;-0.6708649999999999;Rue Jean de Pontoise 49750 Val-du-Layon;0.61;street;49265_0062;nan;Rue Jean de Pontoise;;49750;Val-du-Layon;49, Maine-et-Loire, Pays de la Loire;49292;49265.0;Saint-Aubin-de-Luigné;
-conum_620_;49450.0;49.0;Maine-et-Loire;Médiathèque Saint Exupéry;6 Rue Jean Moulin 49450 Sèvremoine;02 41 46 71 89;https://bibliotheques.moineetsevre.fr/;NC;bibliotheques@sevremoine.fr;"Prise en main du matériel
+conum_618_;49530.0;49.0;Maine-et-Loire;Ludothèque d'Orée-d'Anjou;4 Rue des Noues 49530 Orée-d'Anjou;02 52 59 75 90;https://www.reseaubibliotheques-oreedanjou.fr;;reseaubibliotheques@oreedanjou.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.334522;-1.206903;4 Rue des Noues (drain) 49530 Orée d'Anjou;0.81;housenumber;49069_0294_00004;4.0;Rue des Noues (drain);;49530;Orée d'Anjou;49, Maine-et-Loire, Pays de la Loire;49069;49126.0;Drain;
+conum_619_;49100.0;49.0;Maine-et-Loire;Bibliothèque de Saint Aubin sur Luigné;Rue Jean de Pontoise 49100 Luigné;02 41 66 31 94;http://www.bibliotheque-1001pages.fr/;;bibliotheque.staubin@valdulayon.fr;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.328379999999996;-0.6708649999999999;Rue Jean de Pontoise 49750 Val-du-Layon;0.61;street;49265_0062;nan;Rue Jean de Pontoise;;49750;Val-du-Layon;49, Maine-et-Loire, Pays de la Loire;49292;49265.0;Saint-Aubin-de-Luigné;
+conum_620_;49450.0;49.0;Maine-et-Loire;Médiathèque Saint Exupéry;6 Rue Jean Moulin 49450 Sèvremoine;02 41 46 71 89;https://bibliotheques.moineetsevre.fr/;;bibliotheques@sevremoine.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Autonomie 
  Accompagnements individuels 
  Initiations";AcIn- In- Au;Gratuit;G;Tout public;Tp;Non;;;47.126041;-0.9932280000000001;6 Rue Jean Moulin 49450 Sèvremoine;0.95;housenumber;49301_0600_00006;6.0;Rue Jean Moulin;;49450;Sèvremoine;49, Maine-et-Loire, Pays de la Loire;49301;49301.0;Saint-Macaire-en-Mauges;
-conum_621_;49070.0;49.0;Maine-et-Loire;Médiathèque Anita Conti;Rue du Grand Pin 49070 Beaucouzé;02 41 48 05 35;http://www.mediatheque-beaucouze.fr/;NC;mediatheque@beaucouze.fr;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.473075;-0.632513;Rue du Grand Pin 49070 Beaucouzé;0.95;street;49020_0139;nan;Rue du Grand Pin;;49070;Beaucouzé;49, Maine-et-Loire, Pays de la Loire;49020;nan;;
-conum_622_;49610.0;49.0;Maine-et-Loire;Médiathèque de Saint-Mélaine-sur-Aubance;5 Rue Armand Brousse 49610 Saint-Mélaine;NC;NC;NC;mediatheque@saint-melaine-sur-aubance.fr;Lecture & activités;LeAC;"Initiations
+conum_621_;49070.0;49.0;Maine-et-Loire;Médiathèque Anita Conti;Rue du Grand Pin 49070 Beaucouzé;02 41 48 05 35;http://www.mediatheque-beaucouze.fr/;;mediatheque@beaucouze.fr;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.473075;-0.632513;Rue du Grand Pin 49070 Beaucouzé;0.95;street;49020_0139;nan;Rue du Grand Pin;;49070;Beaucouzé;49, Maine-et-Loire, Pays de la Loire;49020;nan;;
+conum_622_;49610.0;49.0;Maine-et-Loire;Médiathèque de Saint-Mélaine-sur-Aubance;5 Rue Armand Brousse 49610 Saint-Mélaine;;;;mediatheque@saint-melaine-sur-aubance.fr;Lecture & activités;LeAC;"Initiations
  Autonomie";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.370443;-0.496965;5 Rue Armand Brousse 49610 Saint-Melaine-sur-Aubance;0.73;housenumber;49308_0002_00005;5.0;Rue Armand Brousse;;49610;Saint-Melaine-sur-Aubance;49, Maine-et-Loire, Pays de la Loire;49308;nan;;
-conum_623_;49350.0;49.0;Maine-et-Loire;Bibliothèque municipale Gennes;"""Château de la Roche"" Route de Louerre 49350 Gennes";02 41 51 09 88;bibliotheques-gennesvaldeloire.fr;NC;bibliotheque@gennesvaldeloire.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.338803999999996;-0.23540300000000003;Route de Louerre 49350 Gennes-Val-de-Loire;0.54;street;49149_0130;nan;Route de Louerre;;49350;Gennes-Val-de-Loire;49, Maine-et-Loire, Pays de la Loire;49261;49149.0;Gennes;
-conum_624_;49800.0;49.0;Maine-et-Loire;Médiathèque Hervé-Bazin;Chemin de la Maraîchère 49800 Trélazé;02 41 69 19 64;http://www.mediatheque-trelaze.fr/;NC;NC;Lecture & activités;LeAC;"Initiations
+conum_623_;49350.0;49.0;Maine-et-Loire;Bibliothèque municipale Gennes;"""Château de la Roche"" Route de Louerre 49350 Gennes";02 41 51 09 88;bibliotheques-gennesvaldeloire.fr;;bibliotheque@gennesvaldeloire.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.338803999999996;-0.23540300000000003;Route de Louerre 49350 Gennes-Val-de-Loire;0.54;street;49149_0130;nan;Route de Louerre;;49350;Gennes-Val-de-Loire;49, Maine-et-Loire, Pays de la Loire;49261;49149.0;Gennes;
+conum_624_;49800.0;49.0;Maine-et-Loire;Médiathèque Hervé-Bazin;Chemin de la Maraîchère 49800 Trélazé;02 41 69 19 64;http://www.mediatheque-trelaze.fr/;;;Lecture & activités;LeAC;"Initiations
  Autonomie";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.445926;-0.48934300000000003;Chemin de la Maraichère 49800 Trélazé;0.95;street;49353_0680;nan;Chemin de la Maraichère;;49800;Trélazé;49, Maine-et-Loire, Pays de la Loire;49353;nan;;
-conum_625_;49480.0;49.0;Maine-et-Loire;Bibliothèque Maison Rouge;13 Rue Victor Hugo 49480 Verrières-en-Anjou;02 41 76 34 50;NC;NC;bibliotheque@verrieres-anjou.fr;"Prise en main du matériel
+conum_625_;49480.0;49.0;Maine-et-Loire;Bibliothèque Maison Rouge;13 Rue Victor Hugo 49480 Verrières-en-Anjou;02 41 76 34 50;;;bibliotheque@verrieres-anjou.fr;"Prise en main du matériel
 Prise en main des logiciels de base 
 Premiers pas sur internet 
 Lecture & activités";PrMa--PrLo--PrIn--LeAc;"Initiations
  Autonomie";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.521995000000004;-0.470138;13 Rue Victor Hugo 49480 Verrières-en-Anjou;0.95;housenumber;49323_0190_00013;13.0;Rue Victor Hugo;;49480;Verrières-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49323;49323.0;Saint-Sylvain-d'Anjou;
-conum_626_;49080.0;49.0;Maine-et-Loire;Les Boîtes à Culture;2 Place de l'abbé Thomas 49080 Bouchemaine;02 41 22 20 05;http://pbouchemaine.gminvent.fr/;NC;mediatheque@ville-bouchemaine.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.422461;-0.609282;2 Place de l'Abbé Thomas 49080 Bouchemaine;0.95;housenumber;49035_0002_00002;2.0;Place de l'Abbé Thomas;;49080;Bouchemaine;49, Maine-et-Loire, Pays de la Loire;49035;nan;;
-conum_627_;49000.0;49.0;Maine-et-Loire;CCAS d'Écouflant;Place de la mairie 49000 Écouflant;02 41 41 10 00;http://www.ecouflant.fr/centre-communal-daction-sociale-c-c-a-s/;NC;ccas@ecouflant.fr;"Prise en main du matériel
+conum_626_;49080.0;49.0;Maine-et-Loire;Les Boîtes à Culture;2 Place de l'abbé Thomas 49080 Bouchemaine;02 41 22 20 05;http://pbouchemaine.gminvent.fr/;;mediatheque@ville-bouchemaine.fr;Lecture & activités;LeAc;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.422461;-0.609282;2 Place de l'Abbé Thomas 49080 Bouchemaine;0.95;housenumber;49035_0002_00002;2.0;Place de l'Abbé Thomas;;49080;Bouchemaine;49, Maine-et-Loire, Pays de la Loire;49035;nan;;
+conum_627_;49000.0;49.0;Maine-et-Loire;CCAS d'Écouflant;Place de la mairie 49000 Écouflant;02 41 41 10 00;http://www.ecouflant.fr/centre-communal-daction-sociale-c-c-a-s/;;ccas@ecouflant.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd--CuNu;"Accompagnements individuels
  Accompagnements collectifs
  Initiations";AcCo- AcIn- In;Gratuit;G;Adultes / Familles;Af;Non;;;47.528228999999996;-0.53074;Place de la Mairie 49000 Écouflant;0.95;street;49129_0086;nan;Place de la Mairie;;49000;Écouflant;49, Maine-et-Loire, Pays de la Loire;49129;nan;;
-conum_628_;49600.0;49.0;Maine-et-Loire;CS Evre et Mauges;10 Rue du Sous-Préfet Barré 49600 Beaupreau;02 41 63 06 33;https://evreetmauges.centres-sociaux.fr/;NC;accueil@cs-evreetmauges.fr;"Prise en main du matériel
+conum_628_;49600.0;49.0;Maine-et-Loire;CS Evre et Mauges;10 Rue du Sous-Préfet Barré 49600 Beaupreau;02 41 63 06 33;https://evreetmauges.centres-sociaux.fr/;;accueil@cs-evreetmauges.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd--ApLo--ApIn;"Accompagnements collectifs
  Initiations";AcCo- In;Gratuit;G;Tout public;Tp;Non;;;47.20339;-0.9935639999999999;10 Rue du sous Préfet Barré 49600 Beaupréau-en-Mauges;0.78;housenumber;49023_0116_00010;10.0;Rue du sous Préfet Barré;;49600;Beaupréau-en-Mauges;49, Maine-et-Loire, Pays de la Loire;49023;49023.0;Beaupréau;
-conum_629_;49120.0;49.0;Maine-et-Loire;CS du Chemillois;5 Rue de la Gabardière 49120 Chemillé;02 41 30 50 55;https://bocal.csc49.fr/;NC;infos@centresocial-chemille.asso.fr;"Prise en main du matériel
+conum_629_;49120.0;49.0;Maine-et-Loire;CS du Chemillois;5 Rue de la Gabardière 49120 Chemillé;02 41 30 50 55;https://bocal.csc49.fr/;;infos@centresocial-chemille.asso.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
@@ -4384,7 +4384,7 @@ conum_629_;49120.0;49.0;Maine-et-Loire;CS du Chemillois;5 Rue de la Gabardière 
  Accompagnements collectifs
  Initiations
  Autonomie";AcCo- AcIn- In- Au- EcSa;Adhesion;;Tout public;Tp;Non;;;47.216912;-0.727681;5 Rue de la Gabardière 49120 Chemillé-en-Anjou;0.77;housenumber;49092_0561_00005;5.0;Rue de la Gabardière;;49120;Chemillé-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49092;49092.0;Chemillé;
-conum_630_;49530.0;49.0;Maine-et-Loire;CSC Rives de Loire;20 Rue FJA Chenouard 49530 Drain;02 40 98 26 76;https://rivesdeloire.centres-sociaux.fr/ateliers-multimedia/;NC;accueil@rivesdeloire.fr;"Prise en main du matériel
+conum_630_;49530.0;49.0;Maine-et-Loire;CSC Rives de Loire;20 Rue FJA Chenouard 49530 Drain;02 40 98 26 76;https://rivesdeloire.centres-sociaux.fr/ateliers-multimedia/;;accueil@rivesdeloire.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
@@ -4392,183 +4392,183 @@ conum_630_;49530.0;49.0;Maine-et-Loire;CSC Rives de Loire;20 Rue FJA Chenouard 4
  Culture FabLab";PrMa--PrLo--PrIn--DeAd--ApLo--ApIn--CuFa;"Accompagnements collectifs
  Initiations 
  Autonomie";AcCo- In- Au;Gratuit;G;Tout public;Tp;Non;;;47.339223;-1.2066;20 Rue Jfa Chenouard (drain) 49530 Orée d'Anjou;0.74;housenumber;49069_0254_00020;20.0;Rue Jfa Chenouard (drain);;49530;Orée d'Anjou;49, Maine-et-Loire, Pays de la Loire;49069;49126.0;Drain;
-conum_631_;49390.0;49.0;Maine-et-Loire;Cyberpoint Bibliothèque de Vernantes;28 Rue de Jalesne 49390 Vernantes;NC;https://www.saumurvaldeloire.fr/actualites/item/les-cybercentres-de-nouveau-ouverts;NC;cybercentres@agglo-samur.fr;"Prise en main du matériel
+conum_631_;49390.0;49.0;Maine-et-Loire;Cyberpoint Bibliothèque de Vernantes;28 Rue de Jalesne 49390 Vernantes;;https://www.saumurvaldeloire.fr/actualites/item/les-cybercentres-de-nouveau-ouverts;;cybercentres@agglo-samur.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internets";PrMa--PrLo--PrIn--ApLo--ApIn;"Accompagnements collectifs
  Initiations 
  Autonomie";AcCo- In- Au;Adhesion;;Tout public;Tp;Non;;;47.393475;0.049893;28 Rue de Jalesnes 49390 Vernantes;0.86;housenumber;49368_0140_00028;28.0;Rue de Jalesnes;;49390;Vernantes;49, Maine-et-Loire, Pays de la Loire;49368;nan;;
-conum_632_;49350.0;49.0;Maine-et-Loire;Cyberpoint des Rosiers-sur-Loire;Rue du Mail 49350 Les Rosiers-sur-Loire;02 41 53 79 38;http://www.bibliotheques.agglo-saumur.fr/index.php?option=com_content&view=category&layout=blog&id=114&Itemid=164;NC;pole.multimedia@agglo-saumur.fr;"Prise en main du matériel
+conum_632_;49350.0;49.0;Maine-et-Loire;Cyberpoint des Rosiers-sur-Loire;Rue du Mail 49350 Les Rosiers-sur-Loire;02 41 53 79 38;http://www.bibliotheques.agglo-saumur.fr/index.php?option=com_content&view=category&layout=blog&id=114&Itemid=164;;pole.multimedia@agglo-saumur.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internet";PrMA---PrLo--PrIn--Aplo--Apln;"Accompagnements collectifs
  Initiations 
  Autonomie";AcCo- In- Au;Gratuit;G;Tout public;Tp;Non;;;47.350202;-0.223462;Rue du Mail (Les Rosiers-sur-Loire) 49350 Gennes-Val-de-Loire;0.9;street;49261_0145;nan;Rue du Mail (Les Rosiers-sur-Loire);;49350;Gennes-Val-de-Loire;49, Maine-et-Loire, Pays de la Loire;49261;49261.0;Les Rosiers-sur-Loire;
-conum_633_;49160.0;49.0;Maine-et-Loire;Cybercentre de Longué;Place Général Leclerc 49160 Longué-Jumelles;02 41 53 79 38;http://www.bibliotheques.agglo-saumur.fr/index.php?option=com_content&view=article&id=2898:cybercentres-loire-longue&catid=114:cybercentres&Itemid=164;NC;pole.multimedia@agglo-saumur.fr;"Prise en main du matériel
+conum_633_;49160.0;49.0;Maine-et-Loire;Cybercentre de Longué;Place Général Leclerc 49160 Longué-Jumelles;02 41 53 79 38;http://www.bibliotheques.agglo-saumur.fr/index.php?option=com_content&view=article&id=2898:cybercentres-loire-longue&catid=114:cybercentres&Itemid=164;;pole.multimedia@agglo-saumur.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internet";PrMA---PrLo--PrIn--Aplo--Apln;"Autonomie 
  Initiations";In- Au;Gratuit;G;Tout public;Tp;Non;;;47.380782;-0.109171;Place du General Leclerc 49160 Longué-Jumelles;0.89;street;49180_hb4cdi;nan;Place du General Leclerc;;49160;Longué-Jumelles;49, Maine-et-Loire, Pays de la Loire;49180;nan;;
-conum_634_;49800.0;49.0;Maine-et-Loire;Association Vivre ensemble;61 Rue de Valongo 49800 Trélazé;02 41 34 18 34;https://vivre-ensemble-trelaze.centres-sociaux.fr/;NC;vivre-ensemble@wanadoo.fr;"Prise en main du matériel
+conum_634_;49800.0;49.0;Maine-et-Loire;Association Vivre ensemble;61 Rue de Valongo 49800 Trélazé;02 41 34 18 34;https://vivre-ensemble-trelaze.centres-sociaux.fr/;;vivre-ensemble@wanadoo.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique";PrMa--PrLo--PrIn--CuNu;"Accompagnements individuels
  Accompagnements collectifs";AcCo- AcIn;Gratuit;G;Tout public;Tp;Non;;;47.447249;-0.468851;61 Rue de Valongo 49800 Trélazé;0.95;housenumber;49353_1042_00061;61.0;Rue de Valongo;;49800;Trélazé;49, Maine-et-Loire, Pays de la Loire;49353;nan;;
-conum_635_;49078.0;49.0;Maine-et-Loire;Commune nouvelle de Brissac Loire Aubance;Salle des associations 49078 Charcé;NC;https://www.brissacloireaubance.fr/ateliers-numeriques-2/;NC;ateliersnumeriques@brissacloireaubance.fr;"Prise en main du matériel
+conum_635_;49078.0;49.0;Maine-et-Loire;Commune nouvelle de Brissac Loire Aubance;Salle des associations 49078 Charcé;;https://www.brissacloireaubance.fr/ateliers-numeriques-2/;;ateliersnumeriques@brissacloireaubance.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements individuels
  Accompagnements collectifs
  Initiations";AcCo- AcIn- In;Gratuit;G;Tout public;Tp;Non;;;47.356084;-0.410204;Place des Acacias 49320 Brissac Loire Aubance;0.32;street;49078_0001;nan;Place des Acacias;;49320;Brissac Loire Aubance;49, Maine-et-Loire, Pays de la Loire;49050;49078.0;Charcé-Saint-Ellier-sur-Aubance;
-conum_636_;49080.0;49.0;Maine-et-Loire;Mairie de Bouchemaine;5 Quai de la Noé 49080 Bouchemaine;02 41 22 20 00;http://www.ville-bouchemaine.fr/;NC;NC;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.421686;-0.609317;5 Quai de la Noë 49080 Bouchemaine;0.95;housenumber;49035_0090_00005;5.0;Quai de la Noë;;49080;Bouchemaine;49, Maine-et-Loire, Pays de la Loire;49035;nan;;
-conum_637_;49190.0;49.0;Maine-et-Loire;Mairie de Rochefort sur Loire;Place de l'hôtel de ville 49190 Rochefort-sur-Loire;02 41 78 70 24;http://rochefortsurloire.fr/;NC;NC;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.355808;-0.654758;Place de l'Hotel de Ville 49190 Rochefort-sur-Loire;0.94;street;49259_0084;nan;Place de l'Hotel de Ville;;49190;Rochefort-sur-Loire;49, Maine-et-Loire, Pays de la Loire;49259;nan;;
-conum_638_;49770.0;49.0;Maine-et-Loire;Mairie de la Membrolle-sur-Longuenée;Place Éric Tabarly 49770 La Membrolles-sur-Longuenée;NC;https://www.longuenee-en-anjou.fr/profils/la-membrolles-sur-longuenee/;NC;NC;"Prise en main du matériel
+conum_636_;49080.0;49.0;Maine-et-Loire;Mairie de Bouchemaine;5 Quai de la Noé 49080 Bouchemaine;02 41 22 20 00;http://www.ville-bouchemaine.fr/;;;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.421686;-0.609317;5 Quai de la Noë 49080 Bouchemaine;0.95;housenumber;49035_0090_00005;5.0;Quai de la Noë;;49080;Bouchemaine;49, Maine-et-Loire, Pays de la Loire;49035;nan;;
+conum_637_;49190.0;49.0;Maine-et-Loire;Mairie de Rochefort sur Loire;Place de l'hôtel de ville 49190 Rochefort-sur-Loire;02 41 78 70 24;http://rochefortsurloire.fr/;;;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.355808;-0.654758;Place de l'Hotel de Ville 49190 Rochefort-sur-Loire;0.94;street;49259_0084;nan;Place de l'Hotel de Ville;;49190;Rochefort-sur-Loire;49, Maine-et-Loire, Pays de la Loire;49259;nan;;
+conum_638_;49770.0;49.0;Maine-et-Loire;Mairie de la Membrolle-sur-Longuenée;Place Éric Tabarly 49770 La Membrolles-sur-Longuenée;;https://www.longuenee-en-anjou.fr/profils/la-membrolles-sur-longuenee/;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements individuels
  Inititiations";AcIn- In;Gratuit;G;Tout public;Tp;Non;;;47.560629;-0.671929;Place Eric Tabarly 49770 Longuenée-en-Anjou;0.54;street;49200_0047;nan;Place Eric Tabarly;;49770;Longuenée-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49200;49200.0;La Membrolle-sur-Longuenée;
-conum_639_;49700.0;49.0;Maine-et-Loire;Mairie de Louresse-Rochemenier;8 Rue Principale 49700 Louresse-Rochemenier;NC;https://louresse-rochemenier.fr/;NC;NC;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.238463;-0.312107;8 Rue Principale 49700 Louresse-Rochemenier;0.94;housenumber;49182_0265_00008;8.0;Rue Principale;;49700;Louresse-Rochemenier;49, Maine-et-Loire, Pays de la Loire;49182;nan;;
-conum_640_;49400.0;49.0;Maine-et-Loire;Mairie de Souzay-Champigny;52 Route des Ducs d’Anjou 49400 Souzay-Champigny;02 41 51 14 16;http://www.souzay-champigny.mairie49.fr/;NC;NC;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.238318;-0.012351;52 Rue des Ducs d'Anjou 49400 Souzay-Champigny;0.83;housenumber;49341_0090_00052;52.0;Rue des Ducs d'Anjou;;49400;Souzay-Champigny;49, Maine-et-Loire, Pays de la Loire;49341;nan;;
-conum_641_;49610.0;49.0;Maine-et-Loire;Hôtel de ville - Mairie de Mûrs-Érigné;5 Chemin de Bellevue 49610 Mûrs-Érigné;02 41 79 78 77;http://www.murs-erigne.fr/;NC;NC;Démarches administratives en ligne;DeAD;Accompagnements individuels;AcIn;Gratuit;G;Tout public;Tp;Non;;;47.398965999999994;-0.5376310000000001;5 Chemin de Bellevue 49610 Mûrs-Erigné;0.95;housenumber;49223_0022_00005;5.0;Chemin de Bellevue;;49610;Mûrs-Erigné;49, Maine-et-Loire, Pays de la Loire;49223;nan;;
-conum_642_;49630.0;49.0;Maine-et-Loire;Mairie de Mazé-Milon;Place de l’Église 49630 Mazé-Milon;02 41 80 60 19;https://www.maze-milon.fr/;NC;NC;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.455715999999995;-0.272728;Place de l'Église 49630 Mazé-Milon;0.95;street;49194_0040;nan;Place de l'Église;;49630;Mazé-Milon;49, Maine-et-Loire, Pays de la Loire;49194;49194.0;Mazé;
-conum_643_;49125.0;49.0;Maine-et-Loire;Mairie de Cheffes;3 Square René Goujon 49125 Cheffes;02 41 42 61 41;NC;NC;NC;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.620612;-0.50707;3 Square René Goujon 49125 Cheffes;0.94;housenumber;49090_0159_00003;3.0;Square René Goujon;;49125;Cheffes;49, Maine-et-Loire, Pays de la Loire;49090;nan;;
-conum_644_;49770.0;49.0;Maine-et-Loire;Mairie de la Meignanne;27 Rue de la Mairie 49770 La Meignanne;02 41 32 68 13;NC;NC;NC;"Prise en main du matériel
+conum_639_;49700.0;49.0;Maine-et-Loire;Mairie de Louresse-Rochemenier;8 Rue Principale 49700 Louresse-Rochemenier;;https://louresse-rochemenier.fr/;;;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.238463;-0.312107;8 Rue Principale 49700 Louresse-Rochemenier;0.94;housenumber;49182_0265_00008;8.0;Rue Principale;;49700;Louresse-Rochemenier;49, Maine-et-Loire, Pays de la Loire;49182;nan;;
+conum_640_;49400.0;49.0;Maine-et-Loire;Mairie de Souzay-Champigny;52 Route des Ducs d’Anjou 49400 Souzay-Champigny;02 41 51 14 16;http://www.souzay-champigny.mairie49.fr/;;;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.238318;-0.012351;52 Rue des Ducs d'Anjou 49400 Souzay-Champigny;0.83;housenumber;49341_0090_00052;52.0;Rue des Ducs d'Anjou;;49400;Souzay-Champigny;49, Maine-et-Loire, Pays de la Loire;49341;nan;;
+conum_641_;49610.0;49.0;Maine-et-Loire;Hôtel de ville - Mairie de Mûrs-Érigné;5 Chemin de Bellevue 49610 Mûrs-Érigné;02 41 79 78 77;http://www.murs-erigne.fr/;;;Démarches administratives en ligne;DeAD;Accompagnements individuels;AcIn;Gratuit;G;Tout public;Tp;Non;;;47.398965999999994;-0.5376310000000001;5 Chemin de Bellevue 49610 Mûrs-Erigné;0.95;housenumber;49223_0022_00005;5.0;Chemin de Bellevue;;49610;Mûrs-Erigné;49, Maine-et-Loire, Pays de la Loire;49223;nan;;
+conum_642_;49630.0;49.0;Maine-et-Loire;Mairie de Mazé-Milon;Place de l’Église 49630 Mazé-Milon;02 41 80 60 19;https://www.maze-milon.fr/;;;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.455715999999995;-0.272728;Place de l'Église 49630 Mazé-Milon;0.95;street;49194_0040;nan;Place de l'Église;;49630;Mazé-Milon;49, Maine-et-Loire, Pays de la Loire;49194;49194.0;Mazé;
+conum_643_;49125.0;49.0;Maine-et-Loire;Mairie de Cheffes;3 Square René Goujon 49125 Cheffes;02 41 42 61 41;;;;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.620612;-0.50707;3 Square René Goujon 49125 Cheffes;0.94;housenumber;49090_0159_00003;3.0;Square René Goujon;;49125;Cheffes;49, Maine-et-Loire, Pays de la Loire;49090;nan;;
+conum_644_;49770.0;49.0;Maine-et-Loire;Mairie de la Meignanne;27 Rue de la Mairie 49770 La Meignanne;02 41 32 68 13;;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;Accompagnements individuels;AcIn;Gratuit;G;Tout public;Tp;Non;;;47.519273999999996;-0.6697270000000001;27 Rue de la Mairie 49770 Longuenée-en-Anjou;0.63;housenumber;49196_0063_00027;27.0;Rue de la Mairie;;49770;Longuenée-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49200;49196.0;La Meignanne;
-conum_645_;49770.0;49.0;Maine-et-Loire;Mairie de Pruillé;Square Luc Durand 49770 Pruillé;02 41 32 67 29;NC;NC;NC;"Prise en main du matériel
+conum_645_;49770.0;49.0;Maine-et-Loire;Mairie de Pruillé;Square Luc Durand 49770 Pruillé;02 41 32 67 29;;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements individuels
  Initiations";AcIn- In;Gratuit;G;Tout public;Tp;Non;;;47.576444;-0.663592;Square des Treilles 49770 Longuenée-en-Anjou;0.39;street;49251_0061;nan;Square des Treilles;;49770;Longuenée-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49200;49251.0;Pruillé;
-conum_646_;49770.0;49.0;Maine-et-Loire;Mairie du Plessis Macé;1 Rue d'Anjou 49770 Le Plessis-Macé;02 41 32 67 94;NC;NC;NC;"Prise en main du matériel
+conum_646_;49770.0;49.0;Maine-et-Loire;Mairie du Plessis Macé;1 Rue d'Anjou 49770 Le Plessis-Macé;02 41 32 67 94;;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements individuels
  Initiations";AcIn- In;Gratuit;G;Tout public;Tp;Non;;;47.544303;-0.673837;1 Rue d'Anjou Plessis Macé 49770 Longuenée-en-Anjou;0.87;housenumber;49242_0082_00001;1.0;Rue d'Anjou Plessis Macé;;49770;Longuenée-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49200;49242.0;Le Plessis-Macé;
-conum_647_;49700.0;49.0;Maine-et-Loire;Médiathèque de Doué-en-Anjou;3 Place Théophane Venard 49700 Doué-la-Fontaine;02 41 59 18 53;NC;NC;NC;"Prise en main du matériel
+conum_647_;49700.0;49.0;Maine-et-Loire;Médiathèque de Doué-en-Anjou;3 Place Théophane Venard 49700 Doué-la-Fontaine;02 41 59 18 53;;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Accompagnements collectifs
  Autonomie";AcCo- Au;Gratuit;G;Tout public;Tp;Non;;;47.194578;-0.276014;3 Place Théophane Vénard 49700 Doué-en-Anjou;0.63;housenumber;49125_1260_00003;3.0;Place Théophane Vénard;;49700;Doué-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49125;49125.0;Doué-la-Fontaine;
-conum_648_;49312.0;49.0;Maine-et-Loire;Médiathèque Élie Chamard;Rue Travot 49312 Cholet;02 72 77 23 41;https://e-changes.cholet.fr/default/mediatheque-elie-chamard.aspx;NC;https://e-changes.cholet.fr/default/contact.aspx;"Prise en main du matériel
+conum_648_;49312.0;49.0;Maine-et-Loire;Médiathèque Élie Chamard;Rue Travot 49312 Cholet;02 72 77 23 41;https://e-changes.cholet.fr/default/mediatheque-elie-chamard.aspx;;https://e-changes.cholet.fr/default/contact.aspx;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Echange de savoirs 
  Accompagnements collectifs
  Autonomie";AcCo- Au- EcSa;Gratuit;G;Tout public;Tp;Non;;;47.059843;-0.880202;Rue Travot 49300 Cholet;0.74;street;49099_4530;nan;Rue Travot;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_649_;49243.0;49.0;Maine-et-Loire;Centre Culturel Brassens / Médiathèque;Allée Georges Brassens 49243 Avrillé;02 41 31 11 30;https://brassens.ville-avrille.fr/mediatheque/outils-numeriques/;NC;https://brassens.ville-avrille.fr/systeme/nous-contacter/;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.494159;-0.589281;Allée Georges Brassens 49240 Avrillé;0.85;street;49015_0502;nan;Allée Georges Brassens;;49240;Avrillé;49, Maine-et-Loire, Pays de la Loire;49015;nan;;
-conum_650_;49260.0;49.0;Maine-et-Loire;Médiathèque François Mitterand / Réseau Imagin'R;1 Place Aubelle 49260 Montreuil-Bellay;02 41 38 26 91;http://www.bibliotheques.agglo-saumur.fr/;NC;mediatheque.montreuil@agglo-saumur.fr;"Prise en main du matériel
+conum_649_;49243.0;49.0;Maine-et-Loire;Centre Culturel Brassens / Médiathèque;Allée Georges Brassens 49243 Avrillé;02 41 31 11 30;https://brassens.ville-avrille.fr/mediatheque/outils-numeriques/;;https://brassens.ville-avrille.fr/systeme/nous-contacter/;Lecture & activités;LeAC;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.494159;-0.589281;Allée Georges Brassens 49240 Avrillé;0.85;street;49015_0502;nan;Allée Georges Brassens;;49240;Avrillé;49, Maine-et-Loire, Pays de la Loire;49015;nan;;
+conum_650_;49260.0;49.0;Maine-et-Loire;Médiathèque François Mitterand / Réseau Imagin'R;1 Place Aubelle 49260 Montreuil-Bellay;02 41 38 26 91;http://www.bibliotheques.agglo-saumur.fr/;;mediatheque.montreuil@agglo-saumur.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Accompagnements collectifs
  Autonomie";AcCo- Au;Gratuit;G;Tout public;Tp;Non;;;47.129185;-0.153595;1 Place Rene Aubelle 49260 Montreuil-Bellay;0.84;housenumber;49215_1503_00001;1.0;Place Rene Aubelle;;49260;Montreuil-Bellay;49, Maine-et-Loire, Pays de la Loire;49215;nan;;
-conum_651_;49123.0;49.0;Maine-et-Loire;MSAP Ingrandes (Bureau de poste);6 Rue Michel 49123 Ingrandes;02 41 22 05 08;https://www.maisondeservicesaupublic.fr/content/ingrandes-bureau-de-poste;NC;msap.ingrandes@laposte.net;Démarches administratives en ligne;DeAD;"Autonomie 
+conum_651_;49123.0;49.0;Maine-et-Loire;MSAP Ingrandes (Bureau de poste);6 Rue Michel 49123 Ingrandes;02 41 22 05 08;https://www.maisondeservicesaupublic.fr/content/ingrandes-bureau-de-poste;;msap.ingrandes@laposte.net;Démarches administratives en ligne;DeAD;"Autonomie 
  Accompagnements individuels";AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.404602000000004;-0.9213540000000001;6 Rue Michel 49123 Ingrandes-Le Fresne sur Loire;0.61;housenumber;49160_0280_00006;6.0;Rue Michel;;49123;Ingrandes-Le Fresne sur Loire;49, Maine-et-Loire, Pays de la Loire;49160;49160.0;Ingrandes;
-conum_652_;49490.0;49.0;Maine-et-Loire;MSAP Noyant-Villages;1 Rue d'Anjou 49490 Noyant;02 41 84 13 15;https://www.noyant-villages.fr/;NC;NC;Démarches administratives en ligne;DeAD;"Autonomie 
+conum_652_;49490.0;49.0;Maine-et-Loire;MSAP Noyant-Villages;1 Rue d'Anjou 49490 Noyant;02 41 84 13 15;https://www.noyant-villages.fr/;;;Démarches administratives en ligne;DeAD;"Autonomie 
  Accompagnements individuels";AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.510992;0.11913599999999999;1 Rue d'Anjou 49490 Noyant-Villages;0.71;housenumber;49228_0023_00001;1.0;Rue d'Anjou;;49490;Noyant-Villages;49, Maine-et-Loire, Pays de la Loire;49228;49228.0;Noyant;
-conum_653_;49420.0;49.0;Maine-et-Loire;MSAP Ombrée d'Anjou;36 Rue du maréchal Foch 49420 Pouancé;02 41 92 48 01;https://www.ombreedanjou.fr/;NC;msap@ombreedanjou.fr;Démarches administratives en ligne;DeAD;"Autonomie 
+conum_653_;49420.0;49.0;Maine-et-Loire;MSAP Ombrée d'Anjou;36 Rue du maréchal Foch 49420 Pouancé;02 41 92 48 01;https://www.ombreedanjou.fr/;;msap@ombreedanjou.fr;Démarches administratives en ligne;DeAD;"Autonomie 
  Accompagnements individuels";AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.740331;-1.172947;36 Rue du Maréchal Foch 49420 Ombrée d'Anjou;0.75;housenumber;49248_0600_00036;36.0;Rue du Maréchal Foch;;49420;Ombrée d'Anjou;49, Maine-et-Loire, Pays de la Loire;49248;49248.0;Pouancé;
-conum_654_;49150.0;49.0;Maine-et-Loire;MSAP Baugé en Anjou;15 avenue Legoulz de la Boulaie 49150 Baugé;02 41 82 77 52;https://www.baugeenanjou.fr/;NC;msp@baugeenanjou.fr;Démarches administratives en ligne;DeAD;"Autonomie 
+conum_654_;49150.0;49.0;Maine-et-Loire;MSAP Baugé en Anjou;15 avenue Legoulz de la Boulaie 49150 Baugé;02 41 82 77 52;https://www.baugeenanjou.fr/;;msp@baugeenanjou.fr;Démarches administratives en ligne;DeAD;"Autonomie 
  Accompagnements individuels";AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.538005;-0.097096;15 Avenue Legoulz de la Boulaie 49150 Baugé-en-Anjou;0.82;housenumber;49018_1140_00015;15.0;Avenue Legoulz de la Boulaie;;49150;Baugé-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49018;49018.0;Baugé;
-conum_655_;49330.0;49.0;Maine-et-Loire;MSAP de Châteauneuf-Sur-Sarthe;2 rue des Fontaines 49330 Châteauneuf-sur-Sarthe;02 41 24 10 66;https://www.maisondeservicesaupublic.fr/content/des-vallees-du-haut-anjou-chateauneuf-sur-sarthe;NC;msap@valleesduhautanjou.fr;"Prise en main du matériel
+conum_655_;49330.0;49.0;Maine-et-Loire;MSAP de Châteauneuf-Sur-Sarthe;2 rue des Fontaines 49330 Châteauneuf-sur-Sarthe;02 41 24 10 66;https://www.maisondeservicesaupublic.fr/content/des-vallees-du-haut-anjou-chateauneuf-sur-sarthe;;msap@valleesduhautanjou.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements collectifs
  Accompagnements individuels
  Autonomie";AcCo- AcIn- Au;Gratuit;G;"Tout public
  Demandeur Emploi";Tp- De;Non;;;47.679666999999995;-0.487048;2 Rue des Moulins (Châteauneuf-sur-Sarthe) 49330 Les Hauts-d'Anjou;0.67;housenumber;49080_0070_00002;2.0;Rue des Moulins (Châteauneuf-sur-Sarthe);;49330;Les Hauts-d'Anjou;49, Maine-et-Loire, Pays de la Loire;49080;49080.0;Châteauneuf-sur-Sarthe;
-conum_656_;49110.0;49.0;Maine-et-Loire;Pôle social;17 rue Saint-Nicolas 49110 Montrevault;02 41 30 06 32;NC;NC;NC;Démarches administratives en ligne;DeAD;"Autonomie 
+conum_656_;49110.0;49.0;Maine-et-Loire;Pôle social;17 rue Saint-Nicolas 49110 Montrevault;02 41 30 06 32;;;;Démarches administratives en ligne;DeAD;"Autonomie 
  Accompagnements individuels";AcIn- Au;Gratuit;G;Adultes / Familles;Af;Non;;;47.259440999999995;-1.047773;17 Rue Saint-nicolas 49110 Montrevault-sur-Èvre;0.77;housenumber;49218_0300_00017;17.0;Rue Saint-nicolas;;49110;Montrevault-sur-Èvre;49, Maine-et-Loire, Pays de la Loire;49218;49218.0;Montrevault;
-conum_657_;49130.0;49.0;Maine-et-Loire;Le Trait d'Union / Espace Social et Jeunesse;45 Rue Abel Boutin-Desvignes 49130 Les Ponts-de-Cé;02 41 79 75 72;https://www.lespontsdece.fr/services-demarches/enfant-jeunesse/jeunesse/point-information-jeunesse;NC;pij@ville-lespontsdece.fr;Premiers pas sur internet;PrIn;Autonomie;Au;Gratuit;G;Tout Public;Tp;Non;;;47.437822;-0.528352;45 Rue Abel Boutin Desvignes 49130 Les Ponts-de-Cé;0.95;housenumber;49246_0015_00045;45.0;Rue Abel Boutin Desvignes;;49130;Les Ponts-de-Cé;49, Maine-et-Loire, Pays de la Loire;49246;nan;;
-conum_658_;49400.0;49.0;Maine-et-Loire;L'@telier;31 Rue du Portail Louis 49400 Saumur;09 50 18 57 23;https://atelier.city/;NC;contact@atelier.city;Culture numérique;CuNu;Autonomie;Au;NC;;Tout public;Tp;Non;;;47.258474;-0.078659;31 Rue du Portail Louis 49400 Saumur;0.95;housenumber;49328_2020_00031;31.0;Rue du Portail Louis;;49400;Saumur;49, Maine-et-Loire, Pays de la Loire;49328;49328.0;Saumur;
-conum_659_;49070.0;49.0;Maine-et-Loire;Mairie de Saint Lambert-de-la-Potherie;4 Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;02 41 77 76 72;https://www.saintlambertlapotherie.fr/;NC;NC;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.482529;-0.677983;4 Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;0.94;housenumber;49294_0037_00004;4.0;Rue Félix Pauger;;49070;Saint-Lambert-la-Potherie;49, Maine-et-Loire, Pays de la Loire;49294;nan;;
-conum_660_;49730.0;49.0;Maine-et-Loire;Rencontre des Amateurs Varennais autour de l'Informatique;10 Rue de la Loire 49730 Varennes-sur-Loire;02 41 53 67 65;NC;NC;ravi.varennes@orange.fr;"Prise en main du matériel
+conum_657_;49130.0;49.0;Maine-et-Loire;Le Trait d'Union / Espace Social et Jeunesse;45 Rue Abel Boutin-Desvignes 49130 Les Ponts-de-Cé;02 41 79 75 72;https://www.lespontsdece.fr/services-demarches/enfant-jeunesse/jeunesse/point-information-jeunesse;;pij@ville-lespontsdece.fr;Premiers pas sur internet;PrIn;Autonomie;Au;Gratuit;G;Tout Public;Tp;Non;;;47.437822;-0.528352;45 Rue Abel Boutin Desvignes 49130 Les Ponts-de-Cé;0.95;housenumber;49246_0015_00045;45.0;Rue Abel Boutin Desvignes;;49130;Les Ponts-de-Cé;49, Maine-et-Loire, Pays de la Loire;49246;nan;;
+conum_658_;49400.0;49.0;Maine-et-Loire;L'@telier;31 Rue du Portail Louis 49400 Saumur;09 50 18 57 23;https://atelier.city/;;contact@atelier.city;Culture numérique;CuNu;Autonomie;Au;;;Tout public;Tp;Non;;;47.258474;-0.078659;31 Rue du Portail Louis 49400 Saumur;0.95;housenumber;49328_2020_00031;31.0;Rue du Portail Louis;;49400;Saumur;49, Maine-et-Loire, Pays de la Loire;49328;49328.0;Saumur;
+conum_659_;49070.0;49.0;Maine-et-Loire;Mairie de Saint Lambert-de-la-Potherie;4 Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;02 41 77 76 72;https://www.saintlambertlapotherie.fr/;;;Démarches administratives en ligne;DeAD;Autonomie;Au;Gratuit;G;Tout public;Tp;Non;;;47.482529;-0.677983;4 Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;0.94;housenumber;49294_0037_00004;4.0;Rue Félix Pauger;;49070;Saint-Lambert-la-Potherie;49, Maine-et-Loire, Pays de la Loire;49294;nan;;
+conum_660_;49730.0;49.0;Maine-et-Loire;Rencontre des Amateurs Varennais autour de l'Informatique;10 Rue de la Loire 49730 Varennes-sur-Loire;02 41 53 67 65;;;ravi.varennes@orange.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet";PrMA--PrLo--PrIn;Formations collectives;FoCo;"Adhesion
  Payant";P;Tout public;Tp;Non;;;47.23684;0.052485000000000004;10 Rue de la Loire 49730 Varennes-sur-Loire;0.94;housenumber;49361_0450_00010;10.0;Rue de la Loire;;49730;Varennes-sur-Loire;49, Maine-et-Loire, Pays de la Loire;49361;nan;;
-conum_661_;49080.0;49.0;Maine-et-Loire;Bouchemaine Multi Loisirs (BML);3 Rue Chevrière 49080 Bouchemaine;06 71 01 66 54;https://www.bml49.fr;NC;https://www.bml49.fr/contact/contacter-l-association.html;"Prise en main du matériel
+conum_661_;49080.0;49.0;Maine-et-Loire;Bouchemaine Multi Loisirs (BML);3 Rue Chevrière 49080 Bouchemaine;06 71 01 66 54;https://www.bml49.fr;;https://www.bml49.fr/contact/contacter-l-association.html;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approndissement logiciels
  Appronfondissement internet";PrMa--PrLo--PrIn--ApLo--ApIn;Formations collectives;FoCo;"Adhesion
  Payant";P;Tout public;Tp;Non;;;47.423516;-0.6090840000000001;3 Rue Chevrière 49080 Bouchemaine;0.95;housenumber;49035_0042_00003;3.0;Rue Chevrière;;49080;Bouchemaine;49, Maine-et-Loire, Pays de la Loire;49035;nan;;
-conum_662_;49070.0;49.0;Maine-et-Loire;Beaucouzé Net;Rue du Prieuré 49070 Beaucouzé;06 09 50 58 13;https://beaucouze-net.jimdofree.com/;NC;https://beaucouze-net.jimdofree.com/l-association-beaucouz%C3%A9-net/contact-et-localisation/;"Prise en main du matériel
+conum_662_;49070.0;49.0;Maine-et-Loire;Beaucouzé Net;Rue du Prieuré 49070 Beaucouzé;06 09 50 58 13;https://beaucouze-net.jimdofree.com/;;https://beaucouze-net.jimdofree.com/l-association-beaucouz%C3%A9-net/contact-et-localisation/;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approndissement logiciels
  Appronfondissement internet";PrMa--PrLo--PrIn--ApLo--ApIn;"Accompagnements collectifs
  Initiations";AcCo- In;Gratuit;G;"Séniors
  Tout public";Tp- S;Non;;;47.474651;-0.6329600000000001;Rue du Prieuré 49070 Beaucouzé;0.95;street;49020_0090;nan;Rue du Prieuré;;49070;Beaucouzé;49, Maine-et-Loire, Pays de la Loire;49020;nan;;
-conum_663_;49070.0;49.0;Maine-et-Loire;Mission Jeunesse Aînés;1 Chemin de la Houssaye 49070 Beaucouzé;02 41 72 81 89;http://www.beaucouze.fr/services-aux-habitants/education-jeunesse/mission-jeunesse-aines/;NC;mja@beaucouze.fr;"Prise en main du matériel
+conum_663_;49070.0;49.0;Maine-et-Loire;Mission Jeunesse Aînés;1 Chemin de la Houssaye 49070 Beaucouzé;02 41 72 81 89;http://www.beaucouze.fr/services-aux-habitants/education-jeunesse/mission-jeunesse-aines/;;mja@beaucouze.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approndissement logiciels
  Appronfondissement internet";PrMa--PrLo--PrIn--ApLo--ApIn;"Accompagnements individuels
  Accompagnements collectifs
  Initiations";AcCo- AcIn- In;Gratuit;G;Seniors;S;Non;;;47.476155;-0.639302;Chemin de la Houssaie 49070 Beaucouzé;0.81;street;49020_0063;nan;Chemin de la Houssaie;;49070;Beaucouzé;49, Maine-et-Loire, Pays de la Loire;49020;nan;;
-conum_664_;49300.0;49.0;Maine-et-Loire;Bibliothèque universitaire Cholet;Boulevard Pierre Lecoq 49300 Cholet;02 72 77 23 39;https://e-changes.cholet.fr/default/bibliotheque-universitaire.aspx;NC;https://e-changes.cholet.fr/default/contact-bibliotheque-universitaire.aspx;"Premiers pas sur internet 
+conum_664_;49300.0;49.0;Maine-et-Loire;Bibliothèque universitaire Cholet;Boulevard Pierre Lecoq 49300 Cholet;02 72 77 23 39;https://e-changes.cholet.fr/default/bibliotheque-universitaire.aspx;;https://e-changes.cholet.fr/default/contact-bibliotheque-universitaire.aspx;"Premiers pas sur internet 
  Prise en main des logiciels de bases
  Prise en main du matériel 
   Lecture & activités";PrMa--PrLo--PrIn--LeAC;"Accompagnements collectifs
  Autonomie";AcCo- Au;Gratuit;G;Tout public;Tp;Non;;;47.049547;-0.8701200000000001;Boulevard Pierre Lecoq 49300 Cholet;0.96;street;49099_3581;nan;Boulevard Pierre Lecoq;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_665_;49770.0;49.0;Maine-et-Loire;CCAS Longuenée-en-Anjou;Place Eric Tabarly 49770 La Membrolles-sur-Longuenée;02 41 32 67 58;https://www.longuenee-en-anjou.fr/presentation-du-ccas/;NC;NC;"Premiers pas sur internet 
+conum_665_;49770.0;49.0;Maine-et-Loire;CCAS Longuenée-en-Anjou;Place Eric Tabarly 49770 La Membrolles-sur-Longuenée;02 41 32 67 58;https://www.longuenee-en-anjou.fr/presentation-du-ccas/;;;"Premiers pas sur internet 
  Culture numérique";PrIn--CuNu;"Autonomie 
  Accompagnements individuels";AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.560629;-0.671929;Place Eric Tabarly 49770 Longuenée-en-Anjou;0.54;street;49200_0047;nan;Place Eric Tabarly;;49770;Longuenée-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49200;49200.0;La Membrolle-sur-Longuenée;
-conum_666_;49070.0;49.0;Maine-et-Loire;CCAS Saint-Lambert-de-la-Potherie;4 Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;02 41 77 55 06;https://www.saintlambertlapotherie.fr/services-aux-habitants/solidarite-et-sante/centre-communale-daction-sociale-ccas/;NC;ccas@saintlambertlapotherie.fr;"Prise en main du matériel
+conum_666_;49070.0;49.0;Maine-et-Loire;CCAS Saint-Lambert-de-la-Potherie;4 Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;02 41 77 55 06;https://www.saintlambertlapotherie.fr/services-aux-habitants/solidarite-et-sante/centre-communale-daction-sociale-ccas/;;ccas@saintlambertlapotherie.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Autonomie 
  Initiations";Au- In;Gratuit;G;Tout public;Tp;Non;;;47.482529;-0.677983;4 Rue Félix Pauger 49070 Saint-Lambert-la-Potherie;0.94;housenumber;49294_0037_00004;4.0;Rue Félix Pauger;;49070;Saint-Lambert-la-Potherie;49, Maine-et-Loire, Pays de la Loire;49294;nan;;
-conum_667_;49300.0;49.0;Maine-et-Loire;CCAS de Cholet;24 Avenue Maudet 49300 Cholet;02 72 77 24 30;NC;NC;NC;Démarches administratives en ligne;DeAD;Accompagnements individuels;AcIn;Gratuit;G;Adultes / Familles;Af;Non;;;47.05692;-0.8796370000000001;24 Avenue Maudet 49300 Cholet;0.96;housenumber;49099_2920_00024;24.0;Avenue Maudet;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_668_;49460.0;49.0;Maine-et-Loire;CS Espace Solidarité Nelson Mandela;1 Allée Henri David 49460 Montreuil-Juigné;02 41 31 85 10;http://www.ville-montreuil-juigne.fr/Social-sante/Espace-solidarite-Nelson-Mandela;NC;mcoelho@vile-montreuil-juigne fr;"Premiers pas sur internet 
+conum_667_;49300.0;49.0;Maine-et-Loire;CCAS de Cholet;24 Avenue Maudet 49300 Cholet;02 72 77 24 30;;;;Démarches administratives en ligne;DeAD;Accompagnements individuels;AcIn;Gratuit;G;Adultes / Familles;Af;Non;;;47.05692;-0.8796370000000001;24 Avenue Maudet 49300 Cholet;0.96;housenumber;49099_2920_00024;24.0;Avenue Maudet;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
+conum_668_;49460.0;49.0;Maine-et-Loire;CS Espace Solidarité Nelson Mandela;1 Allée Henri David 49460 Montreuil-Juigné;02 41 31 85 10;http://www.ville-montreuil-juigne.fr/Social-sante/Espace-solidarite-Nelson-Mandela;;mcoelho@vile-montreuil-juigne fr;"Premiers pas sur internet 
  Prise en main du matériel";PrMa--PrIn;Autonomie;Au;;;Tout public;;Non;;;47.528719;-0.6098399999999999;1 Allee Henri David 49460 Montreuil-Juigné;0.95;housenumber;49214_0236_00001;1.0;Allee Henri David;;49460;Montreuil-Juigné;49, Maine-et-Loire, Pays de la Loire;49214;nan;;
-conum_669_;49150.0;49.0;Maine-et-Loire;CS Espace Baugeois;Square du Pont des Fées 49150 Baugé;02 41 89 84 00;http://espacebaugeois.org/web/?page_id=164;NC;centresocial@espacebaugeois.org;"Prise en main du matériel
+conum_669_;49150.0;49.0;Maine-et-Loire;CS Espace Baugeois;Square du Pont des Fées 49150 Baugé;02 41 89 84 00;http://espacebaugeois.org/web/?page_id=164;;centresocial@espacebaugeois.org;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internet";PrMA---PrLo--PrIn--Aplo--Apln;"Autonomie
  Initiations 
  Accompagnements collectifs";AcCo- In- Au;Adhesion;;Tout public;Tp;Non;;;47.538645;-0.096139;Square du Pont des Fées 49150 Baugé-en-Anjou;0.79;street;49018_1582;nan;Square du Pont des Fées;;49150;Baugé-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49018;49018.0;Baugé;
-conum_670_;49418.0;49.0;Maine-et-Loire;Médiathèque de Saumur / Réseau Imagin'R;Rue Célestin-Port 49418 Saumur;02 41 51 06 12;http://www.bibliotheques.agglo-saumur.fr;NC;bibliotheques.contact@agglo-saumur.fr;"Prise en main du matériel
+conum_670_;49418.0;49.0;Maine-et-Loire;Médiathèque de Saumur / Réseau Imagin'R;Rue Célestin-Port 49418 Saumur;02 41 51 06 12;http://www.bibliotheques.agglo-saumur.fr;;bibliotheques.contact@agglo-saumur.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Culture numérique 
  Lecture & activités";PrMa--PrLo--PrIn--CuNu--LeAc;"Accompagnements collectifs
  Autonomie";AcCo- Au;Gratuit;G;Tout public;Tp;Non;;;47.254558;-0.081975;Rue Célestin Port 49400 Saumur;0.78;street;49328_0400;nan;Rue Célestin Port;;49400;Saumur;49, Maine-et-Loire, Pays de la Loire;49328;49328.0;Saumur;
-conum_671_;49300.0;49.0;Maine-et-Loire;Service Emploi (Agglomération du Choletais);48 Rue des Bons Enfants 49300 Cholet;02 44 09 25 90;NC;NC;NC;"Prise en main du matériel
+conum_671_;49300.0;49.0;Maine-et-Loire;Service Emploi (Agglomération du Choletais);48 Rue des Bons Enfants 49300 Cholet;02 44 09 25 90;;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet";PrMA--PrLo--PrIn;Accompagnements individuels;AcIn;Gratuit;G;"Demandeurs Emploi
  Salaries";De- Sa;Non;;;47.064953;-0.8767530000000001;48 Rue des Bons Enfants 49300 Cholet;0.96;housenumber;49099_0570_00048;48.0;Rue des Bons Enfants;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_672_;49300.0;49.0;Maine-et-Loire;CS K'Leidoscope;13 Avenue du Président Kenedy 49300 Cholet;02 41 55 55 54;https://www.cholet.fr/chaines/dossier_421_k+leidoscope+-+centre+socio-culturel.html;NC;centre.kleidoscope@gmail.com;"Prise en main du matériel
+conum_672_;49300.0;49.0;Maine-et-Loire;CS K'Leidoscope;13 Avenue du Président Kenedy 49300 Cholet;02 41 55 55 54;https://www.cholet.fr/chaines/dossier_421_k+leidoscope+-+centre+socio-culturel.html;;centre.kleidoscope@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet";PrMa--PrLo--PrIn;"Accompagnements individuels
  Accompagnements collectifs";AcCo- AcIn;Adhesion;;Tout public;Tp;Non;;;47.04724;-0.891114;13 Avenue du Président Kennedy 49300 Cholet;0.94;housenumber;49099_3695_00013;13.0;Avenue du Président Kennedy;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_673_;49300.0;49.0;Maine-et-Loire;CS Horizon;4 Allée des Aigles 49300 Cholet;02 41 65 13 88;http://centresocial-horizon.fr/;NC;accueil@centresocial-horizon.fr;"Prise en main du matériel
+conum_673_;49300.0;49.0;Maine-et-Loire;CS Horizon;4 Allée des Aigles 49300 Cholet;02 41 65 13 88;http://centresocial-horizon.fr/;;accueil@centresocial-horizon.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Echange de savoir
  Accompagnements individuels
  Autonomie";AcIn- Au- EcSa;Gratuit;G;Tout public;Tp;Non;;;47.045406;-0.900774;4 Allée des Aigles 49300 Cholet;0.96;housenumber;49099_0017_00004;4.0;Allée des Aigles;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_674_;49400.0;49.0;Maine-et-Loire;CS Jacques Percereau;925 Avenue François Mitterand 49400 Saumur;02 41 53 51 51;https://www.ville-saumur.fr/sport-et-loisirs/espace-jacques-percereau;NC;n.perrot@ville-saumur.fr;"Prise en main du matériel
+conum_674_;49400.0;49.0;Maine-et-Loire;CS Jacques Percereau;925 Avenue François Mitterand 49400 Saumur;02 41 53 51 51;https://www.ville-saumur.fr/sport-et-loisirs/espace-jacques-percereau;;n.perrot@ville-saumur.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Démarches administratives en ligne";PrMA---PrLo--PrIn--DeAD;"Accompagnements collectifs
  Accompagnements individuels
  Autonomie";AcCo- AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.246103999999995;-0.077191;925 Avenue Francois Mitterrand 49400 Saumur;0.93;housenumber;49328_1045_00925;925.0;Avenue Francois Mitterrand;;49400;Saumur;49, Maine-et-Loire, Pays de la Loire;49328;49328.0;Saumur;
-conum_675_;49300.0;49.0;Maine-et-Loire;CS Pasteur;1 Rue du Docteur Maillard 49300 Cholet;02 41 65 01 05;https://cspasteur.centres-sociaux.fr/presentation/;NC;cs.pasteur@wanadoo.fr;"Prise en main du matériel
+conum_675_;49300.0;49.0;Maine-et-Loire;CS Pasteur;1 Rue du Docteur Maillard 49300 Cholet;02 41 65 01 05;https://cspasteur.centres-sociaux.fr/presentation/;;cs.pasteur@wanadoo.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Culture numérique";PrMa--PrLo--PrIn--CuNu;"Accompagnements individuels
  Accompagnements collectifs
  Autonomie";AcC;Gratuit;G;Tout public;Tp;Non;;;47.062519;-0.894057;1 Rue du Docteur Emile Maillard 49300 Cholet;0.83;housenumber;49099_1505_00001;1.0;Rue du Docteur Emile Maillard;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_676_;49307.0;49.0;Maine-et-Loire;CS Le Verger;Rue du Bois Régnier 49307 Cholet;02 41 65 14 99;https://cs-leverger.fr/;NC;verger.multimédia@wanadoo.fr;"Prise en main du matériel
+conum_676_;49307.0;49.0;Maine-et-Loire;CS Le Verger;Rue du Bois Régnier 49307 Cholet;02 41 65 14 99;https://cs-leverger.fr/;;verger.multimédia@wanadoo.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
@@ -4576,7 +4576,7 @@ conum_676_;49307.0;49.0;Maine-et-Loire;CS Le Verger;Rue du Bois Régnier 49307 C
  Accompagnements collectifs
  Echange de savoirs
  Autonomie";AcCo- AcIn- Au- EcSa;Adhesion;;Tout public;Tp;Non;;;47.053208000000005;-0.8532850000000001;Rue du Bois Régnier 49300 Cholet;0.85;street;49099_0539;nan;Rue du Bois Régnier;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_677_;49400.0;49.0;Maine-et-Loire;SCOOPE Saumur;325 Rue Robert Amy 49400 Saumur;09 66 44 99 29;http://www.association-scoope.fr;NC;scoope@orange.fr;"Prise en main du matériel
+conum_677_;49400.0;49.0;Maine-et-Loire;SCOOPE Saumur;325 Rue Robert Amy 49400 Saumur;09 66 44 99 29;http://www.association-scoope.fr;;scoope@orange.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
@@ -4587,28 +4587,28 @@ conum_677_;49400.0;49.0;Maine-et-Loire;SCOOPE Saumur;325 Rue Robert Amy 49400 Sa
  Initiations
  Autonomie";FoCo- AcCo- AcIn- In- Au;Adhesion;;"Tout public
  Demandeurs Emploi";Tp- De;Non;;;47.243854;-0.074757;325 Rue Robert Amy 49400 Saumur;0.95;housenumber;49328_2210_00325;325.0;Rue Robert Amy;;49400;Saumur;49, Maine-et-Loire, Pays de la Loire;49328;49328.0;Saumur;
-conum_678_;49300.0;49.0;Maine-et-Loire;Maison départementale des solidarité du Choletais site de Maudet;26 Avenue Maudet 49300 Cholet;02 41 46 20 00;NC;NC;NC;Démarches administratives en ligne;DeAD;"Accompagnements individuels
+conum_678_;49300.0;49.0;Maine-et-Loire;Maison départementale des solidarité du Choletais site de Maudet;26 Avenue Maudet 49300 Cholet;02 41 46 20 00;;;;Démarches administratives en ligne;DeAD;"Accompagnements individuels
  Autonomie";AcIn- Au;Gratuit;G;Adultes / Familles;Af;Non;;;47.056897;-0.8796879999999999;26 Avenue Maudet 49300 Cholet;0.96;housenumber;49099_2920_00026;26.0;Avenue Maudet;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_679_;49319.0;49.0;Maine-et-Loire;Maison départementales des Solidarités de Cholet Ouest;28 Rue Paul Bouyx 49319 Cholet;02 41 46 20 00;NC;NC;NC;Démarches administratives en ligne;DeAD;"Accompagnements individuels
+conum_679_;49319.0;49.0;Maine-et-Loire;Maison départementales des Solidarités de Cholet Ouest;28 Rue Paul Bouyx 49319 Cholet;02 41 46 20 00;;;;Démarches administratives en ligne;DeAD;"Accompagnements individuels
  Autonomie";AcIn- Au;Gratuit;G;Adultes / Familles;Af;Non;;;47.062234000000004;-0.892882;28 Rue Paul Bouyx 49300 Cholet;0.79;housenumber;49099_3330_00028;28.0;Rue Paul Bouyx;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_680_;49400.0;49.0;Maine-et-Loire;AFRIEJ Culture et Loisirs;8 Rue de l'Échallier 49400 Distré;02 41 50 46 45;https://www.famillesrurales.org/afriej/;NC;animationfamille.afriej@gmail.com;"Prise en main du matériel
+conum_680_;49400.0;49.0;Maine-et-Loire;AFRIEJ Culture et Loisirs;8 Rue de l'Échallier 49400 Distré;02 41 50 46 45;https://www.famillesrurales.org/afriej/;;animationfamille.afriej@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet";PrMa--PrLo--PrIn;Accompagnements collectifs;AcCo;Gratuit;G;Tout public;Tp;Non;;;47.220566999999996;-0.11384100000000001;8 Rue de l'Echallier 49400 Distré;0.94;housenumber;49123_0140_00008;8.0;Rue de l'Echallier;;49400;Distré;49, Maine-et-Loire, Pays de la Loire;49123;nan;;
-conum_681_;49340.0;49.0;Maine-et-Loire;CSI Chloro'fil;40bis Rue de la Libération 49340 Nuaillé;02 41 55 93 41;https://csichlorofil.centres-sociaux.fr/;NC;chlorofil@wanadoo.fr;"Prise en main du matériel
+conum_681_;49340.0;49.0;Maine-et-Loire;CSI Chloro'fil;40bis Rue de la Libération 49340 Nuaillé;02 41 55 93 41;https://csichlorofil.centres-sociaux.fr/;;chlorofil@wanadoo.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet";PrMa--PrLo--PrIn;Echange de savoirs Autonomie;Au- EcSa;Gratuit;G;Tout public;Tp;Non;;;47.096623;-0.788747;40 bis Rue de la Libération 49340 Nuaillé;0.87;housenumber;49231_0100_00040_bis;nan;Rue de la Libération;;49340;Nuaillé;49, Maine-et-Loire, Pays de la Loire;49231;nan;;
-conum_682_;49280.0;49.0;Maine-et-Loire;CSI Ocsygène;18 Rue d’Anjou 49280 Saint-Léger-sous-Cholet;02 41 56 26 10;https://ocsigene.centres-sociaux.fr/;NC;csinter@wanadoo.fr;"Prise en main du matériel
+conum_682_;49280.0;49.0;Maine-et-Loire;CSI Ocsygène;18 Rue d’Anjou 49280 Saint-Léger-sous-Cholet;02 41 56 26 10;https://ocsigene.centres-sociaux.fr/;;csinter@wanadoo.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Echange de savoirs
  Accompagnements collectifs
  Autonomie";AcCo- Au- EcSa;Adhesion;;Tout public;Tp;Non;;;47.092791;-0.9100450000000001;18 Rue d'Anjou 49280 Saint-Léger-sous-Cholet;0.94;housenumber;49299_0002_00018;18.0;Rue d'Anjou;;49280;Saint-Léger-sous-Cholet;49, Maine-et-Loire, Pays de la Loire;49299;nan;;
-conum_683_;49700.0;49.0;Maine-et-Loire;CS du Douessin;5 Place justice de la Paix 49700 Doué-le-Fontaine;02 41 59 77 09;https://cscdouessin.centres-sociaux.fr/;NC;contactsdoue@orange.fr;"Prise en main du matériel
+conum_683_;49700.0;49.0;Maine-et-Loire;CS du Douessin;5 Place justice de la Paix 49700 Doué-le-Fontaine;02 41 59 77 09;https://cscdouessin.centres-sociaux.fr/;;contactsdoue@orange.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements collectifs
  Autonomie";AcCo- Au;Adhesion;;Tout public;Tp;Non;;;47.193352000000004;-0.275522;5 Place de la Justice de Paix 49700 Doué-en-Anjou;0.65;housenumber;49125_0640_00005;5.0;Place de la Justice de Paix;;49700;Doué-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49125;49125.0;Doué-la-Fontaine;
-conum_684_;49630.0;49.0;Maine-et-Loire;AICLA;8 Rue Bellevue 49630 Corné;02 41 68 15 72;http://www.aidal.fr/;NC;secretariat@aidal.fr;"Prise en main du matériel
+conum_684_;49630.0;49.0;Maine-et-Loire;AICLA;8 Rue Bellevue 49630 Corné;02 41 68 15 72;http://www.aidal.fr/;;secretariat@aidal.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
@@ -4619,7 +4619,7 @@ conum_684_;49630.0;49.0;Maine-et-Loire;AICLA;8 Rue Bellevue 49630 Corné;02 41 6
  Gratuit (+ de 60 ans)
  Payant";P;"Tout public
  Seniors";Tp- S;Non;;;47.472125;-0.35128000000000004;Rue de Bellevue 49800 Loire-Authion;0.45;street;49106_0022;nan;Rue de Bellevue;;49800;Loire-Authion;49, Maine-et-Loire, Pays de la Loire;49307;49106.0;Corné;
-conum_685_;49170.0;49.0;Maine-et-Loire;CSI L'Atelier;5 Rue de Savennières 49170 Saint-Georges-sur-Loire;02 41 39 17 11;http://csi-latelier.fr;NC;contact@csi-latelier.fr;"Prise en main du matériel
+conum_685_;49170.0;49.0;Maine-et-Loire;CSI L'Atelier;5 Rue de Savennières 49170 Saint-Georges-sur-Loire;02 41 39 17 11;http://csi-latelier.fr;;contact@csi-latelier.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
@@ -4629,18 +4629,18 @@ conum_685_;49170.0;49.0;Maine-et-Loire;CSI L'Atelier;5 Rue de Savennières 49170
  Accompagnements individuels
  Initiations 
  Autonomie";AcCo- AcIn- In- Au;Adhesion;;Tout public;Tp;Non;;;47.406964;-0.757777;5 Rue de Savennières 49170 Saint-Georges-sur-Loire;0.94;housenumber;49283_0101_00005;5.0;Rue de Savennières;;49170;Saint-Georges-sur-Loire;49, Maine-et-Loire, Pays de la Loire;49283;nan;;
-conum_686_;49380.0;49.0;Maine-et-Loire;CSCI des Coteaux du Layon;Neufbourg 49380 Thouarcé;02 41 54 06 44;https://coteauxdulayon.centres-sociaux.fr/centre-socioculturel/;NC;csc thouarce@wanadoo.fr;Démarches administratives en ligne;DeAD;"Accompagnements individuels
+conum_686_;49380.0;49.0;Maine-et-Loire;CSCI des Coteaux du Layon;Neufbourg 49380 Thouarcé;02 41 54 06 44;https://coteauxdulayon.centres-sociaux.fr/centre-socioculturel/;;csc thouarce@wanadoo.fr;Démarches administratives en ligne;DeAD;"Accompagnements individuels
  Accompagnements collectifs
  Initiations 
  Autonomie";AcCo- AcIn- In- Au;Adhesion;;Tout public;Tp;Non;;;47.245976;-0.541366;Moulin Brule (Thouarcé) 49380 Bellevigne-en-Layon;0.4;locality;49345_b146;nan;Moulin Brule (Thouarcé);;49380;Bellevigne-en-Layon;49, Maine-et-Loire, Pays de la Loire;49345;49345.0;Thouarcé;
-conum_687_;49440.0;49.0;Maine-et-Loire;Espace culturel Candéen;1 Rue Firmin Tortinger 49440 Candé;02 41 94 19 40;https://www.sic-candeen.fr/;NC;accueilsc@sic-candeen.fr;"Prise en main du matériel
+conum_687_;49440.0;49.0;Maine-et-Loire;Espace culturel Candéen;1 Rue Firmin Tortinger 49440 Candé;02 41 94 19 40;https://www.sic-candeen.fr/;;accueilsc@sic-candeen.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd--ApLo--ApIn;"Formations collectives
  Autonomie";FoCo- Au;Adhesion;;Tout public;Tp;Non;;;47.563786;-1.034558;1 Avenue Firmin Tortiger 49440 Candé;0.71;housenumber;49054_0480_00001;1.0;Avenue Firmin Tortiger;;49440;Candé;49, Maine-et-Loire, Pays de la Loire;49054;nan;;
-conum_688_;49260.0;49.0;Maine-et-Loire;CSCI Roland Charrier;139 Rue d'Anjou 49260 Montreuil-Bellay;02 41 52 39 99;https://csc-rolandcharrier.centres-sociaux.fr/;NC;rolandcharrier.csc49@gmail.com;"Prise en main du matériel
+conum_688_;49260.0;49.0;Maine-et-Loire;CSCI Roland Charrier;139 Rue d'Anjou 49260 Montreuil-Bellay;02 41 52 39 99;https://csc-rolandcharrier.centres-sociaux.fr/;;rolandcharrier.csc49@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
@@ -4649,60 +4649,60 @@ conum_688_;49260.0;49.0;Maine-et-Loire;CSCI Roland Charrier;139 Rue d'Anjou 4926
  Accompagnements collectifs
  Formations collectives 
  Autonomie";FoCo- AcCo- AcIn- Au;Adhesion;;Tout public;Tp;Non;;;47.127865;-0.143755;139 Rue d'Anjou 49260 Montreuil-Bellay;0.94;housenumber;49215_0312_00139;139.0;Rue d'Anjou;;49260;Montreuil-Bellay;49, Maine-et-Loire, Pays de la Loire;49215;nan;;
-conum_689_;49310.0;49.0;Maine-et-Loire;CSI du Coin de la rue;2 Rue du Comte de Champigny 49310 Vihiers;02 41 75 42 70;https://www.csc-lecoindelarue.fr/;NC;accueil@csc-lecoindelarue.fr;"Prise en main du matériel
+conum_689_;49310.0;49.0;Maine-et-Loire;CSI du Coin de la rue;2 Rue du Comte de Champigny 49310 Vihiers;02 41 75 42 70;https://www.csc-lecoindelarue.fr/;;accueil@csc-lecoindelarue.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements collectifs
  Accompagnements individuels 
  Autonomie";AcCo- AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.146445;-0.533605;2 Rue du Comte de Champagny 49310 Lys-Haut-Layon;0.69;housenumber;49373_0380_00002;2.0;Rue du Comte de Champagny;;49310;Lys-Haut-Layon;49, Maine-et-Loire, Pays de la Loire;49373;49373.0;Vihiers;
-conum_690_;49300.0;49.0;Maine-et-Loire;Mission locale du Choletais;48 Rue des Bons Enfants 49300 Cholet;02 41 49 81 00;https://www.missionlocaleducholetais.org/;NC;mlc@mlducholetais.org;"Culture numérique 
+conum_690_;49300.0;49.0;Maine-et-Loire;Mission locale du Choletais;48 Rue des Bons Enfants 49300 Cholet;02 41 49 81 00;https://www.missionlocaleducholetais.org/;;mlc@mlducholetais.org;"Culture numérique 
  Premiers pas sur internet";PrIn--CuNu;Accompagnements individuels;AcIn;Gratuit;G;Tout public;Tp;Non;;;47.064953;-0.8767530000000001;48 Rue des Bons Enfants 49300 Cholet;0.96;housenumber;49099_0570_00048;48.0;Rue des Bons Enfants;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_691_;49700.0;49.0;Maine-et-Loire;MSA Agence Saumurois/ Layon;4 Rue Saint Denis 49700 Doué-en-Anjou;02 41 31 75 35;NC;NC;NC;Démarches administratives en ligne;DeAD;"Autonomie 
+conum_691_;49700.0;49.0;Maine-et-Loire;MSA Agence Saumurois/ Layon;4 Rue Saint Denis 49700 Doué-en-Anjou;02 41 31 75 35;;;;Démarches administratives en ligne;DeAD;"Autonomie 
  Accompagnements individuels";AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.194122;-0.278479;Rue Haute Saint-denis 49700 Doué-en-Anjou;0.78;street;49125_0580;nan;Rue Haute Saint-denis;;49700;Doué-en-Anjou;49, Maine-et-Loire, Pays de la Loire;49125;49125.0;Doué-la-Fontaine;
-conum_692_;49290.0;49.0;Maine-et-Loire;France Services -CCAS -Chalonnes sur Loire;4 Rue des Poilus 49290 Chalonnes-sur-Loire;02 41 74 10 82;https://www.chalonnes-sur-loire.fr/au-quotidien/action-sociale-solidarite/maison-de-service-au-public-msap/;NC;franceservices@chalonnes-sur-loire.fr;Démarches administratives en ligne;DeAd;"Accompagnements individuels
+conum_692_;49290.0;49.0;Maine-et-Loire;France Services -CCAS -Chalonnes sur Loire;4 Rue des Poilus 49290 Chalonnes-sur-Loire;02 41 74 10 82;https://www.chalonnes-sur-loire.fr/au-quotidien/action-sociale-solidarite/maison-de-service-au-public-msap/;;franceservices@chalonnes-sur-loire.fr;Démarches administratives en ligne;DeAd;"Accompagnements individuels
  Accompagnements collectifs
  Autonomie";AcCo- AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.352059999999994;-0.7618050000000001;4 Rue des Poilus 49290 Chalonnes-sur-Loire;0.95;housenumber;49063_1000_00004;4.0;Rue des Poilus;;49290;Chalonnes-sur-Loire;49, Maine-et-Loire, Pays de la Loire;49063;nan;;
-conum_693_;49430.0;49.0;Maine-et-Loire;MSAP de Durtal;11 rue Joseph Cugnot 49430 Durtal;02 41 96 10 40;NC;NC;mspdurtal@ccals.fr;"Prise en main du matériel
+conum_693_;49430.0;49.0;Maine-et-Loire;MSAP de Durtal;11 rue Joseph Cugnot 49430 Durtal;02 41 96 10 40;;;mspdurtal@ccals.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements individuels
  Intitiations
  Autonomie";AcIn- In- Au;Gratuit;G;Tout public;Tp;Non;;;47.671271000000004;-0.256457;11 Rue Joseph Cugnot 49430 Durtal;0.94;housenumber;49127_0419_00011;11.0;Rue Joseph Cugnot;;49430;Durtal;49, Maine-et-Loire, Pays de la Loire;49127;nan;;
-conum_694_;49140.0;49.0;Maine-et-Loire;MSAP de Seiches-sur-le-Loir;14bis rue Henri Régnier 49140 Seiches-sur-le Loir;02 41 27 23 75;NC;NC;mspseiches@ccals.fr;Démarches administratives en ligne;DeAd;"Accompagnements individuels
+conum_694_;49140.0;49.0;Maine-et-Loire;MSAP de Seiches-sur-le-Loir;14bis rue Henri Régnier 49140 Seiches-sur-le Loir;02 41 27 23 75;;;mspseiches@ccals.fr;Démarches administratives en ligne;DeAd;"Accompagnements individuels
  Accompagnements collectifs
  Autonomie";AcCo- AcIn- Au;Gratuit;G;Tout public;Tp;Non;;;47.574659999999994;-0.35765;14 bis Rue Henri Regnier 49140 Seiches-sur-le-Loir;0.89;housenumber;49333_0056_00014_bis;nan;Rue Henri Regnier;;49140;Seiches-sur-le-Loir;49, Maine-et-Loire, Pays de la Loire;49333;nan;;
-conum_695_;49300.0;49.0;Maine-et-Loire;Centre des Finances Public de Cholet;42 Rue du Planty 49300 Cholet;02 41 49 58 20;NC;NC;NC;Démarches administratives en ligne;DeAd;Accompagnements individuels;AcIn;Gratuit;G;Tout public;Tp;Non;;;47.058014;-0.8688020000000001;42 Rue du Planty 49300 Cholet;0.96;housenumber;49099_3610_00042;42.0;Rue du Planty;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_696_;49300.0;49.0;Maine-et-Loire;Caisse Primaire d'Assurance Maladie (CPAM) - Agence de Cholet;2 Rue Saint Éloi 49300 Cholet;NC;NC;NC;NC;Démarches administratives;DeAd;"Accomapgnements individuels 
+conum_695_;49300.0;49.0;Maine-et-Loire;Centre des Finances Public de Cholet;42 Rue du Planty 49300 Cholet;02 41 49 58 20;;;;Démarches administratives en ligne;DeAd;Accompagnements individuels;AcIn;Gratuit;G;Tout public;Tp;Non;;;47.058014;-0.8688020000000001;42 Rue du Planty 49300 Cholet;0.96;housenumber;49099_3610_00042;42.0;Rue du Planty;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
+conum_696_;49300.0;49.0;Maine-et-Loire;Caisse Primaire d'Assurance Maladie (CPAM) - Agence de Cholet;2 Rue Saint Éloi 49300 Cholet;;;;;Démarches administratives;DeAd;"Accomapgnements individuels 
  Autonomie";AcIn- Au;Gratuit;G;Adultes / Familles;Af;Non;;;47.059946000000004;-0.890775;2 Rue Saint Eloi 49300 Cholet;0.96;housenumber;49099_4123_00002;2.0;Rue Saint Eloi;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_697_;49300.0;49.0;Maine-et-Loire;Sous-préfecture de Cholet;30 Rue Trémolière 49300 Cholet;NC;NC;NC;NC;Démarches administratives en ligne;DeAd;"Accompagnements individuels
+conum_697_;49300.0;49.0;Maine-et-Loire;Sous-préfecture de Cholet;30 Rue Trémolière 49300 Cholet;;;;;Démarches administratives en ligne;DeAd;"Accompagnements individuels
  Autonomie";Au;Gratuit;G;Adultes / Familles;Af;Non;;;47.061192;-0.8851040000000001;30 Rue Trémolière 49300 Cholet;0.96;housenumber;49099_4560_00030;30.0;Rue Trémolière;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_698_;49321.0;49.0;Maine-et-Loire;Pôle Emploi Cholet;24 Rue du Carteron 49321 Cholet;3949;https://www.pole-emploi.fr/annuaire/cholet-49019;NC;NC;"Prise en main du matériel
+conum_698_;49321.0;49.0;Maine-et-Loire;Pôle Emploi Cholet;24 Rue du Carteron 49321 Cholet;3949;https://www.pole-emploi.fr/annuaire/cholet-49019;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;"Accompagnements individuels 
  Autonomie 
  Initiations";AcIn- In- Au;Gratuit;G;Demandeurs Emploi;De;Non;;;47.048435999999995;-0.8696020000000001;24 Rue du Carteron 49300 Cholet;0.79;housenumber;49099_0956_00024;24.0;Rue du Carteron;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_699_;49650.0;49.0;Maine-et-Loire;Association Micro-informatique Allonanise (AMIA);11 Place de la mairie 49650 Allonnes;02 41 52 04 01;https://allonnesassociatifs.wordpress.com/les-associations/amia/;NC;NC;"Prise en main du matériel
+conum_699_;49650.0;49.0;Maine-et-Loire;Association Micro-informatique Allonanise (AMIA);11 Place de la mairie 49650 Allonnes;02 41 52 04 01;https://allonnesassociatifs.wordpress.com/les-associations/amia/;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approndissement logiciels
  Appronfondissement internet";PrMa--PrLo--PrIn--ApLo--ApIn;Initiations;In;Gratuit;G;Tout public;Tp;Non;;;47.293044;0.024285;Place de la Mairie 49650 Allonnes;0.87;street;49002_0110;nan;Place de la Mairie;;49650;Allonnes;49, Maine-et-Loire, Pays de la Loire;49002;nan;;
-conum_700_;49160.0;49.0;Maine-et-Loire;Association VIVRE CHEZ SOI;9 Avenue des Tilleuls 49160 Longué-Jumelles;NC;https://www.aidants49.fr/partenaire/association-vivre-chez-soi/;NC;NC;"Prise en main du matériel
+conum_700_;49160.0;49.0;Maine-et-Loire;Association VIVRE CHEZ SOI;9 Avenue des Tilleuls 49160 Longué-Jumelles;;https://www.aidants49.fr/partenaire/association-vivre-chez-soi/;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Démarches administratives en ligne";PrMa--PrLo--PrIn--DeAd;Accompagnements collectifs;AcCo;Gratuit;G;Seniors;S;Non;;;47.37158;-0.114745;9 Avenue des Tilleuls 49160 Longué-Jumelles;0.95;housenumber;49180_1823_00009;9.0;Avenue des Tilleuls;;49160;Longué-Jumelles;49, Maine-et-Loire, Pays de la Loire;49180;nan;;
-conum_701_;49400.0;49.0;Maine-et-Loire;Loisirs Pour Tous;Salle de musique 49400 Villebernier;NC;NC;NC;loisirs.pour.tous.villebernier@gmail.com;"Prise en main du matériel
+conum_701_;49400.0;49.0;Maine-et-Loire;Loisirs Pour Tous;Salle de musique 49400 Villebernier;;;;loisirs.pour.tous.villebernier@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet";PrMa--PrLo--PrIn;"Accompagnements collectifs
  Initiations";AcCo- In;Gratuit;G;Tout public;Tp;Non;;;47.251937;-0.029164999999999996;Rue de la Mairie 49400 Villebernier;0.56;street;49374_0047;nan;Rue de la Mairie;;49400;Villebernier;49, Maine-et-Loire, Pays de la Loire;49374;nan;;
-conum_702_;49280.0;49.0;Maine-et-Loire;Informatics Clubs;Rue du Stade 49280 La Tessoualle;NC;https://informaticsclubs.fr/;NC;Informaticsclubs49@gmail.com;"Prise en main du matériel
+conum_702_;49280.0;49.0;Maine-et-Loire;Informatics Clubs;Rue du Stade 49280 La Tessoualle;;https://informaticsclubs.fr/;;Informaticsclubs49@gmail.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approndissement logiciels
  Appronfondissement internet";PrMa--PrLo--PrIn--ApLo--ApIn;"Accompagnements collectifs
  Formations collectives";FoCo- AcCo;"Adhesion
  Payant";P;Tout public;Tp;Non;;;47.00155;-0.855248;Rue du Stade 49280 La Tessoualle;0.94;street;49343_0505;nan;Rue du Stade;;49280;La Tessoualle;49, Maine-et-Loire, Pays de la Loire;49343;nan;;
-conum_703_;49390.0;49.0;Maine-et-Loire;Club Initiation Perfectionnement Informatique;Rue de la Chambardière 49390 Vernoil-le-Fourrier;02 41 51 40 64;http://www.vernoil.mairie49.fr/un-club-informatique;NC;NC;"Prise en main du matériel
+conum_703_;49390.0;49.0;Maine-et-Loire;Club Initiation Perfectionnement Informatique;Rue de la Chambardière 49390 Vernoil-le-Fourrier;02 41 51 40 64;http://www.vernoil.mairie49.fr/un-club-informatique;;;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approndissement logiciels
@@ -4710,23 +4710,23 @@ conum_703_;49390.0;49.0;Maine-et-Loire;Club Initiation Perfectionnement Informat
  Accompagnements collectifs";AcCo- In;"Adhesion 
  Payant";P;"Séniors 
  Tout public";Tp- S;Non;;;47.385405;0.078829;Rue de la Chambardelière 49390 Vernoil-le-Fourrier;0.87;street;49369_0073;nan;Rue de la Chambardelière;;49390;Vernoil-le-Fourrier;49, Maine-et-Loire, Pays de la Loire;49369;nan;;
-conum_704_;49300.0;49.0;Maine-et-Loire;ALIA (L'association Ligérienne d'Addictologie);4 Rue des Marteaux 49300 Cholet;02 41 65 32 61;https://alia49.fr;NC;cholet@alia49.fr;Démarches administratives en ligne;DeAd;Accompagnements individuels;AcIn;Gratuit;G;Adhérent;Ad;Non;;;47.060305;-0.8831700000000001;4 Rue des Marteaux 49300 Cholet;0.96;housenumber;49099_2890_00004;4.0;Rue des Marteaux;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
-conum_705_;49320.0;49.0;Maine-et-Loire;Résidence Pannetier;81 Rue du Verdun 49320 Brissac-Quincé;02 41 54 22 60;https://www.brissacloireaubance.fr/ateliers-numeriques-2/;NC;ateliersnumeriques@brissacloireaubance.fr;"Prise en main du matériel
+conum_704_;49300.0;49.0;Maine-et-Loire;ALIA (L'association Ligérienne d'Addictologie);4 Rue des Marteaux 49300 Cholet;02 41 65 32 61;https://alia49.fr;;cholet@alia49.fr;Démarches administratives en ligne;DeAd;Accompagnements individuels;AcIn;Gratuit;G;Adhérent;Ad;Non;;;47.060305;-0.8831700000000001;4 Rue des Marteaux 49300 Cholet;0.96;housenumber;49099_2890_00004;4.0;Rue des Marteaux;;49300;Cholet;49, Maine-et-Loire, Pays de la Loire;49099;49099.0;Cholet;
+conum_705_;49320.0;49.0;Maine-et-Loire;Résidence Pannetier;81 Rue du Verdun 49320 Brissac-Quincé;02 41 54 22 60;https://www.brissacloireaubance.fr/ateliers-numeriques-2/;;ateliersnumeriques@brissacloireaubance.fr;"Prise en main du matériel
  Prise en main des logiciels de base
- Premiers pas sur internet";PrMA--PrLo--PrIn;Initiations;In;NC;;Adhérent;Ad;Non;;;47.358646;-0.45023100000000005;81 Rue de Verdun 49320 Brissac Loire Aubance;0.6;housenumber;49050_0440_00081;81.0;Rue de Verdun;;49320;Brissac Loire Aubance;49, Maine-et-Loire, Pays de la Loire;49050;49050.0;Brissac-Quincé;
-conum_706_;49400.0;49.0;Maine-et-Loire;MJC Saumur;Place de Verdun 49400 Saumur;02 41 40 25 60;http://mjcsaumur.com;NC;infos@mjcsaumur.com;"Prise en main du matériel
+ Premiers pas sur internet";PrMA--PrLo--PrIn;Initiations;In;;;Adhérent;Ad;Non;;;47.358646;-0.45023100000000005;81 Rue de Verdun 49320 Brissac Loire Aubance;0.6;housenumber;49050_0440_00081;81.0;Rue de Verdun;;49320;Brissac Loire Aubance;49, Maine-et-Loire, Pays de la Loire;49050;49050.0;Brissac-Quincé;
+conum_706_;49400.0;49.0;Maine-et-Loire;MJC Saumur;Place de Verdun 49400 Saumur;02 41 40 25 60;http://mjcsaumur.com;;infos@mjcsaumur.com;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internet";PrMA---PrLo--PrIn--Aplo--Apln;Accompagnements collectifs;AcCo;Adhesion;;Tout public;Tp;Non;;;47.254796999999996;-0.08026599999999999;Place de Verdun 49400 Saumur;0.95;street;49328_2550;nan;Place de Verdun;;49400;Saumur;49, Maine-et-Loire, Pays de la Loire;49328;49328.0;Saumur;
-conum_707_;49330.0;49.0;Maine-et-Loire;L'archy'Made- Cybercentre Haut Anjou;14 ter Allée de la Passion 49330 Champigné;02 41 48 67 44;http://cybercentrehautanjou.fr;NC;cybercentrehautanjou@orange.fr;"Prise en main du matériel
+conum_707_;49330.0;49.0;Maine-et-Loire;L'archy'Made- Cybercentre Haut Anjou;14 ter Allée de la Passion 49330 Champigné;02 41 48 67 44;http://cybercentrehautanjou.fr;;cybercentrehautanjou@orange.fr;"Prise en main du matériel
  Prise en main des logiciels de base
  Premiers pas sur internet 
  Approfondissement logiciels
  Approfondissement internet";PrMA---PrLo--PrIn--Aplo--Apln;"Accompagnements individuels
  Formations collectives
  Autonomie";AcIn- FoCo- Au;Adhesion;;Tout public;Tp;Non;;;47.662915000000005;-0.572074;Allée de la Passion 49330 Les Hauts-d'Anjou;0.57;street;49065_0109;nan;Allée de la Passion;;49330;Les Hauts-d'Anjou;49, Maine-et-Loire, Pays de la Loire;49080;49065.0;Champigné;
-conum_708_;85000.0;85.0;Vendée;AMAQY / Maison de Quartier des Pyramides;2 Rue Champollion;02 51 37 56 54;https://amaqy.fr;NC;NC;"Prise en main du matériel
+conum_708_;85000.0;85.0;Vendée;AMAQY / Maison de Quartier des Pyramides;2 Rue Champollion;02 51 37 56 54;https://amaqy.fr;;;"Prise en main du matériel
 Prise en main des logiciels de base
 Premiers pas sur internet
 Démarches administratives en ligne

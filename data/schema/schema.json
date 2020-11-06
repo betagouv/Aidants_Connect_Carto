@@ -233,12 +233,12 @@
       "exemple": "",
       "type": "boolean",
       "trueValues": [
-        "oui"
+        "Oui"
       ],
       "falseValues": [
-        "non"
+        "Non"
       ],
-      "example": "non",
+      "example": "Non",
       "constraints": {
         "required": true
       }

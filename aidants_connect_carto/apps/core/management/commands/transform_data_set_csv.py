@@ -16,12 +16,12 @@ SEPARATEUR_DATA_SET = ","
 SEPARATEUR_CHAMPS_MULTIPLES = ","
 DATA_SET_EXTENSION = ".csv"
 
-DEFAULT_EN_LIGNE = "non"
-
 
 class Command(BaseCommand):
     """
+    Usage :
     python manage.py transform_data_set_csv --data_set data/hub_abc/hub_abc_data_set.csv --config data/hub_abc/hub_abc_import_config.csv
+    python manage.py transform_data_set_csv --data_set data/hub_abc/hub_abc_data_set.csv --config data/hub_abc/hub_abc_import_config.csv --seperateur ";"
     """
 
     help = "Transform a dataset using the specified config"
@@ -50,6 +50,7 @@ class Command(BaseCommand):
         data_set_file_path = kwargs["data_set"]
         data_set_config_file_path = kwargs["config"]
         data_set_config_seperateur = kwargs["separateur"]
+        print(data_set_file_path, data_set_config_file_path, data_set_config_seperateur)
 
         if not data_set_file_path:
             print("--data_set argument missing")
@@ -64,22 +65,28 @@ class Command(BaseCommand):
             csv_fieldnames = []
 
             print("Step 1 : reading config file")
+            # Open the config file and store the data_set_config as well as the ouput header
             with open(data_set_config_file_path) as f:
                 csvreader = csv.DictReader(f)
                 data_set_config = [dict(d) for d in csvreader]
                 csv_fieldnames = [d["modele"] for d in data_set_config]
 
             print("Step 2 : reading input data_set file")
-            with open(data_set_file_path) as csv_file:
-                csvreader = csv.DictReader(
-                    csv_file, delimiter=data_set_config_seperateur
-                )
+            # Process each line of the data_set
+            with open(data_set_file_path) as f:
+                csvreader = csv.DictReader(f, delimiter=data_set_config_seperateur)
                 print("... number of rows :", sum(1 for row in csvreader))
+                # reset the csvreader, and skip header
+                f.seek(0)
+                next(f)
                 for index, row in enumerate(csvreader):
+                    if index and (index % 100 == 0):
+                        print("..." * int(index / 100), index)
                     place_dict = create_place_output_dict(dict(row), data_set_config)
                     temp_place_list.append(place_dict)
 
             print("Step 3 : writing output (transformed) data_set file")
+            # Store the header and the processed lines in a new file
             data_set_transformed_file_path = (
                 data_set_file_path.split(DATA_SET_EXTENSION)[0]
                 + "_transformed"
@@ -107,29 +114,30 @@ def create_place_output_dict(place_input_dict, data_set_import_config):
             if champ["modele"] == "type_lieu":
                 if champ["fichier"]:
                     place_output_dict[champ["modele"]] = utilities.process_type(
-                        place_input_dict[champ["fichier"]]
+                        place_input_dict[champ["fichier"]], destination="file"
                     )
             elif champ["modele"] == "statut":
                 if champ["fichier"]:
                     place_output_dict[champ["modele"]] = utilities.process_status(
-                        place_input_dict[champ["fichier"]]
+                        place_input_dict[champ["fichier"]], destination="file"
                     )
             elif champ["modele"] == "nature_juridique":
                 if champ["fichier"]:
                     place_output_dict[
                         champ["modele"]
                     ] = utilities.process_legal_entity_type(
-                        place_input_dict[champ["fichier"]]
+                        place_input_dict[champ["fichier"]], destination="file"
                     )
             elif champ["modele"] == "adresse_brut":
                 place_output_dict = process_place_address(
                     place_output_dict, place_input_dict, champ["fichier"]
                 )
             elif champ["modele"] == "en_ligne":
-                place_output_dict[champ["modele"]] = (
-                    place_input_dict[champ["fichier"]]
-                    if champ["fichier"]
-                    else DEFAULT_EN_LIGNE
+                input_field = (
+                    place_input_dict[champ["fichier"]] if champ["fichier"] else None
+                )
+                place_output_dict[champ["modele"]] = utilities.process_is_online(
+                    input_field, destination="file"
                 )
             elif champ["modele"] == "contact_telephone":
                 if champ["fichier"]:
@@ -147,7 +155,7 @@ def create_place_output_dict(place_input_dict, data_set_import_config):
                     place_output_dict[
                         champ["modele"]
                     ] = utilities.process_target_audience(
-                        place_input_dict[champ["fichier"]]
+                        place_input_dict[champ["fichier"]], destination="file"
                     )
             elif champ["modele"] == "modalites_acces":
                 if champ["fichier"]:
@@ -155,19 +163,19 @@ def create_place_output_dict(place_input_dict, data_set_import_config):
                     place_output_dict[
                         champ["modele"]
                     ] = utilities.process_support_access(
-                        place_input_dict[champ["fichier"]]
+                        place_input_dict[champ["fichier"]], destination="file"
                     )
             elif champ["modele"] == "modalites_accompagnement":
                 if champ["fichier"]:
                     # place_output_dict["support_mode_raw"] = place_input_dict[champ["fichier"]]
                     place_output_dict[champ["modele"]] = utilities.process_support_mode(
-                        place_input_dict[champ["fichier"]]
+                        place_input_dict[champ["fichier"]], destination="file"
                     )
             elif champ["modele"] == "labels":
                 if champ["fichier"]:
                     # place_output_dict["labels_raw"] = place_input_dict[champ["fichier"]]
                     place_output_dict[champ["modele"]] = utilities.process_labels(
-                        place_input_dict[champ["fichier"]]
+                        place_input_dict[champ["fichier"]], destination="file"
                     )
             # elif champ["modele"] == "price_details":
             #     place_output_dict["price_details"] = place_input_dict[champ["fichier"]]

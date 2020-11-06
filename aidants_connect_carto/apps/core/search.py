@@ -20,8 +20,7 @@ class PlaceSearchForm(ModelForm):
     )
 
     service_name = forms.ChoiceField(
-        choices=zip(constants.SERVICE_NAME_LIST, constants.SERVICE_NAME_LIST),
-        widget=forms.Select(),
+        choices=constants.SERVICE_NAME_CHOICES, widget=forms.Select(),
     )
     opening_hours = forms.ChoiceField(
         choices=[("open", "Ouvert en ce moment")], widget=forms.Select(),

@@ -231,7 +231,7 @@ class Place(models.Model):
         verbose_name="Le nom de la région",
         max_length=150,
         blank=True,
-        choices=zip(constants.FRANCE_REGION_LIST, constants.FRANCE_REGION_LIST),
+        choices=constants.FRANCE_REGION_CHOICES,
         help_text="Île-de-France",
     )
     latitude = models.FloatField(
@@ -443,9 +443,7 @@ class Place(models.Model):
     labels = ArrayField(
         verbose_name="Label(s)",
         base_field=models.CharField(
-            max_length=150,
-            blank=True,
-            choices=zip(constants.LABEL_LIST, constants.LABEL_LIST),
+            max_length=150, blank=True, choices=constants.LABEL_CHOICES,
         ),
         default=list,
         blank=True,
@@ -591,7 +589,7 @@ class Service(models.Model):
     # --- basics
     name = models.CharField(
         verbose_name="Le nom du service", max_length=300
-    )  # choices=zip(constants.SERVICE_NAME_LIST, constants.SERVICE_NAME_LIST)
+    )  # choices=SERVICE_NAME_CHOICES
     description = models.TextField(
         verbose_name="Une description du service", blank=True
     )

@@ -8,7 +8,11 @@ for elem in constants.PLACE_TYPE_CHOICES:
     print(elem[1])
 """
 
+EMPTY_STRING = ""
 CHOICE_OTHER = "autre"
+
+FILE_BOOLEAN_TRUE = "Oui"
+FILE_BOOLEAN_FALSE = "Non"
 
 DATA_SOURCE_TYPE_HUB = "hub"
 DATA_SOURCE_TYPE_NATIONAL = "national"
@@ -215,7 +219,9 @@ SERVICE_NAME_LIST = [
     "Pratiquer des activités récréatives numériques",
 ]
 
-SERVICE_NAME_MAPPING = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST)) + [
+SERVICE_NAME_CHOICES = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST))
+
+SERVICE_NAME_MAPPING = SERVICE_NAME_CHOICES + [
     ("Accès à un équipement informatique", "Accès à Internet en autonomie"),
     (
         "Accompagnement aux démarches administratives en ligne",
@@ -240,7 +246,9 @@ LABEL_LIST = [
     # "Autre"
 ]
 
-LABEL_MAPPING = list(zip(LABEL_LIST, LABEL_LIST)) + [
+LABEL_CHOICES = list(zip(LABEL_LIST, LABEL_LIST))
+
+LABEL_MAPPING = LABEL_CHOICES + [
     ("France Services", "MFS"),
     ("France Services", "Maison France Services"),
 ]
@@ -265,6 +273,8 @@ FRANCE_REGION_LIST = [
     "La Réunion",
     "Mayotte",
 ]
+
+FRANCE_REGION_CHOICES = list(zip(FRANCE_REGION_LIST, FRANCE_REGION_LIST))
 
 FRANCE_DEPARTEMENT_CHOICES = [
     ("Ain", "Ain (01)"),

@@ -5,8 +5,9 @@
     "url": "https://conumm.netlify.app/",
     "file_path": "data/hub_connumm/export_file.csv",
     "last_updated": "2020-01-30",
-    "import_comment": "supprimé les cases NR. Colonnes de services et de formations. Pas de colonnes type ni horaires d'ouverture.",
-    "import_config": {
+    "import_comment": "supprimé les cases NR, NC et #REF!. Colonnes de services et de formations. Pas de colonnes type ni horaires d'ouverture.",
+    "import_config": "data/hub_francilin/hub_conumm_import_config.csv",
+    "import_config_old": {
         "dataset_file_delimiter": ";",
         "place_fields_mapping_auto": [
             {
