@@ -157,6 +157,7 @@ Mapping to list:
 - target_audience
 - support_access
 - support_mode
+- services
 - labels
 """
 
@@ -226,6 +227,30 @@ def process_support_mode(value: str, seperator=",", destination="db"):
         return output
     else:
         return ",".join([get_choice_verbose(choices, elem) for elem in output])
+
+
+def process_services(value: str, seperator=",", destination="db"):
+    """
+    """
+    # init
+    choices = constants.SERVICE_NAME_CHOICES
+    mapping = constants.SERVICE_NAME_MAPPING
+    output = set()
+
+    # match input value(s)
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            for services_mapping_item in mapping:
+                if value_item.strip().lower() in services_mapping_item[1].lower():
+                    output.add(services_mapping_item[0])
+
+    # return
+    output_sorted = sorted(list(output))
+    if destination == "db":
+        return output_sorted
+    else:
+        return ",".join([get_choice_verbose(choices, elem) for elem in output_sorted])
 
 
 def process_labels(value: str, seperator=",", destination="db"):

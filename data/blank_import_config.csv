@@ -1,4 +1,8 @@
 modele,fichier,commentaire
+_meta_fichier_source,,
+_meta_fichier_nom,,
+_meta_fichier_dossier,,
+_meta_fichier_separateur,",",
 nom,,
 structure_porteuse,,
 description,,

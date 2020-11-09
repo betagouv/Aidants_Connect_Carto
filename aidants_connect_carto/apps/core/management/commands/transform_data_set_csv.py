@@ -21,47 +21,30 @@ DATA_SET_EXTENSION = ".csv"
 class Command(BaseCommand):
     """
     Usage :
-    python manage.py transform_data_set_csv --data_set data/hub_abc/hub_abc_data_set.csv --config data/hub_abc/hub_abc_import_config.csv
-    python manage.py transform_data_set_csv --data_set data/hub_abc/hub_abc_data_set.csv --config data/hub_abc/hub_abc_import_config.csv --seperateur ";"
+    python manage.py transform_data_set_csv --config data/hub_abc/hub_abc_import_config.csv
     """
 
     help = "Transform a dataset using the specified config"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--data_set",
-            help="Le chemin vers le jeu de donnée",
-            type=str,
-            default=None,
-        )
-        parser.add_argument(
             "--config",
             help="Le chemin vers la configuration d'import du jeu de donnée",
             type=str,
             default=None,
         )
-        parser.add_argument(
-            "--separateur",
-            help="Le séparateur utilisé dans le jeu de donnée",
-            type=str,
-            default=SEPARATEUR_DATA_SET,
-        )
 
     def handle(self, *args, **kwargs):
-        data_set_file_path = kwargs["data_set"]
         data_set_config_file_path = kwargs["config"]
-        data_set_config_seperateur = kwargs["separateur"]
-        print(data_set_file_path, data_set_config_file_path, data_set_config_seperateur)
 
-        if not data_set_file_path:
-            print("--data_set argument missing")
-            return
         if not data_set_config_file_path:
             print("--config argument missing")
             return
         else:
 
             data_set_config = []
+            data_set_file_path = ""
+            data_set_config_seperateur = SEPARATEUR_DATA_SET
             temp_place_list = []
             csv_fieldnames = []
 
@@ -70,7 +53,32 @@ class Command(BaseCommand):
             with open(data_set_config_file_path) as f:
                 csvreader = csv.DictReader(f)
                 data_set_config = [dict(d) for d in csvreader]
-                csv_fieldnames = [d["modele"] for d in data_set_config]
+                data_set_folder = next(
+                    d["fichier"]
+                    for d in data_set_config
+                    if d["modele"] == "_meta_fichier_dossier"
+                )
+                data_set_name = next(
+                    d["fichier"]
+                    for d in data_set_config
+                    if d["modele"] == "_meta_fichier_nom"
+                )
+                data_set_file_path = data_set_folder + "/" + data_set_name
+                print(data_set_file_path)
+                data_set_config_seperateur = next(
+                    (
+                        d["fichier"]
+                        for d in data_set_config
+                        if d["modele"] == "_meta_fichier_separateur"
+                    ),
+                    SEPARATEUR_DATA_SET,
+                )
+                print(data_set_config_seperateur)
+                data_set_config_fields = [
+                    d for d in data_set_config if not d["modele"].startswith("_meta")
+                ]
+                csv_fieldnames = [d["modele"] for d in data_set_config_fields]
+                print(csv_fieldnames)
 
             print("Step 2 : reading input data_set file")
             # Process each line of the data_set
@@ -83,7 +91,9 @@ class Command(BaseCommand):
                 for index, row in enumerate(csvreader):
                     if index and (index % 100 == 0):
                         print("..." * int(index / 100), index)
-                    place_dict = create_place_output_dict(dict(row), data_set_config)
+                    place_dict = create_place_output_dict(
+                        dict(row), data_set_config_fields
+                    )
                     temp_place_list.append(place_dict)
                     time.sleep(0.5)  # to avoid spamming the Address (BAN) API
 
@@ -177,6 +187,12 @@ def create_place_output_dict(place_input_dict, data_set_import_config):
                 if champ["fichier"]:
                     # place_output_dict["labels_raw"] = place_input_dict[champ["fichier"]]
                     place_output_dict[champ["modele"]] = utilities.process_labels(
+                        place_input_dict[champ["fichier"]], destination="file"
+                    )
+            elif champ["modele"] == "services":
+                if champ["fichier"]:
+                    # place_output_dict["services_raw"] = place_input_dict[champ["fichier"]]
+                    place_output_dict[champ["modele"]] = utilities.process_services(
                         place_input_dict[champ["fichier"]], destination="file"
                     )
             # elif champ["modele"] == "price_details":

@@ -1,16 +1,16 @@
 modele,fichier,commentaire
-_meta_fichier_source,Hub Rhinocc,
-_meta_fichier_nom,"data/hub_rhinocc",
-_meta_fichier_dossier,"RHINOCC-carto-BDD_export.csv",
-_meta_fichier_separateur,",",
-nom,nom,
-structure_porteuse,structure_porteuse,
-description,,
-type_lieu,rattachement,"Le champ 'type_lieu' a beaucoup de valeurs de l'ordre du nom du lieu, 'rattachement' est plus pertinent"
+_meta_fichier_source,Hub Hubik,
+_meta_fichier_nom,"Cartographies departements - Gironde.csv",
+_meta_fichier_dossier,"data/hub_hubik",
+_meta_fichier_separateur,";",
+nom,Lieu,
+structure_porteuse,,
+description,Description,
+type_lieu,Type Structure,
 statut,,
-nature_juridique,nature_juridique,Parfois préfixé de PUB ou PRV ce qui empêche une bon mapping
+nature_juridique,,
 siret,,
-adresse_brut,adresse_full,
+adresse_brut,Adresse postale,
 adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
@@ -22,17 +22,17 @@ latitude,,"(laisser vide, sera généré automatiquement par le script)"
 longitude,,"(laisser vide, sera généré automatiquement par le script)"
 itinerant,,
 en_ligne,,
-contact_telephone,tel_structure,Certains numéros sont à 4 chiffres seulement
+contact_telephone,Téléphone,
 contact_telephone_details,,
-contact_email,email_structure,
-contact_web,site_internet,
+contact_email,Email,Il y a certaines valeurs qui n'ont pas le format email
+contact_web,Site internet,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
 contact_facebook,,
-horaires_ouverture_brut,"lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche",
+horaires_ouverture_brut,,
 horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
-public_cible,public_toutes_actions,Champ de bonne qualité
-modalites_acces,conditions_acces_toutes_actions,Champ libre ou vide
+public_cible,,
+modalites_acces,,
 modalites_accompagnement,,
 tarifs,,
 accessibilite,,
-services,,
-labels,label_full,"séparateur ' - ' pas exploitable"
+services,services,"4 valeurs possible, mapping simple mais séparateur ' / ' non géré"
+labels,,

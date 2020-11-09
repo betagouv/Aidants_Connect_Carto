@@ -1,16 +1,16 @@
 modele,fichier,commentaire
-_meta_fichier_source,Hub Connumm,
-_meta_fichier_nom,"data/hub_connumm,
-_meta_fichier_dossier,"export_file.csv",
+_meta_fichier_source,Hub Hubik,
+_meta_fichier_nom,"Cartographies departements - Lot-et-Garonne.csv",
+_meta_fichier_dossier,"data/hub_hubik",
 _meta_fichier_separateur,";",
-nom,Nom de la structure,
+nom,"Nom de votre structure",
 structure_porteuse,,
 description,,
-type_lieu,,
+type_lieu,"Nature de votre structure",
 statut,,
 nature_juridique,,
 siret,,
-adresse_brut,Adresse postale,
+adresse_brut,"Numéro de rue,Nom de rue,Code postal,Ville",
 adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
@@ -22,17 +22,17 @@ latitude,,"(laisser vide, sera généré automatiquement par le script)"
 longitude,,"(laisser vide, sera généré automatiquement par le script)"
 itinerant,,
 en_ligne,,
-contact_telephone,Numero de téléphone,Il y a certains numéros à 4 chiffres
+contact_telephone,"Numéro de téléphone de votre structure",Il manque souvent le 0 devant
 contact_telephone_details,,
-contact_email,Mail contact,Il y a certaines valeurs qui n'ont pas le format email
-contact_web,Site Web,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
+contact_email,"Adresse e-mail de votre structure",
+contact_web,"Site internet de votre structure",Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
 contact_facebook,,
-horaires_ouverture_brut,,
+horaires_ouverture_brut,"Quels sont les horaires","Nom originale de la colonne avait une virgule, ce qui faisait planter le script"
 horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
-public_cible,Public,"Beaucoup de valeurs possibles. séparateur '-'. Il y a aussi un champ 'publics-codes' issu d'un post-processing, et qui serait plus facilement exploitable"
-modalites_acces,,
-modalites_accompagnement,,
-tarifs,,"Champ 'Conditions d'acces' dans le fichier. Il y a aussi le champ 'acces-codes' issu d'un post-processing, et qui serait plus facilement exploitable"
+public_cible,"Accompagnez-vous des publics spécifiques?",
+modalites_acces,"Quelles sont les conditions d'accès à vos services ? (adhésion préalable, prise de rdv,...)",
+modalites_accompagnement,"Quel type d'accompagnement ?",
+tarifs,"Quels sont les tarifs appliqués ?",
 accessibilite,,
-services,,
+services,"Quel(s) service(s) proposez-vous?",
 labels,,

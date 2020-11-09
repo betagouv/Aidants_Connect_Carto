@@ -1,4 +1,8 @@
 modele,fichier,commentaire
+_meta_fichier_source,Hub du Sud,
+_meta_fichier_nom,"data/hub_sud",
+_meta_fichier_dossier,"Copie de Lieux Médiation_fablab_SudLab_LABELS.csv",
+_meta_fichier_separateur,";",
 nom,NOM DU LIEUX,
 structure_porteuse,STRUCTURE PORTEUSE,
 description,,

@@ -1,4 +1,8 @@
 modele,fichier,commentaire
+_meta_fichier_source,Hub MednumBFC,
+_meta_fichier_nom,"data/hub_mednum_bfc",
+_meta_fichier_dossier,"2020-07-09_BFC-TERNUM_export.csv",
+_meta_fichier_separateur,",",
 nom,nom_structure,
 structure_porteuse,,
 description,,

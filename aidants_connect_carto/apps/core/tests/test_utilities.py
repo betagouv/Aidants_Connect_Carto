@@ -425,31 +425,6 @@ class UtilitiesLegalEntityTypeTest(TestCase):
             )
 
 
-class UtilitiesServiceTest(TestCase):
-    process_service_name_list = [
-        # (input, db_output)
-        # file_output ? same as db_output
-        ("Etre initié aux outils numériques", "Acquisition de compétences numériques"),
-        ("", constants.EMPTY_STRING),
-    ]
-
-    def test_process_service_name(self):
-        for process_service_name in self.process_service_name_list:
-            self.assertEqual(
-                utilities.process_service_name(process_service_name[0]),
-                process_service_name[1],
-            )
-
-    def test_process_service_name_to_file(self):
-        for process_service_name in self.process_service_name_list:
-            self.assertEqual(
-                utilities.process_service_name(
-                    process_service_name[0], destination="file"
-                ),
-                process_service_name[1],
-            )
-
-
 class UtilitiesTargetAudienceTest(TestCase):
     target_audience_list = [
         # (input, db_output, file_output)
@@ -560,4 +535,63 @@ class UtilitiesLabelsTest(TestCase):
         for labels in self.labels_list:
             self.assertEqual(
                 utilities.process_labels(labels[0], destination="file"), labels[2],
+            )
+
+
+class UtilitiesServiceSimpleTest(TestCase):
+    process_service_name_list = [
+        # (input, db_output)
+        # file_output ? same as db_output
+        ("Etre initié aux outils numériques", "Acquisition de compétences numériques"),
+        ("", constants.EMPTY_STRING),
+    ]
+
+    def test_process_service_name(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_service_name(process_service_name[0]),
+                process_service_name[1],
+            )
+
+    def test_process_service_name_to_file(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_service_name(
+                    process_service_name[0], destination="file"
+                ),
+                process_service_name[1],
+            )
+
+
+class UtilitiesServiceTest(TestCase):
+    process_service_name_list = [
+        # (input, db_output, file_output)
+        (
+            "Etre initié aux outils numériques",
+            ["Acquisition de compétences numériques"],
+            "Acquisition de compétences numériques",
+        ),
+        (
+            "Accès à Internet en autonomie, Etre accompagné dans ses démarches administratives",
+            [
+                "Accompagnement aux démarches administratives en ligne",
+                "Accès à un équipement informatique",
+            ],
+            "Accompagnement aux démarches administratives en ligne,Accès à un équipement informatique",
+        ),
+        ("", [], constants.EMPTY_STRING),
+    ]
+
+    def test_process_service_name(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_services(process_service_name[0]),
+                process_service_name[1],
+            )
+
+    def test_process_service_name_to_file(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_services(process_service_name[0], destination="file"),
+                process_service_name[2],
             )
