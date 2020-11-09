@@ -10,13 +10,13 @@ centre de ressource et d'information des bénévoles (crib)
 centre social
 chantier d'insertion
 citélabs
+cyberbase
 e-administration département du vaucluse
 e-cg vaucluse
 eda plateforme informatisée e-learning accompagnée e2c
 espace de coworking
 entreprise solidaire d'utilité sociale (esus)
 espace public numérique (epn)
-espace public numérique (epn), cyberbase, point information jeunesse (pij)
 evaluateurs clea copanef et référencement datadock
 formation & accueil de résidence
 grande ecole du numérique (gen)
@@ -27,7 +27,6 @@ initiative france
 laboratoire de chimie équipé
 maison de la saisonnalité
 maison de service au public (msap)
-maison de service au public (msap), grande ecole du numérique (gen)
 maison de services au public (msap)
 maison des adolescents
 maison publique de quartier
@@ -37,6 +36,7 @@ netpublic
 point appui pôle emploi
 point info caf
 point info familles
+point information jeunesse (pij)
 point numérique caf
 point ressources numérique pôle emploi
 pôle entreprenariat collectif

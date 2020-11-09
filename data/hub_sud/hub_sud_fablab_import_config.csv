@@ -1,0 +1,34 @@
+modele,fichier,commentaire
+nom,NOM DU LIEUX,
+structure_porteuse,STRUCTURE PORTEUSE,
+description,,
+type_lieu,,Uniquement des tiers-lieux
+statut,,
+nature_juridique,NATURE JURIDIQUE,
+siret,,
+adresse_brut,"ADRESSE,CODE POSTAL,VILLE",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,,
+contact_telephone_details,,
+contact_email,,
+contact_web,PLUS D'INFORMATION,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
+contact_facebook,URL FACEBOOK,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
+horaires_ouverture_brut,HORAIRES,
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,
+labels,AUTRES LABELS,Beaucoup de valeurs différentes

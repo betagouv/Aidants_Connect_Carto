@@ -243,6 +243,7 @@ LABEL_LIST = [
     "Aidants Connect",
     "France Services",
     "Fabriques de Territoire",  # Tiers-lieux
+    "Grande École du Numérique",  # GEN
     # "Autre"
 ]
 
@@ -251,6 +252,7 @@ LABEL_CHOICES = list(zip(LABEL_LIST, LABEL_LIST))
 LABEL_MAPPING = LABEL_CHOICES + [
     ("France Services", "MFS"),
     ("France Services", "Maison France Services"),
+    ("grande ecole du numérique", "Grande École du Numérique"),
 ]
 
 FRANCE_REGION_LIST = [
