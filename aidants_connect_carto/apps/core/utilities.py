@@ -234,7 +234,7 @@ def process_labels(value: str, seperator=",", destination="db"):
     # init
     choices = constants.LABEL_CHOICES
     mapping = constants.LABEL_MAPPING
-    output = []
+    output = set()
 
     # match input value(s)
     if value:
@@ -242,13 +242,14 @@ def process_labels(value: str, seperator=",", destination="db"):
         for value_item in value_list:
             for labels_mapping_item in mapping:
                 if value_item.strip().lower() in labels_mapping_item[1].lower():
-                    output.append(labels_mapping_item[0])
+                    output.add(labels_mapping_item[0])
 
     # return
+    output_sorted = sorted(list(output))
     if destination == "db":
-        return output
+        return output_sorted
     else:
-        return ",".join([get_choice_verbose(choices, elem) for elem in output])
+        return ",".join([get_choice_verbose(choices, elem) for elem in output_sorted])
 
 
 # Contact: Phone number
@@ -326,7 +327,7 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
     type: 'housenumber', 'street', 'locality' or 'municipality'
     example of type 'street': Place de la Gare 59460 Jeumont
     """
-    if "features" in results_json:
+    if ("features" in results_json) and len(results_json["features"]):
         results_first_address = results_json["features"][0]
         # if (len(results_json["features"]) == 1) or (results_first_address["properties"]["score"] > score_threshold): # noqa
         address_housenumber = (
@@ -356,6 +357,8 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
             "longitude": results_first_address["geometry"]["coordinates"][0],
             "score": results_first_address["properties"]["score"],
         }
+    else:
+        return None
 
 
 def get_address_full(

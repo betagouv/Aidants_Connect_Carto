@@ -299,6 +299,8 @@ class UtilitiesAddressTest(TestCase):
                 "Rue case toto 97217 Les Anses-d'Arlet",
                 ["Rue Case Toto 97217 Les Anses-d'Arlet", "Martinique", "Martinique"],
             ),
+            # unknown address
+            ("Couveuse Potentiel 58022 NEVERS", [None, None, None]),
         ]
         for address in address_list:
             address_raw = address[0]
@@ -306,12 +308,15 @@ class UtilitiesAddressTest(TestCase):
             address_departement = address[1][1]
             address_region = address[1][2]
             address_raw_processed = utilities.process_address(address_raw)
-            address_raw_processed_cleaned = f"{address_raw_processed['housenumber']}{' ' if address_raw_processed['housenumber'] else ''}{address_raw_processed['street']} {address_raw_processed['postcode']} {address_raw_processed['city']}"
-            self.assertEqual(address_raw_processed_cleaned, address_formatted)
-            self.assertEqual(
-                address_raw_processed["departement_name"], address_departement
-            )
-            self.assertEqual(address_raw_processed["region_name"], address_region)
+            if address_raw_processed:
+                address_raw_processed_cleaned = f"{address_raw_processed['housenumber']}{' ' if address_raw_processed['housenumber'] else ''}{address_raw_processed['street']} {address_raw_processed['postcode']} {address_raw_processed['city']}"
+                self.assertEqual(address_raw_processed_cleaned, address_formatted)
+                self.assertEqual(
+                    address_raw_processed["departement_name"], address_departement
+                )
+                self.assertEqual(address_raw_processed["region_name"], address_region)
+            else:
+                self.assertEqual(address_raw_processed, address_raw_processed)
 
     def test_get_address_full(self):
         address_list = [
@@ -539,6 +544,7 @@ class UtilitiesLabelsTest(TestCase):
         ("aptic", ["APTIC"], "APTIC"),
         ("aptic, mfs", ["APTIC", "France Services"], "APTIC,France Services"),
         ("Aidants connect", ["Aidants Connect"], "Aidants Connect"),
+        ("MFS,France Service", ["France Services"], "France Services"),
         ("tiers-lieux", [], ""),
         ("Inconnu", [], ""),
         ("", [], ""),

@@ -6,7 +6,8 @@
     "file_path": "data/hub_rhinocc/RHINOCC-carto-BDD_export.csv",
     "last_updated": "2020-01-30",
     "import_comment": "5 services différents. Avec pour chacun : type, conditions_acces_si_diff, presta, bloc",
-    "import_config": {
+    "import_config": "data/hub_rhinocc/hub_rhinocc_import_config.csv",
+    "import_config_old": {
         "dataset_file_delimiter": ",",
         "place_fields_mapping_auto": [
             {

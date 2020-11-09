@@ -1,5 +1,6 @@
 # flake8: noqa
 
+import re
 import csv
 import json
 import time
@@ -84,6 +85,7 @@ class Command(BaseCommand):
                         print("..." * int(index / 100), index)
                     place_dict = create_place_output_dict(dict(row), data_set_config)
                     temp_place_list.append(place_dict)
+                    time.sleep(0.5)  # to avoid spamming the Address (BAN) API
 
             print("Step 3 : writing output (transformed) data_set file")
             # Store the header and the processed lines in a new file
@@ -271,6 +273,9 @@ def process_place_opening_hours(place_output_dict, place_input_dict, input_field
         place_output_dict["horaires_ouverture_brut"] = OPENSTREETMAP_DAY_SEPERATOR.join(
             place_field_to_list
         )
+        # avoid empty "; ; ; " value
+        if re.match("^[ ;]*$", place_output_dict["horaires_ouverture_brut"]):
+            place_output_dict["horaires_ouverture_brut"] = ""
     else:
         place_output_dict["horaires_ouverture_brut"] = (
             place_input_dict[input_field] if input_field else ""
