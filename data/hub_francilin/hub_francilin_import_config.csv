@@ -1,7 +1,7 @@
 modele,fichier,commentaire
-_meta_fichier_source,Hub Francilin,
-_meta_fichier_nom,"data/hub_francilin",
-_meta_fichier_dossier,"source_source_fichier_normalise.csv",
+_meta_source,Hub Francilin,
+_meta_nom,"Cartographie des lieux d'inclusion numérique en Île-de-France",
+_meta_fichier_chemin,"data/hub_francilin/source_source_fichier_normalise.csv",
 _meta_fichier_separateur,",",
 nom,lieu_nom,
 structure_porteuse,,

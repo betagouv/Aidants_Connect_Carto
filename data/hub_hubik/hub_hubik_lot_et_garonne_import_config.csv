@@ -1,7 +1,7 @@
 modele,fichier,commentaire
-_meta_fichier_source,Hub Hubik,
-_meta_fichier_nom,"Cartographies departements - Lot-et-Garonne.csv",
-_meta_fichier_dossier,"data/hub_hubik",
+_meta_source,Hub Hubik,
+_meta_nom,"Département Lot-et-Garonne",
+_meta_fichier_chemin,"data/hub_hubik/Cartographies departements - Lot-et-Garonne.csv",
 _meta_fichier_separateur,";",
 nom,"Nom de votre structure",
 structure_porteuse,,

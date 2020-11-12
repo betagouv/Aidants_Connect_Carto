@@ -6,7 +6,8 @@
     "file_path": "data/region_normandie/GEO_NUM_DAN_SRTN_espaces_publics_numeriques.csv",
     "last_updated": "2020-03-07",
     "import_comment": "Export en csv rajoute des '.000000'",
-    "import_config": {
+    "import_config": "data/region_normandie/region_normandie_espaces-publics-numeriques_import_config.csv",
+    "import_config_old": {
         "dataset_file_delimiter": ",",
         "place_fields_mapping_auto": [
             {

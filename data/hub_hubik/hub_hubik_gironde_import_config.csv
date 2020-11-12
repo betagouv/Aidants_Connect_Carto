@@ -1,7 +1,7 @@
 modele,fichier,commentaire
-_meta_fichier_source,Hub Hubik,
-_meta_fichier_nom,"Cartographies departements - Gironde.csv",
-_meta_fichier_dossier,"data/hub_hubik",
+_meta_source,Hub Hubik,
+_meta_nom,"Département Gironde",
+_meta_fichier_chemin,"data/hub_hubik/Cartographies departements - Gironde.csv",
 _meta_fichier_separateur,";",
 nom,Lieu,
 structure_porteuse,,

@@ -13,104 +13,92 @@ from aidants_connect_carto.apps.core import utilities
 from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 
 
-SEPARATEUR_DATA_SET = ","
-SEPARATEUR_CHAMPS_MULTIPLES = ","
-DATA_SET_EXTENSION = ".csv"
+DEFAULT_SEPARATEUR_DATA_SET = ","
+DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES = ","
+DEFAULT_DATA_SET_EXTENSION = ".csv"
 
 
 class Command(BaseCommand):
     """
     Usage :
-    python manage.py transform_data_set_csv --config data/hub_abc/hub_abc_import_config.csv
+    python manage.py transform_data_set_csv data/hub_abc/hub_abc_import_config.csv
     """
 
     help = "Transform a dataset using the specified config"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--config",
+            "config",
             help="Le chemin vers la configuration d'import du jeu de donnée",
+            nargs=1,
             type=str,
-            default=None,
         )
 
     def handle(self, *args, **kwargs):
-        data_set_config_file_path = kwargs["config"]
+        # init
+        data_set_config_file_path = kwargs["config"][0]
+        data_set_config = []
+        data_set_file_path = ""
+        data_set_config_seperateur = DEFAULT_SEPARATEUR_DATA_SET
+        temp_place_list = []
+        csv_fieldnames = []
 
-        if not data_set_config_file_path:
-            print("--config argument missing")
-            return
-        else:
-
-            data_set_config = []
-            data_set_file_path = ""
-            data_set_config_seperateur = SEPARATEUR_DATA_SET
-            temp_place_list = []
-            csv_fieldnames = []
-
-            print("Step 1 : reading config file")
-            # Open the config file and store the data_set_config as well as the ouput header
-            with open(data_set_config_file_path) as f:
-                csvreader = csv.DictReader(f)
-                data_set_config = [dict(d) for d in csvreader]
-                data_set_folder = next(
-                    d["fichier"]
-                    for d in data_set_config
-                    if d["modele"] == "_meta_fichier_dossier"
-                )
-                data_set_name = next(
-                    d["fichier"]
-                    for d in data_set_config
-                    if d["modele"] == "_meta_fichier_nom"
-                )
-                data_set_file_path = data_set_folder + "/" + data_set_name
-                print(data_set_file_path)
-                data_set_config_seperateur = next(
-                    (
-                        d["fichier"]
-                        for d in data_set_config
-                        if d["modele"] == "_meta_fichier_separateur"
-                    ),
-                    SEPARATEUR_DATA_SET,
-                )
-                print(data_set_config_seperateur)
-                data_set_config_fields = [
-                    d for d in data_set_config if not d["modele"].startswith("_meta")
-                ]
-                csv_fieldnames = [d["modele"] for d in data_set_config_fields]
-                print(csv_fieldnames)
-
-            print("Step 2 : reading input data_set file")
-            # Process each line of the data_set
-            with open(data_set_file_path) as f:
-                csvreader = csv.DictReader(f, delimiter=data_set_config_seperateur)
-                print("... number of rows :", sum(1 for row in csvreader))
-                # reset the csvreader, and skip header
-                f.seek(0)
-                next(f)
-                for index, row in enumerate(csvreader):
-                    if index and (index % 100 == 0):
-                        print("..." * int(index / 100), index)
-                    place_dict = create_place_output_dict(
-                        dict(row), data_set_config_fields
-                    )
-                    temp_place_list.append(place_dict)
-                    time.sleep(0.5)  # to avoid spamming the Address (BAN) API
-
-            print("Step 3 : writing output (transformed) data_set file")
-            # Store the header and the processed lines in a new file
-            data_set_transformed_file_path = (
-                data_set_file_path.split(DATA_SET_EXTENSION)[0]
-                + "_transformed"
-                + DATA_SET_EXTENSION
+        # Open the config file and store the data_set_config as well as the ouput header
+        print("Step 1 : reading config file")
+        with open(data_set_config_file_path) as f:
+            csvreader = csv.DictReader(f)
+            data_set_config = [dict(d) for d in csvreader]
+            # data_set path
+            data_set_file_path = next(
+                d["fichier"]
+                for d in data_set_config
+                if d["modele"] == "_meta_fichier_chemin"
             )
-            with open(data_set_transformed_file_path, "w") as output_file:
-                csvwriter = csv.DictWriter(output_file, fieldnames=csv_fieldnames)
-                csvwriter.writeheader()
-                csvwriter.writerows(temp_place_list)
-            print("... file created :", data_set_transformed_file_path)
+            # data_set separateur
+            data_set_config_seperateur = next(
+                (
+                    d["fichier"]
+                    for d in data_set_config
+                    if d["modele"] == "_meta_fichier_separateur"
+                ),
+                DEFAULT_SEPARATEUR_DATA_SET,
+            )
+            # csv header
+            data_set_config_fields = [
+                d for d in data_set_config if not d["modele"].startswith("_meta")
+            ]
+            csv_fieldnames = [d["modele"] for d in data_set_config_fields]
 
-            print("Done !")
+        # Process each line of the data_set
+        print("Step 2 : reading input data_set file")
+        # encoding='utf-8-sig' ? sometimes the first column starts with "\ufeff"
+        with open(data_set_file_path, encoding="utf-8-sig") as f:
+            csvreader = csv.DictReader(f, delimiter=data_set_config_seperateur)
+            print("... number of rows :", sum(1 for row in csvreader))
+            # reset the csvreader, and skip header
+            f.seek(0)
+            next(f)
+            for index, row in enumerate(csvreader):
+                if index and (index % 100 == 0):
+                    print("..." * int(index / 100), index)
+                place_dict = create_place_output_dict(dict(row), data_set_config_fields)
+                temp_place_list.append(place_dict)
+                time.sleep(0.5)  # to avoid spamming the Address (BAN) API
+
+        # Store the header and the processed lines in a new file
+        print("Step 3 : writing output (transformed) data_set file")
+        data_set_transformed_file_path = (
+            data_set_file_path.split(DEFAULT_DATA_SET_EXTENSION)[0]
+            + "_transformed"
+            + DEFAULT_DATA_SET_EXTENSION
+        )
+        with open(data_set_transformed_file_path, "w") as output_file:
+            csvwriter = csv.DictWriter(output_file, fieldnames=csv_fieldnames)
+            csvwriter.writeheader()
+            csvwriter.writerows(temp_place_list)
+        print("... file created :", data_set_transformed_file_path)
+
+        print("Done !")
 
 
 def create_place_output_dict(place_input_dict, data_set_import_config):
@@ -208,7 +196,7 @@ def create_place_output_dict(place_input_dict, data_set_import_config):
     # Some fields are set as arrays, we need to transform them back to strings
     for champ in place_output_dict:
         if type(place_output_dict[champ]) == list:
-            place_output_dict[champ] = SEPARATEUR_CHAMPS_MULTIPLES.join(
+            place_output_dict[champ] = DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES.join(
                 place_output_dict[champ]
             )
 
@@ -228,8 +216,8 @@ def process_place_address(place_output_dict, place_input_dict, input_field):
         - ...
     """
     # set adresse_brut
-    if SEPARATEUR_CHAMPS_MULTIPLES in input_field:
-        input_field_to_list = input_field.split(SEPARATEUR_CHAMPS_MULTIPLES)
+    if DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES in input_field:
+        input_field_to_list = input_field.split(DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES)
         place_field_to_list = [place_input_dict[item] for item in input_field_to_list]
         place_output_dict["adresse_brut"] = " ".join(place_field_to_list).strip()
     else:
@@ -283,8 +271,8 @@ def process_place_opening_hours(place_output_dict, place_input_dict, input_field
     OPENSTREETMAP_DAY_SEPERATOR = "; "
 
     # set horaires_ouverture_brut
-    if SEPARATEUR_CHAMPS_MULTIPLES in input_field:
-        input_field_to_list = input_field.split(SEPARATEUR_CHAMPS_MULTIPLES)
+    if DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES in input_field:
+        input_field_to_list = input_field.split(DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES)
         place_field_to_list = [place_input_dict[item] for item in input_field_to_list]
         place_output_dict["horaires_ouverture_brut"] = OPENSTREETMAP_DAY_SEPERATOR.join(
             place_field_to_list

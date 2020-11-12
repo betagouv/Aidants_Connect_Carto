@@ -1,16 +1,16 @@
 modele,fichier,commentaire
-_meta_source,Hub du Sud,
-_meta_nom,"Lieux de médiation",
-_meta_fichier_chemin,"data/hub_sud/Copie de Lieux Médiation_fablab_SudLab_LABELS.csv",
+_meta_source,Région Corse,
+_meta_nom,"Espaces de coworking de Corse",
+_meta_fichier_chemin,"data/region_corse/espaces-de-coworking-de-corse.csv",
 _meta_fichier_separateur,";",
-nom,NOM DU LIEUX,
-structure_porteuse,STRUCTURE PORTEUSE,
+nom,etablissem,
+structure_porteuse,,
 description,,
-type_lieu,,Uniquement des tiers-lieux
+type_lieu,,
 statut,,
-nature_juridique,NATURE JURIDIQUE,
+nature_juridique,,
 siret,,
-adresse_brut,"ADRESSE,CODE POSTAL,VILLE",
+adresse_brut,"adresse,cp,commune",
 adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
 adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
@@ -24,10 +24,10 @@ itinerant,,
 en_ligne,,
 contact_telephone,,
 contact_telephone_details,,
-contact_email,,
-contact_web,PLUS D'INFORMATION,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
-contact_facebook,URL FACEBOOK,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
-horaires_ouverture_brut,HORAIRES,
+contact_email,contact,
+contact_web,,
+contact_facebook,,
+horaires_ouverture_brut,,
 horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
 public_cible,,
 modalites_acces,,
@@ -35,4 +35,4 @@ modalites_accompagnement,,
 tarifs,,
 accessibilite,,
 services,,
-labels,AUTRES LABELS,Beaucoup de valeurs différentes
+labels,,

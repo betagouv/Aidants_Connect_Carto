@@ -1,7 +1,7 @@
 modele,fichier,commentaire
-_meta_fichier_source,Hub Hinaura,
-_meta_fichier_nom,"data/hub_hinaura",
-_meta_fichier_dossier,"092020_test_bdd_Hinaura.csv",
+_meta_source,Hub Hinaura,
+_meta_nom,"test",
+_meta_fichier_chemin,"data/hub_hinaura/092020_test_bdd_Hinaura.csv",
 _meta_fichier_separateur,",",
 nom,Nom du lieu ou de la structure,
 structure_porteuse,,

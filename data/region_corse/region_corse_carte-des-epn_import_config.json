@@ -6,7 +6,8 @@
     "file_path": "data/region_corse/carte-des-epn-de-corse.csv",
     "last_updated": "2018-09-28",
     "import_comment": "Export en csv rajoute des '.0'. Absence de colonne 'type'. Impossible de faire rentrer les noms d'ateliers dans le mapping des services.",
-    "import_config": {
+    "import_config": "data/region_corse/region_corse_carte-des-epn_import_config.csv",
+    "import_config_old": {
         "place_fields_mapping_auto": [
             {
                 "place_field": "name",

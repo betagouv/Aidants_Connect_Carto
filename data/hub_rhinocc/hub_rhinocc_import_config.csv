@@ -1,7 +1,7 @@
 modele,fichier,commentaire
-_meta_fichier_source,Hub Rhinocc,
-_meta_fichier_nom,"data/hub_rhinocc",
-_meta_fichier_dossier,"RHINOCC-carto-BDD_export.csv",
+_meta_source,Hub Rhinocc,
+_meta_nom,"Lieux d’inclusion numérique en Occitanie",
+_meta_fichier_chemin,"data/hub_rhinocc/RHINOCC-carto-BDD_export.csv",
 _meta_fichier_separateur,",",
 nom,nom,
 structure_porteuse,structure_porteuse,
