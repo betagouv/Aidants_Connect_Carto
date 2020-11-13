@@ -440,19 +440,19 @@ def _clean_opening_hours_list(opening_hours_list: list):
     Input: ["9:00 - 12:00 / 13:30 - 17:00", "10:00 - 13:00"]
     Output: "Mo 9:00-12:00,13:30-17:00; Tu 10:00-13:00"
     """
-    MINIMUM_DAY_CHARS = 2
+    MINIMUM_CHARS_PER_DAY = 2
     # init
     opening_hours_list_cleaned = []
-    days_list = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
     # loop
     for index, elem in enumerate(opening_hours_list):
-        if len(opening_hours_list[index]) > MINIMUM_DAY_CHARS:
-            temp_opening_hours_day = (
-                days_list[index]
-                + " "
-                + _clean_day_opening_hours(opening_hours_list[index])
-            )
-            opening_hours_list_cleaned.append(temp_opening_hours_day)
+        if len(opening_hours_list[index]) > MINIMUM_CHARS_PER_DAY:
+            if index < len(constants.OPENSTREETMAP_DAYS_LIST):
+                temp_opening_hours_day = (
+                    constants.OPENSTREETMAP_DAYS_LIST[index]
+                    + " "
+                    + _clean_day_opening_hours(opening_hours_list[index])
+                )
+                opening_hours_list_cleaned.append(temp_opening_hours_day)
     return "; ".join(opening_hours_list_cleaned)
 
 

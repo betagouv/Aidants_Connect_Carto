@@ -381,3 +381,5 @@ FRANCE_DEPARTEMENT_CHOICES = [
     ("La Réunion", "La Réunion (974)"),
     ("Mayotte", "Mayotte (976)"),
 ]
+
+OPENSTREETMAP_DAYS_LIST = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]

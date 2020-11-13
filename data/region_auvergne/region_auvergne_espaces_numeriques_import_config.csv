@@ -3,6 +3,8 @@ _meta_source,Région Auvergne-Rhône-Alpes,
 _meta_nom,"Espaces Numériques en Auvergne",
 _meta_fichier_chemin,"data/region_auvergne/espaces_numeriques_en_auvergne.csv",
 _meta_fichier_separateur,";",
+_meta_lieu_id,,
+_meta_lieu_date_maj,,
 nom,"Libellé de l'espace numérique",
 structure_porteuse,Porteur,"Pré-traitement effectué : enlevé 'Non déclaré'"
 description,,
@@ -25,7 +27,7 @@ en_ligne,,
 contact_telephone,Téléphone,
 contact_telephone_details,,
 contact_email,E mail,
-contact_web,Site web,
+contact_web,Site web,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
 contact_facebook,,
 horaires_ouverture_brut,,
 horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"

@@ -166,7 +166,7 @@
       "type": "string",
       "constraints": {
         "required": false,
-        "pattern": "^\\d{5}$"
+        "pattern": "^[A-Z0-9]{5}$"
       }
     },
     {
