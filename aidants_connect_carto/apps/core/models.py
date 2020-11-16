@@ -185,6 +185,7 @@ class Place(models.Model):
     address_raw = models.CharField(
         verbose_name="L'adresse complète",
         max_length=300,
+        blank=True,
         help_text="20 Avenue de Ségur 75007 Paris",
     )
     address_housenumber = models.CharField(
@@ -258,7 +259,10 @@ class Place(models.Model):
 
     # --- contact
     contact_phone_raw = models.CharField(
-        verbose_name="Le numéro de téléphone brut", max_length=300
+        verbose_name="Le numéro de téléphone brut",
+        max_length=300,
+        blank=True,
+        help_text="0123456789 (sauf le dimanche)",
     )
     phone_regex = RegexValidator(
         regex=r"^[0-9]{10}$",
@@ -341,16 +345,15 @@ class Place(models.Model):
     )
 
     # --- accessibility
-    # accessibility = ArrayField(
-    #     verbose_name="Accessible aux formes de handicap suivantes",
-    #     base_field=models.CharField(
-    #         max_length=32,
-    #         blank=True,
-    #         choices=HANDICAP_CHOICES
-    #     ),
-    #     default=list,
-    #     blank=True
-    # )
+    accessibility = ArrayField(
+        verbose_name="Accessible aux formes de handicap suivantes",
+        base_field=models.CharField(
+            max_length=32, blank=True, choices=constants.ACCESSIBILITY_CHOICES
+        ),
+        default=list,
+        blank=True,
+        help_text="handicap moteur, handicap visuel, ...",
+    )
     has_accessibility_hi = models.BooleanField(
         verbose_name="Handicap auditif", default=False
     )
@@ -425,6 +428,15 @@ class Place(models.Model):
 
     # --- price
     is_free = models.BooleanField(verbose_name="Le lieu est-il gratuit ?", default=True)
+    price = ArrayField(
+        verbose_name="Coût(s) d'accès",
+        base_field=models.CharField(
+            max_length=32, blank=True, choices=constants.PRICE_CHOICES
+        ),
+        default=list,
+        blank=True,
+        help_text="gratuit, adherent, ...",
+    )
     price_details = models.TextField(
         verbose_name="Le details des prix du lieu", blank=True
     )  # price_details_raw ?
@@ -496,6 +508,15 @@ class Place(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    # def save(self, *args, **kwargs):
+    #     self.full_clean() # calls clean_fields(), clean() and validate_unique()
+    #     return super().save(*args, **kwargs)
+
+    # def clean(self):
+    #     # clean BooleanFields
+    #     self.is_itinerant = utilities.process_is_itinerant(self.is_itinerant)
+    #     self.is_online = utilities.process_is_online(self.is_online)
 
     @property
     def service_count(self) -> int:
@@ -588,8 +609,10 @@ class Service(models.Model):
 
     # --- basics
     name = models.CharField(
-        verbose_name="Le nom du service", max_length=300
-    )  # choices=SERVICE_NAME_CHOICES
+        verbose_name="Le nom du service",
+        max_length=300,
+        choices=constants.SERVICE_NAME_CHOICES,
+    )
     description = models.TextField(
         verbose_name="Une description du service", blank=True
     )

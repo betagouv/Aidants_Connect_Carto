@@ -344,6 +344,29 @@ class UtilitiesAddressTest(TestCase):
             self.assertEqual(address_full, address[1])
 
 
+class UtilitiesIsItinerant(TestCase):
+    is_itinerant_list = [
+        # (input, db_output, file_output)
+        ("Oui", True, "Oui"),
+        ("En effet", True, "En effet"),
+        ("Une semaine sur deux", True, "Une semaine sur deux"),
+        ("", False, ""),
+    ]
+
+    def test_is_itinerant(self):
+        for is_itinerant in self.is_itinerant_list:
+            self.assertEqual(
+                utilities.process_is_itinerant(is_itinerant[0]), is_itinerant[1]
+            )
+
+    def test_is_itinerant_to_file(self):
+        for is_itinerant in self.is_itinerant_list:
+            self.assertEqual(
+                utilities.process_is_itinerant(is_itinerant[0], destination="file"),
+                is_itinerant[2],
+            )
+
+
 class UtilitiesIsOnline(TestCase):
     is_online_list = [
         # (input, db_output, file_output)
@@ -599,4 +622,22 @@ class UtilitiesServiceTest(TestCase):
             self.assertEqual(
                 utilities.process_services(process_service_name[0], destination="file"),
                 process_service_name[2],
+            )
+
+
+class UtilitiesChoicesDbFromStringList(TestCase):
+    target_audience_string_list = [
+        ("Tout public,Allocataires", ["tout public", "allocataire"]),
+        ("Tout public", ["tout public"]),
+        ("", []),
+        (None, []),
+    ]
+
+    def test_get_choices_db_from_string(self):
+        for target_audience_string in self.target_audience_string_list:
+            self.assertEqual(
+                utilities.get_choices_db_from_string(
+                    constants.TARGET_AUDIENCE_CHOICES, target_audience_string[0]
+                ),
+                target_audience_string[1],
             )

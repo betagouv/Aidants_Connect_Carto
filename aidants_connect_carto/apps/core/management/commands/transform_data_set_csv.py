@@ -15,6 +15,7 @@ from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, S
 
 DEFAULT_SEPARATEUR_DATA_SET = ","
 DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES = ","
+DEFAULT_QUOTES_CUSTOM_VALUE = "///"
 DEFAULT_DATA_SET_EXTENSION = ".csv"
 
 
@@ -44,7 +45,7 @@ class Command(BaseCommand):
         csv_fieldnames = []
 
         # Open the config file and store the data_set_config as well as the ouput header
-        print("Step 1 : reading config file")
+        print("Step 1 : reading data_set config file")
         with open(data_set_config_file_path) as f:
             csvreader = csv.DictReader(f)
             data_set_config = [dict(d) for d in csvreader]
@@ -111,86 +112,95 @@ def create_place_output_dict(place_input_dict, data_set_import_config):
     for champ in data_set_import_config:
         # champ example : {'modele': 'contact_telephone', 'fichier': 'telephone', 'commentaire': ''}
         if champ["modele"] not in place_output_dict:
-            if champ["modele"] == "type_lieu":
-                if champ["fichier"]:
-                    place_output_dict[champ["modele"]] = utilities.process_type(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            elif champ["modele"] == "statut":
-                if champ["fichier"]:
-                    place_output_dict[champ["modele"]] = utilities.process_status(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            elif champ["modele"] == "nature_juridique":
-                if champ["fichier"]:
-                    place_output_dict[
-                        champ["modele"]
-                    ] = utilities.process_legal_entity_type(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            elif champ["modele"] == "adresse_brut":
-                place_output_dict = process_place_address(
-                    place_output_dict, place_input_dict, champ["fichier"]
-                )
-            elif champ["modele"] == "en_ligne":
-                input_field = (
-                    place_input_dict[champ["fichier"]] if champ["fichier"] else None
-                )
-                place_output_dict[champ["modele"]] = utilities.process_is_online(
-                    input_field, destination="file"
-                )
-            elif champ["modele"] == "contact_telephone":
-                if champ["fichier"]:
-                    # place_output_dict["contact_phone_raw"] = place_input_dict[champ["fichier"]]
-                    place_output_dict[champ["modele"]] = utilities.process_phone_number(
-                        place_input_dict[champ["fichier"]]
-                    )
-            elif champ["modele"] == "horaires_ouverture_brut":
-                place_output_dict = process_place_opening_hours(
-                    place_output_dict, place_input_dict, champ["fichier"]
-                )
-            elif champ["modele"] == "public_cible":
-                if champ["fichier"]:
-                    # place_output_dict["target_audience_raw"] = place_input_dict[champ["fichier"]]
-                    place_output_dict[
-                        champ["modele"]
-                    ] = utilities.process_target_audience(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            elif champ["modele"] == "modalites_acces":
-                if champ["fichier"]:
-                    # place_output_dict["support_access_raw"] = place_input_dict[champ["fichier"]]
-                    place_output_dict[
-                        champ["modele"]
-                    ] = utilities.process_support_access(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            elif champ["modele"] == "modalites_accompagnement":
-                if champ["fichier"]:
-                    # place_output_dict["support_mode_raw"] = place_input_dict[champ["fichier"]]
-                    place_output_dict[champ["modele"]] = utilities.process_support_mode(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            elif champ["modele"] == "labels":
-                if champ["fichier"]:
-                    # place_output_dict["labels_raw"] = place_input_dict[champ["fichier"]]
-                    place_output_dict[champ["modele"]] = utilities.process_labels(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            elif champ["modele"] == "services":
-                if champ["fichier"]:
-                    # place_output_dict["services_raw"] = place_input_dict[champ["fichier"]]
-                    place_output_dict[champ["modele"]] = utilities.process_services(
-                        place_input_dict[champ["fichier"]], destination="file"
-                    )
-            # elif champ["modele"] == "price_details":
-            #     place_output_dict["price_details"] = place_input_dict[champ["fichier"]]
-            #     place_output_dict["is_free"] = utilities.process_price(place_input_dict[champ["fichier"]])
-            # elif place_fields_mapping_boolean
+            if re.match(f"^{DEFAULT_QUOTES_CUSTOM_VALUE}.*$", champ["fichier"]):
+                place_output_dict[champ["modele"]] = champ["fichier"].split(
+                    DEFAULT_QUOTES_CUSTOM_VALUE
+                )[1]
             else:
-                place_output_dict[champ["modele"]] = (
-                    place_input_dict[champ["fichier"]] if champ["fichier"] else ""
-                )
+                if champ["modele"] == "type_lieu":
+                    if champ["fichier"]:
+                        place_output_dict[champ["modele"]] = utilities.process_type(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                elif champ["modele"] == "statut":
+                    if champ["fichier"]:
+                        place_output_dict[champ["modele"]] = utilities.process_status(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                elif champ["modele"] == "nature_juridique":
+                    if champ["fichier"]:
+                        place_output_dict[
+                            champ["modele"]
+                        ] = utilities.process_legal_entity_type(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                elif champ["modele"] == "adresse_brut":
+                    place_output_dict = process_place_address(
+                        place_output_dict, place_input_dict, champ["fichier"]
+                    )
+                elif champ["modele"] == "en_ligne":
+                    input_field = (
+                        place_input_dict[champ["fichier"]] if champ["fichier"] else None
+                    )
+                    place_output_dict[champ["modele"]] = utilities.process_is_online(
+                        input_field, destination="file"
+                    )
+                elif champ["modele"] == "contact_telephone":
+                    if champ["fichier"]:
+                        # place_output_dict["contact_phone_raw"] = place_input_dict[champ["fichier"]]
+                        place_output_dict[
+                            champ["modele"]
+                        ] = utilities.process_phone_number(
+                            place_input_dict[champ["fichier"]]
+                        )
+                elif champ["modele"] == "horaires_ouverture_brut":
+                    place_output_dict = process_place_opening_hours(
+                        place_output_dict, place_input_dict, champ["fichier"]
+                    )
+                elif champ["modele"] == "public_cible":
+                    if champ["fichier"]:
+                        # place_output_dict["target_audience_raw"] = place_input_dict[champ["fichier"]]
+                        place_output_dict[
+                            champ["modele"]
+                        ] = utilities.process_target_audience(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                elif champ["modele"] == "modalites_acces":
+                    if champ["fichier"]:
+                        # place_output_dict["support_access_raw"] = place_input_dict[champ["fichier"]]
+                        place_output_dict[
+                            champ["modele"]
+                        ] = utilities.process_support_access(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                elif champ["modele"] == "modalites_accompagnement":
+                    if champ["fichier"]:
+                        # place_output_dict["support_mode_raw"] = place_input_dict[champ["fichier"]]
+                        place_output_dict[
+                            champ["modele"]
+                        ] = utilities.process_support_mode(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                elif champ["modele"] == "labels":
+                    if champ["fichier"]:
+                        # place_output_dict["labels_raw"] = place_input_dict[champ["fichier"]]
+                        place_output_dict[champ["modele"]] = utilities.process_labels(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                elif champ["modele"] == "services":
+                    if champ["fichier"]:
+                        # place_output_dict["services_raw"] = place_input_dict[champ["fichier"]]
+                        place_output_dict[champ["modele"]] = utilities.process_services(
+                            place_input_dict[champ["fichier"]], destination="file"
+                        )
+                # elif champ["modele"] == "price_details":
+                #     place_output_dict["price_details"] = place_input_dict[champ["fichier"]]
+                #     place_output_dict["is_free"] = utilities.process_price(place_input_dict[champ["fichier"]])
+                # elif place_fields_mapping_boolean
+                else:
+                    place_output_dict[champ["modele"]] = (
+                        place_input_dict[champ["fichier"]] if champ["fichier"] else ""
+                    )
 
     # TODO: to be removed, by updating the utilities
     # Some fields are set as arrays, we need to transform them back to strings

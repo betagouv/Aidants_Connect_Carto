@@ -79,7 +79,11 @@
         <h5>Prendre contact</h5>
         <p title="Téléphone">📞&nbsp;{{ place.contact_phone | default:'' }}</p>
         <p title="Courriel">📧&nbsp;{{ place.contact_email }}</p>
-        <p title="Site internet">🌐&nbsp;<a href="{{ place.contact_website_url }}" target="_blank">{{ place.contact_website_url }}</a></p>
+        <p title="Site internet">🌐
+          {% if place.contact_website_url %}
+            <a href="{{ place.contact_website_url }}" target="_blank">{{ place.contact_website_url }}</a>
+          {% endif %}
+        </p>
         <p title="Réseaux sociaux">
           {% if place.contact_facebook_url %}
             <span title="Page Facebook"><a href="{{ place.contact_facebook_url }}" target="_blank"><img src="{% static 'img/openmoji/facebook_color_E042.svg' %}" height="30" /></a></span>
@@ -146,27 +150,27 @@
                 </div>
               {% endif %}
             </div>
-            <div class="card__extra">
+            <!-- <div class="card__extra">
               <span title="Tags">
                 {% if service.is_free %}
                   <span class="label label-small label--active">Gratuit</span>
                 {% else %}
-                <!-- <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span> -->
+                  <span class="label label-small label--active" title="{{ service.price_details }}">Payant</span>
                 {% endif %}
                 {% for target_audience_item in service.target_audience %}
                   <span class="label label-small label--inactive">{{ target_audience_item }}</span>
                 {% endfor %}
                 {% for support_access_item in service.support_access %}
                   <span class="label label-small label">{{ support_access_item }}</span>
-                {% endif %}
-                {% for support_mode_item service.support_mode %}
+                {% endfor %}
+                {% for support_mode_item in service.support_mode %}
                   <span class="label label-small label">{{ support_mode_item }}</span>
-                {% endif %}
+                {% endfor %}
                 {% if service.has_label_aidants_connect %}
                   <span class="label label-small label--active">Aidants Connect</span>
                 {% endif %}
               </span>
-            </div>
+            </div> -->
           </div>
         {% endfor %}
         <!-- <a class="tile" href="{% url 'service-create' place_id=place.id %}">

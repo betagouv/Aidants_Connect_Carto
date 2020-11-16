@@ -53,6 +53,7 @@ class PlaceModelTest(TestCase):
         )
         cls.place_2 = Place.objects.create(
             name="Lieu Test 2",
+            data_set_id=cls.data_set_1.id,
             address_street="Place de la République",
             address_postcode="75021",
             address_city="Paris",
@@ -78,8 +79,14 @@ class PlaceModelTest(TestCase):
 class ServiceModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
+        cls.data_source_1 = DataSource.objects.create(name="Region Test", type="region")
+        cls.data_set_1 = DataSet.objects.create(
+            name="Lieux EPN 2019", data_source_id=cls.data_source_1.id
+        )
         cls.place_1 = Place.objects.create(
-            name="Lieu Test 1", address_region_name="Auvergne-Rhône-Alpes",
+            name="Lieu Test 1",
+            address_region_name="Auvergne-Rhône-Alpes",
+            data_set_id=cls.data_set_1.id,
         )
         cls.service_1 = Service.objects.create(
             name="Stockage numérique sécurisé", place_id=cls.place_1.id

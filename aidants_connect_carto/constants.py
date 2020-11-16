@@ -183,6 +183,12 @@ LANGUAGE_CHOICES = [
     ("fsl", "Language des signes"),
 ]
 
+PRICE_CHOICES = [
+    ("gratuit", "Gratuit"),
+    ("adherent", "Adhérent"),
+    ("payant", "Payant"),
+]
+
 PAYMENT_CHOICES = [
     ("especes", "Espèces"),
     ("carte bancaire", "Carte bancaire"),
@@ -200,7 +206,7 @@ EQUIPMENT_CHOICES = [
     ("imprimante", "Imprimante"),
     # "Autre"
 ]
-HANDICAP_CHOICES = [
+ACCESSIBILITY_CHOICES = [
     ("handicap moteur", "Handicap moteur"),
     ("handicap visuel", "Handicap visuel"),
     ("handicap auditif", "Handicap auditif"),

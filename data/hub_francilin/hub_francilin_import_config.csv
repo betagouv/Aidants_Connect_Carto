@@ -1,8 +1,9 @@
 modele,fichier,commentaire
-_meta_source,Hub Francilin,
+_meta_source,"Hub Francil'IN",
 _meta_nom,"Cartographie des lieux d'inclusion numérique en Île-de-France",
 _meta_fichier_chemin,"data/hub_francilin/source_source_fichier_normalise.csv",
 _meta_fichier_separateur,",",
+_meta_url,https://francilin-carto.netlify.app/,
 _meta_lieu_id,francilin_id,
 _meta_lieu_date_maj,,
 nom,lieu_nom,

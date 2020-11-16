@@ -12,11 +12,46 @@ from aidants_connect_carto import constants
 
 
 def get_choice_verbose(choices: list, value: str):
+    """
+    Examples:
+    (PLACE_TYPE_CHOICES, 'bibliotheque') --> 'Bibliothèque / Médiathèque'
+    """
     for choice in choices:
         if value == choice[0]:
             return choice[1]
     # raise Exception(f"error with choices for {value}")
     return None
+
+
+def get_choice_db(choices: list, value: str):
+    """
+    Examples:
+    (PLACE_TYPE_CHOICES, ''Bibliothèque / Médiathèque') --> 'bibliotheque'
+    """
+    for choice in choices:
+        if value == choice[1]:
+            return choice[0]
+    # raise Exception(f"error with choices for {value}")
+    return None
+
+
+def get_choices_db_from_string(choices: list, value: str, seperator=","):
+    """
+    Examples:
+    (TARGET_AUDIENCE_CHOICES, 'Tout public,Allocataires') --> ['tout public', 'allocataire']  # noqa
+    """
+    # init
+    output = []
+
+    # match string list
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            output.append(get_choice_db(choices, value_item))
+
+    # clean and return
+    output = [x for x in output if x]  # remove None, empty string
+    return output
 
 
 # Float fields
@@ -44,11 +79,26 @@ def process_boolean(value: str, destination="db"):
     return False if (destination == "db") else constants.FILE_BOOLEAN_FALSE
 
 
-def process_is_online(value: str, destination="db"):
+def process_is_itinerant(value: str, destination="db"):
     """
+    Examples:
+    ('oui', 'db') --> True
+    ('oui', 'file') --> 'oui'
     """
     if value:
-        return True if (destination == "db") else constants.FILE_BOOLEAN_TRUE
+        return True if (destination == "db") else value
+    return False if (destination == "db") else constants.EMPTY_STRING
+
+
+def process_is_online(value: str, destination="db"):
+    """
+    Examples:
+    ('oui', 'db') --> True
+    ('oui', 'file') --> FILE_BOOLEAN_TRUE
+    """
+    if value:
+        if not any(elem in value.lower() for elem in ["non", "faux", "false"]):
+            return True if (destination == "db") else constants.FILE_BOOLEAN_TRUE
     return False if (destination == "db") else constants.FILE_BOOLEAN_FALSE
 
 
