@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Hub Connumm,
+_meta_nom,"Espaces de médiation numérique en Pays de la Loire",
+_meta_fichier_chemin,"data/hub_connumm/export_file.csv",
+_meta_fichier_separateur,";",
+_meta_url,"https://conumm.netlify.app/",
+_meta_lieu_id,conum_id,
+_meta_lieu_date_maj,Date de mise a jour,
+nom,Nom de la structure,
+structure_porteuse,,
+description,,
+type_lieu,,
+statut,,
+nature_juridique,,
+siret,,
+adresse_brut,Adresse postale,
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,Numero de téléphone,Il y a certains numéros à 4 chiffres
+contact_telephone_details,,
+contact_email,Mail contact,Il y a certaines valeurs qui n'ont pas le format email
+contact_web,Site Web,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
+contact_facebook,,
+horaires_ouverture_brut,,
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,Public,"Beaucoup de valeurs possibles. séparateur '-'. Il y a aussi un champ 'publics-codes' issu d'un post-processing, et qui serait plus facilement exploitable"
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,"Champ 'Conditions d'acces' dans le fichier. Il y a aussi le champ 'acces-codes' issu d'un post-processing, et qui serait plus facilement exploitable"
+accessibilite,,
+services,,
+labels,,

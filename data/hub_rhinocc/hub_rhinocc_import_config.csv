@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Hub RhinOcc,
+_meta_nom,"Lieux d’inclusion numérique en Occitanie",
+_meta_fichier_chemin,"data/hub_rhinocc/RHINOCC-carto-BDD_export.csv",
+_meta_fichier_separateur,",",
+_meta_url,"https://rhinocc-carto-preprod.netlify.app/",
+_meta_lieu_id,rh_id,
+_meta_lieu_date_maj,,
+nom,nom,
+structure_porteuse,structure_porteuse,
+description,,
+type_lieu,rattachement,"Le champ 'type_lieu' a beaucoup de valeurs de l'ordre du nom du lieu, 'rattachement' est plus pertinent"
+statut,,
+nature_juridique,nature_juridique,Parfois préfixé de PUB ou PRV ce qui empêche une bon mapping
+siret,,
+adresse_brut,adresse_full,
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,tel_structure,Certains numéros sont à 4 chiffres seulement
+contact_telephone_details,,
+contact_email,email_structure,
+contact_web,site_internet,
+contact_facebook,,
+horaires_ouverture_brut,"lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche",
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,public_toutes_actions,Champ de bonne qualité
+modalites_acces,conditions_acces_toutes_actions,Champ libre ou vide
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,
+labels,label_full,"séparateur ' - ' pas exploitable"

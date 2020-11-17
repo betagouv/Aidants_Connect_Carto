@@ -1,0 +1,40 @@
+modele,fichier,commentaire
+_meta_source,Hub Hubik,
+_meta_nom,"Département Lot-et-Garonne",
+_meta_fichier_chemin,"data/hub_hubik/Cartographies departements - Lot-et-Garonne.csv",
+_meta_fichier_separateur,";",
+_meta_lieu_id,Num,
+_meta_lieu_date_maj,,
+nom,"Nom de votre structure",
+structure_porteuse,,
+description,,
+type_lieu,"Nature de votre structure",
+statut,,
+nature_juridique,,
+siret,,
+adresse_brut,"Numéro de rue,Nom de rue,Code postal,Ville",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,"Numéro de téléphone de votre structure",Il manque souvent le 0 devant
+contact_telephone_details,,
+contact_email,"Adresse e-mail de votre structure",
+contact_web,"Site internet de votre structure",Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
+contact_facebook,,
+horaires_ouverture_brut,"Quels sont les horaires","Nom originale de la colonne avait une virgule, ce qui faisait planter le script"
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,"Accompagnez-vous des publics spécifiques?",
+modalites_acces,"Quelles sont les conditions d'accès à vos services ? (adhésion préalable, prise de rdv,...)",
+modalites_accompagnement,"Quel type d'accompagnement ?",
+tarifs,"Quels sont les tarifs appliqués ?",
+accessibilite,,
+services,"Quel(s) service(s) proposez-vous?",
+labels,,

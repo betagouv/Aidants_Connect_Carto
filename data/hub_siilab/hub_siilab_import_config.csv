@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Hub Les Assembleurs,
+_meta_nom,"Cartographie régionale des ressources numériques en Hauts-de-France",
+_meta_fichier_chemin,"data/hub_siilab/siilab-hdf_export.csv",
+_meta_fichier_separateur,",",
+_meta_url,"http://hauts-de-france.drjscs.gouv.fr/spip.php?article1793",
+_meta_lieu_id,ID Exporter les données,
+_meta_lieu_date_maj,Horodateur,
+nom,Nom SP,
+structure_porteuse,,
+description,,
+type_lieu,Nature,
+statut,,
+nature_juridique,Statut,
+siret,,
+adresse_brut,"Adresse SP,CP,Commune",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,Tél SP,
+contact_telephone_details,,
+contact_email,Mail SP,
+contact_web,Site SP,
+contact_facebook,,
+horaires_ouverture_brut,Ouverture,
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,Publics,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,"Plusieurs colonnes, difficile d'importer en l'état"
+labels,,

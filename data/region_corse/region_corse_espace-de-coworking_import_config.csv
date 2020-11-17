@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Région Corse,
+_meta_nom,"Espaces de coworking de Corse",
+_meta_fichier_chemin,"data/region_corse/espaces-de-coworking-de-corse.csv",
+_meta_fichier_separateur,";",
+_meta_url,"https://data.corse.fr/explore/dataset/espaces-de-coworking-de-corse/information/",
+_meta_lieu_id,,
+_meta_lieu_date_maj,,
+nom,etablissem,
+structure_porteuse,,
+description,,
+type_lieu,,
+statut,,
+nature_juridique,,
+siret,,
+adresse_brut,"adresse,cp,commune",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,,
+contact_telephone_details,,
+contact_email,contact,
+contact_web,,
+contact_facebook,,
+horaires_ouverture_brut,,
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,
+labels,,

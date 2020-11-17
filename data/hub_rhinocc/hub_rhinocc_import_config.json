@@ -6,7 +6,8 @@
     "file_path": "data/hub_rhinocc/RHINOCC-carto-BDD_export.csv",
     "last_updated": "2020-01-30",
     "import_comment": "5 services différents. Avec pour chacun : type, conditions_acces_si_diff, presta, bloc",
-    "import_config": {
+    "import_config": "data/hub_rhinocc/hub_rhinocc_import_config.csv",
+    "import_config_old": {
         "dataset_file_delimiter": ",",
         "place_fields_mapping_auto": [
             {
@@ -29,8 +30,8 @@
         "place_fields_mapping_process": [
             {
                 "place_field": "type",
-                "file_field": "type_lieu",
-                "comment": "beaucoup de valeurs de l'ordre du nom du lieu"
+                "file_field": "rattachement",
+                "comment": "'type_lieu' a beaucoup de valeurs de l'ordre du nom du lieu, 'rattachement' est plus pertinent"
             },
             {
                 "place_field": "legal_entity_type",

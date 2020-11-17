@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Région Normandie,
+_meta_nom,"Espaces publics numériques",
+_meta_fichier_chemin,"data/region_normandie/GEO_NUM_DAN_SRTN_espaces_publics_numeriques.csv",
+_meta_fichier_separateur,",",
+_meta_url,"https://geo.data.gouv.fr/fr/datasets/3316c824665e5d19c0ef21102775ed94440a8aed",
+_meta_lieu_id,CODE_LIEU,
+_meta_lieu_date_maj,,
+nom,NOM,
+structure_porteuse,STRUCT_ACC,
+description,,
+type_lieu,CODE_TYPE,
+statut,,
+nature_juridique,,
+siret,,
+adresse_brut,"N_VOIE,N_VOIE_COM,TYPE_VOIE,NOM_VOIE,CP_NV,COMMUNE_NV",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,TEL,
+contact_telephone_details,,
+contact_email,COURRIEL,
+contact_web,WEB,
+contact_facebook,,
+horaires_ouverture_brut,,
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,
+labels,,

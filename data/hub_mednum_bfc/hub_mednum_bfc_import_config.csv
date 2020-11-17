@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Hub MedNum BFC,
+_meta_nom,"La cartographie des lieux de médiation numérique",
+_meta_fichier_chemin,"data/hub_mednum_bfc/2020-07-09_BFC-TERNUM_export.csv",
+_meta_fichier_separateur,",",
+_meta_url,"https://www.mednum-bfc.fr/cartographie/",
+_meta_lieu_id,,
+_meta_lieu_date_maj,mise_a_jour,
+nom,nom_structure,
+structure_porteuse,,
+description,,
+type_lieu,def_typo,Ne correspond pas à la typologie
+statut,,
+nature_juridique,,
+siret,,
+adresse_brut,"adresse,code_postal,ville",Il y a aussi une colonne 'adresse_full'
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,contact_tel,
+contact_telephone_details,,
+contact_email,contact_email,
+contact_web,url_lieu,Il y a certaines valeurs qui n'ont pas le format url (il manque le http devant par exemple)
+contact_facebook,,
+horaires_ouverture_brut,horaires,Format HTML inexploitable
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,
+labels,def_label,

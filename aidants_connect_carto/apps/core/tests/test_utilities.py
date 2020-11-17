@@ -27,7 +27,8 @@ class UtilitiesOpeningHoursTest(TestCase):
             ("8h30-12h00/13h30-17h30", "08:30-12:00,13:30-17:30"),
             (
                 "Lundi : 13h30 - 17h30 ; Mardi au Jeudi : 8h30 - 12h et 13h30 - 17h30 ;  Vendredi : 8h30 - 12h et 13h30 - 16h",
-                "Mo 13:30-17:30; Tu-Th 08:30-12:00,13:30-17:30; Fr 08:30-12:00,13:30-16:00",
+                # "Mo 13:30-17:30; Tu-Th 08:30-12:00,13:30-17:30; Fr 08:30-12:00,13:30-16:00",
+                "",  # not managed anymore because of ";" (considers that there is 1 day per elem split)
             ),
             (
                 "mardi de 10h à 21h / du mercredi au vendredi de 10h à 18h / le samedi de 9h15 à 18h",
@@ -39,14 +40,16 @@ class UtilitiesOpeningHoursTest(TestCase):
             ),
             (
                 "Mercredi 14h-18h; jeudi 18h-21h; vendredi 9h-12h/14h-18h; samedi 14h-18h",
-                "We 14:00-18:00; Th 18:00-21:00; Fr 09:00-12:00,14:00-18:00; Sa 14:00-18:00",
+                # "We 14:00-18:00; Th 18:00-21:00; Fr 09:00-12:00,14:00-18:00; Sa 14:00-18:00",
+                "",  # not managed anymore because of ";" (considers that there is 1 day per elem split)
             ),
             (
                 "Lundi 9h-12h/14h-21h; mardi 9h-12h/14h-18h;mercredi 9h-12h/14h-21h; jeudi et vendredi 9h-12h/14h-18h; samedi 9h-12h",
-                "Mo 09:00-12:00,14:00-21:00; Tu 09:00-12:00,14:00-18:00; We 09:00-12:00,14:00-21:00; Th, Fr 09:00-12:00,14:00-18:00; Sa 09:00-12:00",
+                # "Mo 09:00-12:00,14:00-21:00; Tu 09:00-12:00,14:00-18:00; We 09:00-12:00,14:00-21:00; Th, Fr 09:00-12:00,14:00-18:00; Sa 09:00-12:00",
+                "",  # not managed anymore because of ";" (considers that there is 1 day per elem split)
             ),
             ("Du lundi au samedi de 9-13h/14h-20h", "Mo-Sa 09:00-13:00,14:00-20:00"),
-            # Array --> string with | seperator
+            # Array --> string with " | " seperator
             (
                 "9:00 - 12:00 / 13:30 - 17:00 | 9:00 - 12:00 / 13:30 - 17:00 |  |  | - | 10:00 - 13:00 | -",
                 "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00,13:30-17:00; Sa 10:00-13:00",
@@ -54,6 +57,20 @@ class UtilitiesOpeningHoursTest(TestCase):
             (
                 "9:00 - 12:00 / 13:30 - 17:00 | 9:00 - 12:00",
                 "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00",
+            ),
+            # Array --> string with "; " seperator
+            (
+                "9:00 - 12:00 / 13:30 - 17:00; 9:00 - 12:00 / 13:30 - 17:00; ; ; -; 10:00 - 13:00; -",
+                "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00,13:30-17:00; Sa 10:00-13:00",
+            ),
+            (
+                "9:00 - 12:00 / 13:30 - 17:00; 9:00 - 12:00",
+                "Mo 09:00-12:00,13:30-17:00; Tu 09:00-12:00",
+            ),
+            # Extra days ? skip them
+            (
+                "9:00-18:00; 9:00-18:00; 9:00-18:00; 9:00-18:00; 9:00-18:00; 9:00-18:00; 9:00-18:00; JF: 9:00-13:00",
+                "Mo 09:00-18:00; Tu 09:00-18:00; We 09:00-18:00; Th 09:00-18:00; Fr 09:00-18:00; Sa 09:00-18:00; Su 09:00-18:00",
             ),
             # (
             #     "9:00 - 12:00 / 13:30 - 17:00",
@@ -287,6 +304,8 @@ class UtilitiesAddressTest(TestCase):
                 "Rue case toto 97217 Les Anses-d'Arlet",
                 ["Rue Case Toto 97217 Les Anses-d'Arlet", "Martinique", "Martinique"],
             ),
+            # unknown address
+            ("Couveuse Potentiel 58022 NEVERS", [None, None, None]),
         ]
         for address in address_list:
             address_raw = address[0]
@@ -294,12 +313,15 @@ class UtilitiesAddressTest(TestCase):
             address_departement = address[1][1]
             address_region = address[1][2]
             address_raw_processed = utilities.process_address(address_raw)
-            address_raw_processed_cleaned = f"{address_raw_processed['housenumber']}{' ' if address_raw_processed['housenumber'] else ''}{address_raw_processed['street']} {address_raw_processed['postcode']} {address_raw_processed['city']}"
-            self.assertEqual(address_raw_processed_cleaned, address_formatted)
-            self.assertEqual(
-                address_raw_processed["departement_name"], address_departement
-            )
-            self.assertEqual(address_raw_processed["region_name"], address_region)
+            if address_raw_processed:
+                address_raw_processed_cleaned = f"{address_raw_processed['housenumber']}{' ' if address_raw_processed['housenumber'] else ''}{address_raw_processed['street']} {address_raw_processed['postcode']} {address_raw_processed['city']}"
+                self.assertEqual(address_raw_processed_cleaned, address_formatted)
+                self.assertEqual(
+                    address_raw_processed["departement_name"], address_departement
+                )
+                self.assertEqual(address_raw_processed["region_name"], address_region)
+            else:
+                self.assertEqual(address_raw_processed, address_raw_processed)
 
     def test_get_address_full(self):
         address_list = [
@@ -322,95 +344,300 @@ class UtilitiesAddressTest(TestCase):
             self.assertEqual(address_full, address[1])
 
 
-class UtilitiesMappingTest(TestCase):
+class UtilitiesIsItinerant(TestCase):
+    is_itinerant_list = [
+        # (input, db_output, file_output)
+        ("Oui", True, "Oui"),
+        ("En effet", True, "En effet"),
+        ("Une semaine sur deux", True, "Une semaine sur deux"),
+        ("", False, ""),
+    ]
+
+    def test_is_itinerant(self):
+        for is_itinerant in self.is_itinerant_list:
+            self.assertEqual(
+                utilities.process_is_itinerant(is_itinerant[0]), is_itinerant[1]
+            )
+
+    def test_is_itinerant_to_file(self):
+        for is_itinerant in self.is_itinerant_list:
+            self.assertEqual(
+                utilities.process_is_itinerant(is_itinerant[0], destination="file"),
+                is_itinerant[2],
+            )
+
+
+class UtilitiesIsOnline(TestCase):
+    is_online_list = [
+        # (input, db_output, file_output)
+        ("Oui", True, "Oui"),
+        ("En effet", True, "Oui"),
+        ("", False, "Non"),
+    ]
+
+    def test_is_online(self):
+        for is_online in self.is_online_list:
+            self.assertEqual(utilities.process_is_online(is_online[0]), is_online[1])
+
+    def test_is_online_to_file(self):
+        for is_online in self.is_online_list:
+            self.assertEqual(
+                utilities.process_is_online(is_online[0], destination="file"),
+                is_online[2],
+            )
+
+
+class UtilitiesTypeTest(TestCase):
+    place_type_list = [
+        # (input, db_output, file_output)
+        (
+            "CAF",
+            "securite sociale",
+            "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)",
+        ),
+        ("", constants.CHOICE_OTHER, constants.EMPTY_STRING),
+    ]
+
     def test_process_type(self):
-        place_type_list = [
-            ("CAF", "securite sociale"),
-            ("", constants.CHOICE_OTHER),
-        ]
-        for place_type in place_type_list:
+        for place_type in self.place_type_list:
             self.assertEqual(utilities.process_type(place_type[0]), place_type[1])
 
+    def test_process_type_to_file(self):
+        for place_type in self.place_type_list:
+            self.assertEqual(
+                utilities.process_type(place_type[0], destination="file"), place_type[2]
+            )
+
+
+class UtilitiesStatusTest(TestCase):
+    status_list = [
+        # (input, db_output, file_output)
+        ("Public", "public", "Public"),
+        ("Privé", "prive", "Privé"),
+        ("", constants.CHOICE_OTHER, constants.EMPTY_STRING),
+    ]
+
+    def test_process_status(self):
+        for status in self.status_list:
+            self.assertEqual(utilities.process_status(status[0]), status[1])
+
+    def test_process_status_to_file(self):
+        for status in self.status_list:
+            self.assertEqual(
+                utilities.process_status(status[0], destination="file"), status[2]
+            )
+
+
+class UtilitiesLegalEntityTypeTest(TestCase):
+    legal_entity_type_list = [
+        # (input, db_output, file_output)
+        ("association", "association", "Association"),
+        ("CAE", "cae", "Coopérative d'Activités et d'Entrepreneur·es (CAE)"),
+        ("", constants.CHOICE_OTHER, constants.EMPTY_STRING),
+    ]
+
     def test_process_legal_entity_type(self):
-        legal_entity_type_list = [
-            ("association", "association"),
-            ("CAE", "cae"),
-            ("", constants.CHOICE_OTHER),
-        ]
-        for legal_entity_type in legal_entity_type_list:
+        for legal_entity_type in self.legal_entity_type_list:
             self.assertEqual(
                 utilities.process_legal_entity_type(legal_entity_type[0]),
                 legal_entity_type[1],
             )
 
-    def test_process_service_name(self):
-        process_service_name_list = [
-            (
-                "Etre initié aux outils numériques",
-                "Acquisition de compétences numériques",
-            ),
-            ("", None),
-        ]
-        for process_service_name in process_service_name_list:
+    def test_process_legal_entity_type_to_file(self):
+        for legal_entity_type in self.legal_entity_type_list:
             self.assertEqual(
-                utilities.process_service_name(process_service_name[0]),
-                process_service_name[1],
+                utilities.process_legal_entity_type(
+                    legal_entity_type[0], destination="file"
+                ),
+                legal_entity_type[2],
             )
 
+
+class UtilitiesTargetAudienceTest(TestCase):
+    target_audience_list = [
+        # (input, db_output, file_output)
+        ("Droits des étrangers", ["etranger"], "Étrangers"),
+        ("Personnes de nationalité étrangère", ["etranger"], "Étrangers"),
+        ("Moins de 26 ans", ["jeune"], "Jeunes"),
+        ("PLUS DE 50 ANS", ["senior"], "Séniors"),
+        (
+            "Personnes en situation de handicap, Personnes en recherche d'emploi",
+            ["demandeur emploi", "handicap"],
+            "Demandeurs d'emploi,Personnes en situation de handicap",
+        ),
+        ("Inconnu", [], ""),
+        ("", [], ""),
+    ]
+
     def test_process_target_audience(self):
-        target_audience_list = [
-            ("Droits des étrangers", ["etranger"]),
-            ("Personnes de nationalité étrangère", ["etranger"]),
-            ("Moins de 26 ans", ["jeune"]),
-            ("PLUS DE 50 ANS", ["senior"]),
-            (
-                "Personnes en situation de handicap, Personnes en recherche d'emploi",
-                ["demandeur emploi", "handicap"],
-            ),
-            ("", []),
-        ]
-        for target_audience in target_audience_list:
+        for target_audience in self.target_audience_list:
             self.assertEqual(
                 utilities.process_target_audience(target_audience[0]),
                 target_audience[1],
             )
 
+    def test_process_target_audience_to_file(self):
+        for target_audience in self.target_audience_list:
+            self.assertEqual(
+                utilities.process_target_audience(
+                    target_audience[0], destination="file"
+                ),
+                target_audience[2],
+            )
+
+
+class UtilitiesSupportAccessTest(TestCase):
+    support_access_list = [
+        # (input, db_output, file_output)
+        ("sur Rendez-Vous", ["inscription"], "Sur inscription ou rendez-vous"),
+        ("sans Rendez-Vous", ["libre"], "Accès libre"),
+        (
+            "libre, réservation",
+            ["libre", "inscription"],
+            "Accès libre,Sur inscription ou rendez-vous",
+        ),
+        ("RDV", ["inscription"], "Sur inscription ou rendez-vous"),
+        ("'accès en mairie aux heures d'ouverture et sur rendez vous'", [], ""),
+        ("Accès libre - accompagnement si besoin", [], ""),
+        ("Inconnu", [], ""),
+        ("", [], ""),
+    ]
+
     def test_process_support_access(self):
-        support_access_list = [
-            ("sur Rendez-Vous", ["inscription"]),
-            ("sans Rendez-Vous", ["libre"]),
-            ("libre, réservation", ["libre", "inscription"]),
-            ("RDV", ["inscription"]),
-            ("'accès en mairie aux heures d'ouverture et sur rendez vous'", []),
-            ("Accès libre - accompagnement si besoin", []),
-            ("", []),
-        ]
-        for support_access in support_access_list:
+        for support_access in self.support_access_list:
             self.assertEqual(
                 utilities.process_support_access(support_access[0]), support_access[1],
             )
 
+    def test_process_support_access_to_file(self):
+        for support_access in self.support_access_list:
+            self.assertEqual(
+                utilities.process_support_access(support_access[0], destination="file"),
+                support_access[2],
+            )
+
+
+class UtilitiesSupportModeTest(TestCase):
+    support_mode_list = [
+        # (input, db_output, file_output)
+        ("individuel", ["individuel"], "Individuel"),
+        ("accompagnement personnalisé", ["individuel"], "Individuel"),
+        ("Individuel, collectif", ["individuel", "collectif"], "Individuel,Collectif"),
+        ("Inconnu", [], ""),
+        ("", [], ""),
+    ]
+
     def test_process_support_mode(self):
-        support_mode_list = [
-            ("individuel", ["individuel"]),
-            ("accompagnement personnalisé", ["individuel"]),
-            ("Individuel, collectif", ["individuel", "collectif"]),
-            ("", []),
-        ]
-        for support_mode in support_mode_list:
+        for support_mode in self.support_mode_list:
             self.assertEqual(
                 utilities.process_support_mode(support_mode[0]), support_mode[1],
             )
 
+    def test_process_support_mode_to_file(self):
+        for support_mode in self.support_mode_list:
+            self.assertEqual(
+                utilities.process_support_mode(support_mode[0], destination="file"),
+                support_mode[2],
+            )
+
+
+class UtilitiesLabelsTest(TestCase):
+    labels_list = [
+        # (input, db_output, file_output)
+        ("aptic", ["APTIC"], "APTIC"),
+        ("aptic, mfs", ["APTIC", "France Services"], "APTIC,France Services"),
+        ("Aidants connect", ["Aidants Connect"], "Aidants Connect"),
+        ("MFS,France Service", ["France Services"], "France Services"),
+        ("tiers-lieux", [], ""),
+        ("Inconnu", [], ""),
+        ("", [], ""),
+    ]
+
     def test_process_labels(self):
-        labels_list = [
-            ("aptic", ["APTIC"]),
-            ("aptic, mfs", ["APTIC", "France Services"]),
-            ("Aidants connect", ["Aidants Connect"]),
-            ("tiers-lieux", []),
-            ("", []),
-        ]
-        for labels in labels_list:
+        for labels in self.labels_list:
             self.assertEqual(
                 utilities.process_labels(labels[0]), labels[1],
+            )
+
+    def test_process_labels_to_file(self):
+        for labels in self.labels_list:
+            self.assertEqual(
+                utilities.process_labels(labels[0], destination="file"), labels[2],
+            )
+
+
+class UtilitiesServiceSimpleTest(TestCase):
+    process_service_name_list = [
+        # (input, db_output)
+        # file_output ? same as db_output
+        ("Etre initié aux outils numériques", "Acquisition de compétences numériques"),
+        ("", constants.EMPTY_STRING),
+    ]
+
+    def test_process_service_name(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_service_name(process_service_name[0]),
+                process_service_name[1],
+            )
+
+    def test_process_service_name_to_file(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_service_name(
+                    process_service_name[0], destination="file"
+                ),
+                process_service_name[1],
+            )
+
+
+class UtilitiesServiceTest(TestCase):
+    process_service_name_list = [
+        # (input, db_output, file_output)
+        (
+            "Etre initié aux outils numériques",
+            ["Acquisition de compétences numériques"],
+            "Acquisition de compétences numériques",
+        ),
+        (
+            "Accès à Internet en autonomie, Etre accompagné dans ses démarches administratives",
+            [
+                "Accompagnement aux démarches administratives en ligne",
+                "Accès à un équipement informatique",
+            ],
+            "Accompagnement aux démarches administratives en ligne,Accès à un équipement informatique",
+        ),
+        ("", [], constants.EMPTY_STRING),
+    ]
+
+    def test_process_service_name(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_services(process_service_name[0]),
+                process_service_name[1],
+            )
+
+    def test_process_service_name_to_file(self):
+        for process_service_name in self.process_service_name_list:
+            self.assertEqual(
+                utilities.process_services(process_service_name[0], destination="file"),
+                process_service_name[2],
+            )
+
+
+class UtilitiesChoicesDbFromStringList(TestCase):
+    target_audience_string_list = [
+        ("Tout public,Allocataires", ["tout public", "allocataire"]),
+        ("Tout public", ["tout public"]),
+        ("", []),
+        (None, []),
+    ]
+
+    def test_get_choices_db_from_string(self):
+        for target_audience_string in self.target_audience_string_list:
+            self.assertEqual(
+                utilities.get_choices_db_from_string(
+                    constants.TARGET_AUDIENCE_CHOICES, target_audience_string[0]
+                ),
+                target_audience_string[1],
             )

@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Région Auvergne-Rhône-Alpes,
+_meta_nom,"FabLab : Laboratoires de fabrication numérique en Auvergne",
+_meta_fichier_chemin,"data/region_auvergne/fablab__laboratoires_de_fabrication_numerique_en_auvergne.csv",
+_meta_fichier_separateur,";",
+_meta_url,"http://opendata.auvergnerhonealpes.eu/data/fablab-auvergne/7-fablab-laboratoires-de-fabrication-numerique-en-auvergne.htm",
+_meta_lieu_id,,
+_meta_lieu_date_maj,,
+nom,Nom,
+structure_porteuse,Porteur,
+description,,
+type_lieu,,Uniquement des tiers-lieux
+statut,,
+nature_juridique,,
+siret,,
+adresse_brut,"Adresse,Code postal,Ville",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,Tél.,
+contact_telephone_details,,
+contact_email,e-mail,
+contact_web,Site web,
+contact_facebook,,
+horaires_ouverture_brut,,
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,
+labels,,

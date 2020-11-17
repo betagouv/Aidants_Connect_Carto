@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,ANCT,
+_meta_nom,France Services,
+_meta_fichier_chemin,"data/france_services/france_services_cget-carto.csv",
+_meta_fichier_separateur,";",
+_meta_url,"https://cget-carto.github.io/France-services/",
+_meta_lieu_id,MATRICULE,
+_meta_lieu_date_maj,,
+nom,lib_france_services,
+structure_porteuse,,
+description,,
+type_lieu,,
+statut,,
+nature_juridique,,
+siret,,
+adresse_brut,"ADRESSE,code_postal,lib_com",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,ITINERANCE,
+en_ligne,,
+contact_telephone,TELEPHONE,
+contact_telephone_details,,
+contact_email,CONTACT.MAIL,
+contact_web,,
+contact_facebook,,
+horaires_ouverture_brut,"h_lundi,h_mardi,h_mercredi,h_jeudi,h_vendredi,h_samedi",
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,,
+accessibilite,,
+services,,
+labels,///France Services///,

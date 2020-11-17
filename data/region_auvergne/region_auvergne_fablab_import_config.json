@@ -6,7 +6,8 @@
     "file_path": "data/region_auvergne/fablab__laboratoires_de_fabrication_numerique_en_auvergne.csv",
     "last_updated": "2016-10-27",
     "import_comment": "",
-    "import_config": {
+    "import_config": "data/region_auvergne/region_auvergne_fablab_import_config.csv",
+    "import_config_old": {
         "place_fields_set": [
             {
                 "place_field": "type",

@@ -1,0 +1,41 @@
+modele,fichier,commentaire
+_meta_source,Hub Hinaura,
+_meta_nom,"test",
+_meta_fichier_chemin,"data/hub_hinaura/092020_test_bdd_Hinaura.csv",
+_meta_fichier_separateur,",",
+_meta_url,,
+_meta_lieu_id,,
+_meta_lieu_date_maj,datetime_latest,
+nom,Nom du lieu ou de la structure,
+structure_porteuse,,
+description,Informations diverses,
+type_lieu,Type de lieu,
+statut,Type d'opérateur,La valeur privé est séparé entre 'privé lucratif' et 'privé non-lucratif'
+nature_juridique,,
+siret,,
+adresse_brut,"Adresse postale,Code postal,Ville",
+adresse_numero,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_rue,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_postal,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_code_insee,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_commune,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_departement,,"(laisser vide, sera généré automatiquement par le script)"
+adresse_region,,"(laisser vide, sera généré automatiquement par le script)"
+latitude,,"(laisser vide, sera généré automatiquement par le script)"
+longitude,,"(laisser vide, sera généré automatiquement par le script)"
+itinerant,,
+en_ligne,,
+contact_telephone,Téléphone,Il manque souvent le 0 devant
+contact_telephone_details,,
+contact_email,Email,
+contact_web,Site Web,
+contact_facebook,,
+horaires_ouverture_brut,"Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche",Formats variés, pas toujours exploitables
+horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
+public_cible,Publics accueillis,
+modalites_acces,,
+modalites_accompagnement,,
+tarifs,Tarifs,
+accessibilite,Accueil pour les personnes en situation de handicap,
+services,,
+labels,,

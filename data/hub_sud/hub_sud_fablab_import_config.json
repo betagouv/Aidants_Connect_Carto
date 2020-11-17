@@ -6,7 +6,8 @@
     "file_path": "data/hub_sud/Copie de Lieux Médiation_fablab_SudLab_LABELS.csv",
     "last_updated": "",
     "import_comment": "",
-    "import_config": {
+    "import_config": "data/hub_sud/hub_sud_fablab_import_config.csv",
+    "import_config_old": {
         "place_fields_set": [
             {
                 "place_field": "type",

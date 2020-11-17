@@ -6,7 +6,8 @@
     "file_path": "data/hub_hinaura/092020_test_bdd_Hinaura.csv",
     "last_updated": "2020-01-01",
     "import_comment": "",
-    "import_config": {
+    "import_config": "data/hub_hinaura/hub_hinaura_import_config.csv",
+    "import_config_old": {
         "dataset_file_delimiter": ",",
         "place_fields_mapping_auto": [
             {

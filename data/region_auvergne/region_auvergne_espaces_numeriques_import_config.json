@@ -6,7 +6,8 @@
     "file_path": "data/region_auvergne/espaces_numeriques_en_auvergne.csv",
     "last_updated": "2016-10-27",
     "import_comment": "Le plus: nom des contact_person (rajouter dans la base ?). Le moins: pas d'id, pas d'horaires, pas de service. Pre-processing: colonne 'Porteur': 'Non déclaré' --> ''",
-    "import_config": {
+    "import_config": "data/region_auvergne/region_auvergne_espaces_numeriques_import_config.csv",
+    "import_config_old": {
         "place_fields_mapping_auto": [
             {
                 "place_field": "name",

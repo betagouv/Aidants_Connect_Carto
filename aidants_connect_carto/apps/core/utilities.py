@@ -11,12 +11,47 @@ from aidants_connect_carto import constants
 # CHOICE fields
 
 
-def find_verbose_choice(choices: list, value: str):
+def get_choice_verbose(choices: list, value: str):
+    """
+    Examples:
+    (PLACE_TYPE_CHOICES, 'bibliotheque') --> 'Bibliothèque / Médiathèque'
+    """
     for choice in choices:
-        if choice[1] == value:
+        if value == choice[0]:
+            return choice[1]
+    # raise Exception(f"error with choices for {value}")
+    return None
+
+
+def get_choice_db(choices: list, value: str):
+    """
+    Examples:
+    (PLACE_TYPE_CHOICES, ''Bibliothèque / Médiathèque') --> 'bibliotheque'
+    """
+    for choice in choices:
+        if value == choice[1]:
             return choice[0]
     # raise Exception(f"error with choices for {value}")
     return None
+
+
+def get_choices_db_from_string(choices: list, value: str, seperator=","):
+    """
+    Examples:
+    (TARGET_AUDIENCE_CHOICES, 'Tout public,Allocataires') --> ['tout public', 'allocataire']  # noqa
+    """
+    # init
+    output = []
+
+    # match string list
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            output.append(get_choice_db(choices, value_item))
+
+    # clean and return
+    output = [x for x in output if x]  # remove None, empty string
+    return output
 
 
 # Float fields
@@ -32,90 +67,264 @@ def process_float(value: str):
 # Boolean fields
 
 
-def process_boolean(value: str):
+def process_boolean(value: str, destination="db"):
+    """
+    Examples:
+    ('oui', 'db') --> True
+    ('oui', 'file') --> FILE_BOOLEAN_TRUE
+    """
     if value:
         if any(elem in value.lower() for elem in ["oui", "vrai", "true"]):
-            return True
-    return False
+            return True if (destination == "db") else constants.FILE_BOOLEAN_TRUE
+    return False if (destination == "db") else constants.FILE_BOOLEAN_FALSE
 
 
-# Mapping to string
-
-
-def process_type(value: str):
+def process_is_itinerant(value: str, destination="db"):
+    """
+    Examples:
+    ('oui', 'db') --> True
+    ('oui', 'file') --> 'oui'
+    """
     if value:
-        for type_mapping_item in constants.PLACE_TYPE_MAPPING:
+        return True if (destination == "db") else value
+    return False if (destination == "db") else constants.EMPTY_STRING
+
+
+def process_is_online(value: str, destination="db"):
+    """
+    Examples:
+    ('oui', 'db') --> True
+    ('oui', 'file') --> FILE_BOOLEAN_TRUE
+    """
+    if value:
+        if not any(elem in value.lower() for elem in ["non", "faux", "false"]):
+            return True if (destination == "db") else constants.FILE_BOOLEAN_TRUE
+    return False if (destination == "db") else constants.FILE_BOOLEAN_FALSE
+
+
+"""
+Mapping to string:
+- type
+- status
+- legal_entity_type
+- service
+"""
+
+
+def process_type(value: str, destination="db"):
+    """
+    Output: 1 possible value, default to CHOICE_OTHER (or EMPTY_STRING)
+    Examples:
+    ('', 'db') --> CHOICE_OTHER
+    ('', 'file') --> EMPTY_STRING
+    """
+    # init
+    choices = constants.PLACE_TYPE_CHOICES
+    mapping = constants.PLACE_TYPE_MAPPING
+    output = None
+
+    # match input value
+    if value:
+        for type_mapping_item in mapping:
             if value.strip().lower() in type_mapping_item[1].lower():
-                return type_mapping_item[0]
-    return constants.CHOICE_OTHER
+                output = type_mapping_item[0]
+
+    # return
+    if destination == "db":
+        return output or constants.CHOICE_OTHER
+    else:
+        return get_choice_verbose(choices, output) or constants.EMPTY_STRING
 
 
-def process_status(value: str):
+def process_status(value: str, destination="db"):
+    """
+    Output: 1 possible value, default to CHOICE_OTHER (or EMPTY_STRING)
+    """
+    # init
+    choices = constants.PLACE_STATUS_CHOICES
+    mapping = constants.PLACE_STATUS_MAPPING
+    output = None
+
+    # match input value
     if value:
-        for status_mapping_item in constants.PLACE_STATUS_MAPPING:
+        for status_mapping_item in mapping:
             if value.strip().lower() == status_mapping_item[1].lower():
-                return status_mapping_item[0]
-    return constants.CHOICE_OTHER
+                output = status_mapping_item[0]
+
+    # return
+    if destination == "db":
+        return output or constants.CHOICE_OTHER
+    else:
+        return get_choice_verbose(choices, output) or constants.EMPTY_STRING
 
 
-def process_legal_entity_type(value: str):
+def process_legal_entity_type(value: str, destination="db"):
+    """
+    Output: 1 possible value, default to CHOICE_OTHER (or EMPTY_STRING)
+    """
+    # init
+    choices = constants.PLACE_LEGAL_ENTITY_TYPE_CHOICES
+    mapping = constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING
+    output = None
+
+    # match input value
     if value:
-        for legal_entity_type_mapping_item in constants.PLACE_LEGAL_ENTITY_TYPE_MAPPING:
+        for legal_entity_type_mapping_item in mapping:
             if value.strip().lower() in legal_entity_type_mapping_item[1].lower():
-                return legal_entity_type_mapping_item[0]
-    return constants.CHOICE_OTHER
+                output = legal_entity_type_mapping_item[0]
+
+    # return
+    if destination == "db":
+        return output or constants.CHOICE_OTHER
+    else:
+        return get_choice_verbose(choices, output) or constants.EMPTY_STRING
 
 
-def process_service_name(value: str):
+def process_service_name(value: str, destination="db"):
+    """
+    Output: 1 possible value, default to EMPTY_STRING
+    """
+    # init
+    choices = constants.SERVICE_NAME_CHOICES
+    mapping = constants.SERVICE_NAME_MAPPING
+    output = None
+
+    # match input value
     if value:
-        for service_name_mapping_item in constants.SERVICE_NAME_MAPPING:
+        for service_name_mapping_item in mapping:
             if value.strip().lower() == service_name_mapping_item[1].lower():
-                return service_name_mapping_item[0]
+                output = service_name_mapping_item[0]
+
+    # return
+    if destination == "db":
+        return output or constants.EMPTY_STRING
+    else:
+        return get_choice_verbose(choices, output) or constants.EMPTY_STRING
 
 
-# Mapping to list
+"""
+Mapping to list:
+- target_audience
+- support_access
+- support_mode
+- services
+- labels
+"""
 
 
-def process_target_audience(value: str):
-    target_audience_list = []
+def process_target_audience(value: str, destination="db"):
+    """
+    """
+    # init
+    choices = constants.TARGET_AUDIENCE_CHOICES
+    mapping = constants.TARGET_AUDIENCE_MAPPING
+    output = []
+
+    # match input value(s)
     if value:
-        for target_audience_mapping_item in constants.TARGET_AUDIENCE_MAPPING:
+        for target_audience_mapping_item in mapping:
             if any(elem in value.lower() for elem in target_audience_mapping_item[1]):
-                target_audience_list.append(target_audience_mapping_item[0])
-    return target_audience_list
+                output.append(target_audience_mapping_item[0])
+
+    # return
+    if destination == "db":
+        return output
+    else:
+        return ",".join([get_choice_verbose(choices, elem) for elem in output])
 
 
-def process_support_access(value: str, seperator=","):
-    support_access_list = []
+def process_support_access(value: str, seperator=",", destination="db"):
+    """
+    """
+    # init
+    choices = constants.SUPPORT_ACCESS_CHOICES
+    mapping = constants.SUPPORT_ACCESS_MAPPING
+    output = []
+
+    # match input value(s)
     if value:
         value_list = value.split(seperator)
         for value_item in value_list:
-            for support_access_mapping_item in constants.SUPPORT_ACCESS_MAPPING:
+            for support_access_mapping_item in mapping:
                 if value_item.strip().lower() in support_access_mapping_item[1].lower():
-                    support_access_list.append(support_access_mapping_item[0])
-    return support_access_list
+                    output.append(support_access_mapping_item[0])
+
+    # return
+    if destination == "db":
+        return output
+    else:
+        return ",".join([get_choice_verbose(choices, elem) for elem in output])
 
 
-def process_support_mode(value: str, seperator=","):
-    support_mode_list = []
+def process_support_mode(value: str, seperator=",", destination="db"):
+    """
+    """
+    # init
+    choices = constants.SUPPORT_MODE_CHOICES
+    mapping = constants.SUPPORT_MODE_MAPPING
+    output = []
+
+    # match input value(s)
     if value:
         value_list = value.split(seperator)
         for value_item in value_list:
-            for support_mode_mapping_item in constants.SUPPORT_MODE_MAPPING:
+            for support_mode_mapping_item in mapping:
                 if value_item.strip().lower() in support_mode_mapping_item[1].lower():
-                    support_mode_list.append(support_mode_mapping_item[0])
-    return support_mode_list
+                    output.append(support_mode_mapping_item[0])
+
+    # return
+    if destination == "db":
+        return output
+    else:
+        return ",".join([get_choice_verbose(choices, elem) for elem in output])
 
 
-def process_labels(value: str, seperator=","):
-    labels_list = []
+def process_services(value: str, seperator=",", destination="db"):
+    """
+    """
+    # init
+    choices = constants.SERVICE_NAME_CHOICES
+    mapping = constants.SERVICE_NAME_MAPPING
+    output = set()
+
+    # match input value(s)
     if value:
         value_list = value.split(seperator)
         for value_item in value_list:
-            for labels_mapping_item in constants.LABEL_MAPPING:
+            for services_mapping_item in mapping:
+                if value_item.strip().lower() in services_mapping_item[1].lower():
+                    output.add(services_mapping_item[0])
+
+    # return
+    output_sorted = sorted(list(output))
+    if destination == "db":
+        return output_sorted
+    else:
+        return ",".join([get_choice_verbose(choices, elem) for elem in output_sorted])
+
+
+def process_labels(value: str, seperator=",", destination="db"):
+    """
+    """
+    # init
+    choices = constants.LABEL_CHOICES
+    mapping = constants.LABEL_MAPPING
+    output = set()
+
+    # match input value(s)
+    if value:
+        value_list = value.split(seperator)
+        for value_item in value_list:
+            for labels_mapping_item in mapping:
                 if value_item.strip().lower() in labels_mapping_item[1].lower():
-                    labels_list.append(labels_mapping_item[0])
-    return labels_list
+                    output.add(labels_mapping_item[0])
+
+    # return
+    output_sorted = sorted(list(output))
+    if destination == "db":
+        return output_sorted
+    else:
+        return ",".join([get_choice_verbose(choices, elem) for elem in output_sorted])
 
 
 # Contact: Phone number
@@ -193,7 +402,7 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
     type: 'housenumber', 'street', 'locality' or 'municipality'
     example of type 'street': Place de la Gare 59460 Jeumont
     """
-    if "features" in results_json:
+    if ("features" in results_json) and len(results_json["features"]):
         results_first_address = results_json["features"][0]
         # if (len(results_json["features"]) == 1) or (results_first_address["properties"]["score"] > score_threshold): # noqa
         address_housenumber = (
@@ -223,6 +432,8 @@ def _process_ban_address_search_results(results_json, score_threshold: int = 0.9
             "longitude": results_first_address["geometry"]["coordinates"][0],
             "score": results_first_address["properties"]["score"],
         }
+    else:
+        return None
 
 
 def get_address_full(
@@ -260,6 +471,8 @@ def process_opening_hours_to_osm_format(opening_hours):
         # opening_hours is a string
         elif " | " in opening_hours:
             opening_hours_string = _clean_opening_hours_list(opening_hours.split(" | "))
+        elif "; " in opening_hours:
+            opening_hours_string = _clean_opening_hours_list(opening_hours.split("; "))
         else:
             opening_hours_string = opening_hours
 
@@ -277,19 +490,19 @@ def _clean_opening_hours_list(opening_hours_list: list):
     Input: ["9:00 - 12:00 / 13:30 - 17:00", "10:00 - 13:00"]
     Output: "Mo 9:00-12:00,13:30-17:00; Tu 10:00-13:00"
     """
-    MINIMUM_DAY_CHARS = 2
+    MINIMUM_CHARS_PER_DAY = 2
     # init
     opening_hours_list_cleaned = []
-    days_list = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
     # loop
     for index, elem in enumerate(opening_hours_list):
-        if len(opening_hours_list[index]) > MINIMUM_DAY_CHARS:
-            temp_opening_hours_day = (
-                days_list[index]
-                + " "
-                + _clean_day_opening_hours(opening_hours_list[index])
-            )
-            opening_hours_list_cleaned.append(temp_opening_hours_day)
+        if len(opening_hours_list[index]) > MINIMUM_CHARS_PER_DAY:
+            if index < len(constants.OPENSTREETMAP_DAYS_LIST):
+                temp_opening_hours_day = (
+                    constants.OPENSTREETMAP_DAYS_LIST[index]
+                    + " "
+                    + _clean_day_opening_hours(opening_hours_list[index])
+                )
+                opening_hours_list_cleaned.append(temp_opening_hours_day)
     return "; ".join(opening_hours_list_cleaned)
 
 

@@ -1,6 +1,18 @@
 # flake8: noqa
 
+"""
+extract values from tuples ?
+> shell_plus
+from aidants_connect_carto import constants
+for elem in constants.PLACE_TYPE_CHOICES:
+    print(elem[1])
+"""
+
+EMPTY_STRING = ""
 CHOICE_OTHER = "autre"
+
+FILE_BOOLEAN_TRUE = "Oui"
+FILE_BOOLEAN_FALSE = "Non"
 
 DATA_SOURCE_TYPE_HUB = "hub"
 DATA_SOURCE_TYPE_NATIONAL = "national"
@@ -11,14 +23,14 @@ DATA_SOURCE_TYPE_CHOICES = [
     (DATA_SOURCE_TYPE_NATIONAL, "National"),
     (DATA_SOURCE_TYPE_REGION, "Région"),
     (DATA_SOURCE_TYPE_DEPARTEMENT, "Département"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
 # TODO: Maison France Services as a tag instead of a type
 PLACE_TYPE_CHOICES = [
-    ("administration", "Administration - Collectivité territoriale"),
+    ("administration", "Administration / Collectivité territoriale"),
     ("association", "Association"),
-    ("bibliotheque", "Bibliothèque - Médiathèque"),
+    ("bibliotheque", "Bibliothèque / Médiathèque"),
     ("commune", "Commune (Ville, CCAS, Centre Culturel...)"),
     ("centre social", "Centre social"),
     ("departement", "Département (UTPAS, MDS, MDSI, UTAS...)"),
@@ -32,8 +44,8 @@ PLACE_TYPE_CHOICES = [
     ("pimms", "Point Information Médiation Multi Services (PIMMS)"),
     ("prefecture", "Préfecture, Sous-Préfecture"),
     ("securite sociale", "Organisme de sécurité sociale (CAF, CPAM, CARSAT, MSA...)"),
-    ("tiers lieu", "Tiers-lieu & coworking, FabLab"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    ("tiers lieu", "Tiers-lieu / Coworking / FabLab / Hackerspace"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
 PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
@@ -47,14 +59,14 @@ PLACE_TYPE_MAPPING = PLACE_TYPE_CHOICES + [
     ("tiers lieu", "Espace de coworking"),
 ]
 
-# TODO: quid d'avoir l'info "Privé" seule ?
 PLACE_STATUS_CHOICES = [
     ("public", "Public"),
     ("prive", "Privé"),
-    ("public-prive", "Public / Privé"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    ("public-prive", "Public-privé"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
+# TODO: séparer Privé à but lucratif et non lucratif ?
 PLACE_STATUS_MAPPING = PLACE_STATUS_CHOICES + [
     ("public", "Public : Collectivité"),
     ("prive", "Privé à but lucratif (entreprises, auto-entrepreneurs, SCOP, SCIC...)"),
@@ -75,10 +87,10 @@ PLACE_LEGAL_ENTITY_TYPE_CHOICES = [
     ("sas", "Société par actions simplifiée (SAS)"),
     ("sarl", "Société à responsabilité limitée (SARL)"),
     ("sasu", "Société par actions simplifiée unipersonnelle (SASU)"),
-    ("scic", "société coopérative d’intérêt collectif (SCIC)"),
+    ("scic", "Société coopérative d’intérêt collectif (SCIC)"),
     ("scop", "Société coopérative et participative (SCOP)"),
     ("spl", "Société publique locale (SPL)"),
-    (CHOICE_OTHER, "Autre, Inconnu"),
+    (CHOICE_OTHER, "Autre / Inconnu"),
 ]
 
 PLACE_LEGAL_ENTITY_TYPE_MAPPING = PLACE_LEGAL_ENTITY_TYPE_CHOICES + [
@@ -110,7 +122,7 @@ TARGET_AUDIENCE_CHOICES = [
     ("demandeur emploi", "Demandeurs d'emploi"),
     ("etranger", "Étrangers"),
     ("famille", "Familles"),
-    ("jeune", "-25 ans, Jeunes"),
+    ("jeune", "Jeunes"),
     ("handicap", "Personnes en situation de handicap"),
     ("senior", "Séniors"),
 ]
@@ -140,8 +152,8 @@ TARGET_AUDIENCE_MAPPING = [
 SUPPORT_ACCESS_CHOICES = [
     ("libre", "Accès libre"),
     ("inscription", "Sur inscription ou rendez-vous"),
-    ("public cible", "Public cible uniquement"),
-    ("adherent", "Adhérents uniquement"),
+    ("public cible", "Public cible"),
+    ("adherent", "Adhérents"),
 ]
 
 SUPPORT_ACCESS_MAPPING = SUPPORT_ACCESS_CHOICES + [
@@ -154,7 +166,7 @@ SUPPORT_ACCESS_MAPPING = SUPPORT_ACCESS_CHOICES + [
 ]
 
 SUPPORT_MODE_CHOICES = [
-    ("individuel", "Individuel, Personnalisé"),
+    ("individuel", "Individuel"),  # Personnalisé
     ("collectif", "Collectif"),
     # autres ?
 ]
@@ -169,6 +181,12 @@ LANGUAGE_CHOICES = [
     ("fr", "Français"),
     ("en", "Anglais"),
     ("fsl", "Language des signes"),
+]
+
+PRICE_CHOICES = [
+    ("gratuit", "Gratuit"),
+    ("adherent", "Adhérent"),
+    ("payant", "Payant"),
 ]
 
 PAYMENT_CHOICES = [
@@ -188,7 +206,7 @@ EQUIPMENT_CHOICES = [
     ("imprimante", "Imprimante"),
     # "Autre"
 ]
-HANDICAP_CHOICES = [
+ACCESSIBILITY_CHOICES = [
     ("handicap moteur", "Handicap moteur"),
     ("handicap visuel", "Handicap visuel"),
     ("handicap auditif", "Handicap auditif"),
@@ -207,7 +225,9 @@ SERVICE_NAME_LIST = [
     "Pratiquer des activités récréatives numériques",
 ]
 
-SERVICE_NAME_MAPPING = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST)) + [
+SERVICE_NAME_CHOICES = list(zip(SERVICE_NAME_LIST, SERVICE_NAME_LIST))
+
+SERVICE_NAME_MAPPING = SERVICE_NAME_CHOICES + [
     ("Accès à un équipement informatique", "Accès à Internet en autonomie"),
     (
         "Accompagnement aux démarches administratives en ligne",
@@ -229,12 +249,16 @@ LABEL_LIST = [
     "Aidants Connect",
     "France Services",
     "Fabriques de Territoire",  # Tiers-lieux
+    "Grande École du Numérique",  # GEN
     # "Autre"
 ]
 
-LABEL_MAPPING = list(zip(LABEL_LIST, LABEL_LIST)) + [
+LABEL_CHOICES = list(zip(LABEL_LIST, LABEL_LIST))
+
+LABEL_MAPPING = LABEL_CHOICES + [
     ("France Services", "MFS"),
     ("France Services", "Maison France Services"),
+    ("grande ecole du numérique", "Grande École du Numérique"),
 ]
 
 FRANCE_REGION_LIST = [
@@ -257,6 +281,8 @@ FRANCE_REGION_LIST = [
     "La Réunion",
     "Mayotte",
 ]
+
+FRANCE_REGION_CHOICES = list(zip(FRANCE_REGION_LIST, FRANCE_REGION_LIST))
 
 FRANCE_DEPARTEMENT_CHOICES = [
     ("Ain", "Ain (01)"),
@@ -361,3 +387,5 @@ FRANCE_DEPARTEMENT_CHOICES = [
     ("La Réunion", "La Réunion (974)"),
     ("Mayotte", "Mayotte (976)"),
 ]
+
+OPENSTREETMAP_DAYS_LIST = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]

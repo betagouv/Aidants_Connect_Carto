@@ -6,7 +6,9 @@
     "file_path": "data/france_services/france_services_cget-carto.csv",
     "last_updated": "2020-03-31",
     "import_comment": "Convertir geojson en csv. Horaires séparées par jour",
-    "import_config": {
+    "import_config": "data/france_services/france_services_cget_carto_import_config.csv",
+    "import_config_old": {
+        "dataset_file_delimiter": ";",
         "place_fields_set": [
             {
                 "place_field": "has_label_fs",

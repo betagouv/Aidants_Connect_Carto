@@ -18,13 +18,15 @@ class SearchTest(TestCase):
         )
         Service.objects.create(name="Stockage numérique sécurisé", place_id=place_1.id)
         place_2 = Place.objects.create(
-            name="Lieu Test 2", address_region_name="Île-de-France"
+            name="Lieu Test 2",
+            address_region_name="Île-de-France",
+            data_set_id=data_set_1.id,
         )
         Service.objects.create(
             name="Accès à un équipement informatique", place_id=place_2.id
         )
         Service.objects.create(name="Stockage numérique sécurisé", place_id=place_2.id)
-        Place.objects.create(name="another place")
+        Place.objects.create(name="another place", data_set_id=data_set_1.id)
 
     def test_search_form(self):
         search_query = {"name": "Lieu"}
