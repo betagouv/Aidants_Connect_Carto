@@ -135,6 +135,7 @@
 
   </div>
 </section>
+
 <section class="section section-grey">
   <div class="container">
     {% if place_services %}
@@ -185,6 +186,8 @@
 </section>
 
 <div id="contribution" class="notification full-width" role="alert">
+  Source de la donnée : <a href="{% url 'data-sources-list' %}#{{ place.data_set.data_source.name }}">{{ place.data_set.data_source.name }}, <i>{{ place.data_set.name }}</i></a>
+  <br />
   ✍️&nbsp;Les informations affichées ne sont pas à jour, ou simplement absentes ? Vous pouvez <a href="mailto:carto@aidantsconnect.beta.gouv.fr?subject=%5BContribution%5D%20Modification%20du%20lieu%20{{ place.id }}&body=Bonjour,%0A%0AVeuillez%20nous%20indiquer%20les%20informations%20manquantes.%20On%20fera%20de%20notre%20mieux%20pour%20mettre%20%C3%A0%20jour%20la%20donn%C3%A9e,%20et%20informer%20le%20fournisseur%20de%20donn%C3%A9e.%0A%0AMerci%20de%20votre%20contribution%20!">suggérer une modification</a>.
 </div>
 

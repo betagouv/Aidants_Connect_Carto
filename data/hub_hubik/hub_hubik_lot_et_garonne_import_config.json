@@ -8,8 +8,6 @@
     "import_comment": "",
     "import_config": "data/hub_hubik/hub_hubik_lot_et_garonne_import_config.csv",
     "import_config_old": {
-        "place_fields_set": [
-        ],
         "place_fields_mapping_auto": [
             {
                 "place_field": "name",

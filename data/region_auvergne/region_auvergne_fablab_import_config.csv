@@ -9,7 +9,7 @@ _meta_lieu_date_maj,,
 nom,Nom,
 structure_porteuse,Porteur,
 description,,
-type_lieu,,Uniquement des tiers-lieux
+type_lieu,///Tiers-lieu / Coworking / FabLab / Hackerspace///,Uniquement des tiers-lieux
 statut,,
 nature_juridique,,
 siret,,

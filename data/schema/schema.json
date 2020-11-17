@@ -357,7 +357,7 @@
       "type": "string",
       "constraints": {
         "required": false,
-        "pattern": "(?:(?:^|,)(TODO))+$"
+        "pattern": "(?:(?:^|,)(Handicap moteur|Handicap visuel|Handicap auditif|Handicap intellectuel ou psychique))+$"
       }
     },
     {

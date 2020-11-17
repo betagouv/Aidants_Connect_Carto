@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 
 from aidants_connect_carto import constants
 
-from aidants_connect_carto.apps.core.models import Place, Service
+from aidants_connect_carto.apps.core.models import Place
 
 
 class PlaceSearchForm(ModelForm):
@@ -28,9 +28,11 @@ class PlaceSearchForm(ModelForm):
     is_online = forms.ChoiceField(
         choices=[("hide", "Cacher"), ("only", "Uniquement")], widget=forms.Select(),
     )
-    service_label_aidants_connect = forms.BooleanField(
-        label=Service._meta.get_field("has_label_aidants_connect").verbose_name,
-        initial=False,
+    label_france_services = forms.BooleanField(
+        label="Labellisé France Services", initial=False,
+    )
+    label_aidants_connect = forms.BooleanField(
+        label="Labellisé Aidants Connect", initial=False,
     )
 
     # data_source_name = forms.CharField()
@@ -56,8 +58,8 @@ class PlaceSearchForm(ModelForm):
             # "has_equipment_scanner",
             # "has_equipment_printer",
             "service_name",
-            "has_label_fs",
-            "service_label_aidants_connect",
+            "label_france_services",
+            "label_aidants_connect",
             # "data_source_name",
             # "data_set_name",
         ]
@@ -162,10 +164,10 @@ class PlaceSearchEngine:
         if self.query.get("service_name"):
             qs = qs.filter(services__name=self.query.get("service_name"))
 
-        if self.query.get("has_label_fs"):
-            qs = qs.filter(has_label_fs=True)
-        if self.query.get("service_label_aidants_connect"):
-            qs = qs.filter(services__has_label_aidants_connect=True)
+        if self.query.get("label_france_services"):
+            qs = qs.filter(labels__contains=["France Services"])
+        if self.query.get("label_aidants_connect"):
+            qs = qs.filter(labels__contains=["Aidant Connect"])
 
         if self.query.get("data_source_name"):
             qs = qs.filter(
