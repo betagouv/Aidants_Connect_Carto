@@ -4,6 +4,8 @@ _meta_nom,"Cartographie régionale des ressources numériques en Hauts-de-France
 _meta_fichier_chemin,"data/hub_siilab/siilab-hdf_export.csv",
 _meta_fichier_separateur,",",
 _meta_url,"http://hauts-de-france.drjscs.gouv.fr/spip.php?article1793",
+_meta_date_maj,,
+_meta_commentaire,,
 _meta_lieu_id,ID Exporter les données,
 _meta_lieu_date_maj,Horodateur,
 nom,Nom SP,

@@ -4,6 +4,8 @@ _meta_nom,"test",
 _meta_fichier_chemin,"data/hub_hinaura/092020_test_bdd_Hinaura.csv",
 _meta_fichier_separateur,",",
 _meta_url,,
+_meta_date_maj,2020-01-01,
+_meta_commentaire,,
 _meta_lieu_id,,
 _meta_lieu_date_maj,datetime_latest,
 nom,Nom du lieu ou de la structure,
@@ -30,7 +32,7 @@ contact_telephone_details,,
 contact_email,Email,
 contact_web,Site Web,
 contact_facebook,,
-horaires_ouverture_brut,"Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche",Formats variés, pas toujours exploitables
+horaires_ouverture_brut,"Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche","Formats variés, pas toujours exploitables"
 horaires_ouverture_osm,,"(laisser vide, sera généré automatiquement par le script)"
 public_cible,Publics accueillis,
 modalites_acces,,
