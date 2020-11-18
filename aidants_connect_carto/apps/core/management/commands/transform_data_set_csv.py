@@ -2,15 +2,12 @@
 
 import re
 import csv
-import json
 import time
-import pandas as pd
 
 from django.core.management import BaseCommand
 
 from aidants_connect_carto import constants
 from aidants_connect_carto.apps.core import utilities
-from aidants_connect_carto.apps.core.models import DataSource, DataSet, Place, Service
 
 
 DEFAULT_SEPARATEUR_DATA_SET = ","

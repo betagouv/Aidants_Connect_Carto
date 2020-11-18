@@ -1,7 +1,5 @@
 import re
 
-from django.conf import settings
-
 import humanized_opening_hours as hoh
 import requests as python_request
 
@@ -391,7 +389,7 @@ def process_address(address_string: str):
 
 def call_ban_address_search_api(search_q_param: str):
     response = python_request.get(
-        f"{settings.BAN_ADDRESS_SEARCH_API}?q={search_q_param}"
+        f"{constants.BAN_ADDRESS_SEARCH_API}?q={search_q_param}"
     )
     return response.json()
 

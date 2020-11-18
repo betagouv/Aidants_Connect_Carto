@@ -389,3 +389,6 @@ FRANCE_DEPARTEMENT_CHOICES = [
 ]
 
 OPENSTREETMAP_DAYS_LIST = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
+
+
+BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"

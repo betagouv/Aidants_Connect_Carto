@@ -208,11 +208,6 @@ MODELSDOC_MODEL_OPTIONS = (
 MODELSDOC_FIELD_WRAPPER = "aidants_connect_carto.apps.core.documentation.modelsdoc_custom_field_wrapper.CustomFieldWrapper"
 
 
-# API URLS
-
-BAN_ADDRESS_SEARCH_API = "https://api-adresse.data.gouv.fr/search"
-
-
 # Internal search engine settings
 
 SEARCH_RESULTS_PER_PAGE = 30
