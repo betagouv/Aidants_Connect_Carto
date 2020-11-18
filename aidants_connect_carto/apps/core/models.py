@@ -88,17 +88,6 @@ class DataSet(models.Model):
         null=True,
     )
 
-    # --- import details
-    import_config = JSONField(
-        verbose_name="Information et configuration de l'import de la donnée",
-        blank=True,
-        null=True,
-    )
-    import_comment = models.TextField(
-        verbose_name="Informations complémentaires sur l'import de la donnée",
-        blank=True,
-    )
-
     # --- links to other models & databases
     data_source = models.ForeignKey(
         DataSource,

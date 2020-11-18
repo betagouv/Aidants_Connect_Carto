@@ -31,8 +31,6 @@ class DataSetSerializer(serializers.ModelSerializer):
             "url",
             # "local_path",
             "last_updated",
-            # "import_config",
-            # "import_comment",
             "created_at",
             "updated_at",
         ]

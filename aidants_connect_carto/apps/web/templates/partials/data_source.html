@@ -15,11 +15,15 @@
     <div class="card">
       <div class="card__content">
         <h5>{{ data_set.name }}</h5>
-        <p>{{ data_set.place_count }} Lieux</p>
+        <p>{{ data_set.place_count }} Lieux
+          <span class="label label--inactive"><a href="{% url 'places-list' %}?data_source_name={{ data_source.name }}&data_set_name={{ data_set.name }}">🔍&nbsp;rechercher</a></span>
+        </p>
         <p>🕒&nbsp;Ajouté le {{ data_set.created_at | date:"d F Y" }}</p>
       </div>
       <div class="card__extra">
-        <span class="label label--inactive">🔍&nbsp;<a href="{% url 'places-list' %}?data_source_name={{ data_source.name }}&data_set_name={{ data_set.name }}">rechercher</a></span>
+        {% if data_set.local_path %}
+          <span class="label">📋&nbsp;<a href="https://github.com/betagouv/Aidants_Connect_Carto/blob/master/{{ data_set.local_path }}" target="_blank">jeu de données</a></span>
+        {% endif %}
         {% if data_set.url %}
           <span class="label float-right">🔗&nbsp;<a href="{{ data_set.url }}" target="_blank">source</a></span>
         {% endif %}
