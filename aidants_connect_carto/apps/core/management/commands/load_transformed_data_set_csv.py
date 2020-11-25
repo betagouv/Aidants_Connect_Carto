@@ -7,7 +7,7 @@ from aidants_connect_carto.apps.core import utilities
 from aidants_connect_carto.apps.core.models import DataSet, Place, Service
 
 
-MAPPING_SCHEMA_DB_FILE_PATH = "data/schema/mapping_schema_db.csv"
+MAPPING_SCHEMA_DB_FILE_PATH = "schema/mapping_schema_db.csv"
 DEFAULT_SEPARATEUR_DATA_SET = ","
 DEFAULT_SEPARATEUR_CHAMPS_MULTIPLES = ","
 DEFAULT_DATA_SET_EXTENSION = ".csv"

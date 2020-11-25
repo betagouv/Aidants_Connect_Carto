@@ -21,8 +21,8 @@ Etalab csv-gg (create forms from Table Schemas and let users create valid CSV ro
 ### Frictionless (Python package)
 
 ```
-frictionless validate --source-type schema data/schema/schema.json
-frictionless validate --schema data/schema/schema.json data/schema/exemple-valide.csv
+frictionless validate --source-type schema schema/schema.json
+frictionless validate --schema schema/schema.json schema/exemple-valide.csv
 ```
 
 ## Exemples
